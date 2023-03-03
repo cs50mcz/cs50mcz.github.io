@@ -1,0 +1,304 @@
+/* Mobile-first styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .highlight .highlight {
+    background: #f8f8f8;
+  }
+
+  .highlight pre {
+    line-height: 125%;
+  }
+
+  .highlight .highlight .cp {
+    color: #9C6500;
+  }
+
+  .highlight .highlight .cpf {
+    color: #3D7B7B;
+  }
+
+  .highlight .highlight .kt {
+    color: #B00040;
+  }
+
+  .highlight .highlight .nf {
+    color: #0000FF;
+  }
+
+  .highlight .highlight .s {
+    color: #BA2121;
+  }
+
+  .highlight .highlight .se {
+    color: #AA5D1F;
+    font-weight: bold;
+  }
+
+  .sb3-events {
+    fill: #ffbf00;
+    stroke: #c90;
+  }
+
+  .sb3-looks {
+    fill: #96f;
+    stroke: #774dcb;
+  }
+
+  .highlighter-rouge {
+    
+    background: #d2d1d1;
+  }
+
+  a, .btn-link {
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
+    /* text-underline-offset: 4px; */
+    color: #BA2121;
+  }
+
+  a:hover {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
+    /* text-underline-offset: 4px; */
+    color: #BA2121;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    padding: 2em;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 3em;
+  }
+  
+  header p {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  nav {
+    background-color: #555;
+    /* text-align: center; */
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 1em;
+    display: inline-block;
+  }
+  
+  nav a:hover {
+    background-color: #3b5998;
+  }
+  
+  main {
+    padding: 2em;
+  }
+  
+  section {
+    margin-bottom: 2em;
+  }
+  
+  section h2 {
+    margin: 0;
+  }
+
+  section h3 {
+    margin: 0;
+  }
+
+  section h4 {
+    margin: 0;
+  }
+  
+  section p {
+    margin: 1em 0;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  section ul {
+    margin: 0;
+    padding: 0 0 0 32px;
+  }
+  
+  section li {
+    margin: 0.5em 0;
+  }
+  
+  footer {
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    margin-left: 240px;
+  }
+
+  .sidenav {
+    display: relative;
+    height: 100vh;
+    width: 15em;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding: 20px;
+  }
+  
+  em {
+    color: #818181;
+  }
+
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    color: #fff;
+  }
+
+  .sidenav p {
+    padding: 6px 8px 6px 16px;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+
+  .main {
+    margin-left: 260px; /* Same as the width of the sidenav */
+    font-size: 16px; /* Increased text to enable scrolling */
+    padding: 0px 40px;
+  }
+
+  .title {
+    margin-left: 260px; /* Same as the width of the sidenav */
+    /* font-size: 28px; Increased text to enable scrolling */
+    padding: 0px 40px;
+    text-align: center;
+  }
+
+  #titulo {
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .main iframe {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .res-topbar, .close-menu {
+    display: none;
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+
+  /* .iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; 
+    width: 70vw; 
+  }
+
+  iframe {
+    width: 80%;
+    height: 80%;
+  } */
+
+  /* Media queries */
+  /* @media (min-width: 600px) {
+    header h1 {
+      font-size: 4em;
+    }
+    header p {
+      font-size: 1.5em;
+    }
+    nav a {
+      padding: 1.5em;
+    }
+  } */
+
+  @media (max-width: 1024px) {
+    .sidenav {
+      display: none;
+      width: max-content;
+      max-width: max-content;
+    }
+    .main, .title , footer {
+      margin-left: 0px;
+    }
+    
+    .res-topbar {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: max-content;
+      background-color: white;
+      padding: 1em 2em;
+    }
+
+    .close-menu {
+      display: block;
+      padding: 0em 12px;
+    }
+    .res-topbar i {
+      cursor: pointer;
+    }
+  } 
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+</head>
+    <div class="res-topbar">
+      <i class="fa fa-bars fa-lg ham-menu"></i>
+    </div>
+  <header>
+    <nav class="sidenav">
+        <div class="close-menu">
+          <i class="fa fa-times fa-lg close-btn"></i>
+        </div>
+      <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+      <p>Introdução à Ciência da Computação</p>
+      <br>
+      <hr style="border: 0.1px solid rgb(54, 54, 54);">
+      <br>
+      <a href="week0.html">Week 0 - <em>Scratch</em></a>
+      <a href="#">Week 1 - <em>C</em></a>
+      <a href="#resources">Week 2 - <em>Arrays</em></a>
+      <a href="#about">Week 3 - <em>Algoritmos</em></a>
+      <a href="#about">Week 4 - <em>Memória</em></a>
+      <a href="#about">Week 5 - <em>Estrutura de Dados</em></a>
+      <a href="#about">Week 6 - <em>Python</em></a>
+      <a href="#about">Week 7 - <em>SQL</em></a>
+      <a href="#about">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+      <a href="#about">Week 9 - <em>Flask</em></a>
+      <a href="#about">Week 10 - <em>Cibersegurança</em></a>
+      <br>
+      <hr style="border: 0.1px solid rgb(54, 54, 54);">
+      <br>
+      <a href="honesty.html">Honestidade Acadêmica</a>
+      <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+    </nav>
+    <div class="title">
+      <h1>CS50-MCZ</h1>
+      <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+  </header>
+    <main class="main">
+    <section>
+      <br>
+      <h2 class="no_toc" id="lecture-0">Week 0</h2>
+      <hr>
+
+      <p> Ciência da Computação. Pensamento Computacional. Resolução de Problemas: Entradas, Saídas. Representação:
+        Unário, Binário, Decimal, ASCII, Unicode, RGB. Abstração. Algoritmos. Tempos de Execução. Pseudocódigo. Scratch:
+        Funções, Argumentos, Valores de Retorno; Variáveis; Expressões Booleanas, Condicional; Loops; Eventos; Threads.
+      </p>
+      <ul id="markdown-toc">
+        <li><a href="problemset0.html">Projeto 0</a></li>
+      </ul>
+      <br>
+      <section>
+        <h2 id="welcome">Notas</h2>
+        <hr>
+      </section>
+      <ul id="markdown-toc">
+        <li><a href="#welcome" id="markdown-toc-welcome">Bem-vindo!</a></li>
+        <li><a href="#whats-ahead" id="markdown-toc-whats-ahead">O que vem por aí</a></li>
+        <li><a href="#community" id="markdown-toc-community">Comunidade!</a></li>
+        <li><a href="#computational-thinking" id="markdown-toc-computational-thinking">Pensamento Computacional</a></li>
+        <li><a href="#text" id="markdown-toc-text">Texto</a></li>
+        <li><a href="#emojis" id="markdown-toc-emojis">Emojis</a></li>
+        <li><a href="#rgb" id="markdown-toc-rgb">RGB</a></li>
+        <li><a href="#images-video-and-sound" id="markdown-toc-images-video-and-sound">Imagens, Vídeo e Som</a></li>
+        <li><a href="#algorithms" id="markdown-toc-algorithms">Algoritmos</a></li>
+        <li><a href="#pseudocode-and-the-basic-building-blocks-of-programming"
+            id="markdown-toc-pseudocode-and-the-basic-building-blocks-of-programming">Pseudocódigo e os Blocos Básicos
+            de Programação</a></li>
+        <li><a href="#scratch" id="markdown-toc-scratch">Scratch</a></li>
+        <li><a href="#abstraction" id="markdown-toc-abstraction">Abstração</a></li>
+        <li><a href="#if" id="markdown-toc-if">Se</a></li>
+        <li><a href="#expanding-your-imagination" id="markdown-toc-expanding-your-imagination">Expandindo sua
+            Imaginação</a></li>
+        <li><a href="#sprite-movement" id="markdown-toc-sprite-movement">Movimento do Sprite</a></li>
+        <li><a href="#more-sprites" id="markdown-toc-more-sprites">Mais Sprites</a></li>
+        <li><a href="#summing-up" id="markdown-toc-summing-up">Resumindo</a></li>
+      </ul>
+
+      <h2 id="welcome">Bem-vindo!</h2>
+
+      <ul>
+        <li data-marker="*">Esta aula trata de mais do que apenas programação de computadores!</li>
+        <li data-marker="*">Na verdade, esta aula trata de resolução de problemas de uma maneira extremamente
+          capacitadora! Você provavelmente aplicará imediatamente as habilidades de resolução de problemas que aprender
+          aqui em seu trabalho além deste curso e até mesmo em sua carreira como um todo!</li>
+        <li data-marker="*">No entanto, não será fácil! Você estará "bebendo da mangueira de conhecimento" durante este
+          curso. Você ficará surpreso com o que será capaz de realizar nas próximas semanas.</li>
+        <li data-marker="*">Este curso é muito mais sobre você avançar "você" de "onde você está hoje" do que atingir
+          algum padrão imaginado.</li>
+        <li data-marker="*">A consideração mais importante ao iniciar este curso: dê o tempo necessário para aprender
+          por meio deste curso. Todo mundo aprende de maneira diferente. Se algo não funcionar bem no início, saiba que
+          com o tempo você irá crescer e se desenvolver em suas habilidades.</li>
+      </ul>
+
+
+      <h2 id="whats-ahead">O que vem por aí</h2>
+      <ul>
+        <li data-marker="*">Esta semana você aprenderá sobre o Scratch, uma linguagem de programação visual.</li>
+        <li data-marker="*">
+          <p>Nas próximas semanas, você aprenderá sobre C. Isso será algo parecido com isso:</p>
+
+          <div class="language-c highlighter-rouge">
+            <div class="highlight">
+
+    <!-- </span> -->
+    <pre class="highlight"><code>    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)
+    </span><span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+  </code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">À medida que as semanas avançam, você aprenderá sobre algoritmos.</li>
+        <li data-marker="*">Você aprenderá sobre memória.</li>
+        <li data-marker="*">Você aprenderá sobre códigos com bugs e o que causa falhas em computadores.</li>
+        <li data-marker="*">Você aprenderá sobre estruturas de dados, como uma tabela de hash.</li>
+        <li data-marker="*">
+          <p>Então, faremos a transição para uma nova linguagem de programação de mais alto nível chamada
+            <em>Python</em>. Seu código ficará assim:
+          </p>
+
+          <div class="language-py highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  <span class="nf">print</span><span class="p">(</span><span class="s">"hello, world"</span><span class="p">)</span>
+      </code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">Esta aula lhe dará uma compreensão sólida de como as linguagens de programação recentes se
+          desenvolveram a partir das mais antigas.</li>
+        <li data-marker="*">Também veremos como podemos usar bancos de dados e estruturas de terceiros para construir
+          aplicativos da web.</li>
+      </ul>
+
+      <h2 id="community">Comunidade!</h2>
+      <ul>
+        <li data-marker="*">Você faz parte da seleta comunidade de pessoas que estão fazendo o CS50, seja no Harvard
+          College,
+          Harvard Extension School, via edX.org, ou aqui no CS50-MCZ.</li>
+        <li data-marker="*">Puzzle Day e a Feira CS50.</li>
+      </ul>
+
+      <h2 id="computational-thinking">Pensamento Computacional</h2>
+
+      <ul>
+        <li data-marker="*">
+          <p>Essencialmente, programação de computadores consiste em pegar uma entrada e criar uma saída - assim
+            resolvendo um problema. O que acontece entre a entrada e a saída, o que poderíamos chamar de <em>uma caixa
+              preta</em>, é o foco deste curso.</p>
+
+          <p><img src="./assets/images/cs50Week0Slide38.png" alt="Caixa preta com entrada e saída"
+              title="Caixa preta com entrada e saída"></p>
+        </li>
+        <li data-marker="*">Por exemplo, podemos precisar fazer a chamada de presença para uma aula. Poderíamos usar um
+          sistema chamado de <em>unário</em> para contar, um dedo de cada vez. Os computadores de hoje contam usando um
+          sistema chamado de <em>binário</em>. É do termo <em>dígito binário</em> que obtemos um termo familiar chamado
+          de <em>bit</em>. Um <em>bit</em> é um zero ou um.
+        </li>
+        <li data-marker="*">Os computadores só falam em termos de zeros e uns. Zeros representam <em>desligado</em>. Uns
+          representam <em>ligado</em>. Os computadores são milhões, e talvez bilhões, de transistores que estão sendo
+          ligados e desligados.</li>
+        <li data-marker="*">Se você imaginar usar uma lâmpada, uma única lâmpada só pode contar de zero a um.</li>
+        <li data-marker="*">No entanto, se você tiver três lâmpadas, há mais opções disponíveis!</li>
+        <li data-marker="*">
+          <p>Usando três lâmpadas, o seguinte poderia representar zero:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  0 0 0
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Da mesma forma, o seguinte representaria um:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  0 0 1    
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Por essa lógica, poderíamos propor que o seguinte seja igual a dois:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  0 1 0
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Estendendo ainda mais essa lógica, o seguinte representa três:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  0 1 1
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Quatro apareceria como:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  1 0 0
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Nós poderíamos, na verdade, usando apenas três lâmpadas contar tão alto quanto sete!</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  1 1 1
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Como heurística, poderíamos imaginar que os seguintes valores representam cada possível posição em nosso
+            <em>dígito binário</em>:
+          </p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  4 2 1
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Os computadores usam a 'base-2' para contar. Isso pode ser representado da seguinte forma:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  2^2  2^1  2^0
+  4    2    1
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">
+          <p>Portanto, poderíamos dizer que seriam necessários três bits (o lugar dos quatro, o lugar dos dois e o lugar
+            dos um) para representar um número tão alto quanto sete.</p>
+        </li>
+        <li data-marker="*">Os computadores geralmente usam oito bits para representar um número. Por exemplo, <code
+            class="language-plaintext highlighter-rouge">00000101</code> é o número 5 em <em>binário</em>.</li>
+      </ul>
+
+      <h2 id="text">Texto</h2>
+
+      <ul>
+        <li data-marker="*">Assim como os números são padrões binários de uns e zeros, as letras também são
+          representadas
+          usando uns e zeros!</li>
+        <li data-marker="*">Como há uma sobreposição entre os uns e zeros que representam números e letras, o padrão
+          <em>ASCII</em> foi criado para mapear letras específicas para números específicos.
+        </li>
+        <li data-marker="*">Por exemplo, a letra <code class="language-plaintext highlighter-rouge">A</code> foi
+          decidido ser mapeada para o número 65.</li>
+        <li data-marker="*">
+          <p>Se você recebeu uma mensagem de texto, o binário sob essa mensagem pode representar os números 72, 73 e 33.
+            Mapeando-os para ASCII, sua mensagem ficaria assim:</p>
+
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  H   I   !
+  72  73  33
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">Graças a padrões como o ASCII que nos permitem concordar com esses valores!</li>
+        <li data-marker="*">
+          <p>Aqui está um mapa expandido de valores ASCII:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide93.png" alt="mapa ASCII" title="mapa ASCII"></p>
+        </li>
+        <li data-marker="*">Se desejar, você pode aprender mais sobre <a href="https://pt.wikipedia.org/wiki/ASCII"
+            target="_blank">ASCII</a>.
+        </li>
+      </ul>
+
+      <h2 id="emojis">Emojis</h2>
+      <ul>
+        <li data-marker="*">À medida que o tempo passou, há mais e mais maneiras de se comunicar por texto.</li>
+        <li data-marker="*">Como não havia dígitos suficientes em binário para representar todos os vários caracteres
+          que
+          poderiam ser representados por seres humanos, o padrão <em>Unicode</em> expandiu o número de bits que podem
+          ser
+          transmitidos e entendidos por computadores.</li>
+        <li data-marker="*">
+          <p>Há emojis que você provavelmente usa todos os dias. Os seguintes podem lhe parecer familiares:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide103.png" alt="emojis" title="emojis"></p>
+        </li>
+        <li data-marker="*">Os cientistas da computação enfrentaram um desafio ao querer atribuir vários tons de pele
+          para cada emoji para permitir que a comunicação seja ainda mais personalizada. Nesse caso, os criadores e
+          contribuintes de emojis decidiram que os bits iniciais seriam a estrutura do próprio emoji, seguido pelo tom
+          de pele.</li>
+        <li data-marker="*">Cada vez mais recursos estão sendo adicionados ao padrão Unicode para representar mais
+          caracteres e emojis.</li>
+        <li data-marker="*">Se desejar, você pode aprender mais sobre <a href="https://en.wikipedia.org/wiki/Unicode"
+            target="_blank">Unicode</a>.</li>
+        <li data-marker="*">Se desejar, você pode aprender mais sobre <a href="https://en.wikipedia.org/wiki/Emoji"
+            target="_blank">emojis</a>.</li>
+      </ul>
+
+      <h2 id="rgb">RGB</h2>
+      <ul>
+        <li data-marker="*">
+          <p>Vermelho, verde e azul (chamados de <code class="language-plaintext highlighter-rouge">RGB</code>) é uma
+            combinação de três números.</p>
+
+          <p><img src="./assets/images/cs50Week0Slide118.png" alt="red green blue boxes" title="red green blue boxes">
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Pegando os números 72, 73 e 33, usados anteriormente, que disseram <code
+              class="language-plaintext highlighter-rouge">HI!</code> via texto, seria interpretado pelos leitores de
+            imagem como um tom claro de amarelo. O valor de vermelho seria 72, o valor de verde seria 73 e o de azul
+            seria 33.</p>
+
+          <p><img src="./assets/images/cs50Week0Slide120.png" alt="yellow box" title="yellow box"></p>
+        </li>
+      </ul>
+
+
+      <h2 id="images-video-and-sound">Imagens, Vídeo e Áudio</h2>
+      <ul>
+        <li data-marker="*">As imagens são simplesmente coleções de valores RGB.</li>
+        <li data-marker="*">Os vídeos são sequências de muitas imagens que são armazenadas juntas, assim como um livro
+          de
+          ilustrações.</li>
+        <li data-marker="*">A música pode ser representada através de dados MIDI.</li>
+      </ul>
+
+      <h2 id="algorithms">Algoritmos</h2>
+      <ul>
+        <li data-marker="*">A solução de problemas é central para a ciência da computação e a programação de
+          computadores.</li>
+        <li data-marker="*">Imagine o problema básico de tentar localizar um único nome em uma lista telefônica.</li>
+        <li data-marker="*">Como você poderia abordar isso?</li>
+        <li data-marker="*">Uma abordagem poderia ser simplesmente ler da página um para a próxima e assim por diante
+          até
+          chegar à última página.</li>
+        <li data-marker="*">Outra abordagem poderia ser procurar duas páginas de cada vez.</li>
+        <li data-marker="*">Uma abordagem final e talvez melhor seria ir para o meio da lista telefônica e perguntar:
+          "O
+          nome que estou procurando está à esquerda ou à direita?" Então, repita esse processo, cortando o problema ao
+          meio, cada vez pela metade.</li>
+        <li data-marker="*">
+          <p>Cada uma dessas abordagens poderia ser chamada de algoritmos. A velocidade de cada um desses algoritmos
+            pode
+            ser visualizada da seguinte forma, no que é chamado de <em>notação big-O</em>:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide141.png" alt="big o notation" title="big o notation"></p>
+          <p>Observe que o primeiro algoritmo, destacado em vermelho, tem um big-O de <code
+              class="language-plaintext highlighter-rouge">n</code> porque se houver 100 nomes na lista telefônica,
+            poderá levar até 100 tentativas para encontrar o nome correto. O segundo algoritmo, onde duas páginas foram
+            pesquisadas de uma vez, tem um big-O de "n / 2" porque pesquisamos duas vezes mais rápido através das
+            páginas. O algoritmo final tem um big-O de log<sub>2</sub>n, pois dobrar o problema resultaria em apenas um
+            passo a mais para resolver o problema.</p>
+        </li>
+      </ul>
+
+
+      <h2 id="pseudocode-and-the-basic-building-blocks-of-programming">Pseudocódigo e os blocos básicos de programação
+      </h2>
+      <ul>
+        <li data-marker="*">A habilidade de criar <em>pseudocódigo</em> é fundamental para o sucesso tanto nesta aula
+          quanto na programação de computadores.</li>
+        <li data-marker="*">
+          <p>O pseudocódigo é uma versão legível pelo ser humano do seu código. Por exemplo, considerando o terceiro
+            algoritmo acima, poderíamos compor pseudocódigo da seguinte maneira:</p>
+
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  1  Pegue o livro de telefones    
+  2  Abra no meio do livro de telefones
+  3  Olhe para a página
+  4  Se a pessoa estiver na página
+  5  Ligue para a pessoa
+  6  Caso contrário, se a pessoa estiver antes no livro
+  7  Abra no meio da metade esquerda do livro
+  8  Volte para a linha 3
+  9  Caso contrário, se a pessoa estiver depois no livro
+  10 Abra no meio da metade direita do livro
+  11 Volte para a linha 3
+  12 Caso contrário
+  13 Saia
+</code></pre>
+            </div>
+          </div>
+        </li>
+        <li data-marker="*">Pseudocodificar é uma habilidade tão importante por pelo menos duas razões. Primeiro, quando
+          você faz um pseudocódigo antes de criar um código formal, permite que você pense na lógica do seu problema com
+          antecedência. Segundo, quando você faz um pseudocódigo, você pode fornecer essas informações mais tarde para
+          outras pessoas que estão tentando entender suas decisões de codificação e como seu código funciona.</li>
+        <li data-marker="*">Observe que a linguagem dentro de nosso pseudocódigo tem algumas características únicas.
+          Primeiro, algumas dessas linhas começam com verbos como "pegar", "abrir", "olhar para". Mais tarde, chamaremos
+          essas de <em>funções</em>.</li>
+        <li data-marker="*">Em segundo lugar, observe que algumas linhas incluem declarações como <code
+            class="language-plaintext highlighter-rouge">se (if)</code> ou <code
+            class="language-plaintext highlighter-rouge">caso contrário (else if).</code> Esses são chamados de <em>condicionais</em>.
+        </li>
+        <li data-marker="*">Em terceiro lugar, observe como existem expressões que podem ser declaradas como
+          <em>verdadeiras</em> ou <em>falsas</em>, como "a pessoa está antes no livro". Chamamos essas de
+          <em>expressões booleanas</em>.
+        </li>
+        <li data-marker="*">Finalmente, observe como há declarações como "voltar para a linha 3". Chamamos essas de
+          <em>loops</em>.
+        </li>
+        <li data-marker="*">No contexto do <em>Scratch</em>, que é discutido abaixo, usaremos cada um dos blocos básicos
+          de construção da programação acima mencionados.</li>
+      </ul>
+
+      <h2 id="scratch">Scratch</h2>
+
+      <ul>
+        <li data-marker="*"><em>Scratch</em> é uma linguagem de programação visual desenvolvida pelo MIT.</li>
+        <li data-marker="*">O Scratch utiliza os mesmos blocos de construção essenciais de programação que foram
+          abordados
+          anteriormente nesta palestra.</li>
+        <li data-marker="*">O Scratch é uma ótima maneira de entrar na programação de computadores, pois permite que
+          você
+          brinque com esses blocos de construção de maneira visual, sem precisar se preocupar com a sintaxe de chaves
+          curvas, pontos e vírgulas, parênteses e coisas do tipo.</li>
+        <li data-marker="*">
+          <p>O <code class="language-plaintext highlighter-rouge">IDE</code> (ambiente de desenvolvimento integrado) do
+            Scratch parece com o seguinte:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide162.png" alt="Interface do Scratch" title="Interface do Scratch">
+          </p>
+          <p>Observe que à esquerda existem <em>blocos de construção</em> que você pode usar em sua programação. À
+            direita
+            dos blocos de construção, há a área na qual você pode arrastar blocos para construir um programa. À direita
+            disso, você vê o <em>palco</em> onde um gato está. O palco é onde sua programação ganha vida.</p>
+        </li>
+        <li data-marker="*">
+          <p>O Scratch opera em um sistema de coordenadas da seguinte forma:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide167.png" alt="Sistema de coordenadas do Scratch"
+              title="Sistema de coordenadas do Scratch"></p>
+          <p>Observe que o centro do palco está na coordenada (0,0). Agora, a posição do gato está na mesma posição.</p>
+        </li>
+
+        <li data-marker="*">
+          <p>Para começar, arraste o bloco "quando a bandeira verde for clicada" para a área de programação. Em seguida,
+            arraste o bloco <code class="language-plaintext highlighter-rouge">diga</code> para a área de programação e
+            anexe-o ao bloco anterior.</p>
+          <p><img src="./assets/images/cs50Week0Scratch01.png" alt="scratch 01" title="scratch 01"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  say [hello, world]
+</code></pre> -->
+          <p>Observe que quando você clica na bandeira verde agora, no palco, o gato diz "olá mundo".</p>
+        </li>
+        <li data-marker="*">
+          <p>Isto ilustra muito bem o que discutimos anteriormente sobre programação:</p>
+
+          <p><img src="./assets/images/cs50Week0Slide172.png" alt="scratch with black box"
+              title="scratch with black box"></p>
+          <p><img src="./assets/images/cs50Week0Slide172.png" alt="scratch with black box"
+              title="scratch with black box"></p>
+          <p>Observe que a entrada <code class="language-plaintext highlighter-rouge">olá mundo</code> é passada para a
+            função <code class="language-plaintext highlighter-rouge">diga</code>, e o <em>efeito colateral</em> da
+            execução dessa função é o gato dizer <code class="language-plaintext highlighter-rouge">olá mundo</code>.
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Podemos tornar seu programa mais interativo fazendo com que o gato diga <code
+              class="language-plaintext highlighter-rouge">olá</code> para alguém específico. Modifique seu programa
+            como abaixo:</p>
+        </li>
+
+        <li data-marker="*">
+          <p>Podemos tornar seu programa mais interativo fazendo com que o gato diga "olá" para alguém específico.
+            Modifique seu programa como abaixo:</p>
+          <p><img src="./assets/images/cs50Week0Scratch02.png" alt="scratch 02" title="scratch 02"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  ask [What's your name?] and wait
+  say (join [hello,] (answer))
+</code></pre> -->
+          <p>Observe que quando se clica na bandeira verde, a função <code
+              class="language-plaintext highlighter-rouge">ask</code> é executada. O programa solicita ao usuário que
+            insira o seu nome, <code class="language-plaintext highlighter-rouge">What's your name?</code> Ele então
+            armazena esse nome na
+            <em>variável</em> chamada <code class="language-plaintext highlighter-rouge">answer</code>. Em seguida, o
+            programa passa <code class="language-plaintext highlighter-rouge">answer</code> para uma função especial
+            chamada <code class="language-plaintext highlighter-rouge">join</code>, que combina duas strings de texto,
+            <code class="language-plaintext highlighter-rouge">hello</code> e o nome fornecido. Essas duas strings
+            coletivamente são passadas para a função <code class="language-plaintext highlighter-rouge">say</code>. O
+            gato diz, <code class="language-plaintext highlighter-rouge">Hello,</code> e o nome. O seu programa agora é
+            interativo.
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>De maneira bastante similar, podemos modificar o nosso programa da seguinte maneira:</p>
+
+          <p><img src="./assets/images/cs50Week0Scratch03.png" alt="scratch 03" title="scratch 03"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  ask [What's your name?] and wait
+  speak (join [hello,] (answer))
+</code></pre> -->
+          <p>Observe que este programa, quando o botão verde é clicado, passa a mesma variável, concatenada com <code
+              class="language-plaintext highlighter-rouge">hello</code>, para uma função chamada <code
+              class="language-plaintext highlighter-rouge">speak</code>.</p>
+        </li>
+      </ul>
+
+      <h2 id="abstraction">Abstração</h2>
+
+      <ul>
+        <li data-marker="*">Junto com a pseudocodificação, a <em>abstração</em> é uma habilidade e conceito essencial
+          dentro da programação de computadores.</li>
+        <li data-marker="*">A abstração é o ato de simplificar um problema em problemas menores e menores.</li>
+        <li data-marker="*">Por exemplo, se você estivesse hospedando um jantar enorme para seus amigos, o
+          <em>problema</em> de ter que cozinhar toda a refeição pode ser bastante avassalador! No entanto, se você
+          dividir a tarefa de cozinhar a refeição em tarefas (ou problemas) menores e menores, a grande tarefa de criar
+          essa deliciosa refeição pode parecer menos desafiadora.
+        </li>
+        <li data-marker="*">
+          <p>Na programação, e até mesmo dentro do Scratch, podemos ver a abstração em ação. Na sua área de programação,
+            programe como segue:</p>
+          <p><img src="./assets/images/cs50Week0Scratch04.png" alt="scratch 04" title="scratch 04"></p>
+
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  play sound (Meow v) until done
+  wait (1) seconds
+  play sound (Meow v) until done
+  wait (1) seconds
+  play sound (Meow v) until done
+</code></pre> -->
+          <p>Observe que você está fazendo a mesma coisa várias vezes. Na verdade, se você se pegar codificando
+            repetidamente as mesmas instruções, é provável que você possa programar de forma mais habilidosa -
+            abstraindo esse código repetitivo.</p>
+        </li>
+        <li data-marker="*">
+          <p>Você pode modificar seu código da seguinte maneira:</p>
+          <p><img src="./assets/images/cs50Week0Scratch05.png" alt="scratch 05" title="scratch 05"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  repeat (3)
+  play sound (Meow v) until done
+  wait (1) seconds
+</code></pre> -->
+          <p>Observe que o loop faz exatamente o que o programa anterior fazia. No entanto, o problema é simplificado,
+            abstraindo a repetição em um bloco que <em>repete</em> o código para nós.</p>
+        </li>
+        <li data-marker="*">
+          <p>Podemos avançar ainda mais usando o bloco <code class="language-plaintext highlighter-rouge">define</code>,
+            em que você pode criar seu próprio bloco (sua própria função)! Escreva o código da seguinte maneira:</p>
+          <p><img src="./assets/images/cs50Week0Scratch06.png" alt="scratch define" title="scratch define"></p>
+          <p><img src="./assets/images/cs50Week0Scratch07.png" alt="scratch define 2" title="scratch define 2"></p>
+          <p>Observe que estamos definindo nosso próprio bloco chamado <code
+              class="language-plaintext highlighter-rouge">meow</code>. A função reproduz o som <code
+              class="language-plaintext highlighter-rouge">meow</code>, em seguida, aguarda um segundo. Abaixo, você
+            pode ver que quando a bandeira verde é clicada, nossa função de miado é repetida três vezes.</p>
+        </li>
+        <li data-marker="*">
+          <p>Inclusive, podemos fornecer uma maneira pela qual a função possa receber uma entrada <code
+              class="language-plaintext highlighter-rouge">n</code> e repetir um número de vezes:</p>
+          <p><img src="./assets/images/cs50Week0Scratch08.png" alt="scratch 08" title="scratch 08"></p>
+          <p><img src="./assets/images/cs50Week0Scratch09.png" alt="scratch 09" title="scratch 09"></p>
+
+          <!-- <pre><code class="language-scratch">  define meow
+  play sound (Meow v) until done
+  wait (1) seconds
+
+  when green flag clicked
+  repeat (3)
+  meow
+</code></pre> -->
+          <p>Observe como <code class="language-plaintext highlighter-rouge">n</code> é passado de "miar n vezes". <code
+              class="language-plaintext highlighter-rouge">n</code> é passado para a função meow por meio do bloco <code
+              class="language-plaintext highlighter-rouge">define</code>.</p>
+        </li>
+        <li data-marker="*">Aliás, podemos chamar o gato de <code
+            class="language-plaintext highlighter-rouge">sprite</code> - um termo geral usado em programação de jogos
+          para um
+          objeto ou personagem na tela com o qual o jogador irá interagir.</li>
+      </ul>
+
+      <h2 id="if">If</h2>
+
+      <ul>
+        <li data-marker="*"><em>Condicionais</em> são um bloco de construção essencial da programação, onde o programa
+          procura
+          ver se uma condição específica foi atendida. Se uma condição for atendida, o programa faz algo.</li>
+        <li data-marker="*">
+          <p>Para ilustrar uma condicional, escreva o código da seguinte forma:</p>
+          <p><img src="./assets/images/cs50Week0Scratch10.png" alt="scratch 10" title="scratch 10"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  forever
+  if &lt;touching (mouse-pointer v)?&gt; then
+  play sound (Meow v) until done
+</code></pre> -->
+          <p>Observe que o bloco <code class="language-plaintext highlighter-rouge">forever</code> é utilizado de forma
+            que o bloco <code class="language-plaintext highlighter-rouge">if</code> seja acionado repetidamente, para
+            que possa verificar continuamente se o gato está tocando o ponteiro do mouse.</p>
+        </li>
+        <li data-marker="*">
+          <p>Podemos modificar nosso programa da seguinte maneira para integrar a detecção de vídeo:</p>
+          <p><img src="./assets/images/cs50Week0Scratch11.png" alt="scratch 11" title="scratch 11"></p>
+
+          <!-- <pre><code class="language-scratch">  when video motion &gt; (50)
+  play sound (Meow v) until done
+</code></pre> -->
+        </li>
+        <li data-marker="*">Lembre-se de que a programação muitas vezes é um processo de tentativa e erro. Se você ficar
+          frustrado, reserve um tempo para refletir sobre o problema em questão. Qual é o problema específico que você
+          está trabalhando agora? O que está funcionando? O que não está funcionando?</li>
+      </ul>
+
+      <h2 id="expanding-your-imagination">Expandindo Sua Imaginação</h2>
+
+      <ul>
+        <li data-marker="*">Nesta palestra, mostramos a vocês vários programas do Scratch para estimular sua imaginação.
+        </li>
+        <li data-marker="*"><em>Oscartime</em> é um dos próprios programas do Scratch de David - embora a música possa
+          assombrá-lo por causa do número de horas que ele ouviu enquanto criava este programa. Reserve alguns momentos
+          para jogar o jogo você mesmo.</li>
+        <li data-marker="*">
+          <p>Construindo o Oscartime nós mesmos, primeiro adicionamos o poste de luz.</p>
+
+          <p><img src="./assets/images/cs50Week0Scratch100.png" alt="oscartime interface" title="oscartime interface">
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Em seguida, escrevemos o seguinte código:</p>
+
+          <p><img src="./assets/images/cs50Week0Scratch12.png" alt="scratch 12" title="scratch 12"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  switch costume to (oscar1 v)
+  forever
+  if &lt;touching (mouse-pointer v)?&gt; then
+  switch costume to (oscar2 v)
+  else
+  switch costume to (oscar1 v)
+</code></pre> -->
+          <p>Observe que mover o mouse sobre Oscar muda seu traje. Você pode aprender mais <a
+              href="https://scratch.mit.edu/projects/565100517" target="_blank">explorando esses blocos de código</a>.
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Então, modifique o seu código como a seguir para criar um pedaço de lixo caindo:</p>
+          <p><img src="./assets/images/cs50Week0Scratch13.png" alt="scratch 13" title="scratch 13"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  go to x: (pick random (-240) to (240)) y: (180)
+  forever
+  if &lt;(distance to (floor v)) &gt; (0)&gt; then
+  change y by (-3)
+</code></pre> -->
+          <p>Observe que a posição do lixo no eixo y sempre começa em 180. A posição x é aleatória. Enquanto o lixo está
+            acima do chão, ele desce 3 pixels por vez. Você pode aprender mais <a
+              href="https://scratch.mit.edu/projects/565117390" target="_blank">explorando esses blocos de código</a>.
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Em seguida, modifique o seu código como a seguir para permitir a possibilidade de arrastar o lixo.</p>
+          <p><img src="./assets/images/cs50Week0Scratch14.png" alt="scratch 14" title="scratch 14"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  forever
+  if &lt;&lt;mouse down?&gt; and &lt;touching (mouse-pointer v) ?&gt;&gt; then
+  go to (mouse-pointer v)
+</code></pre> -->
+          <p>Você pode aprender mais <a href="https://scratch.mit.edu/projects/565119737" target="_blank">explorando
+              esses blocos de código.</a></p>
+        </li>
+        <li data-marker="*">
+          <p>Em seguida, podemos implementar as variáveis ​​de pontuação da seguinte forma:</p>
+          <p><img src="./assets/images/cs50Week0Scratch15.png" alt="scratch 15" title="scratch 15"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  forever
+  if &lt;touching (Oscar v) ?&gt; then
+  change (score) by (1)
+  go to x: (pick random (-240) to (240)) y: (180)
+</code></pre> -->
+          <p>Você pode aprender mais <a href="https://scratch.mit.edu/projects/565472267" target="_blank">explorando
+              esses blocos de código.</a>.
+          </p>
+        </li>
+      </ul>
+
+      <h2 id="sprite-movement">Movimento do Sprite</h2>
+
+      <ul>
+        <li data-marker="*">Saindo do Oscartime para o jogo mais difícil de Ivy, agora podemos imaginar como
+          implementar
+          o movimento em nosso programa.</li>
+        <li data-marker="*">Nosso programa possui três componentes principais.</li>
+        <li data-marker="*">
+          <p>Primeiro, escreva o código da seguinte forma:</p>
+          <p><img src="./assets/images/cs50Week0Scratch16.png" alt="scratch 16" title="scratch 16"></p>
+
+          <!-- <pre><code class="language-scratch">  when green flag clicked
+  go to x: (0) y: (0)
+  forever
+  listen for keyboard
+  feel for walls
+</code></pre> -->
+          <p>Observe que quando a bandeira verde é clicada, nosso sprite se move para o centro do palco nas
+            coordenadas
+            (0,0) e depois fica ouvindo o teclado e verificando as paredes para sempre.</p>
+        </li>
+        <li data-marker="*">
+          <p>Segundo, adicione esse segundo grupo de blocos de código:</p>
+          <p><img src="./assets/images/cs50Week0Scratch17.png" alt="scratch 17" title="scratch 17"></p>
+
+          <!-- <pre><code class="language-scratch">  define listen for keyboard
+  if &lt;key (up arrow v) pressed?&gt; then
+  change y by (1)
+  end
+  if &lt;key (down arrow v) pressed?&gt; then
+  change y by (-1)
+  end
+  if &lt;key (right arrow v) pressed?&gt; then
+  change x by (1)
+  end
+  if &lt;key (left arrow v) pressed?&gt; then
+  change x by (-1)
+  end
+</code></pre> -->
+          <p>Observe como criamos um script personalizado <code
+              class="language-plaintext highlighter-rouge">listen for keyboard</code>. Para cada uma das teclas de
+            seta do teclado, o sprite se move ao redor da tela.</p>
+        </li>
+        <li data-marker="*">
+          <p>Finalmente, adicione este grupo de blocos de código:</p>
+          <p><img src="./assets/images/cs50Week0Scratch18.png" alt="scratch 18" title="scratch 18"></p>
+
+          <!-- <pre><code class="language-scratch">  define feel for walls
+  if &lt;touching (left wall v) ?&gt; then
+  change x by (1)
+  end
+  if &lt;touching (right wall v) ?&gt; then
+  change x by (-1)
+  end
+</code></pre> -->
+          <p>Observe como também temos um script personalizado <code
+              class="language-plaintext highlighter-rouge">feel for walls</code>. Quando um sprite toca em uma parede,
+            ele é movido de volta para uma posição segura - impedindo-o de sair da tela.</p>
+        </li>
+        <li data-marker="*">Você pode aprender mais <a href="https://scratch.mit.edu/projects/565121265"
+            target="_blank">explorando esses blocos de código</a>.</li>
+        <li data-marker="*">Experimente o jogo completo <a href="https://scratch.mit.edu/projects/277537196"
+            target="_blank">Oscartime</a>.</li>
+      </ul>
+
+      <h2 id="more-sprites">Mais Sprites</h2>
+
+      <ul>
+        <li data-marker="*">O Scratch permite que muitos sprites estejam na tela ao mesmo tempo.</li>
+        <li data-marker="*">
+          <p>Adicionando outro sprite, adicione os seguintes blocos de código ao seu programa:</p>
+          <p><img src="./assets/images/cs50Week0Scratch19.png" alt="scratch 19" title="scratch 19"></p>
+
+
+          <p>Observe como o sprite de Yale parece atrapalhar o sprite de Harvard, movendo-se para frente e para trás.
+            Quando bate em uma parede, ele se vira até bater na parede novamente. Você pode aprender mais <a
+              href="https://scratch.mit.edu/projects/565127193" target="_blank">explorando esses blocos de código</a>.
+          </p>
+        </li>
+        <li data-marker="*">
+          <p>Você pode até fazer um sprite seguir outro sprite. Adicionando outro sprite, adicione os seguintes blocos
+            de código ao seu programa:</p>
+          <p><img src="./assets/images/cs50Week0Scratch20.png" alt="scratch 20" title="scratch 20"></p>
+
+
+          <p>Observe como o logotipo do MIT agora parece seguir o sprite de Harvard. Você pode aprender mais <a
+              href="https://scratch.mit.edu/projects/565479840" target="_blank">explorando esses blocos de código</a>.
+          </p>
+        </li>
+        <li data-marker="*">Vá experimentar o jogo completo <a href="https://scratch.mit.edu/projects/565742837"
+            target="_blank">Ivy's Hardest
+            Game</a>.</li>
+      </ul>
+
+
+      <h2 id="summing-up">Resumindo</h2>
+      <p>Nesta lição, você aprendeu como este curso se insere no vasto mundo da ciência da computação e programação.
+        Você aprendeu...</p>
+      <ul>
+        <li data-marker="*">Que poucos alunos vêm para esta aula com experiência prévia em codificação!</li>
+        <li data-marker="*">Que você não está sozinho! Você faz parte de uma comunidade.</li>
+        <li data-marker="*">Que a solução de problemas é a essência do trabalho dos cientistas da computação.</li>
+        <li data-marker="*">Que este curso não é apenas sobre programação - este curso irá apresentá-lo a uma nova forma
+          de aprendizagem que você pode aplicar em quase todas as áreas da vida.</li>
+        <li data-marker="*">Como números, texto, imagens, música e vídeo são entendidos pelos computadores.</li>
+        <li data-marker="*">A habilidade fundamental de programação de pseudocodificação.</li>
+        <li data-marker="*">Como a abstração desempenhará um papel em seu futuro trabalho neste curso.</li>
+        <li data-marker="*">Os blocos básicos de construção da programação, incluindo funções, condicionais, loops e
+          variáveis.</li>
+        <li data-marker="*">Como construir um projeto no Scratch.</li>
+      </ul>
+
+      <p>Até a próxima!</p>
+    </main>
+  <footer>
+    <p>Isso é CS50</p>
+  </footer>
+
+
+
+  <script src="script.js"></script>
+  <script src="menu.js"></script>
+
+
+
+
+
+</html>
