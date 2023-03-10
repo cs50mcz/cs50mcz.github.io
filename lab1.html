@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 1: Crescimento Populacional</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+            todos os
+            alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+    <p>Determine quanto tempo leva para uma população atingir um tamanho específico.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./population
+Start size: 100
+End size: 200
+Years: 9
+</code></pre>
+      </div>
+    </div>
+    <h2 id="background">Contexto</h2>
+    <p>Suponha que temos uma população de lhamas de tamanho <code class="language-plaintext highlighter-rouge">n</code>.
+      A cada ano, <code class="language-plaintext highlighter-rouge">n / 3</code> novas lhamas nascem e <code
+        class="language-plaintext highlighter-rouge">n / 4</code> lhamas morrem.</p>
+    <p>Por exemplo, se começarmos com <code class="language-plaintext highlighter-rouge">n = 1200</code> lhamas, no
+      primeiro ano <code class="language-plaintext highlighter-rouge">1200 / 3 = 400</code> novas lhamas nasceriam e
+      <code class="language-plaintext highlighter-rouge">1200 / 4 = 300</code> lhamas morreriam. No final desse ano,
+      teríamos <code class="language-plaintext highlighter-rouge">1200 + 400 - 300 = 1300</code> lhamas.
+    </p>
+    <p>Para outro exemplo, se começarmos com <code class="language-plaintext highlighter-rouge">n = 1000</code> lhamas,
+      no final do ano, teremos <code class="language-plaintext highlighter-rouge">1000 / 3 = 333.33</code> novas lhamas.
+      No entanto, não podemos ter uma porção decimal de uma lhama, então vamos truncar o decimal para obter <code
+        class="language-plaintext highlighter-rouge">333</code> novas lhamas nascidas. <code
+        class="language-plaintext highlighter-rouge">1000 / 4 = 250</code> lhamas morrerão, então terminaremos com um
+      total de <code class="language-plaintext highlighter-rouge">1000 + 333 - 250 = 1083</code> lhamas no final do ano.
+    </p>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Lembre-se de que o Visual Studio Code (também conhecido como VS Code) é um popular "ambiente de desenvolvimento
+      integrado" (IDE) por meio do qual você pode escrever código. Para que você não precise baixar, instalar e
+      configurar sua própria cópia do VS Code, usaremos uma versão baseada em nuvem que já possui tudo o que você
+      precisa pré-instalado.</p>
+    <ol>
+      <li>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a> usando sua conta do GitHub e siga as
+        instruções na tela para configurar sua própria "área de trabalho" ("codespace") para o Visual Studio Code.
+        Depois que sua área de trabalho carregar, você deverá ver que, por padrão, o VS Code é dividido em três regiões.
+        Na parte superior do VS Code está o "editor de texto", onde você escreverá todos os seus programas. Na parte
+        inferior está uma "janela de terminal", uma interface de linha de comando (CLI) que permite explorar os arquivos
+        e diretórios (também conhecidos como pastas) de sua área de trabalho, compilar código e executar programas. E na
+        esquerda está o "explorador de arquivos", uma interface gráfica do usuário (GUI) por meio da qual você também
+        pode explorar os arquivos e diretórios de sua área de trabalho.</li>
+      <li>Depois que sua área de trabalho carregar, feche quaisquer guias de <strong>Boas-vindas</strong> que possam ter
+        sido abertos por padrão.</li>
+      <li>Acesse o <a href="https://submit.cs50.io" target="_blank">submit.cs50.io</a> usando sua conta do GitHub e
+        clique em <strong>Autorizar cs50</strong> para ativar o <code
+          class="language-plaintext highlighter-rouge">check50</code>.</li>
+      <li>Execute <code class="language-plaintext highlighter-rouge">update50</code> na janela do terminal de sua área
+        de trabalho para garantir que ela esteja atualizada e, se solicitado, clique em <strong>Rebuild now</strong>.
+      </li>
+    </ol>
+    <p>Depois de concluído, comece clicando dentro da janela do terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deverá encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+    </code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela do terminal e, em seguida, digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>mkdir population
+    </code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para criar um diretório chamado <code
+        class="language-plaintext highlighter-rouge">population</code> no seu ambiente de código. Tome cuidado para não
+      ignorar o espaço entre <code class="language-plaintext highlighter-rouge">mkdir</code> e <code
+        class="language-plaintext highlighter-rouge">population</code> ou qualquer outro caractere!</p>
+    <p>Daqui em diante, executar (ou seja, rodar) um comando significa digitá-lo em uma janela de terminal e, em
+      seguida, pressionar Enter. Os comandos diferenciam maiúsculas de minúsculas, então tenha certeza de não digitar em
+      maiúsculo quando quer dizer minúsculo ou vice-versa.</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd population
+    </code></pre>
+      </div>
+    </div>
+    <p>para entrar (ou seja, abrir) nesse diretório. O seu prompt deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>population/ $
+    </code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e, em seguida, digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/1/population.c
+    </code></pre>
+      </div>
+    </div>
+    <p>Em seguida, pressione Enter para baixar um arquivo modelo chamado <code
+        class="language-plaintext highlighter-rouge">population.c</code> no seu codespace. Certifique-se de não ignorar
+      o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou qualquer
+      outro caractere, de fato! Se tudo ocorreu conforme o esperado, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+    </code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">population.c</code>. A execução de
+      <code class="language-plaintext highlighter-rouge">code population.c</code> deve abrir o arquivo onde você
+      digitará seu código para este laboratório. Se isso não acontecer, volte atrás em seus passos e veja se pode
+      determinar onde errou!
+    </p>
+    <h2 id="implementation-details">Detalhes de implementação</h2>
+    <p>Complete a implementação de <code class="language-plaintext highlighter-rouge">population.c</code>, de forma que
+      ela calcule o número de anos necessários para a população crescer do tamanho inicial até o tamanho final.</p>
+    <ul>
+      <li data-marker="*">Seu programa deve primeiro solicitar ao usuário o tamanho inicial da população.
+        <ul>
+          <li data-marker="*">Se o usuário inserir um número menor que 9 (o tamanho mínimo permitido da população), o
+            usuário deve ser solicitado novamente a inserir um tamanho inicial da população até que ele insira um número
+            maior ou igual a 9. (Se começarmos com menos de 9 lhamas, a população de lhamas logo se tornará estagnada!)
+          </li>
+        </ul>
+      </li>
+      <li data-marker="*">Seu programa deve então solicitar ao usuário o tamanho final da população.
+        <ul>
+          <li data-marker="*">Se o usuário inserir um número menor que o tamanho inicial da população, o usuário deve
+            ser solicitado novamente a inserir um tamanho final da população até que ele insira um número maior ou igual
+            ao tamanho inicial da população. (Afinal, queremos que a população de lhamas cresça!)</li>
+        </ul>
+      </li>
+      <li data-marker="*">Seu programa deve então calcular o número (inteiro) de anos necessários para que a população
+        atinja pelo menos o tamanho do valor final.</li>
+      <li data-marker="*">Finalmente, seu programa deve imprimir o número de anos necessários para que a população de
+        lhamas atinja esse tamanho final, imprimindo no terminal <code
+          class="language-plaintext highlighter-rouge">Years: n</code>, onde <code
+          class="language-plaintext highlighter-rouge">n</code> é o número de anos.</li>
+    </ul>
+
+    <h3 id="hints">Dicas</h3>
+    <ul>
+      <li data-marker="*">
+        <p>Se você deseja repetidamente solicitar ao usuário o valor de uma variável até que alguma condição seja
+          atendida, pode usar um loop <code class="language-plaintext highlighter-rouge">do ... while</code>. Por
+          exemplo, lembre-se do seguinte código da aula, que solicita ao usuário repetidamente até que ele insira um
+          número inteiro positivo.</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">do</span>
+  <span class="p">{</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">get_int</span><span class="p">(</span><span class="s">"Integer positivo: "</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o"><</span> <span class="mi">1</span><span class="p">);</span>
+            </code></pre>
+          </div>
+        </div>
+        <p>Como você pode adaptar este código para garantir um tamanho inicial de pelo menos 9 e um tamanho final de
+          pelo menos o tamanho inicial?</p>
+      </li>
+      <li data-marker="*">Para declarar uma nova variável, certifique-se de especificar o tipo de dados, um nome para a
+        variável e (opcionalmente) qual deve ser seu valor inicial.
+        <ul>
+          <li data-marker="*">Por exemplo, você pode querer criar uma variável para acompanhar quantos anos se passaram.
+          </li>
+        </ul>
+      </li>
+      <li data-marker="*">
+        <p>Para calcular quantos anos levará para a população atingir o tamanho final, pode ser útil usar outro loop!
+          Dentro do loop, provavelmente você desejará atualizar o tamanho da população de acordo com a fórmula
+          apresentada em "Contexto" e atualizar o número de anos que se passaram.</p>
+      </li>
+      <li data-marker="*">
+        <p>Para imprimir um inteiro <code class="language-plaintext highlighter-rouge">n</code> no terminal, lembre-se
+          de que você pode usar uma linha de código como</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  <span class="n">printf</span><span class="p">(</span><span class="s">"O número é %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+          </code></pre>
+          </div>
+        </div>
+        <p>para especificar que a variável <code class="language-plaintext highlighter-rouge">n</code> deve ser
+          preenchida no espaço reservado por <code class="language-plaintext highlighter-rouge">%i</code>.</p>
+      </li>
+    </ul>
+
+    <h3 id="how-to-test-your-code">Como Testar Seu Código</h3>
+    <p>Seu programa deve se comportar conforme os exemplos abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./população
+Start size: 1200
+End size: 1300
+Years: 1
+      </code></pre></div></div>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./população
+Start size: -5
+Start size: 3
+Start size: 9
+End size: 5
+End size: 18
+Years: 8
+      </code></pre></div></div>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./população
+Start size: 20
+End size: 1
+End size: 10
+End size: 100
+Years: 20
+      </code></pre></div></div>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./população
+Start size: 100
+End size: 1000000
+Years: 115
+      </code></pre></div></div>
+      <p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar o código você mesmo também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/population
+</code></pre></div></div>
+<p>Execute o abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 population.c
+</code></pre></div></div>
+<h2 id="how-to-submit">Como Enviar</h2>
+<p>No seu terminal, execute o abaixo para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/population
+</code></pre></div></div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

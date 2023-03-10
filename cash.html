@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Cash</h2>
+    <hr>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute o comando <code
+        class="language-plaintext highlighter-rouge">cd</code>. Você deve ver que o "prompt" se assemelha ao abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/cash.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">cash.zip</code> em seu espaço de código. Certifique-se de não
+      ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip cash.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">cash</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm cash.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd cash
+    </code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Sua linha de comando deve agora se parecer
+      com a abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cash/ $
+    </code></pre>
+      </div>
+    </div>
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+    </code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">cash.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code cash.c</code> deve abrir o arquivo onde você digitara seu
+      código para esse problema. Caso contrário, refaça seus passos e veja se consegue determinar onde errou!</p>
+    <h2 id="greedy-algorithms">Algoritmos Gananciosos</h2>
+    <!-- http://mypieceofthe31415927.blogspot.com/2014/04/whats-wrong-with-these-us-coins.html -->
+    <p><img src="./assets/images/coins.jpg" alt="Moedas dos Estados Unidos"></p>
+    <p>Ao fazer troco, você provavelmente deseja minimizar o número de moedas que está dispensando para cada cliente,
+      para não ficar sem moedas (ou incomodar o cliente!). Felizmente, a ciência da computação oferece aos caixas
+      maneiras de minimizar o número de moedas devidas: algoritmos gananciosos.</p>
+    <p>De acordo com o Instituto Nacional de Padrões e Tecnologia (NIST), um algoritmo ganancioso é aquele "que sempre
+      escolhe a melhor solução imediata ou local enquanto encontra uma resposta. Algoritmos gananciosos encontram a
+      solução ótima global para alguns problemas de otimização, mas podem encontrar soluções menos do que ótimas para
+      algumas instâncias de outros problemas."</p>
+    <p>O que tudo isso significa? Bem, suponha que um caixa deva troco para um cliente e na gaveta do caixa haja moedas
+      de vinte e cinco centavos (25¢), dez centavos (10¢), cinco centavos (5¢) e um centavo (1¢). O problema a ser
+      resolvido é decidir quais moedas e quantas de cada uma entregar ao cliente. Pense em um caixa "ganancioso" como
+      aquele que quer tirar a maior porção possível deste problema com cada moeda que ele pega da gaveta. Por exemplo,
+      se um cliente deve 41¢, a maior porção (ou melhor, a melhor porção imediata ou local) que pode ser retirada é de
+      25¢. (Essa porção é "melhor" porque nos leva mais rapidamente a 0¢ do que qualquer outra moeda.) Observe que uma
+      porção desse tamanho reduziria o problema de 41¢ para 16¢, já que 41 - 25 = 16. Ou seja, o resto é um problema
+      semelhante, mas menor. É desnecessário dizer que outra porção de 25¢ seria grande demais (supondo que o caixa
+      prefira não perder dinheiro), então nosso caixa ganancioso passaria para uma porção de 10¢, deixando-o com um
+      problema de 6¢. Nesse ponto, a ganância pede uma porção de 5¢ seguida de uma porção de 1¢, momento em que o
+      problema é resolvido. O cliente recebe uma moeda de vinte e cinco centavos, uma de dez centavos, uma de cinco
+      centavos e uma de um centavo: quatro moedas no total.</p>
+    <p>Acontece que essa abordagem gananciosa (ou seja, algoritmo) não é apenas localmente ótima, mas também globalmente
+      para a moeda dos Estados Unidos (e também do Brasil). Ou seja, desde que um caixa tenha moedas suficientes
+      de cada tipo, essa abordagem do maior para o menor resultará no menor número possível de moedas. Quantas? Bem,
+      você nos diz!</p>
+    <h2 id="implementation-details">Detalhes da Implementação</h2>
+    <p>No arquivo <code class="language-plaintext highlighter-rouge">cash.c</code>, implementamos a maior parte (mas não
+      tudo!) de um programa que solicita ao usuário o número de centavos que um cliente deve e, em seguida, imprime o
+      menor número de moedas com o qual o troco pode ser feito. De fato, <code
+        class="language-plaintext highlighter-rouge">main</code> já está implementado para você. Mas observe como <code
+        class="language-plaintext highlighter-rouge">main</code> chama várias funções que ainda não estão implementadas!
+      Uma dessas funções, <code class="language-plaintext highlighter-rouge">get_cents</code>, não recebe argumentos
+      (conforme indicado por <code class="language-plaintext highlighter-rouge">void</code>) e retorna um <code
+        class="language-plaintext highlighter-rouge">int</code>. O restante das funções todas recebe um argumento, um
+      <code class="language-plaintext highlighter-rouge">int</code>, e também retorna um <code
+        class="language-plaintext highlighter-rouge">int</code>. Todas elas atualmente retornam <code
+        class="language-plaintext highlighter-rouge">0</code> para que o código compile. Mas você precisará substituir
+      todos os <code class="language-plaintext highlighter-rouge">TODO</code> e <code
+        class="language-plaintext highlighter-rouge">return 0;</code> com o seu próprio código. Especificamente, conclua
+      a implementação dessas funções da seguinte forma:
+    </p>
+    <ul>
+      <li data-marker="*">Implemente <code class="language-plaintext highlighter-rouge">get_cents</code> de forma que a
+        função solicite ao usuário um número de centavos usando <code
+          class="language-plaintext highlighter-rouge">get_int</code> e depois retorne esse número como um <code
+          class="language-plaintext highlighter-rouge">int</code>. Se o usuário inserir um <code
+          class="language-plaintext highlighter-rouge">int</code> negativo, seu código deve solicitar novamente ao
+        usuário. (Mas você não precisa se preocupar com o usuário inserindo, por exemplo, uma <code
+          class="language-plaintext highlighter-rouge">string</code>, pois <code
+          class="language-plaintext highlighter-rouge">get_int</code> cuidará disso para você.) É provável que você
+        encontre um loop <code class="language-plaintext highlighter-rouge">do while</code> de ajuda, como em <a
+          href="https://cdn.cs50.net/2022/fall/lectures/1/src1/mario8.c?highlight" target="_blank"><code
+            class="language-plaintext highlighter-rouge">mario.c</code></a>!</li>
+      <li data-marker="*">Implemente <code class="language-plaintext highlighter-rouge">calculate_quarters</code> de
+        forma que a função calcule (e retorne como um <code class="language-plaintext highlighter-rouge">int</code>)
+        quantos quartos um cliente deve receber se ele estiver devendo algum número de centavos. Por exemplo, se <code
+          class="language-plaintext highlighter-rouge">cents</code> for <code
+          class="language-plaintext highlighter-rouge">25</code>, então <code
+          class="language-plaintext highlighter-rouge">calculate_quarters</code> deve retornar <code
+          class="language-plaintext highlighter-rouge">1</code>. Se <code
+          class="language-plaintext highlighter-rouge">cents</code> for <code
+          class="language-plaintext highlighter-rouge">26</code> ou <code
+          class="language-plaintext highlighter-rouge">49</code> (ou qualquer valor entre eles), então <code
+          class="language-plaintext highlighter-rouge">calculate_quarters</code> também deve retornar <code
+          class="language-plaintext highlighter-rouge">1</code>. Se <code
+          class="language-plaintext highlighter-rouge">cents</code> for <code
+          class="language-plaintext highlighter-rouge">50</code> ou <code
+          class="language-plaintext highlighter-rouge">74</code> (ou qualquer valor entre eles), então <code
+          class="language-plaintext highlighter-rouge">calculate_quarters</code> deve retornar <code
+          class="language-plaintext highlighter-rouge">2</code>. E assim por diante.</li>
+      <li data-marker="*">Implemente <code class="language-plaintext highlighter-rouge">calculate_dimes</code> de forma
+        que a função calcule o mesmo para dimes.</li>
+      <li data-marker="*">Implemente <code class="language-plaintext highlighter-rouge">calculate_nickels</code> de
+        forma que a função calcule o mesmo para nickels.</li>
+      <li data-marker="*">Implemente <code class="language-plaintext highlighter-rouge">calculate_pennies</code> de
+        forma que a função calcule o mesmo para pennies.</li>
+    </ul>
+    <p>Observe que, ao contrário das funções que possuem apenas efeitos colaterais, as funções que retornam um valor
+      devem fazê-lo explicitamente com <code class="language-plaintext highlighter-rouge">return</code>! Tenha cuidado
+      para não modificar o código de distribuição em si, apenas substitua os <code
+        class="language-plaintext highlighter-rouge">TODO</code>s fornecidos e o valor de retorno subsequente!
+      Lembre-se também da ideia de abstração: cada uma de suas funções de cálculo deve aceitar qualquer valor de <code
+        class="language-plaintext highlighter-rouge">cents</code>, não apenas aqueles valores que o algoritmo guloso
+      possa sugerir. Se <code class="language-plaintext highlighter-rouge">cents</code> for 85, por exemplo, <code
+        class="language-plaintext highlighter-rouge">calculate_dimes</code> deve retornar 8.</p>
+    <details>
+      <summary>Dica</summary>
+      <ul>
+        <li data-marker="*">Lembre-se de que há vários programas de exemplo no <a
+            href="https://cdn.cs50.net/2022/fall/lectures/1/src1/" target="_blank">Código Fonte</a> da Semana 1 que ilustram como as
+          funções podem retornar um valor.</li>
+      </ul>
+    </details>
+    <p>Seu programa deve se comportar conforme os exemplos abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./cash
+Quanto devido: 41
+4
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./cash
+Quanto devido: -41
+Quanto devido: foo
+Quanto devido: 41
+4
+</code></pre></div></div>
+<h3 id="how-to-test-your-code">Como testar seu código</h3>
+<p>Para este programa, tente testar seu código manualmente - é uma boa prática:</p>
+<ul>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">-1</code>, seu programa solicita entrada novamente?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">0</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">0</code>?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">1</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, um centavo)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">4</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">4</code> (ou seja, quatro centavos)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">5</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de cinco centavos)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">24</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">6</code> (ou seja, duas moedas de dez centavos e quatro centavos)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">25</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de vinte e cinco centavos)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">26</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">2</code> (ou seja, uma moeda de vinte e cinco centavos e um centavo)?</li>
+  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">99</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">9</code> (ou seja, três moedas de vinte e cinco centavos, duas moedas de dez centavos e quatro centavos)?</li>
+</ul>
+<p>Você também pode executar o código abaixo para avaliar a correção do seu programa usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar por conta própria também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/cash
+</code></pre></div></div>
+<details><summary>O <code>check50</code> está falhando ao compilar o seu código?</summary><p>Certifique-se de ter modificado apenas as partes do programa marcadas como <code class="language-plaintext highlighter-rouge">TODO</code>. Se você modificar a função <code class="language-plaintext highlighter-rouge">main</code> ou adicionar quaisquer variáveis globais, por exemplo, seu código poderá <strong>falhar ao compilar</strong>. O <code class="language-plaintext highlighter-rouge">check50</code> testará suas cinco funções independentemente, além de verificar apenas a resposta final.</p></details>
+<p>E execute o código abaixo para avaliar o estilo do seu programa usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 cash.c
+</code></pre></div></div>
+<h2 id="como-enviar">Como Enviar</h2>
+<p>No seu terminal, execute o código abaixo para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/cash
+</code></pre></div></div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

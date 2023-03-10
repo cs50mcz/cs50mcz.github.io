@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Mario (less)</h2>
+    <hr>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/mario-less.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">mario-less.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip mario-less.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">mario-less</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm mario-less.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd mario-less
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>mario-less/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">mario.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code mario.c</code> deve abrir o arquivo onde você digitara o seu
+      código para este problema. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+    <h2 id="world-1-1">Mundo 1-1</h2>
+    <p>No final do mundo 1-1 do Super Mario Brothers da Nintendo, Mario deve subir uma pirâmide de blocos alinhados à
+      direita, como abaixo.</p>
+    <p><img src="./assets/images/pyramid.png" alt="captura de tela de Mario pulando uma pirâmide alinhada à direita">
+    </p>
+    <p>Vamos recriar essa pirâmide em C, ainda que em texto, usando hashes (<code
+        class="language-plaintext highlighter-rouge">#</code>) para os tijolos, como abaixo. Cada hash é um pouco mais
+      alto do que largo, então a própria pirâmide será mais alta do que larga.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>         #
+        ##
+       ###
+      ####
+     #####
+    ######
+   #######
+  ########
+  </code></pre>
+      </div>
+    </div>
+    <p>O programa que escreveremos será chamado de <code class="language-plaintext highlighter-rouge">mario</code>. E
+      permitiremos que o usuário decida a altura da pirâmide, solicitando primeiro que ele insira um número inteiro
+      positivo entre, digamos, 1 e 8, inclusive.</p>
+    <p>Aqui está como o programa pode funcionar se o usuário inserir <code
+        class="language-plaintext highlighter-rouge">8</code> quando solicitado:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: 8
+         #
+        ##
+       ###
+      ####
+     #####
+    ######
+   #######
+  ########
+  </code></pre>
+      </div>
+    </div>
+    <p>Assim é como o programa pode funcionar se o usuário inserir <code
+        class="language-plaintext highlighter-rouge">4</code> quando solicitado:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: 4
+     #
+    ##
+   ###
+  ####
+  </code></pre>
+      </div>
+    </div>
+    <p>Assim é como o programa pode funcionar se o usuário inserir <code
+        class="language-plaintext highlighter-rouge">2</code> quando solicitado:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: 2
+   #
+  ##
+  </code></pre>
+      </div>
+    </div>
+    <p>E aqui está como o programa pode funcionar se o usuário inserir <code
+        class="language-plaintext highlighter-rouge">1</code> quando solicitado:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: 1
+  #
+          </code></pre>
+      </div>
+    </div>
+    <p>Se o usuário não inserir um número inteiro positivo entre 1 e 8, inclusive, quando solicitado, o programa deve
+      solicitar novamente até que cooperem:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: -1
+  Altura: 0
+  Altura: 42
+  Altura: 50
+  Altura: 4
+      #
+     ##
+    ###
+   ####
+          </code></pre>
+      </div>
+    </div>
+    <p>Como começar? Abordaremos este problema passo a passo.</p>
+    <h2 id="pseudocode">Pseudocódigo</h2>
+    <p>Primeiro, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd
+</code></pre>
+      </div>
+    </div>
+    <p>para garantir que você esteja no diretório padrão do seu espaço de códigos.</p>
+    <p>Em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd mario-less
+</code></pre>
+      </div>
+    </div>
+    <p>para mudar para o diretório <code class="language-plaintext highlighter-rouge">mario-less</code>.</p>
+    <p>Em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>code pseudocode.txt
+</code></pre>
+      </div>
+    </div>
+    <p>para abrir o arquivo chamado <code class="language-plaintext highlighter-rouge">pseudocode.txt</code> dentro
+      desse diretório.</p>
+    <p>Escreva em <code class="language-plaintext highlighter-rouge">pseudocode.txt</code> um pseudocódigo que
+      implemente este programa, mesmo que não tenha certeza (ainda!) de como escrevê-lo em código. Não há uma maneira
+      certa de escrever pseudocódigo, mas frases curtas são suficientes. Lembre-se de como escrevemos
+      pseudocódigo
+      para encontrar alguém em uma lista telefônica. É provável que seu pseudocódigo use (ou implique o uso!) de
+      uma ou mais funções, condicionais, expressões booleanas, loops e/ou variáveis. </p>
+    <details>
+      <summary>Spoiler</summary>
+      <p>Existe mais de uma forma de fazer isso, então aqui está apenas uma!</p>
+      <ol>
+        <li>Solicite a altura do usuário</li>
+        <li>Se a altura for menor que 1 ou maior que 8 (ou não for um número inteiro), volte um passo</li>
+        <li>Itere de 1 até a altura:
+          <ol>
+            <li>Na iteração <em>i</em>, imprima <em>i</em> hashtags e depois uma nova linha</li>
+          </ol>
+        </li>
+      </ol>
+      <p>Tudo bem editar o seu próprio código depois de ver este pseudocódigo aqui, mas não simplesmente copie/cole o
+        nosso no seu!</p>
+    </details>
+    <br>
+    <h2 id="solicitando-entrada-do-usuário">Solicitando entrada do usuário</h2>
+    <p>Seja qual for o seu pseudocódigo, vamos primeiro escrever apenas o código C que solicita (e re-solicita, se
+      necessário) a entrada do usuário. Abra o arquivo chamado <code
+        class="language-plaintext highlighter-rouge">mario.c</code> dentro do seu diretório <code
+        class="language-plaintext highlighter-rouge">mario</code>. (Lembra como?)</p>
+    <p>Agora, modifique <code class="language-plaintext highlighter-rouge">mario.c</code> de tal forma que ele solicite
+      a altura da pirâmide ao usuário, armazenando a entrada em uma variável, solicitando novamente a entrada do usuário
+      quantas vezes for necessário se a entrada não for um número inteiro positivo entre 1 e 8, inclusive. Então,
+      simplesmente imprima o valor dessa variável, confirmando (para você mesmo) que você realmente armazenou a entrada
+      do usuário com sucesso, como no exemplo abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./mario
+  Altura: -1
+  Altura: 0
+  Altura: 42
+  Altura: 50
+  Altura: 4
+  Armazenado: 4
+        </code></pre>
+      </div>
+    </div>
+    <details>
+      <summary>Dicas</summary>
+      <ul>
+        <li data-marker="*">Lembre-se de que você pode compilar seu programa com <code
+            class="language-plaintext highlighter-rouge">make</code>.</li>
+        <li data-marker="*">Lembre-se de que você pode imprimir um <code
+            class="language-plaintext highlighter-rouge">int</code> com <code
+            class="language-plaintext highlighter-rouge">printf</code> usando <code
+            class="language-plaintext highlighter-rouge">%i</code>.</li>
+        <li data-marker="*">Lembre-se de que você pode obter um inteiro do usuário com <code
+            class="language-plaintext highlighter-rouge">get_int</code>.</li>
+        <li data-marker="*">Lembre-se de que <code class="language-plaintext highlighter-rouge">get_int</code> é
+          declarado em <code class="language-plaintext highlighter-rouge">cs50.h</code>.</li>
+        <li data-marker="*">Lembre-se de que solicitamos ao usuário um inteiro positivo na aula usando um loop <code
+            class="language-plaintext highlighter-rouge">do while</code> em <a
+            href="https://cdn.cs50.net/2022/fall/lectures/1/src1/mario8.c?highlight" target="_blank"><code
+              class="language-plaintext highlighter-rouge">mario.c</code></a>.</li>
+      </ul>
+    </details>
+    <br>
+    <h2 id="building-the-opposite">Construindo o oposto</h2>
+    <p>Agora que seu programa está (esperançosamente!) aceitando a entrada conforme prescrito, é hora de dar mais um
+      passo.</p>
+    <p>Descobriu-se que é um pouco mais fácil construir uma pirâmide alinhada à esquerda do que à direita, como a
+      abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>#
+##
+###
+####
+#####
+######
+#######
+########
+</code></pre>
+      </div>
+    </div>
+    <p>Então, vamos construir primeiro uma pirâmide alinhada à esquerda e, depois que estiver funcionando, alinhá-la à
+      direita!</p>
+    <p>Modifique o arquivo <code class="language-plaintext highlighter-rouge">mario.c</code> de modo que não imprima
+      mais simplesmente a entrada do usuário, mas sim imprima uma pirâmide alinhada à esquerda daquela altura.</p>
+    <details>
+      <summary>Dicas</summary>
+      <ul>
+        <li data-marker="*">Lembre-se de que um hash é apenas um caractere como qualquer outro, então você pode
+          imprimi-lo com o <code class="language-plaintext highlighter-rouge">printf</code>.</li>
+        <li data-marker="*">Assim como o Scratch tem um bloco <code>repeat</code>, o C tem um laço <code>for</code>,
+          através do qual você pode iterar algumas
+          vezes. Talvez em cada iteração, <em>i</em>, você possa imprimir aquele número de hashes?</li>
+        <li data-marker="*">
+          <p>Na verdade, é possível "aninhar" laços, iterando com uma variável (por exemplo, <code
+              class="language-plaintext highlighter-rouge">i</code>) no laço "externo" e outra (por exemplo, <code
+              class="language-plaintext highlighter-rouge">j</code>) no laço "interno". Por exemplo, aqui está como você
+            pode imprimir um quadrado de altura e largura <code class="language-plaintext highlighter-rouge">n</code>,
+            abaixo. Claro, não é um quadrado que você quer imprimir!</p>
+          <div class="language-plaintext highlighter-rouge">
+            <div class="highlight">
+              <pre class="highlight"><code>  for (int i = 0; i &lt; n; i++)
+  {
+    for (int j = 0; j < n; j++)
+    {
+      printf("#");
+    }
+    printf("\n");
+  }
+                </code></pre>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </details>
+    <br>
+    <h2 id="right-aligning-with-dots">Alinhando à direita com pontos</h2>
+    <p>Vamos agora alinhar à direita a pirâmide adicionando pontos antes de cada hash, conforme
+      mostrado abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>.......#
+......##
+.....###
+....####
+...#####
+..######
+.#######
+########
+</code></pre>
+      </div>
+    </div>
+    <p>Modifique o arquivo <code class="language-plaintext highlighter-rouge">mario.c</code> de modo que ele faça
+      exatamente isso!</p>
+    <details>
+      <summary>Dica</summary>
+      <p>Observe como o número de pontos necessários em cada linha é o "oposto" do número de hashes daquela linha. Para
+        uma pirâmide de altura 8, como a acima, a primeira linha possui apenas 1 hash e, portanto, 7 pontos. A última
+        linha, por outro lado, possui 8 hashes e, portanto, 0 pontos. Qual fórmula (ou operação matemática) você poderia
+        usar para imprimir a quantidade correta de pontos?</p>
+    </details>
+    <br>
+    <h3 id="how-to-test-your-code">Como Testar Seu Código</h3>
+    <p>Seu código funciona como prescrito quando você insere:</p>
+    <ul>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">-1</code> (ou outros números negativos)?
+      </li>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">0</code>?</li>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">1</code> a <code
+          class="language-plaintext highlighter-rouge">8</code>?</li>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">9</code> ou outros números positivos?</li>
+      <li data-marker="*">letras ou palavras?</li>
+      <li data-marker="*">nenhuma entrada, quando você apenas pressiona Enter?</li>
+    </ul>
+    <h2 id="removing-the-dots">Removendo os Pontos</h2>
+    <p>Tudo o que resta agora é um toque final! Modifique <code
+        class="language-plaintext highlighter-rouge">mario.c</code> de forma que ele imprima espaços em vez dos pontos!
+    </p>
+    <h3 id="how-to-test-your-code-1">Como Testar Seu Código</h3>
+    <p>Execute o abaixo para avaliar a correção do seu código usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilá-lo e testá-lo você
+      mesmo também!</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/problems/2023/x/mario/less
+      </code></pre>
+      </div>
+    </div>
+    <p>Execute abaixo para avaliar o estilo do seu código usando <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>style50 mario.c
+      </code></pre>
+      </div>
+    </div>
+    <details>
+      <summary>Dica</summary>
+      <p>Um espaço é apenas uma pressão da tecla de espaço, assim como um ponto é apenas uma pressão de sua tecla!
+        Apenas lembre-se que o <code class="language-plaintext highlighter-rouge">printf</code> requer que você os
+        envolva com aspas duplas!</p>
+    </details>
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/mario/less
+      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

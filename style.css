@@ -39,6 +39,14 @@ body {
     font-weight: bold;
   }
 
+  .highlight .highlight .c1 {
+    color: #3D7B7B;
+  }
+
+  .highlight .highlight .k {
+    color: #008000;
+  }
+
   .sb3-events {
     fill: #ffbf00;
     stroke: #c90;
@@ -52,6 +60,39 @@ body {
   .highlighter-rouge {
     
     background: #d2d1d1;
+  }
+
+  .alert {
+    
+    /* --bs-alert-bg: transparent; */
+    --bs-alert-padding-x: 1rem;
+    --bs-alert-padding-y: 1rem;
+    --bs-alert-margin-bottom: 1rem;
+    /* --bs-alert-color: inherit;
+    --bs-alert-border-color: transparent; */
+    --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
+    --bs-alert-border-radius: .375rem;
+    /* --bs-alert-link-color: inherit; */
+    position: relative;
+    padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+    margin-bottom: var(--bs-alert-margin-bottom);
+    color: var(--bs-alert-color);
+    background-color: var(--bs-alert-bg);
+    border: var(--bs-alert-border);
+    border-radius: var(--bs-alert-border-radius);
+}
+
+  .alert-warning {
+    --bs-alert-color: var(--bs-warning-text);
+    --bs-alert-bg: var(--bs-warning-bg-subtle);
+    --bs-alert-border-color: var(--bs-warning-border-subtle);
+    --bs-alert-link-color: var(--bs-warning-text);
+  }
+
+  .my-alert {
+    background: #fff3cd;
+    font-style: italic;
+    font-weight: bold;
   }
 
   a, .btn-link {

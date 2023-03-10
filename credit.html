@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Credit</h2>
+    <hr>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da sua janela de terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela de terminal e, em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um ZIP chamado <code class="language-plaintext highlighter-rouge">credit.zip</code>
+      no seu espaço de código. Certifique-se de não ignorar o espaço entre <code
+        class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">credit</code>. Você não precisa
+      mais do arquivo ZIP, portanto, pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd credit
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para se mover para dentro desse diretório. Seu prompt deve agora se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>credit/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">credit.c</code>. Executando <code
+        class="language-plaintext highlighter-rouge">code credit.c</code> você deve abrir o arquivo onde irá escrever
+      seu código para este conjunto de problemas. Se isso não acontecer, volte seus passos e veja se consegue determinar
+      onde errou!</p>
+    <h2 id="credit-cards">Cartões de crédito</h2>
+    <p>Um cartão de crédito (ou débito), é claro, é um cartão de plástico com o qual você pode pagar por bens e
+      serviços. Impresso nesse cartão está um número que também está armazenado em algum banco de dados, de forma que
+      quando seu cartão é usado para comprar algo, o credor sabe a quem cobrar. Há muitas pessoas com cartões de crédito
+      neste mundo, então esses números são bastante longos: a American Express usa números de 15 dígitos, a MasterCard
+      usa números de 16 dígitos e a Visa usa números de 13 e 16 dígitos. E esses são números decimais (0 a 9), não
+      binários, o que significa, por exemplo, que a American Express poderia imprimir até 10^15 = 1.000.000.000.000.000
+      cartões únicos! (Isso é, hm, um quadrilhão.)</p>
+    <p>Na verdade, isso é um pouco de exagero, porque os números de cartão de crédito têm alguma estrutura. Todos os
+      números da American Express começam com 34 ou 37; a maioria dos números da MasterCard começa com 51, 52, 53, 54 ou
+      55 (eles também têm alguns outros números potenciais de início com os quais não nos preocuparemos neste problema);
+      e todos os números da Visa começam com 4. Mas os números de cartão de crédito também possuem um "checksum", uma
+      relação matemática entre pelo menos um número e outros. Esse checksum permite que computadores (ou pessoas que
+      gostam de matemática) detectem erros de digitação (por exemplo, transposições), se não números fraudulentos, sem
+      precisar consultar um banco de dados, o que pode ser lento. Claro, um matemático desonesto poderia criar um número
+      falso que ainda respeite a restrição matemática, então uma consulta ao banco de dados ainda é necessária para
+      verificações mais rigorosas.</p>
+    <h2 id="luhns-algorithm">Algoritmo de Luhn</h2>
+    <p>Então, qual é a fórmula secreta? Bem, a maioria dos cartões usa um algoritmo inventado por Hans Peter Luhn, da
+      IBM. De acordo com o algoritmo de Luhn, você pode determinar se um número de cartão de crédito é (sintaticamente)
+      válido da seguinte forma:</p>
+    <ol>
+      <li>Multiplicar cada segundo dígito por 2, começando pelo penúltimo dígito do número, e depois adicionar os
+        dígitos desses produtos juntos.</li>
+      <li>Adicionar a soma à soma dos dígitos que não foram multiplicados por 2.</li>
+      <li>Se o último dígito do total for 0 (ou, de forma mais formal, se o total módulo 10 for congruente a 0), o
+        número é válido!</li>
+    </ol>
+    <p>Isso é meio confuso, então vamos tentar um exemplo com o Visa do Aldo: 4003600000000014.</p>
+    <h2 id="implementation-details">Detalhes de Implementação</h2>
+    <ol>
+      <li>
+        <p>Para fins de discussão, vamos primeiro sublinhar cada outro dígito, começando com o segundo dígito do número:
+        </p>
+        <p><u>4</u>0<u>0</u>3<u>6</u>0<u>0</u>0<u>0</u>0<u>0</u>0<u>0</u>0<u>1</u>4</p>
+
+        <p>Certo, vamos multiplicar cada um dos dígitos sublinhados por 2:</p>
+
+        <p>1•2 + 0•2 + 0•2 + 0•2 + 0•2 + 6•2 + 0•2 + 4•2</p>
+
+        <p>Isso nos dá:</p>
+
+        <p>2 + 0 + 0 + 0 + 0 + 12 + 0 + 8</p>
+
+        <p>Agora, vamos somar os dígitos desses produtos (ou seja, não os próprios produtos):</p>
+
+        <p>2 + 0 + 0 + 0 + 0 + 1 + 2 + 0 + 8 = 13</p>
+      </li>
+      <li>
+        <p>Agora vamos adicionar essa soma (13) à soma dos dígitos que não foram multiplicados por 2 (começando pelo
+          final):</p>
+        <p>13 + 4 + 0 + 0 + 0 + 0 + 0 + 3 + 0 = 20</p>
+      </li>
+      <li>
+        <p>Sim, o último dígito dessa soma (20) é 0, então o cartão de David é válido!</p>
+      </li>
+    </ol>
+    <p>Então, validar números de cartão de crédito não é difícil, mas pode ser um pouco tedioso manualmente. Vamos
+      escrever um programa.</p>
+    <h2 id="implementation-details">Detalhes de Implementação</h2>
+    <p>No arquivo chamado <code class="language-plaintext highlighter-rouge">credit.c</code> no diretório <code
+        class="language-plaintext highlighter-rouge">credit</code>, escreva um programa que solicite ao usuário um
+      número de cartão de crédito e, em seguida, informe (via <code
+        class="language-plaintext highlighter-rouge">printf</code>) se é um número de cartão American Express,
+      MasterCard ou Visa válido, conforme as definições de cada formato aqui. Para que possamos automatizar alguns
+      testes do seu código, pedimos que a última linha de saída do seu programa seja <code
+        class="language-plaintext highlighter-rouge">AMEX\n</code> ou <code
+        class="language-plaintext highlighter-rouge">MASTERCARD\n</code> ou <code
+        class="language-plaintext highlighter-rouge">VISA\n</code> ou <code
+        class="language-plaintext highlighter-rouge">INVALID\n</code>, nada mais, nada menos. Para simplicidade, você
+      pode assumir que a entrada do usuário será totalmente numérica (ou seja, sem hífens, como pode ser impresso em um
+      cartão real) e que não terá zeros à esquerda. Mas não assuma que a entrada do usuário se encaixará em um <code
+        class="language-plaintext highlighter-rouge">int</code>! É melhor usar o <code
+        class="language-plaintext highlighter-rouge">get_long</code> da biblioteca CS50 para obter a entrada dos
+      usuários. (Por quê?)</p>
+    <p>Considere o exemplo abaixo como um exemplo de como seu próprio programa deve se comportar quando receber um
+      número de cartão de crédito válido (sem hífens).</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./credit
+Number: 4003600000000014
+VISA
+</code></pre>
+      </div>
+    </div>
+    <p>Agora, o <code class="language-plaintext highlighter-rouge">get_long</code> em si mesmo rejeitará hífens (e mais)
+      de qualquer maneira:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./credit
+Number: 4003-6000-0000-0014
+Number: foo
+Number: 4003600000000014
+VISA
+</code></pre>
+      </div>
+    </div>
+    <p>Mas cabe a você capturar as entradas que não são números de cartão de crédito (por exemplo, um número de
+      telefone), mesmo que sejam numéricas:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./credit
+Número: 6176292929
+INVALID        </code></pre>
+      </div>
+    </div>
+    <p>Teste seu programa com um monte de entradas, tanto válidas quanto inválidas. (Com certeza faremos isso!) Aqui
+      estão alguns <a
+        href="https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards" target="_blank">números
+        de cartão</a> que o PayPal recomenda para testes.</p>
+    <p>Se o seu programa se comportar incorretamente em algumas entradas (ou não compilar), é hora de fazer o debug!</p>
+    <h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
+    <p>Você também pode executar o seguinte comando para avaliar a correção do seu código usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas não se esqueça de compilar e testar seu código
+      também!</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/problems/2023/x/credit
+</code></pre>
+      </div>
+    </div>
+    <p>Execute o seguinte comando para avaliar o estilo do seu código usando <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>style50 credit.c
+</code></pre>
+      </div>
+    </div>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute o seguinte comando para enviar o seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/credit
+</code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

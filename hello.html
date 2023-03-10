@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Hello</h2>
+    <hr>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Lembre-se de que o Visual Studio Code (também conhecido como VS Code) é um popular "ambiente de desenvolvimento
+      integrado" (IDE) no qual você pode escrever código. Para que você não precise baixar, instalar e configurar sua
+      própria cópia do VS Code, usaremos uma versão baseada em nuvem que já tem tudo o que você precisa pré-instalado.
+    </p>
+    <p>Acesse <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a> usando sua conta do GitHub. Depois que
+      seu "codespace"
+      for carregado, você deverá ver que, por padrão, o VS Code é dividido em três regiões. Na parte superior do VS Code
+      está o "editor de texto", onde você escreverá todos os seus programas. Na parte inferior, há uma "janela do
+      terminal", uma interface de linha de comando (CLI) que permite explorar os arquivos e diretórios (também
+      conhecidos como pastas) do seu codespace, compilar o código e executar programas. E à esquerda está o "explorador
+      de arquivos", uma interface gráfica do usuário (GUI) por meio da qual você também pode explorar os arquivos e
+      diretórios do seu codespace.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela do terminal e digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>mkdir hello
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para criar um diretório chamado <code class="language-plaintext highlighter-rouge">hello</code>
+      em seu codespace. Tenha cuidado para não esquecer o espaço entre <code
+        class="language-plaintext highlighter-rouge">mkdir</code> e <code
+        class="language-plaintext highlighter-rouge">hello</code> ou qualquer outro caractere.</p>
+    <p>Daqui para frente, executar (ou seja, executar) um comando significa digitá-lo em uma janela do terminal e, em
+      seguida, pressionar Enter. Os comandos diferenciam maiúsculas de minúsculas, portanto, certifique-se de não
+      digitar em maiúsculas quando quiser minúsculas ou vice-versa.</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd hello
+</code></pre>
+      </div>
+    </div>
+    <p>Para se mover para (ou seja, abrir) esse diretório, execute o seguinte comando. Seu prompt deve ficar parecido
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>hello/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se isso não acontecer, refaça seus passos e tente determinar onde você errou!</p>
+    <p>Vamos escrever seu primeiro programa? Execute:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>code hello.c
+</code></pre>
+      </div>
+    </div>
+    <p>para criar um novo arquivo chamado <code class="language-plaintext highlighter-rouge">hello.c</code>, que deve
+      ser aberto automaticamente no editor de texto do seu ambiente de desenvolvimento. Assim que você salvar o arquivo
+      com o comando-S (no macOS) ou control-S (no Windows), ele também deverá aparecer no explorador de arquivos do seu
+      ambiente de desenvolvimento.</p>
+    <p>Prossiga para escrever seu primeiro programa digitando exatamente estas linhas em <code
+        class="language-plaintext highlighter-rouge">hello.c</code>:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+  printf("hello, world\n");
+}
+</code></pre>
+      </div>
+    </div>
+    <p>Observe como o VS Code adiciona “destaque de sintaxe” (ou seja, cor) conforme você digita, embora a escolha de
+      cores do VS Code possa ser diferente da deste conjunto de problemas. Essas cores não são salvas no arquivo em si;
+      elas são adicionadas pelo VS Code para destacar determinada sintaxe. Se você não tivesse salvado o arquivo como
+      <code class="language-plaintext highlighter-rouge">hello.c</code> desde o início, o VS Code não saberia (conforme
+      a extensão do nome do arquivo) que você está escrevendo código C, e, nesse caso, essas cores estariam ausentes.
+    </p>
+    <h2 id="listing-files">Listando arquivos</h2>
+    <p>Agora, em sua janela do terminal, imediatamente à direita do prompt (<code
+        class="language-plaintext highlighter-rouge">hello/ $</code>), execute:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+    </code></pre>
+      </div>
+    </div>
+    <p>Você deve ver apenas <code class="language-plaintext highlighter-rouge">hello.c</code>? Isso ocorre porque você
+      acabou de listar os arquivos em sua pasta <code class="language-plaintext highlighter-rouge">hello</code>. Em
+      particular, você executou um comando chamado <code class="language-plaintext highlighter-rouge">ls</code>, que é
+      uma abreviação de "listar". (É um comando tão frequentemente usado que seus autores o chamaram simplesmente de
+      <code class="language-plaintext highlighter-rouge">ls</code> para economizar teclas.) Faz sentido?</p>
+    <h2 id="compiling-programs">Compilando programas</h2>
+    <p>Agora, antes de podermos executar o programa <code class="language-plaintext highlighter-rouge">hello.c</code>,
+      lembre-se de que devemos <em>compilá-lo</em> com um <em>compilador</em>, traduzindo-o de <em>código fonte</em>
+      para <em>código de máquina</em> (ou seja, zeros e uns). Execute o comando abaixo para fazer isso:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>make hello
+    </code></pre>
+      </div>
+    </div>
+    <p>E então execute este novamente:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+    </code></pre>
+      </div>
+    </div>
+    <p>Desta vez, você deve ver não apenas <code class="language-plaintext highlighter-rouge">hello.c</code>, mas também
+      <code class="language-plaintext highlighter-rouge">hello</code> listados? Você acabou de traduzir o código fonte
+      em <code class="language-plaintext highlighter-rouge">hello.c</code> para o código de máquina em <code
+        class="language-plaintext highlighter-rouge">hello</code>.</p>
+    <p>Agora execute o próprio programa, executando o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>./hello
+    </code></pre>
+      </div>
+    </div>
+    <p>Olá, mundo, de fato!</p>
+    <h2 id="getting-user-input">Obtendo entrada do usuário</h2>
+    <p>Diga-se de passagem, não importa como você compila ou executa este programa, ele só imprime <code
+        class="language-plaintext highlighter-rouge">olá, mundo</code>. Vamos personalizá-lo um pouco, assim como
+      fizemos em aula.</p>
+    <p>Modifique este programa de tal forma que primeiro peça ao usuário seu nome e depois imprima <code
+        class="language-plaintext highlighter-rouge">olá, fulano-de-tal</code>, onde <code
+        class="language-plaintext highlighter-rouge">fulano-de-tal</code> é o nome real do usuário.</p>
+    <p>Como antes, certifique-se de compilar seu programa com:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>make hello
+    </code></pre>
+      </div>
+    </div>
+    <p>E certifique-se de executar seu programa, testando-o algumas vezes com entradas diferentes, com:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>./hello
+    </code></pre>
+      </div>
+    </div>
+    <h3 id="hints">Dicas</h3>
+    <h4 id="dont-recall-how-to-prompt-the-user-for-their-name">Não se lembra de como solicitar o nome do usuário?</h4>
+    <p>Lembre-se que você pode usar <code class="language-plaintext highlighter-rouge">get_string</code> da seguinte
+      forma, armazenando seu <em>valor de retorno</em> em uma variável chamada <code
+        class="language-plaintext highlighter-rouge">name</code> do tipo <code
+        class="language-plaintext highlighter-rouge">string</code>.</p>
+    <div class="language-c highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"Qual é o seu nome? "</span><span class="p">);</span>
+</code></pre>
+      </div>
+    </div>
+    <h4 id="dont-recall-how-to-format-a-string">Não se lembra de como formatar uma string?</h4>
+    <p>Não se lembra de como juntar (ou seja, concatenar) o nome do usuário com uma saudação? Lembre-se que você pode
+      usar <code class="language-plaintext highlighter-rouge">printf</code> não só para imprimir, mas para formatar uma
+      string (daí o <code class="language-plaintext highlighter-rouge">f</code> em <code
+        class="language-plaintext highlighter-rouge">printf</code>), como abaixo, onde <code
+        class="language-plaintext highlighter-rouge">name</code> é uma <code
+        class="language-plaintext highlighter-rouge">string</code>.</p>
+    <div class="language-c highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code><span class="n">printf</span><span class="p">(</span><span class="s">"Hello, %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+</code></pre>
+      </div>
+    </div>
+    <h4 id="use-of-undeclared-identifier">Uso de identificador não declarado?</h4>
+    <p>Ao ver o abaixo, talvez junto com outros erros?</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: use of undeclared identifier 'string'; did you mean 'stdin'?
+    </code></pre></div></div>
+    <p>Lembre-se de que, para usar <code class="language-plaintext highlighter-rouge">get_string</code>, você precisa incluir <code class="language-plaintext highlighter-rouge">cs50.h</code> (no qual <code class="language-plaintext highlighter-rouge">get_string</code> é <em>declarado</em>) no início de um arquivo, como neste exemplo:</p>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+    </span></code></pre></div></div>
+    <h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
+    <p>Execute o código abaixo para avaliar a correção do seu programa usando o <code class="language-plaintext highlighter-rouge">check50</code>, um programa de linha de comando que mostrará carinhas felizes sempre que seu código passar nos testes automatizados do CS50 e carinhas tristes sempre que não passar! Mas lembre-se de compilar e testar o código por conta própria também!</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/hello
+    </code></pre></div></div>
+    <p>Execute o abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>, um programa de linha de comando que mostrará as adições (em verde) e exclusões (em vermelho) que você deve fazer no seu programa para melhorar seu estilo. Se tiver problemas para ver essas cores, <code class="language-plaintext highlighter-rouge">style50</code> também suporta outros <a href="https://cs50.readthedocs.io/style50/">modos</a>!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 hello.c
+</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o abaixo para submeter seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/hello
+</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

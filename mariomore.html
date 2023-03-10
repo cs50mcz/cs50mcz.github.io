@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="#">Week 2 - <em>Arrays</em></a>
+    <a href="#">Week 3 - <em>Algoritmos</em></a>
+    <a href="#">Week 4 - <em>Memória</em></a>
+    <a href="#">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="#">Week 6 - <em>Python</em></a>
+    <a href="#">Week 7 - <em>SQL</em></a>
+    <a href="#">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="#">Week 9 - <em>Flask</em></a>
+    <a href="#">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Mario (more)</h2>
+    <hr>
+
+    <h2 id="getting-started">Primeiros Passos</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deverá ver que o "prompt" se parece com o
+      abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e, em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/mario-more.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">mario-more.zip</code> no seu codespace. Tome cuidado para não
+      esquecer do espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip mario-more.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">mario-more</code>. Você não
+      precisa mais do arquivo ZIP, então você pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm mario-more.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd mario-more
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para se mover para dentro (ou seja, abrir) desse diretório. Seu prompt deve se parecer com o
+      abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>mario-more/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo correu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">mario.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code mario.c</code> deve abrir o arquivo onde você irá digitar seu
+      código para este conjunto de problemas. Se não, retraça seus passos e veja se você pode determinar onde errou!</p>
+    <h2 id="world-1-1">Mundo 1-1</h2>
+    <p>No início do Mundo 1-1 do jogo Super Mario Brothers da Nintendo, Mario deve pular sobre pirâmides adjacentes de
+      blocos, como mostrado abaixo.</p>
+    <p><img src="./assets/images/pyramids.png" alt="captura de tela de Mario pulando sobre pirâmides adjacentes"></p>
+    <p>Vamos recriar essas pirâmides em C, embora em texto, usando cerquilhas (<code
+        class="language-plaintext highlighter-rouge">#</code>) para os tijolos, como abaixo. Cada cerquilha é um pouco
+      mais alta do que larga, então as próprias pirâmides também serão mais altas do que largas.</p>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   #  #
+  ##  ##
+ ###  ###
+####  ####
+      </code></pre></div></div>
+      <p>O programa que escreveremos será chamado de <code class="language-plaintext highlighter-rouge">mario</code>. E vamos permitir que o usuário decida qual deve ser a altura das pirâmides, solicitando primeiro a ele um número inteiro positivo entre, digamos, 1 e 8, inclusive.</p>
+      <p>Aqui está como o programa pode funcionar se o usuário inserir <code class="language-plaintext highlighter-rouge">8</code> quando solicitado:</p>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./mario
+Altura: 8
+       #  #
+      ##  ##
+     ###  ###
+    ####  ####
+   #####  #####
+  ######  ######
+ #######  #######
+########  ########
+      </code></pre></div></div>
+      <p>Aqui está como o programa pode funcionar se o usuário inserir <code class="language-plaintext highlighter-rouge">4</code> quando solicitado:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./mario
+Altura: 4
+   #  #
+  ##  ##
+ ###  ###
+####  ####
+</code></pre></div></div>
+<p>Aqui está como o programa pode funcionar se o usuário inserir <code class="language-plaintext highlighter-rouge">2</code> quando solicitado:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./mario
+Altura: 2
+ #  #
+##  ##
+</code></pre></div></div>
+<p>E aqui está como o programa pode funcionar se o usuário inserir <code class="language-plaintext highlighter-rouge">1</code> quando solicitado:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./mario
+Altura: 1
+#  #
+</code></pre></div></div>
+<p>Se o usuário não inserir um inteiro positivo entre 1 e 8, inclusive, quando solicitado, o programa deve solicitar novamente até que o usuário coopere:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./mario
+Altura: -1
+Altura: 0
+Altura: 42
+Altura: 50
+Altura: 4
+   #  #
+  ##  ##
+ ###  ###
+####  ####
+</code></pre></div></div>
+<p>Observe que a largura do "vão" entre as pirâmides adjacentes é igual à largura de dois hashtags, independentemente das alturas das pirâmides.</p>
+<p>Abra o seu arquivo <code class="language-plaintext highlighter-rouge">mario.c</code> para implementar este problema como descrito!</p>
+<h3 id="how-to-test-your-code">Como Testar Seu Código</h3>
+<p>O seu código funciona como esperado quando você insere:</p>
+<ul>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">-1</code> (ou outros números negativos)?</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">0</code>?</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">1</code> a <code class="language-plaintext highlighter-rouge">8</code>?</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">9</code> ou outros números positivos?</li>
+  <li data-marker="*">letras ou palavras?</li>
+  <li data-marker="*">nenhuma entrada, quando você somente pressiona Enter?</li>
+</ul>
+<p>Você também pode executar o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testá-lo por conta própria também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/mario/more
+</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 mario.c
+</code></pre></div></div>
+<h2 id="how-to-submit">Como Enviar</h2>
+<p>No seu terminal, execute o código abaixo para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/mario/more
+</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
