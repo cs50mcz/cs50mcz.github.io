@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Readability</h2>
+    <hr>
+
+    <p>Para este problema, você irá implementar um programa que calcula o nível aproximado de série necessário para
+      compreender um texto, como mostrado abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: Congratulations! Today is your day. You're off to Great Places! You're off and away!
+Grade 3        </code></pre>
+      </div>
+    </div>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/2/readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">readability.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">readability</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd readability
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>readability/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">readability.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code readability.c</code> deve abrir o arquivo onde você digitará o
+      seu
+      código para este problema. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+    <h2 id="background">Contexto</h2>
+    <p>De acordo com a <a
+        href="https://www.scholastic.com/teachers/teaching-tools/collections/guided-reading-book-lists-for-every-level.html"
+        target="_blank">Scholastic</a>,
+      o livro <em>A Teia de Charlotte</em>, de E.B. White, é adequado para leitores entre o segundo e o quarto anos de
+      escolaridade, enquanto <em>O Doador de Memórias</em>, de Lois Lowry, é adequado para leitores entre o oitavo e o
+      décimo segundo anos. Mas o que significa, na prática, um livro estar em um determinado nível de leitura?</p>
+    <p>Bem, em muitos casos, um especialista em literatura pode ler um livro e decidir qual é o ano escolar mais
+      apropriado para a sua leitura. Mas um algoritmo também pode ser capaz de fazer essa análise!</p>
+    <p>Então, quais características costumam estar presentes em livros de níveis de leitura mais elevados? Palavras mais
+      longas geralmente correlacionam-se com níveis de leitura mais elevados. Da mesma forma, frases mais longas também
+      costumam correlacionar-se com níveis de leitura mais elevados.</p>
+    <p>Ao longo dos anos, vários "testes de legibilidade" foram desenvolvidos para definir fórmulas para calcular o
+      nível de leitura de um texto. Um desses testes de legibilidade é o <em>índice de Coleman-Liau</em>. O índice de
+      Coleman-Liau de um texto é projetado para indicar qual ano escolar (nos Estados Unidos) é necessário para
+      compreender o texto. A fórmula é:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>índice = 0.0588 * L - 0.296 * S - 15.8
+</code></pre>
+      </div>
+    </div>
+    <p>onde <code class="language-plaintext highlighter-rouge">L</code> é a média de letras por 100 palavras no texto e
+      <code class="language-plaintext highlighter-rouge">S</code> é a média de frases por 100 palavras no texto.
+    </p>
+    <p>Vamos escrever um programa chamado <code class="language-plaintext highlighter-rouge">readability</code> que
+      recebe um texto e determina seu nível de leitura. Por exemplo, se o usuário digitar uma linha de texto do Dr.
+      Seuss, o programa deve funcionar da seguinte forma:</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: Congratulations! Today is your day. You're off to Great Places! You're off and away!
+Grade 3        </code></pre>
+      </div>
+    </div>
+
+    <p>O texto inserido pelo usuário tem 65 letras, 4 frases e 14 palavras. 65 letras por 14 palavras é uma média de
+      cerca de 464,29 letras por 100 palavras (porque 65/14 * 100 = 464,29). E 4 sentenças por 14 palavras é uma média
+      de cerca de 28,57 sentenças por 100 palavras (porque 4/14 * 100 = 28,57). Conectado à fórmula de Coleman-Liau e
+      arredondado para o inteiro mais próximo, obtemos uma resposta de 3 (porque 0,0588 * 464,29 - 0,296 * 28,57 - 15,8
+      = 3): portanto, esta passagem está no nível de leitura da terceira série.</p>
+
+    <p>Vamos tentar outro:</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: Harry Potter was a highly unusual boy in many ways. For one thing, he hated the summer holidays more than any other time of year. For another, he really wanted to do his homework, but was forced to do it in secret, in the dead of the night. And he also happened to be a wizard.
+Grade 5        </code></pre>
+      </div>
+    </div>
+
+    <p>Este texto possui 214 letras, 4 frases e 56 palavras. Isso resulta em cerca de 382,14 letras por 100 palavras e
+      7,14 frases por 100 palavras. Aplicando a fórmula Coleman-Liau, obtemos um nível de leitura de quinta série.</p>
+    <p>À medida que o número médio de letras e palavras por frase aumenta, o índice Coleman-Liau atribui um nível de
+      leitura mais alto ao texto. Se você pegasse este parágrafo, por exemplo, que possui palavras e frases mais longas
+      do que os dois exemplos anteriores, a fórmula daria ao texto um nível de leitura de décima segunda série.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: As the average number of letters and words per sentence increases, the Coleman-Liau index gives the text a higher reading level. If you were to take this paragraph, for instance, which has longer words and sentences than either of the prior two examples, the formula would give the text an twelfth-grade reading level.
+Grade 12        </code></pre>
+      </div>
+    </div>
+
+    <details>
+      <summary>Assista a uma gravação</summary>
+      <script async="" data-autoplay="1" data-cols="100" data-loop="1" data-rows="12"
+        id="asciicast-2YTPtsNbRP2p4bD4drEjHaoRj" src="https://asciinema.org/a/2YTPtsNbRP2p4bD4drEjHaoRj.js"></script>
+    </details>
+    <br>
+
+    <h2 id="specification">Especificação</h2>
+    <p>Projete e implemente um programa, <code class="language-plaintext highlighter-rouge">readability</code>, que
+      calcule o índice Coleman-Liau de um texto.</p>
+    <ul>
+      <li data-marker="*">Implemente seu programa em um arquivo chamado <code
+          class="language-plaintext highlighter-rouge">readability.c</code> em um diretório chamado <code
+          class="language-plaintext highlighter-rouge">readability</code>.</li>
+      <li data-marker="*">Seu programa deve solicitar ao usuário uma <code
+          class="language-plaintext highlighter-rouge">string</code> de texto usando <code
+          class="language-plaintext highlighter-rouge">get_string</code>.</li>
+      <li data-marker="*">Seu programa deve contar o número de letras, palavras e frases no texto. Você pode assumir que
+        uma letra é qualquer caractere minúsculo de <code class="language-plaintext highlighter-rouge">a</code> a <code
+          class="language-plaintext highlighter-rouge">z</code> ou qualquer caractere maiúsculo de <code
+          class="language-plaintext highlighter-rouge">A</code> a <code
+          class="language-plaintext highlighter-rouge">Z</code>, qualquer sequência de caracteres separados por espaços
+        deve ser contada como uma palavra e que qualquer ocorrência de um ponto, ponto de exclamação ou ponto de
+        interrogação indica o final de uma frase.</li>
+      <li data-marker="*">Seu programa deve imprimir como saída <code
+          class="language-plaintext highlighter-rouge">"Grade X"</code>, onde <code
+          class="language-plaintext highlighter-rouge">X</code> é o nível de série calculado pela fórmula Coleman-Liau,
+        arredondado para o número inteiro mais próximo.</li>
+      <li data-marker="*">Se o número resultante do índice for 16 ou superior (equivalente ou superior a um nível de
+        leitura de graduação sênior), seu programa deve imprimir <code
+          class="language-plaintext highlighter-rouge">"Grade 16+"</code> em vez de fornecer o número exato do índice.
+        Se o número do índice for menor que 1, seu programa deve imprimir <code
+          class="language-plaintext highlighter-rouge">"Before Grade 1"</code>.</li>
+    </ul>
+
+    <h3 id="getting-user-input">Obtendo entrada do usuário</h3>
+    <p>Vamos escrever primeiro algum código em C que simplesmente obtém alguma entrada de texto do usuário e a imprime
+      de volta. Especificamente, implemente na função <code class="language-plaintext highlighter-rouge">main</code> em
+      <code class="language-plaintext highlighter-rouge">readability.c</code> que solicita ao usuário com <code
+        class="language-plaintext highlighter-rouge">"Text: "</code> usando <code
+        class="language-plaintext highlighter-rouge">get_string</code> e, em seguida, imprime o mesmo texto usando <code
+        class="language-plaintext highlighter-rouge">printf</code>. E lembre-se, ao trabalhar neste programa, que se
+      você usar qualquer função de biblioteca, certifique-se de <code
+        class="language-plaintext highlighter-rouge">#include</code> quaisquer arquivos de cabeçalho correspondentes.
+    </p>
+    <p>O programa deve se comportar conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.
+In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.
+  </code></pre>
+      </div>
+    </div>
+
+    <h3 id="letters">Letras</h3>
+    <p>Agora que você coletou a entrada do usuário, vamos começar a analisar essa entrada contando primeiro o número de
+      letras no texto. Considere letras como caracteres alfabéticos maiúsculos ou minúsculos, não pontuação, dígitos ou
+      outros símbolos.</p>
+    <p>Adicione ao arquivo <code class="language-plaintext highlighter-rouge">readability.c</code>, abaixo do <code
+        class="language-plaintext highlighter-rouge">main</code>, uma função chamada <code
+        class="language-plaintext highlighter-rouge">count_letters</code> que recebe um argumento, uma string de texto,
+      e que retorna um <code class="language-plaintext highlighter-rouge">int</code>, o número de letras nesse texto.
+      Certifique-se de adicionar o protótipo da função também no topo do seu arquivo, para que o <code
+        class="language-plaintext highlighter-rouge">main</code> saiba como chamá-lo. É provável que o protótipo se
+      pareça com o abaixo:</p>
+
+    <div class="language-c highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code><span class="kt">int</span> <span class="n">count_letters</span><span class="p">(</span><span class="n">string</span> <span class="n">text</span><span class="p">)</span>      </code></pre>
+      </div>
+    </div>
+
+    <p>Então chame essa função em <code class="language-plaintext highlighter-rouge">main</code>, para que, em vez de
+      imprimir o próprio texto, o programa agora imprima o número de letras no texto.</p>
+    <p>O programa agora deve se comportar conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, "and what is the use of a book," thought Alice "without pictures or conversation?"
+235 letters  </code></pre>
+      </div>
+    </div>
+
+    <details>
+      <summary>Dica</summary>
+      <p>Declarada em <code class="language-plaintext highlighter-rouge">ctype.h</code> há uma função que pode ser útil,
+        de acordo com o <a href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>. Se você usá-la, certifique-se de incluir o
+        arquivo de cabeçalho no início do seu código!</p>
+    </details>
+    <br>
+
+    <h3 id="words">Palavras</h3>
+    <p>O índice Coleman-Liau se preocupa não apenas com o número de letras, mas também com o número de palavras em uma
+      frase. Para fins deste problema, consideraremos qualquer sequência de caracteres separados por um espaço como uma
+      palavra (então uma palavra com hífen como <code class="language-plaintext highlighter-rouge">"sister-in-law"</code>
+      deve ser considerada como uma única palavra, não três).</p>
+    <p>Adicione em <code class="language-plaintext highlighter-rouge">readability.c</code>, abaixo de <code
+        class="language-plaintext highlighter-rouge">main</code>, uma função chamada <code
+        class="language-plaintext highlighter-rouge">count_words</code> que recebe um argumento, uma <code
+        class="language-plaintext highlighter-rouge">string</code> de texto, e retorna um <code
+        class="language-plaintext highlighter-rouge">int</code>, o número de palavras nesse texto. Certifique-se de
+      adicionar o protótipo da função também no início do seu arquivo, para que <code
+        class="language-plaintext highlighter-rouge">main</code> saiba como chamá-la. (Deixamos o protótipo para você!)
+    </p>
+    <p>Em seguida, chame essa função em <code class="language-plaintext highlighter-rouge">main</code>, para que seu
+      programa também imprima o número de palavras no texto.</p>
+    <p>Você pode assumir que uma frase:</p>
+    <ul>
+      <li data-marker="*">irá conter pelo menos uma palavra;</li>
+      <li data-marker="*">não começará ou terminará com um espaço; e</li>
+      <li data-marker="*">não terá múltiplos espaços seguidos.</li>
+    </ul>
+    <p>Você, é claro, pode tentar uma solução que tolerará múltiplos espaços entre as palavras ou, de fato, nenhuma
+      palavra!</p>
+    <p>O programa deve se comportar conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.
+250 letters
+55 words  </code></pre>
+      </div>
+    </div>
+
+    <h3 id="sentences">Frases</h3>
+    <p>A última informação que a fórmula Coleman-Liau se preocupa, além do número de letras e palavras, é o número de
+      frases. Determinar o número de frases pode ser surpreendentemente complicado. Você pode imaginar primeiro que uma
+      frase é apenas qualquer sequência de caracteres que termina com um ponto final, mas é claro que as frases também
+      podem terminar com um ponto de exclamação ou uma interrogação. Mas nem todos os pontos finais necessariamente
+      significam que a frase acabou. Por exemplo, considere a frase abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>O Sr. e a Sra. Dursley, do número quatro da Rua dos Alfeneiros, estavam orgulhosos em dizer que eram perfeitamente normais, muito obrigado.
+</code></pre>
+      </div>
+    </div>
+    <p>Esta é apenas uma única frase, mas há três pontos finais! Para este problema, pedimos que você ignore essa
+      sutileza: você deve considerar qualquer sequência de caracteres que termina com um <code
+        class="language-plaintext highlighter-rouge">.</code> ou um <code
+        class="language-plaintext highlighter-rouge">!</code> ou um <code
+        class="language-plaintext highlighter-rouge">?</code> como uma frase (então, para a "frase" acima, você deve
+      contá-la como três frases). Na prática, a detecção de fronteiras de frases precisa ser um pouco mais inteligente
+      para lidar com esses casos, mas não vamos nos preocupar com isso por agora.</p>
+    <p>Adicione ao <code class="language-plaintext highlighter-rouge">readability.c</code>, abaixo do <code
+        class="language-plaintext highlighter-rouge">main</code>, uma função chamada <code
+        class="language-plaintext highlighter-rouge">count_sentences</code> que recebe um argumento, uma <code
+        class="language-plaintext highlighter-rouge">string</code> de texto, e que retorna um <code
+        class="language-plaintext highlighter-rouge">int</code>, o número de frases nesse texto. Certifique-se de
+      adicionar o protótipo da função, também, no topo do seu arquivo, para que o <code
+        class="language-plaintext highlighter-rouge">main</code> saiba como chamá-la. (Deixamos novamente o protótipo
+      para você!)</p>
+    <p>Em seguida, chame essa função no <code class="language-plaintext highlighter-rouge">main</code> para que o seu
+      programa também imprima o número de frases no texto.</p>
+    <p>O programa agora deve se comportar conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: When he was nearly thirteen, my brother Jem got his arm badly broken at the elbow. When it healed, and Jem's fears of never being able to play football were assuaged, he was seldom self-conscious about his injury. His left arm was somewhat shorter than his right; when he stood or walked, the back of his hand was at right angles to his body, his thumb parallel to his thigh.
+295 letters
+70 words
+3 sentences  </code></pre>
+      </div>
+    </div>
+
+    <h3 id="putting-it-all-together">Colocando tudo junto</h3>
+    <p>Agora é hora de juntar todas as peças! Lembre-se de que o índice Coleman-Liau é calculado usando a fórmula:</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>index = 0.0588 * L - 0.296 * S - 15.8    </code></pre>
+      </div>
+    </div>
+
+    <h3 id="putting-it-all-together">Colocando tudo junto</h3>
+    <p>Onde <code class="language-plaintext highlighter-rouge">L</code> é o número médio de letras por 100 palavras no
+      texto e <code class="language-plaintext highlighter-rouge">S</code> é o número médio de frases por 100 palavras no
+      texto.</p>
+    <p>Modifique a função <code class="language-plaintext highlighter-rouge">main</code> em <code
+        class="language-plaintext highlighter-rouge">readability.c</code> para que, em vez de exibir o número de letras,
+      palavras e frases, exiba apenas o nível de graduação conforme definido pelo índice Coleman-Liau (por exemplo,
+      <code class="language-plaintext highlighter-rouge">"Grade 2"</code> ou <code
+        class="language-plaintext highlighter-rouge">"Grade 8"</code> ou similar). Certifique-se de arredondar o número
+      de índice resultante para o inteiro mais próximo usando a função <code
+        class="language-plaintext highlighter-rouge">round</code> da biblioteca <code
+        class="language-plaintext highlighter-rouge">math.h</code>.
+    </p>
+    <details>
+      <summary>Dicas</summary>
+      <ul>
+        <li data-marker="*">Lembre-se que a função <code class="language-plaintext highlighter-rouge">round</code> é
+          declarada na biblioteca <code class="language-plaintext highlighter-rouge">math.h</code>, conforme o <a
+            href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>!</li>
+        <li data-marker="*">Lembre-se que, ao dividir valores do tipo <code
+            class="language-plaintext highlighter-rouge">int</code> em C, o resultado também será do tipo <code
+            class="language-plaintext highlighter-rouge">int</code>, com qualquer resto (ou seja, dígitos após o ponto
+          decimal) descartado. Em outras palavras, o resultado será "truncado". Você pode querer converter um ou mais
+          valores em <code class="language-plaintext highlighter-rouge">float</code> antes de realizar a divisão ao
+          calcular <code class="language-plaintext highlighter-rouge">L</code> e <code
+            class="language-plaintext highlighter-rouge">S</code>!</li>
+      </ul>
+    </details>
+    <p>Se o número de índice resultante for 16 ou superior (equivalente ou superior ao nível de leitura de graduação em
+      nível universitário), o programa deve exibir <code class="language-plaintext highlighter-rouge">"Grade 16+"</code>
+      em vez de exibir um número de índice exato. Se o número de índice for inferior a 1, o programa deve exibir <code
+        class="language-plaintext highlighter-rouge">"Before Grade 1"</code>.</p>
+
+    <h2 id="how-to-test-your-code">Como Testar Seu Código</h2>
+    <p>Tente executar seu programa nos seguintes textos para garantir que você visualize o nível de graduação
+      especificado. Certifique-se de copiar apenas o texto, sem espaços extras.</p>
+
+    <ul>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">One fish. Two fish. Red fish. Blue fish.</code> (Before Grade 1)
+      </li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">Would you like them here or there? I would not like them here or there. I would not like them anywhere.</code>
+        (Grade 2)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">Congratulations! Today is your day. You're off to Great Places! You're off and away!</code>
+        (Grade 3)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">Harry Potter was a highly unusual boy in many ways. For one thing, he hated the summer holidays more than any other time of year. For another, he really wanted to do his homework, but was forced to do it in secret, in the dead of the night. And he also happened to be a wizard.</code>
+        (Grade 5)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.</code>
+        (Grade 7)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, "and what is the use of a book," thought Alice "without pictures or conversation?"</code>
+        (Grade 8)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">When he was nearly thirteen, my brother Jem got his arm badly broken at the elbow. When it healed, and Jem's fears of never being able to play football were assuaged, he was seldom self-conscious about his injury. His left arm was somewhat shorter than his right; when he stood or walked, the back of his hand was at right angles to his body, his thumb parallel to his thigh.</code>
+        (Grade 8)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">There are more things in Heaven and Earth, Horatio, than are dreamt of in your philosophy.</code>
+        (Grade 9)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.</code>
+        (Grade 10)</li>
+      <li data-marker="*"><code
+          class="language-plaintext highlighter-rouge">A large class of computational problems involve the determination of properties of graphs, digraphs, integers, arrays of integers, finite families of finite sets, boolean formulas and elements of other countable domains.</code>
+        (Grade 16+)</li>
+    </ul>
+
+    <p>Execute o comando abaixo para avaliar a correção do seu código usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas lembre-se de compilar e testá-lo por conta
+      própria também!</p>
+
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/readability      </code></pre></div></div>
+
+      <p>Execute o comando abaixo para avaliar o estilo do seu código usando o <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 readability.c      </code></pre></div></div>
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/readability      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

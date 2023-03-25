@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Caesar</h2>
+    <hr>
+
+    <p>Para este problema, você implementará um programa que criptografa mensagens usando a cifra de César, conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 13
+plaintext:  HELLO
+ciphertext: URYYB
+      </code></pre></div></div>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/2/caesar.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">caesar.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip caesar.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">caesar</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm caesar.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd caesar
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>caesar/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">caesar.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code caesar.c</code> deve abrir o arquivo onde você digitará o
+      seu
+      código para este problema. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+      <h2 id="background">Contexto</h2>
+      <p>Supostamente, César (sim, o próprio) costumava "criptografar" (ou seja, ocultar de forma reversível) mensagens confidenciais, deslocando cada letra nelas por um certo número de lugares. Por exemplo, ele poderia escrever A como B, B como C, C como D, ..., e, envolvendo alfabeticamente, Z como A. E assim, para dizer HELLO a alguém, César poderia escrever IFMMP em seu lugar. Ao receber tais mensagens de César, os destinatários teriam que "descriptografá-las" deslocando as letras na direção oposta pelo mesmo número de lugares.</p>
+      <p>A segurança desse "criptossistema" dependia apenas de César e dos destinatários saberem um segredo, o número de lugares pelos quais César havia deslocado suas letras (por exemplo, 1). Não é particularmente seguro pelos padrões modernos, mas, ei, se você talvez seja o primeiro do mundo a fazer isso, é bastante seguro!</p>
+      <p>O texto não criptografado é geralmente chamado de <em>texto simples</em>. O texto criptografado é geralmente chamado de <em>texto cifrado</em>. E o segredo usado é chamado de <em>chave</em>.</p>
+      <p>Para ser claro, aqui está como criptografar <code class="language-plaintext highlighter-rouge">HELLO</code> com uma chave de <strong>1</strong> produz <code class="language-plaintext highlighter-rouge">IFMMP</code>:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>plaintext</th>
+            <th><code class="language-plaintext highlighter-rouge">H</code></th>
+            <th><code class="language-plaintext highlighter-rouge">E</code></th>
+            <th><code class="language-plaintext highlighter-rouge">L</code></th>
+            <th><code class="language-plaintext highlighter-rouge">L</code></th>
+            <th><code class="language-plaintext highlighter-rouge">O</code></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>+ key</td>
+            <td><strong>1</strong></td>
+            <td><strong>1</strong></td>
+            <td><strong>1</strong></td>
+            <td><strong>1</strong></td>
+            <td><strong>1</strong></td>
+          </tr>
+          <tr>
+            <td>= ciphertext</td>
+            <td><code class="language-plaintext highlighter-rouge">I</code></td>
+            <td><code class="language-plaintext highlighter-rouge">F</code></td>
+            <td><code class="language-plaintext highlighter-rouge">M</code></td>
+            <td><code class="language-plaintext highlighter-rouge">M</code></td>
+            <td><code class="language-plaintext highlighter-rouge">P</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Mais formalmente, o algoritmo de Cifra de César cifra mensagens "rotacionando" cada letra por <strong>k</strong> posições. Mais precisamente, se <strong>p</strong> é algum texto simples (ou seja, uma mensagem não criptografada), <strong>p<sub>i</sub></strong> é o <strong>i<sup>th</sup></strong> caractere em <strong>p</strong>, e <strong>k</strong> é uma chave secreta (ou seja, um número inteiro não negativo), então cada letra, <strong>c<sub>i</sub></strong>, no texto cifrado, <strong>c</strong>, é calculado como:</p>
+
+<strong>c<sub>i</sub> = (p<sub>i</sub> + k) % 26</strong>
+<p>onde <strong>% 26</strong> aqui significa "resto da divisão por 26". Esta fórmula talvez faça a cifra parecer mais complicada do que realmente é, mas na verdade é apenas uma forma concisa de expressar o algoritmo com precisão. De fato, para fins de discussão, pense em A (ou a) como <strong>0</strong>, B (ou b) como <strong>1</strong>, ..., H (ou h) como <strong>7</strong>, I (ou i) como <strong>8</strong>, ..., e Z (ou z) como <strong>25</strong>. Suponha que César queira dizer confidencialmente "Hi" para alguém usando, desta vez, uma chave <strong>k</strong> de 3. E então seu texto simples, <strong>p</strong>, é <code class="language-plaintext highlighter-rouge">Hi</code>, caso em que o primeiro caractere do seu texto simples, <strong>p<sub>0</sub></strong>, é <code class="language-plaintext highlighter-rouge">H</code> (também conhecido como 7), e o segundo caractere do seu texto simples, <strong>p<sub>1</sub></strong>, é <code class="language-plaintext highlighter-rouge">i</code> (também conhecido como 8). O primeiro caractere do seu texto cifrado, <strong>c<sub>0</sub></strong>, é assim <code class="language-plaintext highlighter-rouge">K</code>, e o segundo caractere do seu texto cifrado, <strong>c<sub>1</sub></strong>, é assim <code class="language-plaintext highlighter-rouge">L</code>. Faz sentido?</p>
+<p>Vamos escrever um programa chamado <code class="language-plaintext highlighter-rouge">caesar</code> que permite cifrar mensagens usando a cifra de César. No momento em que o usuário executa o programa, eles devem decidir, fornecendo um argumento de linha de comando, qual será a chave na mensagem secreta que eles fornecerão em tempo de execução. Não devemos necessariamente assumir que a chave do usuário será um número; embora possamos assumir que, se for um número, será um inteiro positivo.</p>
+<p>Aqui estão alguns exemplos de como o programa pode funcionar. Por exemplo, se o usuário inserir uma chave de <code class="language-plaintext highlighter-rouge">1</code> e um texto simples de <code class="language-plaintext highlighter-rouge">HELLO</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 1
+plaintext:  HELLO
+ciphertext: IFMMP  </code></pre></div></div>
+
+  <p>Aqui está como o programa poderia funcionar se o usuário fornecer uma chave de <code class="language-plaintext highlighter-rouge">13</code> e um texto simples de <code class="language-plaintext highlighter-rouge">hello, world</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 13
+plaintext:  hello, world
+ciphertext: uryyb, jbeyq    </code></pre></div></div>
+
+    <p>Observe que nem a vírgula nem o espaço foram "deslocados" pela cifra. Apenas os caracteres alfabéticos são rotacionados!</p>
+<p>E que tal mais um exemplo? Aqui está como o programa poderia funcionar se o usuário fornecer uma chave de <code class="language-plaintext highlighter-rouge">13</code> novamente, com um texto simples mais complexo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 13
+plaintext:  be sure to drink your Ovaltine
+ciphertext: or fher gb qevax lbhe Binygvar  </code></pre></div></div>
+
+<details><summary>Por quê?</summary>
+  <div class="iframe-container">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/9K4FsAHB-C8?modestbranding=0&amp;rel=0&amp;showinfo=0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+  </details>
+
+<p>Observe que o caso da mensagem original foi preservado. As letras minúsculas permanecem minúsculas e as letras maiúsculas permanecem maiúsculas.</p>
+<p>E o que acontece se o usuário não cooperar, fornecendo um argumento de linha de comando que não é um número? O programa deve lembrar o usuário de como usar o programa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar HELLO
+Usage: ./caesar key  </code></pre></div></div>
+
+<p>Ou se o usuário não fornecer nenhum argumento de linha de comando? O programa deve lembrar o usuário como usar o programa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar
+Usage: ./caesar key  </code></pre></div></div>
+
+<p>Ou realmente, realmente não coopera, fornecendo mais de um argumento de linha de comando? O programa deve lembrar o usuário de como usar o programa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 1 2 3
+Usage: ./caesar key  </code></pre></div></div>
+
+<details><summary>Assista a uma gravação</summary><script async="" data-autoplay="1" data-cols="100" data-loop="1" data-rows="12" id="asciicast-JnlhDTjc264WfGSoNxc0hsjEY" src="https://asciinema.org/a/JnlhDTjc264WfGSoNxc0hsjEY.js"></script></details>
+<br>
+
+<h2 id="specification">Especificação</h2>
+<p>Projete e implemente um programa, <code class="language-plaintext highlighter-rouge">caesar</code>, que criptografa mensagens usando o cifra de César.</p>
+<ul>
+  <li data-marker="*">Implemente seu programa em um arquivo chamado <code class="language-plaintext highlighter-rouge">caesar.c</code> em um diretório chamado <code class="language-plaintext highlighter-rouge">caesar</code>.</li>
+  <li data-marker="*">Seu programa deve aceitar um único argumento de linha de comando, um número inteiro não negativo. Vamos chamá-lo de <strong>k</strong> para fins de discussão.</li>
+  <li data-marker="*">Se o seu programa for executado sem nenhum argumento de linha de comando ou com mais de um argumento de linha de comando, o programa deve imprimir uma mensagem de erro de sua escolha (com <code class="language-plaintext highlighter-rouge">printf</code>) e retornar de <code class="language-plaintext highlighter-rouge">main</code> um valor de <code class="language-plaintext highlighter-rouge">1</code> (que geralmente significa um erro) imediatamente.</li>
+  <li data-marker="*">Se qualquer um dos caracteres do argumento de linha de comando não for um dígito decimal, seu programa deve imprimir a mensagem <code class="language-plaintext highlighter-rouge">Usage: ./caesar key</code> e retornar de <code class="language-plaintext highlighter-rouge">main</code> um valor de <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li data-marker="*">Não assuma que <strong>k</strong> será menor ou igual a 26. Seu programa deve funcionar para todos os valores integrais não negativos de <strong>k</strong> menores que <strong>2<sup>31</sup> - 26</strong>. Em outras palavras, você não precisa se preocupar se seu programa eventualmente quebrar se o usuário escolher um valor para <strong>k</strong> que seja muito grande ou quase grande demais para caber em um <code class="language-plaintext highlighter-rouge">int</code>. (Lembre-se de que um <code class="language-plaintext highlighter-rouge">int</code> pode transbordar.) Mas, mesmo que <strong>k</strong> seja maior que <strong>26</strong>, os caracteres alfabéticos na entrada do seu programa devem permanecer caracteres alfabéticos na saída do seu programa. Por exemplo, se <strong>k</strong> for <strong>27</strong>, <code class="language-plaintext highlighter-rouge">A</code> não deve se tornar <code class="language-plaintext highlighter-rouge">\</code> mesmo que <code class="language-plaintext highlighter-rouge">\</code> esteja a <strong>27</strong> posições de <code class="language-plaintext highlighter-rouge">A</code> em ASCII, conforme <a href="https://www.asciitable.com/" target="_blank">asciitable.com</a>; <code class="language-plaintext highlighter-rouge">A</code> deve se tornar <code class="language-plaintext highlighter-rouge">B</code>, já que <code class="language-plaintext highlighter-rouge">B</code> está a <strong>27</strong> posições de <code class="language-plaintext highlighter-rouge">A</code>, desde que você volte de <code class="language-plaintext highlighter-rouge">Z</code> para <code class="language-plaintext highlighter-rouge">A</code>.</li>
+  <li data-marker="*">Seu programa deve exibir <code class="language-plaintext highlighter-rouge">plaintext:  </code> (com dois espaços, mas sem uma nova linha) e, em seguida, solicitar ao usuário uma <code class="language-plaintext highlighter-rouge">string</code> de texto simples (usando <code class="language-plaintext highlighter-rouge">get_string</code>).</li>
+  <li data-marker="*">Seu programa deve exibir <code class="language-plaintext highlighter-rouge">ciphertext: </code> (com um espaço, mas sem uma nova linha), seguido do texto simples correspondente cifrado, com cada caractere alfabético no texto simples "rotacionado" por <em>k</em> posições; caracteres não alfabéticos devem ser exibidos inalterados.</li>
+  <li data-marker="*">Seu programa deve preservar a caixa das letras: letras maiúsculas, embora rotacionadas, devem permanecer como letras maiúsculas; letras minúsculas, embora rotacionadas, devem permanecer como letras minúsculas.</li>
+  <li data-marker="*">Após a saída do texto cifrado, você deve imprimir uma nova linha. Seu programa deve então sair retornando <code class="language-plaintext highlighter-rouge">0</code> da função <code class="language-plaintext highlighter-rouge">main</code>.</li>
+</ul>
+
+<h2 id="advice">Aconselhamento</h2>
+<p>Como começar? Vamos abordar este problema passo a passo.</p>
+<h3 id="pseudocode">Pseudocódigo</h3>
+<p>Primeiro, tente escrever uma função <code class="language-plaintext highlighter-rouge">main</code> em <code class="language-plaintext highlighter-rouge">caesar.c</code> que implemente o programa usando apenas pseudocódigo, mesmo que ainda não saiba como escrevê-lo em código real.</p>
+
+<details><summary>Dica</summary><p>Há mais de uma maneira de fazer isso, então aqui está apenas uma!</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Make sure program was run with just one command-line argument</span>
+
+    <span class="c1">// Make sure every character in argv[1] is a digit</span>
+
+    <span class="c1">// Convert argv[1] from a `string` to an `int`</span>
+
+    <span class="c1">// Prompt user for plaintext</span>
+
+    <span class="c1">// For each character in the plaintext:</span>
+
+        <span class="c1">// Rotate the character if it's a letter</span>
+<span class="p">}</span>    </code></pre></div></div>
+
+
+<p>Tudo bem editar o seu próprio pseudocódigo depois de ver o nosso aqui, mas não simplesmente copie e cole o nosso no seu!</p></details>
+
+<br>
+<h3 id="contando-argumentos-da-linha-de-comando">Contando argumentos da linha de comando</h3>
+<p>Independentemente do pseudocódigo, vamos primeiro escrever apenas o código C que verifica se o programa foi executado com um único argumento da linha de comando antes de adicionar funcionalidades adicionais.</p>
+<p>Especificamente, modifique a função <code class="language-plaintext highlighter-rouge">main</code> em <code class="language-plaintext highlighter-rouge">caesar.c</code> de tal forma que, se o usuário não fornecer nenhum argumento da linha de comando, ou dois ou mais, a função imprime <code class="language-plaintext highlighter-rouge">"Usage: ./caesar key\n"</code> e, em seguida, retorna <code class="language-plaintext highlighter-rouge">1</code>, efetivamente encerrando o programa. Se o usuário fornecer exatamente um argumento da linha de comando, o programa não deve imprimir nada e simplesmente retornar <code class="language-plaintext highlighter-rouge">0</code>. O programa deve, portanto, comportar-se conforme abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar
+Usage: ./caesar key  </code></pre></div></div>
+  
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 1 2 3
+Usage: ./caesar key  </code></pre></div></div>
+  
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 1  </code></pre></div></div>
+
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se que você pode imprimir com o <code class="language-plaintext highlighter-rouge">printf</code>.</li>
+  <li data-marker="*">Lembre-se que uma função pode retornar um valor com <code class="language-plaintext highlighter-rouge">return</code>.</li>
+  <li data-marker="*">Lembre-se que <code class="language-plaintext highlighter-rouge">argc</code> contém o número de argumentos de linha de comando passados para um programa, além do nome do próprio programa.</li>
+</ul></details>
+
+<br>
+<h3 id="checking-the-key">Verificando a Chave</h3>
+<p>Agora que seu programa está (esperamos!) aceitando a entrada conforme prescrito, é hora de mais um passo.</p>
+<p>Adicione ao arquivo <code class="language-plaintext highlighter-rouge">caesar.c</code>, abaixo do <code class="language-plaintext highlighter-rouge">main</code>, uma função chamada, por exemplo, <code class="language-plaintext highlighter-rouge">only_digits</code>, que recebe uma <code class="language-plaintext highlighter-rouge">string</code> como argumento e retorna <code class="language-plaintext highlighter-rouge">true</code> se essa <code class="language-plaintext highlighter-rouge">string</code> contiver apenas dígitos, de <code class="language-plaintext highlighter-rouge">0</code> a <code class="language-plaintext highlighter-rouge">9</code>, caso contrário, retorna <code class="language-plaintext highlighter-rouge">false</code>. Certifique-se de adicionar o protótipo da função acima do <code class="language-plaintext highlighter-rouge">main</code> também.</p>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Provavelmente você desejará um protótipo como:
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">only_digits</span><span class="p">(</span><span class="n">string</span> <span class="n">s</span><span class="p">);</span>  </code></pre></div>    </div>
+
+  <p>E certifique-se de incluir <code class="language-plaintext highlighter-rouge">cs50.h</code> no topo do seu arquivo, para que o compilador reconheça <code class="language-plaintext highlighter-rouge">string</code> (e <code class="language-plaintext highlighter-rouge">bool</code>).</p>
+  </li>
+  <li data-marker="*">Lembre-se de que uma <code class="language-plaintext highlighter-rouge">string</code> é apenas uma matriz de <code class="language-plaintext highlighter-rouge">char</code>s.</li>
+  <li data-marker="*">Lembre-se de que <code class="language-plaintext highlighter-rouge">strlen</code>, declarado em <code class="language-plaintext highlighter-rouge">string.h</code>, calcula o comprimento de uma <code class="language-plaintext highlighter-rouge">string</code>.</li>
+  <li data-marker="*">Você pode achar <code class="language-plaintext highlighter-rouge">isdigit</code>, declarado em <code class="language-plaintext highlighter-rouge">ctype.h</code>, útil, conforme o <a href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>. Mas observe que ele verifica apenas um <code class="language-plaintext highlighter-rouge">char</code> por vez!</li>
+</ul></details>
+
+<p>Então modifique <code class="language-plaintext highlighter-rouge">main</code> de forma que ele chame <code class="language-plaintext highlighter-rouge">only_digits</code> em <code class="language-plaintext highlighter-rouge">argv[1]</code>. Se essa função retornar <code class="language-plaintext highlighter-rouge">false</code>, então <code class="language-plaintext highlighter-rouge">main</code> deve imprimir <code class="language-plaintext highlighter-rouge">"Usage: ./caesar key\n"</code> e retornar <code class="language-plaintext highlighter-rouge">1</code>. Caso contrário, <code class="language-plaintext highlighter-rouge">main</code> deve simplesmente retornar <code class="language-plaintext highlighter-rouge">0</code>. O programa deve, portanto, se comportar conforme abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar 42
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./caesar banana
+Usage: ./caesar key
+</code></pre></div></div>
+
+<h3 id="using-the-key">Usando a Chave</h3>
+<p>Agora modifique a função <code class="language-plaintext highlighter-rouge">main</code> de tal forma que ela converta <code class="language-plaintext highlighter-rouge">argv[1]</code> para um <code class="language-plaintext highlighter-rouge">int</code>. Você pode achar útil a função <code class="language-plaintext highlighter-rouge">atoi</code>, declarada em <code class="language-plaintext highlighter-rouge">stdlib.h</code>, conforme o <a href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>. E então use <code class="language-plaintext highlighter-rouge">get_string</code> para solicitar ao usuário algum texto simples com <code class="language-plaintext highlighter-rouge">"plaintext:  "</code>.</p>
+<p>Em seguida, implemente uma função chamada, por exemplo, <code class="language-plaintext highlighter-rouge">rotate</code>, que recebe um <code class="language-plaintext highlighter-rouge">char</code> como entrada e também um <code class="language-plaintext highlighter-rouge">int</code>, e rotaciona aquele <code class="language-plaintext highlighter-rouge">char</code> por tantas posições quanto o número de vezes especificado, caso seja uma letra (ou seja, alfabética), enrolando de <code class="language-plaintext highlighter-rouge">Z</code> para <code class="language-plaintext highlighter-rouge">A</code> (e de <code class="language-plaintext highlighter-rouge">z</code> para <code class="language-plaintext highlighter-rouge">a</code>) conforme necessário. Se o <code class="language-plaintext highlighter-rouge">char</code> não for uma letra, a função deve retornar o mesmo <code class="language-plaintext highlighter-rouge">char</code> inalterado.</p>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">É provável que você queira um protótipo como:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="nf">rotate</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>    </code></pre></div>    </div>
+    <p>Uma chamada de função como</p>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rotate</span><span class="p">(</span><span class="sc">'A'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    </code></pre></div>    </div>
+    <p>ou até mesmo</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rotate('A', 27)    </code></pre></div>    </div>
+    <p>deverá retornar <code class="language-plaintext highlighter-rouge">'B'</code>. E uma chamada de função como</p>
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rotate</span><span class="p">(</span><span class="sc">'!'</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>    </code></pre></div>    </div>
+    <p>deve retornar <code class="language-plaintext highlighter-rouge">'!'</code>.</p>
+  </li>
+  <li data-marker="*">Lembre-se de que você pode "converter" explicitamente um caractere <code class="language-plaintext highlighter-rouge">char</code> em um <code class="language-plaintext highlighter-rouge">int</code> com <code class="language-plaintext highlighter-rouge">(char)</code>, e um <code class="language-plaintext highlighter-rouge">int</code> em um <code class="language-plaintext highlighter-rouge">char</code> com <code class="language-plaintext highlighter-rouge">(int)</code>. Ou você pode fazer isso implicitamente tratando um como o outro.</li>
+  <li data-marker="*">Provavelmente você desejará subtrair o valor ASCII de <code class="language-plaintext highlighter-rouge">'A'</code> de quaisquer letras maiúsculas, para tratar <code class="language-plaintext highlighter-rouge">'A'</code> como <code class="language-plaintext highlighter-rouge">0</code>, <code class="language-plaintext highlighter-rouge">'B'</code> como <code class="language-plaintext highlighter-rouge">1</code> e assim por diante, enquanto realiza operações aritméticas. E então adicioná-lo de volta quando terminar com o mesmo.</li>
+  <li data-marker="*">Provavelmente você desejará subtrair o valor ASCII de <code class="language-plaintext highlighter-rouge">'a'</code> de quaisquer letras minúsculas, para tratar <code class="language-plaintext highlighter-rouge">'a'</code> como <code class="language-plaintext highlighter-rouge">0</code>, <code class="language-plaintext highlighter-rouge">'b'</code> como <code class="language-plaintext highlighter-rouge">1</code> e assim por diante, enquanto realiza operações aritméticas. E então adicioná-lo de volta quando terminar com o mesmo.</li>
+  <li data-marker="*">Você pode achar algumas outras funções declaradas em <code class="language-plaintext highlighter-rouge">ctype.h</code> úteis, conforme <a href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>.</li>
+  <li data-marker="*">Provavelmente você encontrará o operador <code class="language-plaintext highlighter-rouge">%</code> útil quando precisar "dar a volta" aritmeticamente de um valor como <code class="language-plaintext highlighter-rouge">25</code> para <code class="language-plaintext highlighter-rouge">0</code>.</li>
+</ul></details>
+<p>Em seguida, modifique a função <code class="language-plaintext highlighter-rouge">main</code> de forma que ela imprima <code class="language-plaintext highlighter-rouge">"ciphertext: "</code> e, em seguida, percorra cada <code class="language-plaintext highlighter-rouge">char</code> do texto simples do usuário, chamando a função <code class="language-plaintext highlighter-rouge">rotate</code> em cada caractere e imprimindo o valor de retorno.</p>
+
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se de que o <code class="language-plaintext highlighter-rouge">printf</code> pode imprimir um caractere (<code class="language-plaintext highlighter-rouge">char</code>) usando <code class="language-plaintext highlighter-rouge">%c</code>.</li>
+  <li data-marker="*">Se você não estiver vendo nenhuma saída quando chamar o <code class="language-plaintext highlighter-rouge">printf</code>, provavelmente é porque está imprimindo caracteres fora da faixa ASCII válida de 0 a 127. Tente imprimir caracteres temporariamente como números (usando <code class="language-plaintext highlighter-rouge">%i</code> em vez de <code class="language-plaintext highlighter-rouge">%c</code>) para ver quais valores está imprimindo!</li>
+</ul></details>
+
+<br>
+
+<h2 id="how-to-test-your-code">Como Testar o Seu Código</h2>
+<p>Execute o seguinte para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também por conta própria!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/caesar
+</code></pre></div></div>
+
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 caesar.c
+</code></pre></div></div>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/caesar      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

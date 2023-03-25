@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Substitution</h2>
+    <hr>
+
+    <p>Para este problema, você escreverá um programa que implementa uma cifra de substituição, conforme abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution JTREKYAVOGDXPSNCUIZLFBMWHQ
+plaintext:  HELLO
+ciphertext: VKXXN      </code></pre></div></div>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/2/substitution.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">substitution.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip substitution.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">substitution</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm substitution.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd substitution
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>substitution/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">substitution.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code substitution.c</code> deve abrir o arquivo onde você digitará o
+      seu
+      código para este problema. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+      <h2 id="background">Contexto</h2>
+<p>Em uma cifra de substituição, "criptografamos" (ou seja, ocultamos de maneira reversível) uma mensagem substituindo cada letra por outra letra. Para isso, usamos uma <em>chave</em>: nesse caso, um mapeamento de cada uma das letras do alfabeto para a letra que ela deve corresponder quando criptografada. Para "descriptografar" a mensagem, o receptor da mensagem precisaria conhecer a chave, para que possa reverter o processo: traduzindo o texto criptografado (geralmente chamado de <em>ciphertext</em>) de volta à mensagem original (geralmente chamada de <em>plaintext</em>).</p>
+<p>Uma chave, por exemplo, pode ser a string <code class="language-plaintext highlighter-rouge">NQXPOMAFTRHLZGECYJIUWSKDVB</code>. Essa chave de 26 caracteres significa que <code class="language-plaintext highlighter-rouge">A</code> (a primeira letra do alfabeto) deve ser convertida em <code class="language-plaintext highlighter-rouge">N</code> (o primeiro caractere da chave), <code class="language-plaintext highlighter-rouge">B</code> (a segunda letra do alfabeto) deve ser convertida em <code class="language-plaintext highlighter-rouge">Q</code> (o segundo caractere da chave), e assim por diante.</p>
+<p>Uma mensagem como <code class="language-plaintext highlighter-rouge">HELLO</code>, então, seria criptografada como <code class="language-plaintext highlighter-rouge">FOLLE</code>, substituindo cada uma das letras de acordo com o mapeamento determinado pela chave.</p>
+<p>Vamos escrever um programa chamado <code class="language-plaintext highlighter-rouge">substitution</code> que permita criptografar mensagens usando uma cifra de substituição. No momento em que o usuário executa o programa, ele deve decidir, fornecendo um argumento de linha de comando, qual será a chave na mensagem secreta que ele fornecerá em tempo de execução.</p>
+<p>Aqui estão alguns exemplos de como o programa pode funcionar. Por exemplo, se o usuário inserir uma chave de <code class="language-plaintext highlighter-rouge">YTNSHKVEFXRBAUQZCLWDMIPGJO</code> e um <em>plaintext</em> de <code class="language-plaintext highlighter-rouge">HELLO</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution YTNSHKVEFXRBAUQZCLWDMIPGJO
+plaintext:  HELLO
+ciphertext: EHBBQ  </code></pre></div></div>
+
+<p>Veja como o programa pode funcionar se o usuário fornecer uma chave de <code class="language-plaintext highlighter-rouge">VCHPRZGJNTLSKFBDQWAXEUYMOI</code> e um texto simples de <code class="language-plaintext highlighter-rouge">hello, world</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution VCHPRZGJNTLSKFBDQWAXEUYMOI
+plaintext:  hello, world
+ciphertext: jrssb, ybwsp  </code></pre></div></div>
+
+<p>Observe que nem a vírgula nem o espaço foram substituídos pelo cifrador. Apenas substitua os caracteres alfabéticos! Observe também que o caso da mensagem original foi preservado. Letras minúsculas permanecem minúsculas e letras maiúsculas permanecem maiúsculas.</p>
+<p>Se os caracteres na chave em si são maiúsculos ou minúsculos, não importa. Uma chave de <code class="language-plaintext highlighter-rouge">VCHPRZGJNTLSKFBDQWAXEUYMOI</code> é funcionalmente idêntica a uma chave de <code class="language-plaintext highlighter-rouge">vchprzgjntlskfbdqwaxeuymoi</code> (assim como, aliás, <code class="language-plaintext highlighter-rouge">VcHpRzGjNtLsKfBdQwAxEuYmOi</code>).</p>
+<p>E se um usuário não fornecer uma chave válida? O programa deve explicar com uma mensagem de erro:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution ABC
+Key must contain 26 characters.  </code></pre></div></div>
+
+<p>Ou se o usuário não colaborar, não fornecendo nenhum argumento de linha de comando? O programa deve lembrar o usuário como usar o programa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution
+Usage: ./substitution key  </code></pre></div></div>
+
+<p>Ou realmente, realmente não coopera, fornecendo muitos argumentos de linha de comando? O programa também deve lembrar o usuário de como usar o programa:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./substitution 1 2 3
+Usage: ./substitution key  </code></pre></div></div>
+
+<details><summary>Assista a uma gravação</summary><script async="" data-autoplay="1" data-cols="100" data-loop="1" data-rows="12" id="asciicast-HWzT4fngSv4KtdNFgfgpdLxZY" src="https://asciinema.org/a/HWzT4fngSv4KtdNFgfgpdLxZY.js"></script></details>
+
+<br>
+
+<h2 id="specification">Especificação</h2>
+<p>Projete e implemente um programa, <code class="language-plaintext highlighter-rouge">substitution</code>, que criptografa mensagens usando um cifra de substituição.</p>
+<ul>
+  <li data-marker="*">Implemente seu programa em um arquivo chamado <code class="language-plaintext highlighter-rouge">substitution.c</code> em um diretório chamado <code class="language-plaintext highlighter-rouge">substitution</code>.</li>
+  <li data-marker="*">Seu programa deve aceitar um único argumento de linha de comando, a chave a ser usada para a substituição. A chave em si deve ser insensível a maiúsculas e minúsculas, portanto, se algum caractere na chave estiver em maiúscula ou minúscula, isso não afetará o comportamento do seu programa.</li>
+  <li data-marker="*">Se o seu programa for executado sem argumentos de linha de comando ou com mais de um argumento de linha de comando, seu programa deve imprimir uma mensagem de erro de sua escolha (com <code class="language-plaintext highlighter-rouge">printf</code>) e retornar de <code class="language-plaintext highlighter-rouge">main</code> um valor de <code class="language-plaintext highlighter-rouge">1</code> (que tende a significar um erro) imediatamente.</li>
+  <li data-marker="*">Se a chave for inválida (por não conter 26 caracteres, conter qualquer caractere que não seja um caractere alfabético, ou não conter cada letra exatamente uma vez), seu programa deve imprimir uma mensagem de erro de sua escolha (com <code class="language-plaintext highlighter-rouge">printf</code>) e retornar de <code class="language-plaintext highlighter-rouge">main</code> um valor de <code class="language-plaintext highlighter-rouge">1</code> imediatamente.</li>
+  <li data-marker="*">Seu programa deve exibir <code class="language-plaintext highlighter-rouge">plaintext:</code> (sem uma nova linha) e, em seguida, solicitar ao usuário uma <code class="language-plaintext highlighter-rouge">string</code> de texto simples (usando <code class="language-plaintext highlighter-rouge">get_string</code>).</li>
+  <li data-marker="*">Seu programa deve exibir <code class="language-plaintext highlighter-rouge">ciphertext:</code> (sem uma nova linha) seguido do texto cifrado correspondente ao texto simples fornecido, com cada caractere alfabético do texto simples substituído pelo caractere correspondente no texto cifrado; caracteres não alfabéticos devem ser exibidos inalterados.</li>
+  <li data-marker="*">Seu programa deve preservar a caixa: letras maiúsculas devem permanecer letras maiúsculas; letras minúsculas devem permanecer letras minúsculas.</li>
+  <li data-marker="*">Após a exibição do texto cifrado, você deve imprimir uma nova linha. Seu programa deve então sair, retornando <code class="language-plaintext highlighter-rouge">0</code> a partir de <code class="language-plaintext highlighter-rouge">main</code>.</li>
+</ul>
+<p>Você pode achar uma ou mais funções declaradas em <code class="language-plaintext highlighter-rouge">ctype.h</code> úteis, conforme <a href="https://manual.cs50.io/" target="_blank">manual.cs50.io</a>.</p>
+
+<h2 id="how-to-test-your-code">Como Testar o Seu Código</h2>
+<p>Execute o código abaixo para avaliar a correção do seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testá-lo você mesmo também!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/substitution
+</code></pre></div></div>
+
+<p>Execute o comando abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 substitution.c
+</code></pre></div></div>
+
+<details><summary>Como Usar <code>debug50</code></summary><p>Procurando executar o <code class="language-plaintext highlighter-rouge">debug50</code>? Você pode fazê-lo da seguinte forma, depois de compilar seu código com sucesso usando o <code class="language-plaintext highlighter-rouge">make</code>,</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>debug50 ./substitution KEY
+  </code></pre></div></div>
+
+  <p>onde <code class="language-plaintext highlighter-rouge">KEY</code> é a chave que você dá como argumento de linha de comando para o seu programa. Note que ao executar</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>debug50 ./substitution
+  </code></pre></div></div>
+
+  <p>Isso (idealmente!) fará com que o programa termine solicitando uma chave ao usuário.</p></details>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/substitution      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

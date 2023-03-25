@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Bulbs</h2>
+    <hr>
+
+    <p><img src="./assets/images/binary_bulbs.jpg" alt="screenshot of Week 2 lecture with strip of bulbs"></p>
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/2/bulbs.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">bulbs.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip bulbs.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">bulbs</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm bulbs.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd bulbs
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>bulbs/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">bulbs.c</code>. Executar <code
+        class="language-plaintext highlighter-rouge">code bulbs.c</code> deve abrir o arquivo onde você digitará o
+      seu
+      código para este problema. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+    <h2 id="implementation-details">Detalhes de Implementação</h2>
+    <p>Para escrever nosso programa, primeiro precisamos pensar em <strong>bases</strong>.</p>
+    <h3 id="the-basics">Os Fundamentos</h3>
+    <p>O mais simples <em>base</em> é a base-1, ou <em>unária</em>; para escrever um número, <em>N</em>, em base-1,
+      simplesmente escreveríamos <em>N</em> consecutivas <code class="language-plaintext highlighter-rouge">1</code>s.
+      Assim, o número <code class="language-plaintext highlighter-rouge">4</code> em base-1 seria escrito como <code
+        class="language-plaintext highlighter-rouge">1111</code>, e o número <code
+        class="language-plaintext highlighter-rouge">12</code> como <code
+        class="language-plaintext highlighter-rouge">111111111111</code>. Pense em contar nos dedos ou em marcar pontos
+      em um quadro.</p>
+    <p>Você pode ver por que a base-1 não é muito usada hoje em dia. (Os números ficam muito longos!) Em vez disso, uma
+      convenção comum é a base-10, ou <em>decimal</em>. Na base-10, cada <em>dígito</em> é multiplicado por alguma
+      potência de 10, a fim de representar números maiores. Por exemplo, <strong>123</strong> é uma forma curta de escrever <strong>123 = 1 &sdot; 10^2 + 2 &sdot; 10^1 + 3 &sdot; 10^0</strong>.</p>
+    <p>Mudar a base é tão simples quanto mudar o <strong>10</strong> acima para um número diferente. Por exemplo, se você escreveu
+      <code class="language-plaintext highlighter-rouge">123</code> na base-4, o número que você realmente estaria
+      escrevendo é <strong>123 = 1 &sdot; 4^2 + 2 &sdot; 4^1 + 3 &sdot; 4^0</strong>, que é igual ao número decimal <strong>27</strong>.</p>
+    <p>Computadores, no entanto, usam a base-2, ou <em>binária</em>. Em binário, escrever <code
+        class="language-plaintext highlighter-rouge">123</code> seria um erro, uma vez que números binários só podem ter
+      <code class="language-plaintext highlighter-rouge">0</code>s e <code
+        class="language-plaintext highlighter-rouge">1</code>s. Mas o processo de descobrir exatamente que número
+      decimal um número binário representa é exatamente o mesmo. Por exemplo, o número <code
+        class="language-plaintext highlighter-rouge">10101</code> na base-2 representa <strong>1 &sdot; 2^4 + 0 &sdot; 2^3 + 1
+      &sdot; 2^2 + 0 &sdot; 2^1 + 1 &sdot; 2^0</strong>, que é igual ao número decimal <strong>21</strong>.</p>
+
+      <h3 id="encoding-a-message">Codificando uma mensagem</h3>
+<p>Lâmpadas podem estar apenas ligadas ou desligadas. Em outras palavras, lâmpadas representam dois estados possíveis; ou a lâmpada está ligada, ou a lâmpada está desligada, assim como números binários são 1 ou 0. Teremos que encontrar uma maneira de codificar texto como uma sequência de números binários.</p>
+<p>Vamos escrever um programa chamado <code class="language-plaintext highlighter-rouge">bulbs</code> que recebe uma mensagem e a converte em um conjunto de lâmpadas que poderíamos mostrar a uma plateia desprevenida. Faremos isso em duas etapas:</p>
+<ul>
+  <li data-marker="*">A primeira etapa consiste em transformar o texto em números decimais. Digamos que queremos codificar a mensagem <code class="language-plaintext highlighter-rouge">HI!</code>. Felizmente, já temos uma convenção em vigor para fazer isso, <a href="https://asciichart.com/" target="_blank">ASCII</a>. Observe que <code class="language-plaintext highlighter-rouge">H</code> é representado pelo número decimal <code class="language-plaintext highlighter-rouge">79</code>, <code class="language-plaintext highlighter-rouge">I</code> é representado por <code class="language-plaintext highlighter-rouge">73</code>, e <code class="language-plaintext highlighter-rouge">!</code> é representado por <code class="language-plaintext highlighter-rouge">33</code>.</li>
+  <li data-marker="*">A próxima etapa envolve pegar nossos números decimais (como <code class="language-plaintext highlighter-rouge">79</code>, <code class="language-plaintext highlighter-rouge">73</code> e <code class="language-plaintext highlighter-rouge">33</code>) e convertê-los em números binários equivalentes, que usam apenas 0s e 1s. Para ter um número consistente de bits em cada um dos nossos números binários, vamos assumir que cada decimal é representado com 8 bits. <code class="language-plaintext highlighter-rouge">79</code> é <code class="language-plaintext highlighter-rouge">01001111</code>, <code class="language-plaintext highlighter-rouge">73</code> é <code class="language-plaintext highlighter-rouge">01001001</code>, e <code class="language-plaintext highlighter-rouge">33</code> é <code class="language-plaintext highlighter-rouge">00100001</code>.</li>
+</ul>
+
+<p>Por último, interpretaremos esses números binários como instruções para as lâmpadas no palco; 0 é desligado e 1 é ligado. (Você verá que o arquivo <code class="language-plaintext highlighter-rouge">bulbs.c</code> inclui uma função <code class="language-plaintext highlighter-rouge">print_bulb</code> que foi implementada para você, que recebe um <code class="language-plaintext highlighter-rouge">0</code> ou <code class="language-plaintext highlighter-rouge">1</code> e produz emojis representando lâmpadas.)</p>
+<p>Aqui está um exemplo de como o programa concluído pode funcionar. Ao contrário do palco Sanders, imprimiremos um byte por linha para maior clareza.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ./bulbs
+Message: HI!
+⚫🟡⚫⚫🟡⚫⚫⚫
+⚫🟡⚫⚫🟡⚫⚫🟡
+⚫⚫🟡⚫⚫⚫⚫🟡  </code></pre></div></div>
+
+<p>Para verificar nosso trabalho, podemos ler uma lâmpada que está acesa (🟡) como um <code class="language-plaintext highlighter-rouge">1</code> e uma lâmpada que está apagada (⚫) como um <code class="language-plaintext highlighter-rouge">0</code>. Então <code class="language-plaintext highlighter-rouge">HI!</code> tornou-se</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>01001000
+01001001
+00100001  </code></pre></div></div>
+
+<p>que é exatamente o que esperamos.</p>
+<p>Outro exemplo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># ./bulbs
+Message: HI MOM
+⚫🟡⚫⚫🟡⚫⚫⚫
+⚫🟡⚫⚫🟡⚫⚫🟡
+⚫⚫🟡⚫⚫⚫⚫⚫
+⚫🟡⚫⚫🟡🟡⚫🟡
+⚫🟡⚫⚫🟡🟡🟡🟡
+⚫🟡⚫⚫🟡🟡⚫🟡  </code></pre></div></div>
+
+<p>Observe que todos os caracteres estão incluídos nas instruções da lâmpada, incluindo caracteres não alfabéticos como espaços (<code class="language-plaintext highlighter-rouge">00100000</code>).</p>
+
+<h2 id="specification">Especificação</h2>
+<p>Projete e implemente um programa, <code class="language-plaintext highlighter-rouge">bulbs</code>, que converte texto em instruções para a faixa de lâmpadas no palco do CS50 da seguinte maneira:</p>
+<ul>
+  <li data-marker="*">Implemente seu programa em um arquivo chamado <code class="language-plaintext highlighter-rouge">bulbs.c</code>.</li>
+  <li data-marker="*">Seu programa deve primeiro solicitar ao usuário uma mensagem usando <code class="language-plaintext highlighter-rouge">get_string</code>.</li>
+  <li data-marker="*">Seu programa deve, em seguida, converter a <code class="language-plaintext highlighter-rouge">string</code> dada em uma série de números binários de 8 bits, um para cada caractere da string.</li>
+  <li data-marker="*">Você pode usar a função <code class="language-plaintext highlighter-rouge">print_bulb</code> fornecida para imprimir uma série de <code class="language-plaintext highlighter-rouge">0</code>s e <code class="language-plaintext highlighter-rouge">1</code>s como uma série de emojis amarelos e pretos, que representam lâmpadas acesas e apagadas.</li>
+  <li data-marker="*">Cada "byte" de 8 símbolos deve ser impresso em sua própria linha ao ser exibido; deve haver um <code class="language-plaintext highlighter-rouge">\n</code> após o último "byte" de 8 símbolos também.</li>
+</ul>
+<br>
+<details><summary>Dicas para Decimal-to-Binary</summary><p>Vamos caminhar através de um exemplo com o número 4. Como você converteria 4 em binário? Comece considerando o bit mais à direita, que - se estiver ligado - adiciona 1 ao número que estamos representando. Você precisa que esse bit esteja ligado? Divida 4 por 2 para descobrir:</p>
+
+  <strong>4 / 2 = 2</strong>
+
+  <p>2 divide-se uniformemente em 4, o que nos diz que não há nenhum resto de 1 com o qual se preocupar. Podemos deixar com segurança este bit à direita de fora, então:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+</code></pre></div></div>
+<p>E quanto ao bit precedente, agora, o que está exatamente à esquerda deste bit que descobrimos? Para verificar, vamos seguir um processo semelhante, mas pegar onde paramos. No passo anterior, dividimos 4 por 2 e obtivemos 2. Agora, 2 divide-se uniformemente em 2? Sim, então não há nenhum resto de 2 com o qual se preocupar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>00
+</code></pre></div></div>
+<p>Vamos continuar ainda mais. Depois de dividir 2 por 2, sobra 1. Dividir 1 por 2 deixa um resto de 1. Isso significa que precisaremos ativar este bit:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100
+</code></pre></div></div>
+<p>E agora que dividimos nosso número até 0, não precisamos de mais bits para representá-lo. Note que descobrimos os bits para representar 4 na ordem oposta à qual precisamos imprimi-los: provavelmente precisaremos de uma estrutura que nos permita armazenar esses bits, para que possamos imprimi-los para a frente mais tarde. E, claro, em seu código real, você estará trabalhando com <code class="language-plaintext highlighter-rouge">char</code>s de 8 bits, então você vai querer adicionar quaisquer 0's necessários antecipadamente.</p>
+<p>Ao verificar restos, o operador de módulo (<code class="language-plaintext highlighter-rouge">%</code>) pode ser útil! <code class="language-plaintext highlighter-rouge">4 % 2</code>, por exemplo, retorna 0, o que significa que 2 se divide uniformemente em 4 sem nenhum resto.</p></details>
+
+<br>
+<h2 id="how-to-test-your-code">Como Testar o Seu Código</h2>
+<p>Seu programa deve se comportar conforme os exemplos acima. Você pode verificar seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>, um programa que o CS50 usará para testar seu código quando você enviar, digitando o seguinte no prompt <code class="language-plaintext highlighter-rouge">$</code>. Mas certifique-se de testá-lo por conta própria também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/bulbs
+</code></pre></div></div>
+<p>Para avaliar o estilo do seu código, digite o seguinte no prompt <code class="language-plaintext highlighter-rouge">$</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 bulbs.c
+</code></pre></div></div>
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/bulbs      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

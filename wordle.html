@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Wordle50</h2>
+    <hr>
+
+    <p>Para este problema, você irá implementar um programa que se comporta de forma similar ao popular jogo diário de palavras <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank">Wordle</a>.</p>
+
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code>$ ./wordle 5
+<span class="right">This is WORDLE50</span>
+You have 6 tries to guess the 5-letter word I'm thinking of
+Input a 5-letter word: crash
+Guess 1: <span class="close">c</span><span class="wrong">ra</span><span class="close">s</span><span class="wrong">h</span>
+Input a 5-letter word: scone
+Guess 2: <span class="right">s</span><span class="close">c</span><span class="wrong">o</span><span class="close">n</span><span class="right">e</span>
+Input a 5-letter word: since
+Guess 3: <span class="right">since</span>
+You won!</code></pre>
+  </div>
+</div>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/2/wordle.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">wordle.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip wordle.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">wordle</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm wordle.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd wordle
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wordle/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">wordle.c</code>, assim como <code class="language-plaintext highlighter-rouge">5.txt</code>, <code class="language-plaintext highlighter-rouge">6.txt</code>, <code class="language-plaintext highlighter-rouge">7.txt</code> e <code class="language-plaintext highlighter-rouge">8.txt</code>. Executar o comando <code class="language-plaintext highlighter-rouge">code wordle.c</code> deve abrir o arquivo onde você digitará seu código para este conjunto de problemas. Se isso não acontecer, volte seus passos e veja se consegue determinar onde errou! Se você tentar compilar o jogo agora, ele o fará sem erros, mas quando você tentar executá-lo, verá este erro:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error opening file 0.txt.    </code></pre></div></div>
+
+    <p>É normal, no entanto, já que você ainda não implementou parte do código que precisamos para fazer essa mensagem de erro desaparecer!</p>
+
+    <h2 id="background">Contexto</h2>
+    <p>Provavelmente, se você é usuário do Facebook, pelo menos um dos seus amigos postou algo parecido com isso, especialmente no início de 2022, quando estava na moda:</p>
+    <p><img src="./assets/images/wordle.png" alt="Resultados do Wordle"></p>
+    <p>Se sim, seu amigo jogou Wordle e está compartilhando seus resultados para aquele dia! Todos os dias, uma nova "palavra secreta" é escolhida (a mesma para todos) e o objetivo é adivinhar qual é a palavra secreta em seis tentativas. Felizmente, dado que existem mais de seis palavras de cinco letras na língua inglesa, você pode obter algumas pistas ao longo do caminho, e a imagem acima na verdade mostra a progressão de seu amigo em suas tentativas, usando essas pistas para tentar se aproximar da palavra correta. Usando um esquema semelhante ao jogo <a href="https://en.wikipedia.org/wiki/Mastermind_(board_game)">Mastermind</a>, se após você adivinhar a letra, ela se tornar verde, significa que não apenas essa letra está na palavra secreta daquele dia, mas ela também está na posição correta. Se ela ficar amarela, significa que a letra adivinhada aparece <em>em algum lugar</em> na palavra, mas não nessa posição. Letras que ficam cinzas não estão na palavra e podem ser omitidas em tentativas futuras.</p>
+    <p>Vamos terminar de escrever um programa chamado <code class="language-plaintext highlighter-rouge">wordle</code> que nos permita recriar esse jogo e jogá-lo no nosso terminal. Faremos algumas pequenas alterações no jogo (por exemplo, a maneira como ele lida com uma letra que aparece duas vezes em uma palavra não é a mesma que a do jogo real, mas, por simplicidade, erraremos do lado da facilidade de entendimento em vez de uma interpretação perfeitamente fiel), e usaremos texto vermelho em vez de cinza para indicar letras que não estão na palavra. No momento em que o usuário executa o programa, eles devem decidir, fornecendo um argumento de linha de comando, qual é o comprimento da palavra que eles desejam adivinhar, entre 5 e 8 letras.</p>
+    <p>Aqui estão alguns exemplos de como o programa deve funcionar. Por exemplo, se o usuário omitir um argumento de linha de comando completamente:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./wordle
+Usage: ./wordle wordsize      </code></pre></div></div>
+
+    <p>Se o usuário fornecer um argumento de linha de comando, mas ele não estiver na faixa correta:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./wordle 4
+Error: wordsize must be either 5, 6, 7, or 8      </code></pre></div></div>
+
+<p>Aqui está como o programa pode funcionar se o usuário fornecer uma chave de <code class="language-plaintext highlighter-rouge">5</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./wordle 5
+This is WORDLE50
+You have 6 tries to guess the 5-letter word I'm thinking of
+Input a 5-letter word:  </code></pre></div></div>
+
+<p>Em algum momento, o usuário deve digitar uma palavra de 5 letras. Claro, o usuário pode ser teimoso, e devemos garantir que ele esteja seguindo as regras:</p>
+
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code>$ ./wordle 5
+<span class="right">This is WORDLE50</span>
+You have 6 tries to guess the 5-letter word I'm thinking of
+Input a 5-letter word: wordle
+Input a 5-letter word: computer
+Input a 5-letter word: okay
+Input a 5-letter word: games
+Guess 1: <span class="wrong">g</span><span class="close">a</span><span class="wrong">m</span><span class="close">e</span><span class="wrong">s</span>
+Input a 5-letter word:      </code></pre>
+  </div>
+</div>
+
+<p>Observe que nem contamos nenhuma das tentativas inválidas como palpites. Mas assim que o usuário fez uma tentativa legítima, contamos como um palpite e informamos sobre o estado da palavra. Parece que o usuário tem algumas pistas agora; eles sabem que a palavra contém um <code class="language-plaintext highlighter-rouge">a</code> e um <code class="language-plaintext highlighter-rouge">e</code> em algum lugar, mas não nos lugares exatos em que aparecem na palavra <code class="language-plaintext highlighter-rouge">games</code>. E eles sabem que <code class="language-plaintext highlighter-rouge">g</code>, <code class="language-plaintext highlighter-rouge">m</code> e <code class="language-plaintext highlighter-rouge">s</code> não aparecem na palavra, então os palpites futuros podem omiti-los. Talvez eles tentem, digamos, <code class="language-plaintext highlighter-rouge">heart</code> a seguir! ❤️</p>
+
+<h2 id="specification">Especificação</h2>
+<p>Projete e implemente um programa, <code class="language-plaintext highlighter-rouge">wordle</code>, que complete a implementação do nosso clone do jogo Wordle50. Você perceberá que algumas partes grandes deste programa já foram escritas para você - você não tem permissão para modificar nenhuma dessas partes do programa. Em vez disso, seu trabalho deve ser limitado às sete <code class="language-plaintext highlighter-rouge">TODO</code>s que deixamos para você preencher. Cada uma dessas partes resolve um problema específico, e recomendamos que você as aborde na ordem de 1 a 7. Cada <code class="language-plaintext highlighter-rouge">TODO</code> numerado corresponde ao mesmo item na lista abaixo.</p>
+<ol>
+  <li>No primeiro <code class="language-plaintext highlighter-rouge">TODO</code>, você deve garantir que o programa aceite um único argumento de linha de comando. Vamos chamá-lo de <strong>k</strong> para fins de discussão. Se o programa não for executado com um único argumento de linha de comando, você deve imprimir a mensagem de erro como demonstramos acima e retornar <code class="language-plaintext highlighter-rouge">1</code>, encerrando o programa.</li>
+  <li>No segundo <code class="language-plaintext highlighter-rouge">TODO</code>, você deve garantir que <strong>k</strong> seja um dos valores aceitáveis (5, 6, 7 ou 8), e armazenar esse valor em <code class="language-plaintext highlighter-rouge">wordsize</code>; precisaremos usar isso mais tarde. Se o valor de <strong>k</strong> não for exatamente um desses quatro valores, você deve imprimir a mensagem de erro como demonstramos acima e retornar <code class="language-plaintext highlighter-rouge">1</code>, encerrando o programa.</li>
+</ol>
+<p>Depois disso, a equipe já escreveu algum código que irá percorrer e abrir a lista de palavras para o comprimento da palavra que o usuário quer adivinhar e seleciona aleatoriamente uma das 1000 opções disponíveis. Não se preocupe necessariamente em entender todo esse código, não é importante para fins deste trabalho. Veremos algo semelhante em uma tarefa posterior, e isso fará muito mais sentido naquele momento! Este é um bom lugar para parar e testar, antes de prosseguir para o próximo <code class="language-plaintext highlighter-rouge">TODO</code>, se o seu código se comporta como esperado. É sempre mais fácil depurar programas se você o fizer metodicamente!</p>
+
+<ol start="3">
+  <li>Para o terceiro <code class="language-plaintext highlighter-rouge">TODO</code>, você deve ajudar a defender-se contra usuários teimosos garantindo que o palpite deles tenha o comprimento correto. Para isso, vamos prestar atenção na função <code class="language-plaintext highlighter-rouge">get_guess</code>, que você precisará implementar completamente. O usuário deve ser solicitado (como via <code class="language-plaintext highlighter-rouge">get_string</code>) a digitar uma palavra de \(k\) letras (lembre-se, esse valor é passado como um parâmetro para <code class="language-plaintext highlighter-rouge">get_guess</code>) e, se fornecerem um palpite com o comprimento errado, eles devem ser solicitados novamente (como em <a href="../../1/mario/less/">Mario</a>) até que forneçam exatamente o valor que você espera deles. Atualmente, o código distribuído não faz isso, então você precisará corrigir isso! Observe que, ao contrário do verdadeiro Wordle, na verdade não verificamos se o palpite do usuário é uma palavra real, então, nesse sentido, o jogo é talvez um pouco mais fácil. Todos os palpites neste jogo devem ser em caracteres <strong>minúsculos</strong>, e é aceitável assumir que o usuário não será tão teimoso a ponto de fornecer algo diferente de caracteres minúsculos ao fazer um palpite. Depois que um palpite legítimo for obtido, ele pode ser <code class="language-plaintext highlighter-rouge">retornado</code>.</li>
+  <li>Em seguida, para o quarto <code class="language-plaintext highlighter-rouge">TODO</code>, precisamos acompanhar a "pontuação" de um usuário no jogo. Fazemos isso tanto em uma base por letra - atribuindo uma pontuação de 2 (que definimos como <code class="language-plaintext highlighter-rouge">EXATO</code>) para uma letra no lugar correto, 1 (que definimos como <code class="language-plaintext highlighter-rouge">PRÓXIMO</code>) para uma letra que está na palavra, mas no lugar errado, ou 0 (que definimos como <code class="language-plaintext highlighter-rouge">ERRADO</code>) - e uma base por palavra, para nos ajudar a detectar quando potencialmente acionamos o final do jogo vencendo. Usaremos as pontuações de letras individuais quando colorimos a impressão. Para armazenar essas pontuações, precisamos de uma matriz, que chamamos de <code class="language-plaintext highlighter-rouge">status</code>. No início do jogo, sem nenhum palpite ter sido dado, ela deve conter apenas 0s.</li>
+</ol>
+<p>Este é outro bom momento para parar e testar seu código, especialmente no que diz respeito ao item 3 acima! Você notará que, neste ponto, quando finalmente digitar um palpite legítimo (ou seja, um que tenha o comprimento correto), seu programa provavelmente terá uma aparência semelhante à abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input a 5-letter word: computer
+Input a 5-letter word: games
+Guess 1:
+Input a 5-letter word:  </code></pre></div></div>
+
+<p>Isso é normal! Implementar a função <code class="language-plaintext highlighter-rouge">print_word</code> é o <code class="language-plaintext highlighter-rouge">TODO</code> número 6, então não devemos esperar que o programa faça qualquer processamento desse palpite neste momento. Claro, você sempre pode adicionar chamadas adicionais de <code class="language-plaintext highlighter-rouge">printf</code> (apenas certifique-se de removê-las antes de enviar) como parte da sua estratégia de depuração!</p>
+<ol start="5">
+  <li>O quinto <code class="language-plaintext highlighter-rouge">TODO</code> é definitivamente o maior e provavelmente o mais desafiador. Dentro da função <code class="language-plaintext highlighter-rouge">check_word</code>, cabe a você comparar cada uma das letras do palpite (<code class="language-plaintext highlighter-rouge">guess</code>) com cada uma das letras da escolha (<code class="language-plaintext highlighter-rouge">choice</code>) (que, lembre-se, é a "palavra secreta" deste jogo) e atribuir pontuações. Se as letras corresponderem, conceda <code class="language-plaintext highlighter-rouge">EXACT</code> (2) pontos e <code class="language-plaintext highlighter-rouge">break</code> no loop - não há necessidade de continuar em loop se você já determinou que a letra está no lugar certo. Tecnicamente, se essa letra aparecer na palavra duas vezes, isso pode resultar em um pequeno bug, mas corrigir esse bug complicaria um pouco mais este problema do que queremos agora, então vamos aceitar isso como uma característica da nossa versão! Se você descobrir que a letra está na palavra, mas não no lugar certo, conceda <code class="language-plaintext highlighter-rouge">CLOSE</code> (1) pontos, mas não <code class="language-plaintext highlighter-rouge">break</code>! Afinal, essa letra pode aparecer mais tarde no lugar certo na palavra <code class="language-plaintext highlighter-rouge">choice</code> e se <code class="language-plaintext highlighter-rouge">break</code>mos muito cedo, o usuário nunca saberia disso! Você realmente não precisa definir explicitamente os pontos <code class="language-plaintext highlighter-rouge">WRONG</code> (0) aqui, já que você lidou com isso no Passo 4. Em última análise, você também deve estar somando a pontuação total da palavra quando a souber, porque é isso que esta função deve retornar. Novamente, não tenha medo de usar <code class="language-plaintext highlighter-rouge">debug50</code> e/ou <code class="language-plaintext highlighter-rouge">printf</code>s, conforme necessário, para ajudá-lo a descobrir quais são os valores de diferentes variáveis neste ponto - até que você implemente a função <code class="language-plaintext highlighter-rouge">print_word</code>, abaixo, o programa não oferecerá muito em termos de um checkpoint visual!</li>
+  <li>Para o sexto <code class="language-plaintext highlighter-rouge">TODO</code>, você concluirá a implementação de <code class="language-plaintext highlighter-rouge">print_word</code>. Essa função deve procurar nos valores com que você populou o array <code class="language-plaintext highlighter-rouge">status</code> e imprimir, caractere por caractere, cada letra do <code class="language-plaintext highlighter-rouge">guess</code> com o código de cor correto. Você pode ter percebido algumas definições (assustadoras!) <code class="language-plaintext highlighter-rouge">#define</code>s no topo do arquivo, onde fornecemos uma maneira mais simples de representar o que é chamado de código de cor ANSI, que é basicamente um comando para mudar a cor da fonte no terminal. Você não precisa se preocupar em como implementar esses quatro valores (<code class="language-plaintext highlighter-rouge">GREEN</code>, <code class="language-plaintext highlighter-rouge">YELLOW</code>, <code class="language-plaintext highlighter-rouge">RED</code> e <code class="language-plaintext highlighter-rouge">RESET</code>, o último dos quais simplesmente retorna à fonte padrão do terminal) ou exatamente o que eles significam; em vez disso, você pode apenas usá-los (o poder da abstração!). Note também que fornecemos um exemplo no código de distribuição em que imprimimos um texto verde e depois redefinimos a cor, como parte da introdução do jogo. Portanto, sinta-se à vontade para usar a linha de código abaixo como inspiração sobre como você pode tentar alternar as cores:</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printf(GREEN"This is WORDLE50"RESET"\n");</code></pre></div></div>
+
+<p>Claro, ao contrário do nosso exemplo, você provavelmente não quer imprimir uma nova linha após cada caractere da palavra (em vez disso, você só quer uma nova linha no final, também redefinindo a cor da fonte!), para que não acabe parecendo como abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+<pre class="highlight"><code>
+Input a 5-letter word: games
+Guess 1: <span class="wrong">g</span>
+<span class="close">a</span>
+<span class="wrong">m</span>
+<span class="close">e</span>
+<span class="wrong">s</span>
+Input a 5-letter word:      </code></pre>
+  </div>
+</div>
+
+<ol start="7">
+  <li>Por fim, o sétimo <code class="language-plaintext highlighter-rouge">TODO</code> é apenas uma pequena limpeza antes do programa encerrar. Independentemente do loop principal <code class="language-plaintext highlighter-rouge">for</code> ter terminado normalmente, porque o usuário ficou sem palpites, ou porque saímos dele acertando a palavra exatamente, é hora de informar ao usuário sobre o resultado do jogo. Se o usuário ganhou o jogo, basta imprimir uma simples mensagem <code class="language-plaintext highlighter-rouge">Você ganhou!</code> aqui. Caso contrário, você deve imprimir uma mensagem informando ao usuário qual era a palavra-alvo, para que saibam que o jogo estava sendo honesto com eles (e para que você tenha um meio de depurar se olhar para trás e perceber que seu código estava fornecendo pistas inadequadas ao longo do caminho!).</li>
+</ol>
+
+<h2 id="how-to-test-your-code">Como testar seu código</h2>
+<p>Execute o código abaixo para avaliar a correção do seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também por conta própria!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/wordle
+</code></pre></div></div>
+
+<p>Execute o seguinte para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 wordle.c
+</code></pre></div></div>
+
+  
+      
+
+
+
+
+
+  
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/wordle      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

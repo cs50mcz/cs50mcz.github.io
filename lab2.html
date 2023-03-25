@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 2: Scrabble</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+    <p>Determine qual das duas palavras do Scrabble vale mais.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./scrabble
+Player 1: COMPUTER
+Player 2: science
+Player 1 wins!
+</code></pre>
+      </div>
+    </div>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/2/scrabble.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">scrabble.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip scrabble.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">scrabble</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm scrabble.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd scrabble
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>scrabble/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver um arquivo chamado <code class="language-plaintext highlighter-rouge">scrabble.c</code>. Abra
+      esse arquivo executando o comando abaixo:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>code scrabble.c      </code></pre>
+      </div>
+    </div>
+
+    <p>Se você tiver algum problema, siga estas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+    <h2 id="background">Contexto</h2>
+    <p>No jogo de <a href="https://scrabble.hasbro.com/en-us/rules" target="_blank">Scrabble</a>, os jogadores criam
+      palavras para
+      marcar pontos, e o número de pontos é a soma dos valores de ponto de cada letra na palavra.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>A</th>
+          <th>B</th>
+          <th>C</th>
+          <th>D</th>
+          <th>E</th>
+          <th>F</th>
+          <th>G</th>
+          <th>H</th>
+          <th>I</th>
+          <th>J</th>
+          <th>K</th>
+          <th>L</th>
+          <th>M</th>
+          <th>N</th>
+          <th>O</th>
+          <th>P</th>
+          <th>Q</th>
+          <th>R</th>
+          <th>S</th>
+          <th>T</th>
+          <th>U</th>
+          <th>V</th>
+          <th>W</th>
+          <th>X</th>
+          <th>Y</th>
+          <th>Z</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>3</td>
+          <td>3</td>
+          <td>2</td>
+          <td>1</td>
+          <td>4</td>
+          <td>2</td>
+          <td>4</td>
+          <td>1</td>
+          <td>8</td>
+          <td>5</td>
+          <td>1</td>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>3</td>
+          <td>10</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>4</td>
+          <td>4</td>
+          <td>8</td>
+          <td>4</td>
+          <td>10</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Por exemplo, se quisermos pontuar a palavra <code class="language-plaintext highlighter-rouge">Code</code>,
+      observamos que, de acordo com as regras gerais do Scrabble, a letra <code
+        class="language-plaintext highlighter-rouge">C</code> vale <code
+        class="language-plaintext highlighter-rouge">3</code> pontos, o <code
+        class="language-plaintext highlighter-rouge">o</code> vale <code
+        class="language-plaintext highlighter-rouge">1</code> ponto, o <code
+        class="language-plaintext highlighter-rouge">d</code> vale <code
+        class="language-plaintext highlighter-rouge">2</code> pontos e o <code
+        class="language-plaintext highlighter-rouge">e</code> vale <code
+        class="language-plaintext highlighter-rouge">1</code> ponto. Somando tudo isso, temos que <code
+        class="language-plaintext highlighter-rouge">Code</code> vale <code
+        class="language-plaintext highlighter-rouge">3 + 1 + 2 + 1 = 7</code> pontos.</p>
+    <h2 id="implementation-details">Detalhes de Implementação</h2>
+    <p>Completar a implementação de <code class="language-plaintext highlighter-rouge">scrabble.c</code>, de forma que
+      determine o vencedor de um jogo curto semelhante ao Scrabble, em que dois jogadores entram com suas palavras e o
+      jogador com a maior pontuação vence.</p>
+    <ul>
+      <li data-marker="*">Observe que os valores de pontos de cada letra do alfabeto estão armazenados em um array de
+        inteiros chamado <code class="language-plaintext highlighter-rouge">POINTS</code>.
+        <ul>
+          <li data-marker="*">Por exemplo, <code class="language-plaintext highlighter-rouge">A</code> ou <code
+              class="language-plaintext highlighter-rouge">a</code> vale 1 ponto (representado por <code
+              class="language-plaintext highlighter-rouge">POINTS[0]</code>), <code
+              class="language-plaintext highlighter-rouge">B</code> ou <code
+              class="language-plaintext highlighter-rouge">b</code> vale 3 pontos (representado por <code
+              class="language-plaintext highlighter-rouge">POINTS[1]</code>), etc.</li>
+        </ul>
+      </li>
+      <li data-marker="*">Observe que criamos um protótipo para uma função auxiliar chamada <code
+          class="language-plaintext highlighter-rouge">compute_score()</code> que recebe uma string como entrada e
+        retorna um <code class="language-plaintext highlighter-rouge">int</code>. Sempre que quisermos atribuir valores
+        de pontos a uma palavra específica, podemos chamar essa função. Observe que esse protótipo é necessário para que
+        C saiba que <code class="language-plaintext highlighter-rouge">compute_score()</code> existe mais tarde no
+        programa.</li>
+      <li data-marker="*">Em <code class="language-plaintext highlighter-rouge">main()</code>, o programa solicita que
+        os dois jogadores informem suas palavras usando a função <code
+          class="language-plaintext highlighter-rouge">get_string()</code>. Esses valores são armazenados em variáveis
+        chamadas <code class="language-plaintext highlighter-rouge">word1</code> e <code
+          class="language-plaintext highlighter-rouge">word2</code>.</li>
+      <li data-marker="*">Em <code class="language-plaintext highlighter-rouge">compute_score()</code>, seu programa
+        deve calcular, usando o array <code class="language-plaintext highlighter-rouge">POINTS</code>, e retornar a
+        pontuação para o argumento da string. Caracteres que não são letras devem receber zero pontos, e letras
+        maiúsculas e minúsculas devem receber os mesmos valores de ponto.
+        <ul>
+          <li data-marker="*">Por exemplo, <code class="language-plaintext highlighter-rouge">!</code> vale <code
+              class="language-plaintext highlighter-rouge">0</code> pontos enquanto <code
+              class="language-plaintext highlighter-rouge">A</code> e <code
+              class="language-plaintext highlighter-rouge">a</code> valem ambos <code
+              class="language-plaintext highlighter-rouge">1</code> ponto.</li>
+          <li data-marker="*">Embora as regras do Scrabble normalmente exijam que uma palavra esteja no dicionário, não
+            é necessário verificar isso neste problema!</li>
+        </ul>
+      </li>
+      <li data-marker="*">Em <code class="language-plaintext highlighter-rouge">main()</code>, seu programa deve
+        imprimir, dependendo das pontuações dos jogadores, <code
+          class="language-plaintext highlighter-rouge">Player 1 wins!</code>, <code
+          class="language-plaintext highlighter-rouge">Player 2 wins!</code> ou <code
+          class="language-plaintext highlighter-rouge">Tie!</code>.</li>
+    </ul>
+
+    <h3 id="hints">Dicas</h3>
+    <ul>
+      <li data-marker="*">
+        <p>Você pode achar as funções <code class="language-plaintext highlighter-rouge">isupper()</code> e <code
+            class="language-plaintext highlighter-rouge">islower()</code> úteis. Essas funções recebem um caractere como
+          argumento e retornam um valor booleano.</p>
+      </li>
+      <li data-marker="*">
+        <p>Para encontrar o valor no índice <code class="language-plaintext highlighter-rouge">n</code> de um array
+          chamado <code class="language-plaintext highlighter-rouge">arr</code>, podemos escrever <code
+            class="language-plaintext highlighter-rouge">arr[n]</code>. Podemos aplicar isso às strings também, já que
+          as strings são arrays de caracteres.</p>
+      </li>
+      <li data-marker="*">
+        <p>Lembre-se de que os computadores representam caracteres usando <a href="https://asciitable.com/" target="_blank">ASCII</a>,
+          um padrão que representa cada caractere como um número.</p>
+      </li>
+    </ul>
+
+    <h3 id="how-to-test-your-code">Como Testar seu Código</h3>
+    <p>Seu programa deve se comportar de acordo com os exemplos abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./scrabble
+Player 1: Question?
+Player 2: Question!
+Tie!  </code></pre>
+      </div>
+    </div>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./scrabble
+Player 1: Oh,
+Player 2: hai!
+Player 2 wins!  </code></pre>
+      </div>
+    </div>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./scrabble
+Player 1: COMPUTER
+Player 2: science
+Player 1 wins!  </code></pre>
+      </div>
+    </div>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./scrabble
+Player 1: Scrabble
+Player 2: wiNNeR
+Player 1 wins!  </code></pre>
+      </div>
+    </div>
+
+    <p>Execute o código abaixo para avaliar a correção do seu código usando o <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar por conta
+      própria também!</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/labs/2023/x/scrabble      </code></pre>
+      </div>
+    </div>
+
+    <p>Execute o comando abaixo para avaliar o estilo do seu código utilizando o <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 scrabble.c        </code></pre></div></div>
+
+        <h2 id="how-to-submit">Como enviar</h2>
+        <p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/scrabble        </code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
