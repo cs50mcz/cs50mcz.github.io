@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 3: Sort</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+    <p>Analisar três programas de ordenação para determinar quais algoritmos eles usam.</p>
+<h2 id="background">Contexto</h2>
+<p>Lembre-se da aula em que vimos alguns algoritmos para ordenar uma sequência de números: selection sort, bubble sort e merge sort.</p>
+<ul>
+  <li data-marker="*">O selection sort itera pelas porções não ordenadas de uma lista, selecionando o menor elemento cada vez e movendo-o para a posição correta.</li>
+  <li data-marker="*">O bubble sort compara pares de valores adjacentes um de cada vez e os troca se estiverem na ordem incorreta. Isso continua até que a lista esteja ordenada.</li>
+  <li data-marker="*">O merge sort divide recursivamente a lista em duas repetidamente e depois mescla as listas menores de volta em uma maior na ordem correta.</li>
+</ul>
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/3/sort.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">sort.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip sort.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">sort</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm sort.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd sort
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>sort/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver uma coleção de arquivos <code class="language-plaintext highlighter-rouge">.txt</code> ao lado dos programas executáveis <code class="language-plaintext highlighter-rouge">sort1</code>, <code class="language-plaintext highlighter-rouge">sort2</code> e <code class="language-plaintext highlighter-rouge">sort3</code>.</p>
+<p>Se você encontrar algum problema, siga os mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+<h2 id="instructions">Instruções</h2>
+<p>Foram fornecidos três programas C já compilados: <code class="language-plaintext highlighter-rouge">sort1</code>, <code class="language-plaintext highlighter-rouge">sort2</code> e <code class="language-plaintext highlighter-rouge">sort3</code>. Cada um desses programas implementa um algoritmo de ordenação diferente: selection sort, bubble sort ou merge sort (embora não necessariamente nessa ordem!). Sua tarefa é determinar qual algoritmo de ordenação é usado por cada arquivo.</p>
+<ul>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">sort1</code>, <code class="language-plaintext highlighter-rouge">sort2</code> e <code class="language-plaintext highlighter-rouge">sort3</code> são arquivos binários, portanto você não poderá visualizar o código-fonte C de cada um. Para avaliar qual ordenação implementa qual algoritmo, execute as ordenações em diferentes listas de valores.</li>
+  <li data-marker="*">Vários arquivos <code class="language-plaintext highlighter-rouge">.txt</code> são fornecidos. Esses arquivos contêm <code class="language-plaintext highlighter-rouge">n</code> linhas de valores, invertidos, embaralhados ou ordenados.
+    <ul>
+      <li data-marker="*">Por exemplo, <code class="language-plaintext highlighter-rouge">reversed10000.txt</code> contém 10000 linhas de números que estão invertidos a partir de <code class="language-plaintext highlighter-rouge">10000</code>, enquanto <code class="language-plaintext highlighter-rouge">random10000.txt</code> contém 10000 linhas de números que estão em ordem aleatória.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Para executar as ordenações nos arquivos de texto, no terminal, execute <code class="language-plaintext highlighter-rouge">./[program_name] [text_file.txt]</code>. Certifique-se de ter usado o comando <code class="language-plaintext highlighter-rouge">cd</code> para entrar no diretório <code class="language-plaintext highlighter-rouge">sort</code>!
+    <ul>
+      <li data-marker="*">Por exemplo, para ordenar <code class="language-plaintext highlighter-rouge">reversed10000.txt</code> com <code class="language-plaintext highlighter-rouge">sort1</code>, execute <code class="language-plaintext highlighter-rouge">./sort1 reversed10000.txt</code>.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Você pode achar útil cronometrar suas classificações. Para fazer isso, execute <code class="language-plaintext highlighter-rouge">time ./[sort_file] [text_file.txt]</code>.
+    <ul>
+      <li data-marker="*">Por exemplo, você poderia executar <code class="language-plaintext highlighter-rouge">time ./sort1 reversed10000.txt</code> para executar o <code class="language-plaintext highlighter-rouge">sort1</code> em 10.000 números invertidos. No final da saída do seu terminal, você pode olhar o tempo <code class="language-plaintext highlighter-rouge">real</code> para ver quanto tempo realmente decorreu enquanto o programa estava sendo executado.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Registre suas respostas em <code class="language-plaintext highlighter-rouge">answers.txt</code>, juntamente com uma explicação para cada programa, preenchendo as lacunas marcadas com <code class="language-plaintext highlighter-rouge">TODO</code>.</li>
+</ul>
+<h3 id="hints">Dicas</h3>
+<ul>
+  <li data-marker="*">Os diferentes tipos de arquivos <code class="language-plaintext highlighter-rouge">.txt</code> podem ajudá-lo a determinar qual é qual. Considere como cada algoritmo se comporta com uma lista já ordenada. E com uma lista invertida? E com uma lista embaralhada? Pode ser útil trabalhar com uma lista menor de cada tipo e percorrer cada processo de ordenação.</li>
+</ul>
+
+<h3 id="how-to-check-your-answers">Como verificar suas respostas</h3>
+<p>Execute o código abaixo para avaliar a correção de suas respostas usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas lembre-se de preencher também suas explicações, que o <code class="language-plaintext highlighter-rouge">check50</code> não verificará aqui!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/sort</code></pre></div></div>
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/sort</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

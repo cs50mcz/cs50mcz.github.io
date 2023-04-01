@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Runoff</h2>
+    <hr>
+
+    <p>Para este programa, você implementará um programa que realiza uma eleição de desempate (runoff election), conforme abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./runoff Alice Bob Charlie
+Number of voters: 5
+Rank 1: Alice
+Rank 2: Bob
+Rank 3: Charlie
+
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Bob
+Rank 2: Alice
+Rank 3: Charlie
+
+Rank 1: Charlie
+Rank 2: Alice
+Rank 3: Bob
+
+Alice
+      </code></pre></div></div>
+      <h2 id="background">Contexto</h2>
+<p>Em eleições de pluralidade (plurality elections), que seguem um algoritmo muito simples para determinar o vencedor de uma eleição: cada eleitor tem um voto, e o candidato com a maioria dos votos vence.</p>
+<p>Mas a votação de pluralidade tem algumas desvantagens. O que acontece, por exemplo, em uma eleição com três candidatos, e as cédulas abaixo são lançadas?</p>
+<p><img src="./assets/images/fptp_ballot_1.png" alt="Cinco cédulas, empate entre Alice e Bob"></p>
+<p>Uma votação de pluralidade aqui declararia um empate entre Alice e Bob, já que cada um tem dois votos. Mas essa é a resposta certa?</p>
+<p>Existe outro tipo de sistema de votação conhecido como sistema de votação classificada. Em um sistema de votação classificada, os eleitores podem votar em mais de um candidato. Em vez de votar apenas em sua escolha principal, eles podem classificar os candidatos por ordem de preferência. As cédulas resultantes podem parecer assim:</p>
+<p><img src="./assets/images/ranked_ballot_1.png" alt="Três cédulas, com preferências classificadas"></p>
+<p>Aqui, cada eleitor, além de especificar seu candidato de primeira escolha, também indicou suas segunda e terceira escolhas. E agora, o que antes era uma eleição empatada poderia ter um vencedor. A corrida estava originalmente empatada entre Alice e Bob, então Charlie estava fora da disputa. Mas o eleitor que escolheu Charlie preferiu Alice a Bob, então Alice poderia ser declarada a vencedora aqui.</p>
+<p>A votação classificada também pode resolver mais uma possível desvantagem da votação de pluralidade. Dê uma olhada nas seguintes cédulas.</p>
+<p><img src="./assets/images/ranked_ballot_3.png" alt="Nove cédulas, com preferências classificadas"></p>
+<p>Quem deve ganhar esta eleição? Em uma votação de pluralidade em que cada eleitor escolhe apenas sua primeira preferência, Charlie vence esta eleição com quatro votos, em comparação com apenas três para Bob e dois para Alice. Mas a maioria dos eleitores (5 dos 9) ficaria mais feliz com Alice ou Bob em vez de Charlie. Ao considerar preferências classificadas, um sistema de votação pode escolher um vencedor que reflita melhor as preferências dos eleitores.</p>
+<p>Um desses sistemas de votação classificada é o sistema de votação instantânea. Em uma eleição de votação instantânea, os eleitores podem classificar quantos candidatos desejarem. Se algum candidato tiver uma maioria (mais de 50%) dos votos de primeira preferência, esse candidato é declarado o vencedor da eleição.</p>
+<p>Se nenhum candidato tiver mais de 50% dos votos, então ocorre um "voto de desempate instantâneo". O candidato que recebeu o menor número de votos é eliminado da eleição, e qualquer pessoa que tenha escolhido originalmente esse candidato como sua primeira preferência agora tem sua segunda preferência considerada. Por que fazer assim? Efetivamente, isso simula o que teria acontecido se o candidato menos popular não tivesse participado da eleição desde o início.</p>
+<p>O processo se repete: se nenhum candidato tiver a maioria dos votos, o candidato em último lugar é eliminado, e qualquer pessoa que tenha votado neles votará em sua próxima preferência (que ainda não tenha sido eliminada). Uma vez que um candidato tenha a maioria, esse candidato é declarado o vencedor.</p>
+<p>Vamos considerar as nove cédulas acima e examinar como uma eleição de desempate seria realizada.</p>
+<p>Alice tem dois votos, Bob tem três votos e Charlie tem quatro votos. Para vencer uma eleição com nove pessoas, é necessária uma maioria (cinco votos). Como ninguém tem a maioria, um desempate precisa ser realizado. Alice tem o menor número de votos (com apenas dois), então Alice é eliminada. Os eleitores que votaram originalmente em Alice listaram Bob como segunda preferência, então Bob recebe os dois votos extras. Bob agora tem cinco votos e Charlie ainda tem quatro votos. Bob agora tem a maioria e é declarado o vencedor.</p>
+<p>Que casos de borda (corner cases) precisamos considerar aqui?</p>
+<p>Uma possibilidade é haver um empate para quem deve ser eliminado. Podemos lidar com esse cenário dizendo que todos os candidatos que estão empatados em último lugar serão eliminados. Se todos os candidatos restantes tiverem exatamente o mesmo número de votos, no entanto, eliminar os candidatos empatados em último lugar significa eliminar todos! Então, nesse caso, teremos que ter cuidado para não eliminar todos e simplesmente declarar a eleição como um empate entre todos os candidatos restantes.</p>
+<p>Algumas eleições de votação instantânea não exigem que os eleitores classifiquem todas as suas preferências - então pode haver cinco candidatos em uma eleição, mas um eleitor pode escolher apenas dois. Para fins deste problema, no entanto, ignoraremos esse caso específico e assumiremos que todos os eleitores classificarão todos os candidatos em sua ordem de preferência.</p>
+<p>Parece um pouco mais complicado do que uma votação por maioria simples, não é? Mas argumentavelmente tem a vantagem de ser um sistema eleitoral em que o vencedor da eleição representa mais precisamente as preferências dos eleitores.</p>
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/3/runoff.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">runoff.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip runoff.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">runoff</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm runoff.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd runoff</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>runoff/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
+<p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">runoff.c</code>. Executando <code class="language-plaintext highlighter-rouge">code runoff.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+<h2 id="understanding">Entendendo</h2>
+<p>Vamos dar uma olhada em <code class="language-plaintext highlighter-rouge">runoff.c</code>. Estamos definindo duas constantes: <code class="language-plaintext highlighter-rouge">MAX_CANDIDATES</code> para o número máximo de candidatos na eleição e <code class="language-plaintext highlighter-rouge">MAX_VOTERS</code> para o número máximo de eleitores na eleição.</p>
+<p>Em seguida, temos um array bidimensional <code class="language-plaintext highlighter-rouge">preferences</code>. O array <code class="language-plaintext highlighter-rouge">preferences[i]</code> representará todas as preferências para o eleitor número <code class="language-plaintext highlighter-rouge">i</code>, e o inteiro <code class="language-plaintext highlighter-rouge">preferences[i][j]</code> aqui armazenará o índice do candidato que é a <code class="language-plaintext highlighter-rouge">j</code>-ésima preferência para o eleitor <code class="language-plaintext highlighter-rouge">i</code>.</p>
+<p>Em seguida, há uma <code class="language-plaintext highlighter-rouge">struct</code> chamada <code class="language-plaintext highlighter-rouge">candidate</code>. Todo <code class="language-plaintext highlighter-rouge">candidate</code> tem um campo <code class="language-plaintext highlighter-rouge">string</code> para o seu <code class="language-plaintext highlighter-rouge">nome</code>, um <code class="language-plaintext highlighter-rouge">int</code> representando o número de <code class="language-plaintext highlighter-rouge">votos</code> que ele possui atualmente, e um valor <code class="language-plaintext highlighter-rouge">bool</code> chamado <code class="language-plaintext highlighter-rouge">eliminated</code> que indica se o candidato foi eliminado da eleição. O array <code class="language-plaintext highlighter-rouge">candidates</code> acompanhará todos os candidatos na eleição.</p>
+<p>O programa também tem duas variáveis globais: <code class="language-plaintext highlighter-rouge">voter_count</code> e <code class="language-plaintext highlighter-rouge">candidate_count</code>.</p>
+<p>Agora, para o <code class="language-plaintext highlighter-rouge">main</code>. Observe que após determinar o número de candidatos e o número de eleitores, o loop de votação principal começa, dando a cada eleitor uma chance de votar. Conforme o eleitor insere suas preferências, a função <code class="language-plaintext highlighter-rouge">vote</code> é chamada para acompanhar todas as preferências. Se em algum momento a cédula for considerada inválida, o programa será encerrado.</p>
+<p>Uma vez que todos os votos forem registrados, outro loop começa: este vai continuar verificando o processo de segunda rodada, verificando se há um vencedor e eliminando o candidato em último lugar até que haja um vencedor.</p>
+<p>A primeira chamada aqui é para uma função chamada <code class="language-plaintext highlighter-rouge">tabulate</code>, que deve analisar todas as preferências dos eleitores e calcular o total de votos atual, olhando para a primeira escolha de cada eleitor que ainda não foi eliminada. Em seguida, a função <code class="language-plaintext highlighter-rouge">print_winner</code> deve imprimir o vencedor, se houver; se houver, o programa termina. Mas caso contrário, o programa precisa determinar o menor número de votos que alguém ainda na eleição recebeu (através de uma chamada para a função <code class="language-plaintext highlighter-rouge">find_min</code>). Se todos os candidatos na eleição receberam o mesmo número de votos (como determinado pela função <code class="language-plaintext highlighter-rouge">is_tie</code>), a eleição é declarada empatada; caso contrário, o candidato (ou candidatos) em último lugar é eliminado da eleição através de uma chamada para a função <code class="language-plaintext highlighter-rouge">eliminate</code>.</p>
+<p>Se você olhar um pouco mais abaixo no arquivo, verá que essas funções - <code class="language-plaintext highlighter-rouge">vote</code>, <code class="language-plaintext highlighter-rouge">tabulate</code>, <code class="language-plaintext highlighter-rouge">print_winner</code>, <code class="language-plaintext highlighter-rouge">find_min</code>, <code class="language-plaintext highlighter-rouge">is_tie</code> e <code class="language-plaintext highlighter-rouge">eliminate</code> - são todas deixadas para você completar!</p>
+<h2 id="specification">Especificação</h2>
+<p>Conclua a implementação de <code class="language-plaintext highlighter-rouge">runoff.c</code> de tal forma que ela simule uma eleição de desempate. Você deve completar as implementações das funções <code class="language-plaintext highlighter-rouge">vote</code>, <code class="language-plaintext highlighter-rouge">tabulate</code>, <code class="language-plaintext highlighter-rouge">print_winner</code>, <code class="language-plaintext highlighter-rouge">find_min</code>, <code class="language-plaintext highlighter-rouge">is_tie</code> e <code class="language-plaintext highlighter-rouge">eliminate</code>, e não deve modificar nada mais em <code class="language-plaintext highlighter-rouge">runoff.c</code> (e a inclusão de arquivos de cabeçalho adicionais, se desejar).</p>
+<h3 id="vote"><code class="language-plaintext highlighter-rouge">vote</code></h3>
+<p>Conclua a função <code class="language-plaintext highlighter-rouge">vote</code>.</p>
+<ul>
+  <li data-marker="*">A função recebe os argumentos <code class="language-plaintext highlighter-rouge">voter</code>, <code class="language-plaintext highlighter-rouge">rank</code> e <code class="language-plaintext highlighter-rouge">name</code>. Se <code class="language-plaintext highlighter-rouge">name</code> corresponder ao nome de um candidato válido, você deve atualizar a matriz global de preferências para indicar que o eleitor <code class="language-plaintext highlighter-rouge">voter</code> tem aquele candidato como sua preferência de <code class="language-plaintext highlighter-rouge">rank</code> (onde <code class="language-plaintext highlighter-rouge">0</code> é a primeira preferência, <code class="language-plaintext highlighter-rouge">1</code> é a segunda preferência, etc.).</li>
+  <li data-marker="*">Se a preferência for registrada com sucesso, a função deve retornar <code class="language-plaintext highlighter-rouge">true</code>; caso contrário, a função deve retornar <code class="language-plaintext highlighter-rouge">false</code> (por exemplo, se <code class="language-plaintext highlighter-rouge">name</code> não for o nome de um dos candidatos).</li>
+  <li data-marker="*">Você pode assumir que nenhum candidato terá o mesmo nome.</li>
+</ul>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se que <code class="language-plaintext highlighter-rouge">candidate_count</code> armazena o número de candidatos na eleição.</li>
+  <li data-marker="*">Lembre-se que você pode usar <a href="https://man.cs50.io/3/strcmp" target="_blank"><code class="language-plaintext highlighter-rouge">strcmp</code></a> para comparar duas strings.</li>
+  <li data-marker="*">Lembre-se que <code class="language-plaintext highlighter-rouge">preferences[i][j]</code> armazena o índice do candidato que é a <code class="language-plaintext highlighter-rouge">j</code>-ésima preferência classificada para o <code class="language-plaintext highlighter-rouge">i</code>-ésimo eleitor.</li>
+</ul></details>
+<br>
+<h3 id="tabulate"><code class="language-plaintext highlighter-rouge">tabulate</code></h3>
+<p>Complete a função <code class="language-plaintext highlighter-rouge">tabulate</code>.</p>
+<ul>
+  <li data-marker="*">A função deve atualizar o número de <code class="language-plaintext highlighter-rouge">votos</code> de cada candidato nesta fase da eleição.</li>
+  <li data-marker="*">Lembre-se de que em cada fase da eleição, cada eleitor vota efetivamente em seu candidato mais preferido que ainda não foi eliminado.</li>
+</ul>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se de que <code class="language-plaintext highlighter-rouge">voter_count</code> armazena o número de eleitores na eleição e que, para cada eleitor em nossa eleição, queremos contar um voto.</li>
+  <li data-marker="*">Lembre-se de que, para um eleitor <code class="language-plaintext highlighter-rouge">i</code>, seu candidato de primeira escolha é representado por <code class="language-plaintext highlighter-rouge">preferences[i][0]</code>, seu candidato de segunda escolha por <code class="language-plaintext highlighter-rouge">preferences[i][1]</code>, etc.</li>
+  <li data-marker="*">Lembre-se de que a <code class="language-plaintext highlighter-rouge">struct</code> <code class="language-plaintext highlighter-rouge">candidate</code> tem um campo chamado <code class="language-plaintext highlighter-rouge">eliminated</code>, que será <code class="language-plaintext highlighter-rouge">true</code> se o candidato tiver sido eliminado da eleição.</li>
+  <li data-marker="*">Lembre-se de que a <code class="language-plaintext highlighter-rouge">struct</code> <code class="language-plaintext highlighter-rouge">candidate</code> tem um campo chamado <code class="language-plaintext highlighter-rouge">votes</code>, que provavelmente você desejará atualizar para o candidato preferido de cada eleitor.</li>
+  <li data-marker="*">Depois de lançar um voto para o candidato de primeira escolha não eliminado de um eleitor, você vai querer parar por aí, não continuar pela lista! Lembre-se de que você pode sair de um loop mais cedo usando <code class="language-plaintext highlighter-rouge">break</code> dentro de uma condição.</li>
+</ul></details>
+<br>
+<h3 id="print_winner"><code class="language-plaintext highlighter-rouge">print_winner</code></h3>
+<p>Complete a função <code class="language-plaintext highlighter-rouge">print_winner</code>.</p>
+<ul>
+  <li data-marker="*">Se algum candidato tiver mais da metade dos votos, seu nome deve ser impresso e a função deve retornar <code class="language-plaintext highlighter-rouge">true</code>.</li>
+  <li data-marker="*">Se ninguém ganhou a eleição ainda, a função deve retornar <code class="language-plaintext highlighter-rouge">false</code>.</li>
+</ul>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se de que <code class="language-plaintext highlighter-rouge">voter_count</code> armazena o número de eleitores na eleição. Dado isso, como você expressaria o número de votos necessários para vencer a eleição?</li>
+</ul></details>
+<br>
+<h3 id="find_min"><code class="language-plaintext highlighter-rouge">find_min</code></h3>
+<p>Complete a função <code class="language-plaintext highlighter-rouge">find_min</code>.</p>
+<ul>
+  <li data-marker="*">A função deve retornar o total mínimo de votos para qualquer candidato que ainda esteja na eleição.</li>
+</ul>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Provavelmente, você desejará percorrer os candidatos para encontrar aquele que ainda está na eleição e possui o menor número de votos. Que informações você deve manter à medida que percorre os candidatos?</li>
+</ul></details>
+<br>
+<h3 id="is_tie"><code class="language-plaintext highlighter-rouge">is_tie</code></h3>
+<p>Complete a função <code class="language-plaintext highlighter-rouge">is_tie</code>.</p>
+<ul>
+  <li data-marker="*">A função recebe um argumento <code class="language-plaintext highlighter-rouge">min</code>, que será o número mínimo de votos que alguém na eleição atualmente possui.</li>
+  <li data-marker="*">A função deve retornar <code class="language-plaintext highlighter-rouge">true</code> se todos os candidatos que permanecem na eleição possuem o mesmo número de votos e deve retornar <code class="language-plaintext highlighter-rouge">false</code> caso contrário.</li>
+</ul>
+<details><summary>Dicas</summary><ul>
+  <li data-marker="*">Lembre-se de que um empate acontece se todos os candidatos ainda na eleição tiverem o mesmo número de votos. Observe também que a função <code class="language-plaintext highlighter-rouge">is_tie</code> recebe um argumento <code class="language-plaintext highlighter-rouge">min</code>, que é o menor número de votos que qualquer candidato possui atualmente. Como você pode usar essa informação para determinar se a eleição é um empate (ou, inversamente, não é um empate)?</li>
+</ul></details>
+<br>
+<h3 id="eliminate"><code class="language-plaintext highlighter-rouge">eliminate</code></h3>
+<p>Complete a função <code class="language-plaintext highlighter-rouge">eliminate</code>.</p>
+<ul>
+  <li data-marker="*">A função recebe um argumento <code class="language-plaintext highlighter-rouge">min</code>, que será o número mínimo de votos que qualquer candidato na eleição atualmente possui.</li>
+  <li data-marker="*">A função deve eliminar o candidato (ou candidatos) que possuem <code class="language-plaintext highlighter-rouge">min</code> número de votos.</li>
+</ul>
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./runoff Alice Bob Charlie
+Number of voters: 5
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Charlie
+Rank 2: Alice
+Rank 3: Bob
+
+Alice
+  </code></pre></div></div>
+  <h2 id="testing">Testando</h2>
+<p>Certifique-se de testar seu código para garantir que ele lida com…</p>
+<ul>
+  <li data-marker="*">Uma eleição com qualquer número de candidatos (até o <code class="language-plaintext highlighter-rouge">MAX</code> de <code class="language-plaintext highlighter-rouge">9</code>)</li>
+  <li data-marker="*">Votação em um candidato por nome</li>
+  <li data-marker="*">Votos inválidos para candidatos que não estão na cédula</li>
+  <li data-marker="*">Imprimir o vencedor da eleição se houver apenas um</li>
+  <li data-marker="*">Não eliminar ninguém no caso de um empate entre todos os candidatos restantes</li>
+</ul>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/runoff</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 runoff.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/runoff</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

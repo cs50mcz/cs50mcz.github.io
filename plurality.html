@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Plurality</h2>
+    <hr>
+
+    <p>Para este programa, você implementará um programa que realiza uma eleição de pluralidade (plurality election), conforme abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./plurality Alice Bob Charlie
+Number of voters: 4
+Vote: Alice
+Vote: Bob
+Vote: Charlie
+Vote: Alice
+Alice
+      </code></pre></div></div>
+
+
+      <h2 id="background">Contexto</h2>
+      <p>As eleições assumem diversas formas e tamanhos. No Reino Unido, o <a href="https://www.parliament.uk/education/about-your-parliament/general-elections/" target="_blank">Primeiro Ministro</a> é oficialmente nomeado pelo monarca, que geralmente escolhe o líder do partido político que obtém a maioria dos assentos na Câmara dos Comuns. Nos Estados Unidos, é utilizado um processo de <a href="https://www.archives.gov/federal-register/electoral-college/about.html" target="_blank">Colégio Eleitoral</a> multi-etapas, no qual os cidadãos votam em como cada estado deve alocar eleitores que, posteriormente, elegem o Presidente.</p>
+      <p>Talvez a forma mais simples de realizar uma eleição seja por meio de um método comumente conhecido como "voto majoritário simples" (também conhecido como "primeiro-passo-o-posto" ou "vencedor leva tudo"). No voto majoritário simples, cada eleitor tem direito a votar em um candidato. Ao final da eleição, o candidato que obtiver o maior número de votos é declarado vencedor da eleição.</p>
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/3/plurality.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">plurality.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip plurality.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">plurality</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm plurality.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd plurality</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plurality/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
+<p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">plurality.c</code>. Executando <code class="language-plaintext highlighter-rouge">code plurality.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+
+<h2 id="understanding">Entendimento</h2>
+<p>Vamos dar uma olhada no arquivo <code class="language-plaintext highlighter-rouge">plurality.c</code> e ler o código de distribuição que foi fornecido.</p>
+<p>A linha <code class="language-plaintext highlighter-rouge">#define MAX 9</code> é uma sintaxe usada aqui para significar que <code class="language-plaintext highlighter-rouge">MAX</code> é uma constante (igual a <code class="language-plaintext highlighter-rouge">9</code>) que pode ser usada em todo o programa. Aqui, representa o número máximo de candidatos que uma eleição pode ter.</p>
+<p>O arquivo, em seguida, define uma <code class="language-plaintext highlighter-rouge">struct</code> chamada de <code class="language-plaintext highlighter-rouge">candidate</code>. Cada <code class="language-plaintext highlighter-rouge">candidate</code> tem dois campos: uma <code class="language-plaintext highlighter-rouge">string</code> chamada <code class="language-plaintext highlighter-rouge">name</code> representando o nome do candidato e um <code class="language-plaintext highlighter-rouge">int</code> chamado <code class="language-plaintext highlighter-rouge">votes</code> representando o número de votos que o candidato tem. Em seguida, o arquivo define um array global de <code class="language-plaintext highlighter-rouge">candidates</code>, onde cada elemento é em si um <code class="language-plaintext highlighter-rouge">candidate</code>.</p>
+<p>Agora, dê uma olhada na função <code class="language-plaintext highlighter-rouge">main</code> em si. Veja se você consegue encontrar onde o programa define uma variável global <code class="language-plaintext highlighter-rouge">candidate_count</code> representando o número de candidatos na eleição, copia argumentos de linha de comando para a matriz <code class="language-plaintext highlighter-rouge">candidates</code> e pede ao usuário para digitar o número de eleitores. Em seguida, o programa permite que cada eleitor digite um voto (veja como?), chamando a função <code class="language-plaintext highlighter-rouge">vote</code> em cada candidato votado. Finalmente, <code class="language-plaintext highlighter-rouge">main</code> faz uma chamada à função <code class="language-plaintext highlighter-rouge">print_winner</code> para imprimir o(s) vencedor(es) da eleição.</p>
+<p>Se você olhar mais para baixo no arquivo, no entanto, notará que as funções <code class="language-plaintext highlighter-rouge">vote</code> e <code class="language-plaintext highlighter-rouge">print_winner</code> foram deixadas em branco. Essa parte cabe a você completar!</p>
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">plurality.c</code> de tal maneira que o programa simule uma eleição de voto plural.</p>
+<ul>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">vote</code>.
+    <ul>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">vote</code> recebe um único argumento, uma <code class="language-plaintext highlighter-rouge">string</code> chamada <code class="language-plaintext highlighter-rouge">name</code>, representando o nome do candidato que foi votado.</li>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">name</code> corresponder a um dos nomes dos candidatos na eleição, atualize o total de votos desse candidato para contar com o novo voto. A função <code class="language-plaintext highlighter-rouge">vote</code> nesse caso deve retornar <code class="language-plaintext highlighter-rouge">true</code> para indicar uma cédula bem-sucedida.</li>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">name</code> não corresponder ao nome de nenhum dos candidatos na eleição, nenhum total de votos deve ser alterado e a função <code class="language-plaintext highlighter-rouge">vote</code> deve retornar <code class="language-plaintext highlighter-rouge">false</code> para indicar uma cédula inválida.</li>
+      <li data-marker="*">Você pode assumir que nenhum candidato terá o mesmo nome.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">print_winner</code>.
+    <ul>
+      <li data-marker="*">A função deve imprimir o nome do candidato que recebeu a maioria dos votos na eleição e, em seguida, imprimir uma nova linha.</li>
+      <li data-marker="*">É possível que a eleição termine em empate se vários candidatos receberem o número máximo de votos. Nesse caso, você deve imprimir os nomes de cada um dos candidatos vencedores, cada um em uma linha separada.</li>
+    </ul>
+  </li>
+</ul>
+<p>Você não deve modificar nada mais em <code class="language-plaintext highlighter-rouge">plurality.c</code> além das implementações das funções <code class="language-plaintext highlighter-rouge">vote</code> e <code class="language-plaintext highlighter-rouge">print_winner</code> (e a inclusão de arquivos de cabeçalho adicionais, se desejar).</p>
+
+
+
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./plurality Alice Bob
+Number of voters: 3
+Vote: Alice
+Vote: Bob
+Vote: Alice
+Alice
+  </code></pre></div></div>
+  
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./plurality Alice Bob
+Number of voters: 3
+Vote: Alice
+Vote: Charlie
+Invalid vote.
+Vote: Alice
+Alice
+  </code></pre></div></div>
+  
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./plurality Alice Bob Charlie
+Number of voters: 5
+Vote: Alice
+Vote: Charlie
+Vote: Bob
+Vote: Bob
+Vote: Alice
+Alice
+Bob
+  </code></pre></div></div>
+
+
+
+
+  <h2 id="testing">Testando</h2>
+<p>Certifique-se de testar seu código para garantir que ele lida com…</p>
+<ul>
+  <li data-marker="*">Uma eleição com qualquer número de candidatos (até o <code class="language-plaintext highlighter-rouge">MAX</code> de <code class="language-plaintext highlighter-rouge">9</code>)</li>
+  <li data-marker="*">Votação em um candidato por nome</li>
+  <li data-marker="*">Votos inválidos para candidatos que não estão na cédula</li>
+  <li data-marker="*">Imprimir o vencedor da eleição se houver apenas um</li>
+  <li data-marker="*">Imprimir os vencedores da eleição se houver múltiplos vencedores</li>
+</ul>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/plurality</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 plurality.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/plurality</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

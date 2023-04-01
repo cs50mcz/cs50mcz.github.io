@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Tideman</h2>
+    <hr>
+
+    <p>Para este programa, você implementará um programa que realiza uma eleição Tideman, conforme abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./tideman Alice Bob Charlie
+Number of voters: 5
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Charlie
+Rank 2: Alice
+Rank 3: Bob
+
+Charlie
+      </code></pre></div></div>
+      <h2 id="background">Contexto</h2>
+<p>Em eleições de pluralidade (plurality elections), que seguem um algoritmo muito simples para determinar o vencedor de uma eleição: cada eleitor tem um voto, e o candidato com a maioria dos votos vence.</p>
+<p>Mas a votação de pluralidade tem algumas desvantagens. O que acontece, por exemplo, em uma eleição com três candidatos, e as cédulas abaixo são lançadas?</p>
+<p><img src="./assets/images/fptp_ballot_1.png" alt="Cinco cédulas, empate entre Alice e Bob"></p>
+<p>Uma votação de pluralidade aqui declararia um empate entre Alice e Bob, já que cada um tem dois votos. Mas essa é a resposta certa?</p>
+<p>Existe outro tipo de sistema de votação conhecido como sistema de votação classificada. Em um sistema de votação classificada, os eleitores podem votar em mais de um candidato. Em vez de votar apenas em sua escolha principal, eles podem classificar os candidatos por ordem de preferência. As cédulas resultantes podem parecer assim:</p>
+<p><img src="./assets/images/ranked_ballot_1.png" alt="Três cédulas, com preferências classificadas"></p>
+<p>Aqui, cada eleitor, além de especificar seu candidato de primeira escolha, também indicou suas segunda e terceira escolhas. E agora, o que antes era uma eleição empatada poderia ter um vencedor. A corrida estava originalmente empatada entre Alice e Bob, então Charlie estava fora da disputa. Mas o eleitor que escolheu Charlie preferiu Alice a Bob, então Alice poderia ser declarada a vencedora aqui.</p>
+<p>A votação classificada também pode resolver mais uma possível desvantagem da votação de pluralidade. Dê uma olhada nas seguintes cédulas.</p>
+<p><img src="./assets/images/condorcet_1.png" alt="Nove cédulas, com preferências classificadas"></p>
+<p>Quem deveria vencer essa eleição? Em uma votação por pluralidade em que cada eleitor escolhe apenas sua primeira preferência, Charlie vence esta eleição com quatro votos em comparação com apenas três de Bob e dois de Alice. (Note que, se você estiver familiarizado com o sistema de votação instantânea, Charlie também vence aqui sob esse sistema). Alice, no entanto, poderia razoavelmente argumentar que ela deveria ser a vencedora da eleição em vez de Charlie: afinal, dos nove eleitores, a maioria (cinco deles) preferiu Alice em vez de Charlie, então a maioria das pessoas ficaria mais feliz com Alice como vencedora em vez de Charlie.</p>
+<p>Alice é, nesta eleição, a chamada "vencedora de Condorcet" da eleição: a pessoa que teria vencido qualquer confronto direto contra outro candidato. Se a eleição tivesse sido apenas entre Alice e Bob, ou apenas entre Alice e Charlie, Alice teria vencido.</p>
+<p>O método de votação de Tideman (também conhecido como "ranked pairs") é um método de votação classificada que garante produzir o vencedor de Condorcet da eleição, se houver um.</p>
+<p>Em geral, o método de Tideman funciona construindo um "gráfico" de candidatos, onde uma seta (ou seja, uma aresta) do candidato A para o candidato B indica que o candidato A vence contra o candidato B em um confronto direto. O gráfico para a eleição acima, então, seria semelhante ao abaixo.</p>
+<p><img src="./assets/images/condorcet_graph_1.png" alt="Nove cédulas, com preferências classificadas"></p>
+<p>A seta de Alice para Bob significa que mais eleitores preferem Alice a Bob (5 preferem Alice, 4 preferem Bob). Da mesma forma, as outras setas significam que mais eleitores preferem Alice a Charlie e mais eleitores preferem Charlie a Bob.</p>
+<p>Ao analisar este gráfico, o método Tideman diz que o vencedor da eleição deve ser a "fonte" do gráfico (ou seja, o candidato que não tem seta apontando para ele). Neste caso, a fonte é Alice - Alice é a única que não tem seta apontando para ela, o que significa que ninguém é preferido de maneira direta a Alice. Alice é declarada, portanto, a vencedora da eleição.</p>
+<p>No entanto, é possível que, quando as setas são desenhadas, não haja um vencedor de Condorcet. Considere as cédulas abaixo.</p>
+<p><img src="./assets/images/no_condorcet_1.png" alt="Nove cédulas, com preferências classificadas"></p>
+<p>Entre Alice e Bob, Alice é preferida sobre Bob por uma margem de 7-2. Entre Bob e Charlie, Bob é preferido sobre Charlie por uma margem de 5-4. Mas entre Charlie e Alice, Charlie é preferido sobre Alice por uma margem de 6-3. Se desenharmos o gráfico, não há fonte! Temos um ciclo de candidatos, onde Alice vence Bob, que vence Charlie, que vence Alice (como em uma partida de pedra-papel-tesoura). Neste caso, parece que não há maneira de escolher um vencedor.</p>
+<p>Para lidar com isso, o algoritmo Tideman deve ter cuidado para evitar a criação de ciclos no gráfico de candidatos. Como ele faz isso? O algoritmo bloqueia primeiro as arestas mais fortes, já que essas são provavelmente as mais significativas. Em particular, o algoritmo Tideman especifica que as arestas de confronto devem ser "travadas" no gráfico uma de cada vez, com base na "força" da vitória (quanto mais pessoas preferem um candidato em relação ao seu oponente, mais forte é a vitória). Enquanto a aresta puder ser bloqueada no gráfico sem criar um ciclo, a aresta é adicionada; caso contrário, a aresta é ignorada.</p>
+<p>Como isso funcionaria no caso das votações acima? Bem, a maior margem de vitória para um par é Alice batendo Bob, já que 7 eleitores preferem Alice a Bob (nenhum outro confronto direto tem um vencedor preferido por mais de 7 eleitores). Portanto, a seta de Alice-Bob é bloqueada no gráfico primeiro. A próxima maior margem de vitória é a vitória de Charlie por 6-3 sobre Alice, então essa seta é bloqueada em seguida.</p>
+<p>Em seguida, vem a vitória de Bob por 5-4 sobre Charlie. Mas observe: se adicionássemos uma seta de Bob para Charlie agora, criaríamos um ciclo! Como o gráfico não pode permitir ciclos, devemos pular essa aresta e não adicioná-la ao gráfico. Se houver mais arestas a serem consideradas, olharíamos para elas a seguir, mas essa foi a última aresta, então o gráfico está completo.</p>
+<p>Este processo passo a passo é mostrado abaixo, com o gráfico final à direita.</p>
+<p><img src="./assets/images/lockin.png" alt="Nove cédulas, com preferências classificadas"></p>
+<p>Com base no gráfico resultante, Charlie é a fonte (não há seta apontando para Charlie), portanto Charlie é declarado o vencedor desta eleição.</p>
+<p>De forma mais formal, o método de votação Tideman consiste em três partes:</p>
+<ul>
+  <li data-marker="*"><strong>Totalização</strong>: Uma vez que todos os eleitores indicaram todas as suas preferências, determine, para cada par de candidatos, quem é o candidato preferido e por qual margem eles são preferidos.</li>
+  <li data-marker="*"><strong>Ordenação</strong>: Ordene os pares de candidatos em ordem decrescente de força da vitória, onde a força da vitória é definida como o número de eleitores que preferem o candidato preferido.</li>
+  <li data-marker="*"><strong>Bloqueio</strong>: Começando com o par mais forte, passe pelos pares de candidatos em ordem e "bloqueie" cada par no gráfico de candidatos, desde que o bloqueio desse par não crie um ciclo no gráfico.</li>
+</ul>
+<p>Assim que o gráfico estiver completo, a fonte do gráfico (aquele sem arestas apontando para ele) é o vencedor!</p>
+
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/3/tideman.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">tideman.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip tideman.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">tideman</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm tideman.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd tideman</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tideman/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
+<p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">tideman.c</code>. Executando <code class="language-plaintext highlighter-rouge">code runoff.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+
+<h2 id="understanding">Entendendo</h2>
+<p>Vamos dar uma olhada no arquivo <code class="language-plaintext highlighter-rouge">tideman.c</code>.</p>
+<p>Primeiro, note o array bidimensional <code class="language-plaintext highlighter-rouge">preferences</code>. O inteiro <code class="language-plaintext highlighter-rouge">preferences[i][j]</code> irá representar o número de eleitores que preferem o candidato <code class="language-plaintext highlighter-rouge">i</code> ao candidato <code class="language-plaintext highlighter-rouge">j</code>.</p>
+<p>O arquivo também define outro array bidimensional, chamado <code class="language-plaintext highlighter-rouge">locked</code>, que irá representar o grafo de candidatos. <code class="language-plaintext highlighter-rouge">locked</code> é um array booleano, então <code class="language-plaintext highlighter-rouge">locked[i][j]</code> sendo <code class="language-plaintext highlighter-rouge">true</code> representa a existência de uma aresta apontando do candidato <code class="language-plaintext highlighter-rouge">i</code> para o candidato <code class="language-plaintext highlighter-rouge">j</code>; <code class="language-plaintext highlighter-rouge">false</code> significa que não há aresta. (Se estiver curioso, essa representação de um grafo é conhecida como "matriz de adjacência").</p>
+<p>Em seguida, há uma <code class="language-plaintext highlighter-rouge">struct</code> chamada <code class="language-plaintext highlighter-rouge">pair</code>, usada para representar um par de candidatos: cada par inclui o índice do candidato <code class="language-plaintext highlighter-rouge">vencedor</code> e o índice do candidato <code class="language-plaintext highlighter-rouge">perdedor</code>.</p>
+<p>Os candidatos em si são armazenados no array <code class="language-plaintext highlighter-rouge">candidates</code>, que é um array de <code class="language-plaintext highlighter-rouge">string</code>s representando os nomes de cada um dos candidatos. Há também um array de <code class="language-plaintext highlighter-rouge">pares</code>, que representará todos os pares de candidatos (em que um é preferido sobre o outro) na eleição.</p>
+<p>O programa também possui duas variáveis globais: <code class="language-plaintext highlighter-rouge">pair_count</code> e <code class="language-plaintext highlighter-rouge">candidate_count</code>, representando o número de pares e o número de candidatos nos arrays <code class="language-plaintext highlighter-rouge">pairs</code> e <code class="language-plaintext highlighter-rouge">candidates</code>, respectivamente.</p>
+<p>Agora vamos para o <code class="language-plaintext highlighter-rouge">main</code>. Observe que, depois de determinar o número de candidatos, o programa percorre o grafo <code class="language-plaintext highlighter-rouge">locked</code> e inicialmente define todos os valores como <code class="language-plaintext highlighter-rouge">false</code>, o que significa que nosso grafo inicial não terá nenhuma aresta.</p>
+<p>Em seguida, o programa percorre todos os eleitores e coleta suas preferências em um array chamado <code class="language-plaintext highlighter-rouge">ranks</code> (por meio de uma chamada para <code class="language-plaintext highlighter-rouge">vote</code>), onde <code class="language-plaintext highlighter-rouge">ranks[i]</code> é o índice do candidato que é a <code class="language-plaintext highlighter-rouge">i</code>ª preferência para o eleitor. Esses rankings são passados para a função <code class="language-plaintext highlighter-rouge">record_preference</code>, cujo trabalho é pegar esses rankings e atualizar a variável global <code class="language-plaintext highlighter-rouge">preferences</code>.</p>
+<p>Depois que todos os votos forem contabilizados, os pares de candidatos são adicionados à matriz <code class="language-plaintext highlighter-rouge">pairs</code> por meio de uma chamada para <code class="language-plaintext highlighter-rouge">add_pairs</code>, ordenados por meio de uma chamada para <code class="language-plaintext highlighter-rouge">sort_pairs</code> e travados no grafo por meio de uma chamada para <code class="language-plaintext highlighter-rouge">lock_pairs</code>. Finalmente, <code class="language-plaintext highlighter-rouge">print_winner</code> é chamado para imprimir o nome do vencedor da eleição!</p>
+<p>Mais adiante no arquivo, você verá que as funções <code class="language-plaintext highlighter-rouge">vote</code>, <code class="language-plaintext highlighter-rouge">record_preference</code>, <code class="language-plaintext highlighter-rouge">add_pairs</code>, <code class="language-plaintext highlighter-rouge">sort_pairs</code>, <code class="language-plaintext highlighter-rouge">lock_pairs</code> e <code class="language-plaintext highlighter-rouge">print_winner</code> estão em branco. Isso cabe a você! </p>
+
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">tideman.c</code> de forma que simule uma eleição Tideman.</p>
+<ul>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">vote</code>.
+    <ul>
+      <li data-marker="*">A função recebe os argumentos <code class="language-plaintext highlighter-rouge">rank</code>, <code class="language-plaintext highlighter-rouge">name</code> e <code class="language-plaintext highlighter-rouge">ranks</code>. Se <code class="language-plaintext highlighter-rouge">name</code> corresponder ao nome de um candidato válido, você deve atualizar o array <code class="language-plaintext highlighter-rouge">ranks</code> para indicar que o eleitor tem o candidato como sua preferência de <code class="language-plaintext highlighter-rouge">rank</code> (onde <code class="language-plaintext highlighter-rouge">0</code> é a primeira preferência, <code class="language-plaintext highlighter-rouge">1</code> é a segunda preferência, etc.)</li>
+      <li data-marker="*">Lembre-se que <code class="language-plaintext highlighter-rouge">ranks[i]</code> aqui representa a <code class="language-plaintext highlighter-rouge">i</code>-ésima preferência do usuário.</li>
+      <li data-marker="*">A função deve retornar <code class="language-plaintext highlighter-rouge">true</code> se o rank foi registrado com sucesso, e <code class="language-plaintext highlighter-rouge">false</code> caso contrário (por exemplo, se <code class="language-plaintext highlighter-rouge">name</code> não é o nome de um dos candidatos).</li>
+      <li data-marker="*">Você pode assumir que nenhum candidato terá o mesmo nome.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">record_preferences</code>.
+    <ul>
+      <li data-marker="*">A função é chamada uma vez para cada eleitor e recebe como argumento o array <code class="language-plaintext highlighter-rouge">ranks</code>, (lembrando que <code class="language-plaintext highlighter-rouge">ranks[i]</code> é a <code class="language-plaintext highlighter-rouge">i</code>-ésima preferência do eleitor, onde <code class="language-plaintext highlighter-rouge">ranks[0]</code> é a primeira preferência).</li>
+      <li data-marker="*">A função deve atualizar o array global <code class="language-plaintext highlighter-rouge">preferences</code> para adicionar as preferências do eleitor atual. Lembre-se de que <code class="language-plaintext highlighter-rouge">preferences[i][j]</code> deve representar o número de eleitores que preferem o candidato <code class="language-plaintext highlighter-rouge">i</code> em relação ao candidato <code class="language-plaintext highlighter-rouge">j</code>.</li>
+      <li data-marker="*">Você pode assumir que cada eleitor classificará todos os candidatos.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">add_pairs</code>.
+    <ul>
+      <li data-marker="*">A função deve adicionar todos os pares de candidatos em que um candidato é preferido ao array <code class="language-plaintext highlighter-rouge">pairs</code>. Um par de candidatos que está empatado (não há preferência por um em relação ao outro) não deve ser adicionado ao array.</li>
+      <li data-marker="*">A função deve atualizar a variável global <code class="language-plaintext highlighter-rouge">pair_count</code> para ser o número de pares de candidatos. (Os pares devem ser armazenados entre <code class="language-plaintext highlighter-rouge">pairs[0]</code> e <code class="language-plaintext highlighter-rouge">pairs[pair_count - 1]</code>, inclusive).</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">sort_pairs</code>.
+    <ul>
+      <li data-marker="*">A função deve classificar o array <code class="language-plaintext highlighter-rouge">pairs</code> em ordem decrescente de força da vitória, onde a força da vitória é definida como o número de eleitores que preferem o candidato preferido. Se vários pares têm a mesma força da vitória, você pode assumir que a ordem não importa.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">lock_pairs</code>.
+    <ul>
+      <li data-marker="*">A função deve criar o grafo <code class="language-plaintext highlighter-rouge">locked</code>, adicionando todas as arestas em ordem decrescente de força de vitória, contanto que a aresta não crie um ciclo.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Complete a função <code class="language-plaintext highlighter-rouge">print_winner</code>.
+    <ul>
+      <li data-marker="*">A função deve imprimir o nome do candidato que é a fonte do grafo. Você pode assumir que não haverá mais de uma fonte.</li>
+    </ul>
+  </li>
+</ul>
+<p>Você não deve modificar nada além das implementações das funções <code class="language-plaintext highlighter-rouge">vote</code>, <code class="language-plaintext highlighter-rouge">record_preferences</code>, <code class="language-plaintext highlighter-rouge">add_pairs</code>, <code class="language-plaintext highlighter-rouge">sort_pairs</code>, <code class="language-plaintext highlighter-rouge">lock_pairs</code> e <code class="language-plaintext highlighter-rouge">print_winner</code> em <code class="language-plaintext highlighter-rouge">tideman.c</code> (e a inclusão de arquivos de cabeçalho adicionais, se desejar). É permitido adicionar funções adicionais em <code class="language-plaintext highlighter-rouge">tideman.c</code>, contanto que você não mude as declarações de nenhuma das funções existentes.</p>
+
+
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./tideman Alice Bob Charlie
+Number of voters: 5
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Alice
+Rank 2: Charlie
+Rank 3: Bob
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Bob
+Rank 2: Charlie
+Rank 3: Alice
+
+Rank 1: Charlie
+Rank 2: Alice
+Rank 3: Bob
+
+Charlie
+  </code></pre></div></div>
+  <h2 id="testing">Testando</h2>
+<p>Certifique-se de testar seu código para garantir que ele lida com…</p>
+<ul>
+  <li data-marker="*">Uma eleição com qualquer número de candidatos (até o <code class="language-plaintext highlighter-rouge">MAX</code> de <code class="language-plaintext highlighter-rouge">9</code>)</li>
+  <li data-marker="*">Votação em um candidato por nome</li>
+  <li data-marker="*">Votos inválidos para candidatos que não estão na cédula</li>
+  <li data-marker="*">Imprimir o vencedor da eleição</li>
+</ul>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/tideman</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 tideman.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/tideman</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

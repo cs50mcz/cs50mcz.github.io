@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Week 3</h2>
+    <hr>
+
+    <p> Linear Search. Binary Search. Selection Sort. Bubble Sort. Merge Sort. Notação Assintótica. Recursão.
+    </p>
+    <ul id="markdown-toc">
+      <li data-marker="-"><strong>Shorts</strong>
+        <ol>
+          <li><a href="linearsearch.html">Linear Search</a></li>
+          <li><a href="binarysearch.html">Binary Search</a></li>
+          <li><a href="bubblesort.html">Bubble Sort</a></li>
+          <li><a href="selectionsort.html">Selection Sort</a></li>
+          <li><a href="recursion.html">Recursão</a></li>
+          <li><a href="mergesort.html">Merge Sort</a></li>
+        </ol>
+      </li>
+      <li><a href="lab3.html">Lab 3</a></li>
+      <li><a href="pset3.html">Problem Set 3</a></li>
+    </ul>
+    <br>
+    <section>
+      <h2 id="welcome">Notas</h2>
+      <hr>
+    </section>
+
+    <ul id="markdown-toc">
+      <li><a href="#welcome" id="markdown-toc-welcome">Bem-vindo!</a></li>
+      <li><a href="#algorithms" id="markdown-toc-algorithms">Algoritmos</a></li>
+      <li><a href="#running-time" id="markdown-toc-running-time">Tempo de Execução</a></li>
+      <li><a href="#linear-and-binary-search" id="markdown-toc-linear-and-binary-search">Linear Search e Binary
+          Search</a></li>
+      <li><a href="#data-structures" id="markdown-toc-data-structures">Estruturas de Dados</a></li>
+      <li><a href="#sorting" id="markdown-toc-sorting">Ordenação</a></li>
+      <li><a href="#recursion" id="markdown-toc-recursion">Recursão</a></li>
+      <li><a href="#merge-sort" id="markdown-toc-merge-sort">Merge Sort</a></li>
+      <li><a href="#summing-up" id="markdown-toc-summing-up">Conclusão</a></li>
+    </ul>
+
+    <h2 id="welcome">Bem-vindo!</h2>
+    <ul>
+      <li data-marker="*">Na semana zero, introduzimos a ideia de um <em>algoritmo</em>.</li>
+      <li data-marker="*">Nesta semana, vamos expandir nossa compreensão sobre algoritmos por meio de pseudocódigo e em
+        direção ao próprio código.</li>
+      <li data-marker="*">Além disso, vamos considerar a eficiência desses algoritmos. Na verdade, vamos aprimorar nossa
+        compreensão sobre como usar alguns dos conceitos <em>de baixo nível</em> que discutimos na semana passada na
+        construção de algoritmos.</li>
+    </ul>
+    <h2 id="algorithms">Algoritmos</h2>
+    <ul>
+      <li data-marker="*">Lembre-se de que na semana passada você foi apresentado à ideia de um <em>array</em>, que
+        são blocos de memória lado a lado.</li>
+      <li data-marker="*">
+        <p>Você pode imaginar metaforicamente um array como uma série de sete armários vermelhos, como segue:</p>
+        <p><img src="./assets/images/cs50Week3Slide018.png" alt="Seven red lockers side by side" title="lockers"></p>
+      </li>
+      <li data-marker="*">Podemos imaginar que temos um problema essencial de querer saber se o número 50 está dentro de
+        um array.</li>
+      <li data-marker="*">
+        <p>Potencialmente, podemos entregar nosso array para um algoritmo, onde o algoritmo procurará em nossos
+          armários para ver se o número 50 está atrás de uma das portas: retornando o valor verdadeiro ou falso.</p>
+        <p><img src="./assets/images/cs50Week3Slide022.png"
+            alt="sete armários vermelhos apontando para uma caixa vazia. Da caixa vazia sai uma saída de bool"
+            title="armários como algoritmo"></p>
+      </li>
+      <li data-marker="*">
+        <p>Podemos imaginar várias instruções que podemos fornecer ao nosso algoritmo para realizar essa tarefa da
+          seguinte maneira:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>For each door from left to right
+    If 50 is behind door
+        Return true
+Return false
+        </code></pre>
+          </div>
+        </div>
+        <p>Observe que as instruções acima são chamadas de <em>pseudocódigo</em>: uma versão legível para humanos das
+          instruções que poderíamos fornecer ao computador.</p>
+      </li>
+      <li data-marker="*">
+        <p>Um cientista da computação poderia traduzir esse pseudocódigo da seguinte forma:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>For i from 0 to n-1
+    If 50 is behind doors[i]
+        Return true
+Return false
+  </code></pre>
+          </div>
+        </div>
+        <p>Observe que o acima ainda não é código, mas é uma aproximação bastante próxima do que o código final poderia
+          parecer.</p>
+      </li>
+      <li data-marker="*"><em>Busca binária</em> é um <em>algoritmo de busca</em> que poderia ser utilizado em nossa
+        tarefa de encontrar o número 50.</li>
+      <li data-marker="*">
+        <p>Supondo que os valores dentro dos armários tenham sido organizados do menor para o maior, o pseudocódigo para
+          busca binária seria o seguinte:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>If there are no doors
+    Return false
+If 50 is behind middle door
+    Return true
+Else if 50 &lt; middle door
+    Search left half
+Else if 50 &gt; middle door
+    Search right half
+  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Usando a nomenclatura de código, podemos modificar ainda mais nosso algoritmo da seguinte maneira:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>If no doors
+    Return false
+If 50 is behind doors[middle]
+    Return true
+Else if 50 &lt; doors[middle]
+    Search doors[0] through doors[middle-1]
+Else if 50 &gt; doors[middle]
+    Search doors[middle+1] through doors[n-1]
+    </code></pre>
+          </div>
+        </div>
+        <p>Observe que, ao olhar para esta aproximação de código, você pode imaginar quase como isso poderia parecer em
+          um código real.</p>
+      </li>
+    </ul>
+    <h2 id="running-time">Tempo de Execução</h2>
+    <ul>
+      <li data-marker="*">
+        <p><em>Tempo de execução</em> envolve uma análise usando a notação <em>big O</em>. Dê uma olhada no gráfico a
+          seguir:</p>
+        <p><img src="./assets/images/cs50Week3Slide042.png"
+            alt="gráfico com: &quot;tamanho do problema&quot; como eixo x; &quot;tempo para resolver&quot; como eixo y; linha reta íngreme vermelha do início ao topo do gráfico próximo à linha reta menos íngreme amarela do início ao topo do gráfico, ambas rotuladas como &quot;O(n)&quot;; linha curva verde que fica menos íngreme à medida que se move para a direita do gráfico rotulada como &quot;O(log n)"
+            title="big o plotado"></p>
+      </li>
+      <li data-marker="*">No gráfico acima, o primeiro algoritmo está em <strong>O(n)</strong>. O segundo também está em <strong>O(n)</strong>. O
+        terceiro está em <strong>O(log n)</strong>.</li>
+      <li data-marker="*">
+        <p>É a forma da curva que mostra a eficiência de um algoritmo. Alguns tempos de execução comuns que podemos ver
+          são:</p>
+        <ul>
+          <li data-marker="*"><strong>O(n^2)</strong></li>
+          <li data-marker="*"><strong>O(n log n)</strong></li>
+          <li data-marker="*"><strong>O(n)</strong></li>
+          <li data-marker="*"><strong>O(log n)</strong></li>
+          <li data-marker="*"><strong>O(1)</strong></li>
+        </ul>
+      <li data-marker="*">Entre os tempos de execução acima, <strong>O(n^2)</strong> é considerado o pior tempo de execução e
+        <strong>O(1)</strong> é o mais rápido.</li>
+      <li data-marker="*">A busca linear tem ordem <strong>O(n)</strong> porque pode levar <em>n</em> passos no pior caso para ser
+        executada.</li>
+      <li data-marker="*">A busca binária tem ordem <strong>O(log n)</strong> porque leva cada vez menos passos para ser executada,
+        mesmo no pior caso.</li>
+      <li data-marker="*">Os programadores estão interessados tanto no pior caso, ou <em>limite superior</em>, quanto no
+        melhor caso, ou <em>limite inferior</em>.</li>
+      <li data-marker="*">O símbolo <strong>&Omega;</strong> é usado para denotar o melhor caso de um algoritmo, como <strong>&Omega;(log
+        n)</strong>.</li>
+      <li data-marker="*">O símbolo <strong>&Theta;</strong> é usado para denotar onde o limite superior e o limite inferior são
+        iguais, onde os tempos de execução do melhor caso e do pior caso são os mesmos.</li>
+    </ul>
+    <h2 id="linear-and-binary-search">Linear Search e Binary Search</h2>
+    <ul>
+      <li data-marker="*">
+        <p>Você pode implementar a busca linear escrevendo <code
+            class="language-plaintext highlighter-rouge">code search.c</code> no terminal do seu computador e escrevendo
+          o código da seguinte forma:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// An array of integers</span>
+    <span class="kt">int</span> <span class="n">numbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">20</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">};</span>
+
+    <span class="c1">// Search for number</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">get_int</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Not found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+      </code></pre>
+          </div>
+        </div>
+        <p>Observe que a linha que começa com <code class="language-plaintext highlighter-rouge">int numbers[]</code>
+          nos permite definir os valores de cada elemento do array à medida que o criamos. Em seguida, no loop <code
+            class="language-plaintext highlighter-rouge">for</code>, temos uma implementação da busca linear.</p>
+      </li>
+      <li data-marker="*">Agora implementamos a busca linear em C por nós mesmos!</li>
+      <li data-marker="*">
+        <p>E se quiséssemos procurar uma string dentro de um array? Modifique o código da seguinte maneira:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// An array of strings</span>
+    <span class="n">string</span> <span class="n">strings</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"battleship"</span><span class="p">,</span> <span class="s">"boot"</span><span class="p">,</span> <span class="s">"cannon"</span><span class="p">,</span> <span class="s">"iron"</span><span class="p">,</span> <span class="s">"thimble"</span><span class="p">,</span> <span class="s">"top hat"</span><span class="p">};</span>
+
+    <span class="c1">// Search for string</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"String: "</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">strings</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Not found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+    </code></pre>
+          </div>
+        </div>
+        <p>Observe que não podemos utilizar o operador <code class="language-plaintext highlighter-rouge">==</code> como
+          em nossa iteração anterior neste programa. Em vez disso, temos que usar <code
+            class="language-plaintext highlighter-rouge">strcmp</code>, que vem da biblioteca <code
+            class="language-plaintext highlighter-rouge">string.h</code>.</p>
+      </li>
+      <li data-marker="*">
+        <p>De fato, executar este código nos permite iterar sobre esse array de strings para ver se uma determinada
+          string está dentro dele. No entanto, se você receber um <em>segmentation fault</em>, onde uma parte da memória
+          foi acessada pelo seu programa que não deveria ser acessada, certifique-se de ter <code
+            class="language-plaintext highlighter-rouge">i &lt; 6</code> observado acima em vez de <code
+            class="language-plaintext highlighter-rouge">i &lt; 7</code>.</p>
+      </li>
+      <li data-marker="*">
+        <p>Podemos combinar essas ideias de números e strings em um único programa. Digite <code
+            class="language-plaintext highlighter-rouge">code phonebook.c</code> em sua janela do terminal e escreva o
+          código da seguinte maneira:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Arrays of strings</span>
+    <span class="n">string</span> <span class="n">names</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"John"</span><span class="p">,</span> <span class="s">"Aldo"</span><span class="p">};</span>
+    <span class="n">string</span> <span class="n">numbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"+55(82)99417-9669"</span><span class="p">,</span> <span class="s">"+55(82)99635-6612"</span><span class="p">};</span>
+
+    <span class="c1">// Search for name</span>
+    <span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Found %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Not found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+      </code></pre>
+          </div>
+        </div>
+        <p>Observe que o número de John começa com <code class="language-plaintext highlighter-rouge">99417</code> e
+          o número de telefone de Aldo começa com '99635'. Portanto, <code
+            class="language-plaintext highlighter-rouge">names[0]</code> é John e <code
+            class="language-plaintext highlighter-rouge">numbers[0]</code> é o número de John.</p>
+      </li>
+      <li data-marker="*">Embora esse código funcione, há diversas ineficiências. De fato, há uma chance de que os nomes
+        e números das pessoas possam não corresponder. Não seria bom se pudéssemos criar nosso próprio tipo de dados
+        onde pudéssemos associar uma pessoa com o número de telefone?</li>
+    </ul>
+    <h2 id="data-structures">Estruturas de Dados</h2>
+    <ul>
+      <li data-marker="*">
+        <p>Acontece que C permite que criemos nossos próprios tipos de dados por meio de uma <code
+            class="language-plaintext highlighter-rouge">struct</code>. Modifique seu código da seguinte forma:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="k">typedef</span> <span class="k">struct</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">string</span> <span class="n">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">person</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">person</span> <span class="n">people</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">"John"</span><span class="p">;</span>
+    <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">number</span> <span class="o">=</span> <span class="s">"+55(82)99417-9669"</span><span class="p">;</span>
+
+    <span class="n">people</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Aldo"</span><span class="p">;</span>
+    <span class="n">people</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">number</span> <span class="o">=</span> <span class="s">"+55(82)99635-6612"</span><span class="p">;</span>
+
+    <span class="c1">// Search for name</span>
+    <span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Found %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">people</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">number</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Not found</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+      </code></pre>
+          </div>
+        </div>
+        <p>Observe que o código começa com <code class="language-plaintext highlighter-rouge">typedef struct</code>,
+          onde um novo tipo de dados chamado <code class="language-plaintext highlighter-rouge">person</code> é
+          definido. Dentro de uma <code class="language-plaintext highlighter-rouge">person</code>, há uma string
+          chamada <code class="language-plaintext highlighter-rouge">name</code> e uma string chamada <code
+            class="language-plaintext highlighter-rouge">number</code>. Na função <code
+            class="language-plaintext highlighter-rouge">main</code>, comece criando um array chamado <code
+            class="language-plaintext highlighter-rouge">people</code> que é do tipo <code
+            class="language-plaintext highlighter-rouge">person</code> e tem tamanho 2. Em seguida, atualize os nomes e
+          números de telefone das duas pessoas em nosso array <code
+            class="language-plaintext highlighter-rouge">people</code>. Mais importante ainda, observe como a
+          <em>notação de ponto</em>, como <code class="language-plaintext highlighter-rouge">people[0].name</code>,
+          permite-nos acessar a <code class="language-plaintext highlighter-rouge">person</code> na posição 0 e atribuir
+          a essa pessoa um nome.</p>
+      </li>
+    </ul>
+    <h2 id="sorting">Ordenação</h2>
+    <ul>
+      <li data-marker="*"><em>Ordenação</em> é o ato de pegar uma lista não ordenada de valores e transformá-la em uma
+        lista ordenada.</li>
+      <li data-marker="*">Quando uma lista é ordenada, a busca nessa lista é muito menos exigente para o computador.
+        Lembre-se de que podemos usar a busca binária em uma lista ordenada, mas não em uma lista não ordenada.</li>
+      <li data-marker="*">Existem muitos tipos diferentes de algoritmos de ordenação.</li>
+      <li data-marker="*"><em>Selection sort</em> é um desses algoritmos de busca.</li>
+      <li data-marker="*">
+        <p>O algoritmo de selection sort em pseudocódigo é:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>For i from 0 to n–1
+  Find smallest number between numbers[i] and numbers[n-1]
+  Swap smallest number with numbers[i]
+  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Considere a lista não ordenada da seguinte forma:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  5 2 7 4 1 6 3 0
+  ^
+      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>O selection sort começará procurando o menor número na lista e trocará esse número com nossa posição atual na
+          lista. Neste caso, o zero é localizado e movido para nossa posição atual.</p>
+      </li>
+      <div class="language-plaintext highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code>  0 | 2 7 4 1 6 3 5
+    </code></pre>
+        </div>
+      </div>
+      </li>
+      <li data-marker="*">
+        <p>Agora, nosso problema ficou menor, pois sabemos que pelo menos o início de nossa lista está ordenado. Então,
+          podemos repetir o que fizemos, começando a partir do segundo número na lista:</p>
+      </li>
+      <div class="language-plaintext highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code>  0 | 2 7 4 1 6 3 5
+      ^    
+</code></pre>
+        </div>
+      </div>
+      </li>
+      <li data-marker="*">
+        <p>1 é o menor número agora, então vamos trocá-lo com o segundo número. Vamos repetir isso novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  0 1 | 7 4 2 6 3 5
+        ^     
+</code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  0 1 2 | 4 7 6 3 5
+          ^
+</code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  0 1 2 3 | 7 6 4 5
+            ^
+</code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  0 1 2 3 4 | 6 7 5
+              ^
+</code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">e assim por diante.</li>
+      <li data-marker="*"><em>Bubble sort</em> é outro algoritmo de ordenação que funciona trocando repetidamente
+        elementos para "borbulhar" os elementos maiores para o final.</li>
+      <li data-marker="*">
+        <p>O pseudocódigo para o bubble sort é:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>Repeat n-1 times
+    For i from 0 to n–2
+        If numbers[i] and numbers[i+1] out of order
+            Swap them
+      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Começaremos com nossa lista não ordenada, mas desta vez vamos olhar para pares de números e trocá-los se
+          estiverem fora de ordem:</p>
+      </li>
+      <div class="language-plaintext highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code>5 2 7 4 1 6 3 0
+^ ^
+2 5 7 4 1 6 3 0
+  ^ ^
+2 5 7 4 1 6 3 0
+    ^ ^
+2 5 4 7 1 6 3 0
+      ^ ^
+2 5 4 1 7 6 3 0
+        ^ ^
+2 5 4 1 6 7 3 0
+          ^ ^
+2 5 4 1 6 3 7 0
+            ^ ^
+2 5 4 1 6 3 0 7
+        </code></pre>
+        </div>
+      </div>
+      </li>
+      <li data-marker="*">
+        <p>Agora, o número mais alto está todo o caminho à direita, então melhoramos nosso problema. Vamos repetir isso
+          novamente:</p>
+      </li>
+      <div class="language-plaintext highlighter-rouge">
+        <div class="highlight">
+          <pre class="highlight"><code>2 5 4 1 6 3 0 | 7
+^ ^
+2 5 4 1 6 3 0 | 7
+  ^ ^
+2 4 5 1 6 3 0 | 7
+    ^ ^
+2 4 1 5 6 3 0 | 7
+      ^ ^
+2 4 1 5 6 3 0 | 7
+        ^ ^
+2 4 1 5 3 6 0 | 7
+          ^ ^
+2 4 1 5 3 0 6 | 7
+          </code></pre>
+        </div>
+      </div>
+      </li>
+      <li data-marker="*">
+        <p>Agora os dois maiores valores estão à direita. Vamos repetir novamente:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>2 4 1 5 3 0 | 6 7
+^ ^
+2 4 1 5 3 0 | 6 7
+  ^ ^
+2 1 4 5 3 0 | 6 7
+    ^ ^
+2 1 4 5 3 0 | 6 7
+      ^ ^
+2 1 4 3 5 0 | 6 7
+        ^ ^
+2 1 4 3 0 5 | 6 7
+              </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>2 1 4 3 0 | 5 6 7
+^ ^
+1 2 4 3 0 | 5 6 7
+  ^ ^
+1 2 3 4 0 | 5 6 7
+    ^ ^
+1 2 3 4 0 | 5 6 7
+      ^ ^
+1 2 3 0 4 | 5 6 7
+                  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>1 2 3 0 | 4 5 6 7
+^ ^
+1 2 3 0 | 4 5 6 7
+  ^ ^
+1 2 3 0 | 4 5 6 7
+    ^ ^
+1 2 0 3 | 4 5 6 7
+                      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e novamente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>1 2 0 | 3 4 5 6 7
+^ ^
+1 2 0 | 3 4 5 6 7
+  ^ ^
+1 0 2 | 3 4 5 6 7
+                          </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>... e finalmente...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>1 0 | 2 3 4 5 6 7
+^ ^
+0 1 | 2 3 4 5 6 7
+                              </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">Observe que, à medida que percorremos nossa lista, cada vez mais dela se torna ordenada, então
+        só precisamos olhar para os pares de números que ainda não foram ordenados.</li>
+      <li data-marker="*">
+        <p>Ao analisar o selection sort, fizemos apenas sete comparações. Representando isso matematicamente, onde
+          <em>n</em> representa o número de casos, poderia ser dito que o selection sort pode ser analisado como:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>(n-1)+(n-2)+(n-3)+ ... + 1
+    </code></pre>
+          </div>
+        </div>
+        <p>ou, de forma mais simples <strong>n^2/2 - n/2</strong>.</p>
+      </li>
+      <li data-marker="*">Considerando que a análise matemática, n<sup>2</sup> é realmente o fator mais influente na
+        determinação da eficiência deste algoritmo. Portanto, o selection sort é considerado da ordem de <strong>O(n^2)</strong> no
+        pior caso em que todos os valores estão desordenados. Mesmo quando todos os valores estão ordenados, levará o
+        mesmo número de passos. Portanto, o melhor caso pode ser observado como <strong>&Omega;(n^2)</strong>. Como os casos de limite
+        superior e limite inferior são os mesmos, a eficiência deste algoritmo como um todo pode ser considerada como
+        <strong>&Theta;(n^2)</strong>.</li>
+      <li data-marker="*">Ao analisar o bubble sort, o pior caso é <strong>O(n^2)</strong>. O melhor caso é <strong>&Omega;(n)</strong>.</li>
+      <li data-marker="*">Você pode <a
+          href="https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html" target="_blank">visualizar</a> uma comparação desses
+        algoritmos.</li>
+    </ul>
+    <h2 id="recursion">Recursão</h2>
+    <ul>
+      <li data-marker="*">Como poderíamos melhorar nossa eficiência em nossa classificação?</li>
+      <li data-marker="*">
+        <p>A <em>recursão</em> é um conceito dentro da programação em que uma função chama a si mesma. Vimos isso
+          anteriormente quando vimos...</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>If no doors
+    Return false
+If number behind middle door
+    Return true
+Else if number &lt; middle door
+    Search left half
+Else if number &gt; middle door
+    Search right half
+  </code></pre>
+          </div>
+        </div>
+        <p>Observe que estamos chamando <code class="language-plaintext highlighter-rouge">search</code> em iterações
+          cada vez menores deste problema.</p>
+      </li>
+      <li data-marker="*">
+        <p>Da mesma forma, em nosso pseudocódigo para a Semana 0, você pode ver onde a recursão foi implementada:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>1  Pick up phone book
+2  Open to middle of phone book
+3  Look at page
+4  If person is on page
+5      Call person
+6  Else if person is earlier in book
+7      Open to middle of left half of book
+8      Go back to line 3
+9  Else if person is later in book
+10     Open to middle of right half of book
+11     Go back to line 3
+12 Else
+13     Quit
+      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Considere como na Semana 1 nós queríamos criar uma estrutura em forma de pirâmide da seguinte forma:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>#
+##
+###
+####
+          </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Para implementar isso usando recursão, digite <code
+            class="language-plaintext highlighter-rouge">recursão de código.c</code> em sua janela de terminal e escreva
+          o código da seguinte forma:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">draw</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="n">draw</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+                </code></pre>
+          </div>
+        </div>
+        <p>Observe que a função draw chama a si mesma. Além disso, note que seu código pode ficar preso em um loop
+          infinito. Para sair desse loop, se você ficar preso, pressione <code
+            class="language-plaintext highlighter-rouge">ctrl-c</code> no seu teclado. A razão pela qual isso cria um
+          loop infinito é que não há nada dizendo ao programa para encerrar. Não há um caso em que o programa esteja
+          concluído.</p>
+      </li>
+      <li data-marker="*">
+        <p>Podemos corrigir nosso código da seguinte maneira:</p>
+        <div class="language-c highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get height of pyramid</span>
+    <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">get_int</span><span class="p">(</span><span class="s">"Height: "</span><span class="p">);</span>
+
+    <span class="c1">// Draw pyramid</span>
+    <span class="n">draw</span><span class="p">(</span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// If nothing to draw</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Draw pyramid of height n - 1</span>
+    <span class="n">draw</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Draw one more row of width n</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"#"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+      </code></pre>
+          </div>
+        </div>
+        <p>Observe que o <em>caso base</em> garante que o código não será executado infinitamente. A linha <code
+            class="language-plaintext highlighter-rouge">if (n &lt;= 0)</code> termina a recursão porque o problema foi
+          resolvido. Sempre que <code class="language-plaintext highlighter-rouge">draw</code> chama a si mesma, ela se
+          chama com <code class="language-plaintext highlighter-rouge">n-1</code>. Em algum momento, <code
+            class="language-plaintext highlighter-rouge">n-1</code> será igual a <code
+            class="language-plaintext highlighter-rouge">0</code>, resultando na função <code
+            class="language-plaintext highlighter-rouge">draw</code> retornando e o programa terminando.</p>
+      </li>
+    </ul>
+    <h2 id="merge-sort">Merge Sort</h2>
+    <ul>
+      <li data-marker="*">Agora podemos aproveitar a recursão em nossa busca por um algoritmo de ordenação mais
+        eficiente e implementar o que é chamado de <em>merge sort</em>, um algoritmo de ordenação muito eficiente.</li>
+      <li data-marker="*">
+        <p>O pseudocódigo para o merge sort é bastante curto:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>If only one number
+    Quit
+Else
+    Sort left half of number
+    Sort right half of number
+    Merge sorted halves
+  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Considere a seguinte lista de números:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  7254
+      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Primeiro, o merge sort pergunta: "este é apenas um número?" A resposta é "não", então o algoritmo continua.
+        </p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  7254
+          </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Em segundo lugar, o merge sort agora dividirá os números ao meio (ou o mais próximo possível) e ordenará a
+          metade esquerda dos números.</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  72|54
+              </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Terceiro, o merge sort olharia para esses números à esquerda e perguntaria: "é apenas um número?" Como a
+          resposta é não, então ele dividiria os números à esquerda ao meio.</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  7|2
+                  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Em quarto lugar, o merge sort irá novamente perguntar: "este é apenas um número?" A resposta é sim desta vez!
+          Portanto, ele irá interromper esta tarefa e retornar à última tarefa que estava executando neste ponto:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  72|54
+                      </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Em quinto lugar, o merge sort ordenará os números à esquerda.</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  27|54
+                          </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Agora, voltamos ao ponto em que paramos no pseudocódigo, agora que o lado esquerdo foi ordenado. Um processo
+          semelhante de etapas 3-5 ocorrerá com os números do lado direito. Isso resultará em:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  27|45
+                              </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">
+        <p>Ambas as metades estão agora ordenadas. Finalmente, o algoritmo irá mesclar ambos os lados. Ele irá olhar
+          para o primeiro número à esquerda e o primeiro número à direita. Ele irá colocar o número menor primeiro, em
+          seguida, o segundo menor. O algoritmo irá repetir isso para todos os números, resultando em:</p>
+        <div class="language-plaintext highlighter-rouge">
+          <div class="highlight">
+            <pre class="highlight"><code>  2457
+                                  </code></pre>
+          </div>
+        </div>
+      </li>
+      <li data-marker="*">O Merge sort está completo e o programa é finalizado.</li>
+      <li data-marker="*">O Merge sort é um algoritmo de ordenação muito eficiente com o pior caso de <strong>O(n log n)</strong>. O
+        melhor caso ainda é <strong>&Omega;(n log n)</strong> porque o algoritmo ainda deve visitar cada elemento na lista. Portanto,
+        o Merge sort também é <strong>&Theta;(n log n)</strong> já que o melhor caso e o pior caso são iguais.</li>
+      <li data-marker="*">Uma <a href="https://www.youtube.com/watch?v=ZZuD6iUe3Pc" target="_blank">visualização</a> final foi
+        compartilhada.</li>
+    </ul>
+    <h2 id="summing-up">Resumindo</h2>
+    <p>Nesta lição, você aprendeu sobre o pensamento algorítmico e a construção de seus próprios tipos de dados.
+      Especificamente, você aprendeu sobre...</p>
+    <ul>
+      <li data-marker="*">Algoritmos.</li>
+      <li data-marker="*">Notação Big <em>O</em>.</li>
+      <li data-marker="*">Busca binária e busca linear.</li>
+      <li data-marker="*">Vários algoritmos de ordenação, incluindo bubble sort, selection sort e merge sort.</li>
+      <li data-marker="*">Recursão.</li>
+    </ul>
+
+
+
+
+
+
+    <p>Até a próxima!</p>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
