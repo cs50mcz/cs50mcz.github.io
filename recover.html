@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Recover</h2>
+    <hr>
+
+    <p>Implemente um programa que recupere arquivos JPEG de uma imagem forense, como mostrado abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./recover card.raw
+</code></pre></div></div>
+<h2 id="background">Contexto</h2>
+<p>Antecipando este problema, passamos os últimos dias tirando fotos no campus, todas salvas em uma câmera digital como JPEGs em um cartão de memória. Infelizmente, acabamos deletando todas elas! Felizmente, no mundo da informática, "deletado" geralmente não significa "deletado" tanto quanto "esquecido". Mesmo que a câmera insista que o cartão agora está em branco, temos certeza de que isso não é totalmente verdade. Na verdade, estamos esperando (bem, esperando mesmo!) que você possa escrever um programa que recupere as fotos para nós!</p>
+<p>Embora os arquivos JPEG sejam mais complicados do que os BMPs, eles têm "assinaturas", padrões de bytes que podem distingui-los de outros formatos de arquivo. Especificamente, os primeiros três bytes dos arquivos JPEG são</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0xff 0xd8 0xff
+</code></pre></div></div>
+<p>Do primeiro ao terceiro byte, da esquerda para a direita. Enquanto isso, o quarto byte é um dos seguintes: <code class="language-plaintext highlighter-rouge">0xe0</code>, <code class="language-plaintext highlighter-rouge">0xe1</code>, <code class="language-plaintext highlighter-rouge">0xe2</code>, <code class="language-plaintext highlighter-rouge">0xe3</code>, <code class="language-plaintext highlighter-rouge">0xe4</code>, <code class="language-plaintext highlighter-rouge">0xe5</code>, <code class="language-plaintext highlighter-rouge">0xe6</code>, <code class="language-plaintext highlighter-rouge">0xe7</code>, <code class="language-plaintext highlighter-rouge">0xe8</code>, <code class="language-plaintext highlighter-rouge">0xe9</code>, <code class="language-plaintext highlighter-rouge">0xea</code>, <code class="language-plaintext highlighter-rouge">0xeb</code>, <code class="language-plaintext highlighter-rouge">0xec</code>, <code class="language-plaintext highlighter-rouge">0xed</code>, <code class="language-plaintext highlighter-rouge">0xee</code>, ou <code class="language-plaintext highlighter-rouge">0xef</code>. Em outras palavras, os primeiros quatro bits do quarto byte são <code class="language-plaintext highlighter-rouge">1110</code>.</p>
+<p>É provável que, se você encontrar esse padrão de quatro bytes em mídias conhecidas por armazenar fotos (por exemplo, meu cartão de memória), eles demarcam o início de um arquivo JPEG. Para ser justo, você pode encontrar esses padrões em alguns discos por puro acaso, portanto, a recuperação de dados não é uma ciência exata.</p>
+<p>Felizmente, as câmeras digitais tendem a armazenar fotografias contiguamente em cartões de memória, em que cada foto é armazenada imediatamente após a foto anteriormente tirada. Consequentemente, o início de um JPEG geralmente demarca o fim de outro. No entanto, as câmeras digitais geralmente inicializam cartões com um sistema de arquivos FAT cujo "tamanho do bloco" é de 512 bytes (B). A implicação é que essas câmeras só gravam nesses cartões em unidades de 512 B. Uma foto que tenha 1 MB (ou seja, 1.048.576 B) ocupa assim 1048576 ÷ 512 = 2048 "blocos" em um cartão de memória. Mas o mesmo ocorre com uma foto que seja, por exemplo, um byte menor (ou seja, 1.048.575 B)! O espaço desperdiçado no disco é chamado de "espaço ocioso". Investigadores forenses muitas vezes examinam o espaço ocioso em busca de vestígios de dados suspeitos.</p>
+<p>A implicação de todos esses detalhes é que você, o investigador, provavelmente pode escrever um programa que itera sobre uma cópia do meu cartão de memória, procurando pelas assinaturas dos arquivos JPEG. Cada vez que você encontrar uma assinatura, pode abrir um novo arquivo para escrita e começar a preencher esse arquivo com bytes do meu cartão de memória, fechando esse arquivo somente quando encontrar outra assinatura. Além disso, em vez de ler os bytes do meu cartão de memória um de cada vez, você pode ler 512 deles de uma vez em um buffer, por questões de eficiência. Graças ao sistema de arquivos FAT, você pode confiar que as assinaturas dos arquivos JPEG estarão "alinhadas com o bloco". Ou seja, você só precisa procurar essas assinaturas nos primeiros quatro bytes de um bloco.</p>
+<p>Perceba, é claro, que os arquivos JPEG podem se estender por blocos contíguos. Caso contrário, nenhum arquivo JPEG poderia ser maior do que 512 B. Mas o último byte de um arquivo JPEG pode não estar no final de um bloco. Lembre-se da possibilidade de espaço livre. Mas não se preocupe. Como este cartão de memória era novo quando comecei a tirar fotos, é provável que ele tenha sido "zerado" (ou seja, preenchido com 0s) pelo fabricante, o que significa que qualquer espaço livre será preenchido com 0s. Está tudo bem se esses 0s finais acabarem nos arquivos JPEG que você recuperar; eles ainda devem ser visualizáveis.</p>
+<p>Agora, eu só tenho um cartão de memória, mas há muitos de vocês! Então eu criei uma "imagem forense" do cartão, armazenando seu conteúdo, byte por byte, em um arquivo chamado <code class="language-plaintext highlighter-rouge">card.raw</code>. Para que você não perca tempo iterando desnecessariamente por milhões de 0s, eu só criei a imagem dos primeiros poucos megabytes do cartão de memória. Mas você deve encontrar, em última análise, que a imagem contém 50 arquivos JPEG.</p>
+    
+
+
+
+
+    
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/4/recover.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">recover.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip recover.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">recover</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm recover.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd recover</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>recover/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
+<p>e veja dois arquivo chamados <code class="language-plaintext highlighter-rouge">recover.c</code> e 'card.raw'. Executando <code class="language-plaintext highlighter-rouge">code runoff.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+
+
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Implemente um programa chamado <code class="language-plaintext highlighter-rouge">recover</code> que recupera arquivos JPEG de uma imagem forense.</p>
+<ul>
+  <li data-marker="*">Implemente seu programa em um arquivo chamado <code class="language-plaintext highlighter-rouge">recover.c</code> em um diretório chamado <code class="language-plaintext highlighter-rouge">recover</code>.</li>
+  <li data-marker="*">Seu programa deve aceitar exatamente um argumento de linha de comando, o nome de uma imagem forense da qual recuperar arquivos JPEG.</li>
+  <li data-marker="*">Se o seu programa não for executado com exatamente um argumento de linha de comando, ele deve lembrar o usuário do uso correto e <code class="language-plaintext highlighter-rouge">main</code> deve retornar <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li data-marker="*">Se a imagem forense não puder ser aberta para leitura, seu programa deve informar o usuário disso, e <code class="language-plaintext highlighter-rouge">main</code> deve retornar <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li data-marker="*">Os arquivos que você gerar devem ser nomeados como <code class="language-plaintext highlighter-rouge">###.jpg</code>, onde <code class="language-plaintext highlighter-rouge">###</code> é um número decimal de três dígitos, começando com <code class="language-plaintext highlighter-rouge">000</code> para a primeira imagem e contando para cima.</li>
+  <li data-marker="*">Seu programa, se usar <code class="language-plaintext highlighter-rouge">malloc</code>, não deve vazar memória.</li>
+</ul>
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./recover
+  Usage: ./recover IMAGE
+  </code></pre></div></div>
+  <p>onde <code class="language-plaintext highlighter-rouge">IMAGE</code> é o nome da imagem forense. Por exemplo:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./recover card.raw
+  </code></pre></div></div>
+
+
+
+  <h2 id="hints">Dicas</h2>
+<p>Lembre-se de que você pode abrir o arquivo <code class="language-plaintext highlighter-rouge">card.raw</code> programaticamente com <code class="language-plaintext highlighter-rouge">fopen</code>, assim como abaixo, desde que <code class="language-plaintext highlighter-rouge">argv[1]</code> exista.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">"r"</span><span class="p">);</span>
+</code></pre></div></div>
+<p>Quando executado, seu programa deve recuperar todos os arquivos JPEG de <code class="language-plaintext highlighter-rouge">card.raw</code>, armazenando cada um como um arquivo separado em seu diretório de trabalho atual. Seu programa deve numerar os arquivos que ele produz ao nomear cada um como <code class="language-plaintext highlighter-rouge">###.jpg</code>, onde <code class="language-plaintext highlighter-rouge">###</code> é um número decimal de três dígitos a partir de <code class="language-plaintext highlighter-rouge">000</code> em diante. Torne-se amigo de <a href="https://man.cs50.io/3/sprintf"><code class="language-plaintext highlighter-rouge">sprintf</code></a> e observe que <code class="language-plaintext highlighter-rouge">sprintf</code> armazena uma string formatada em um local na memória. Dado o formato prescrito de <code class="language-plaintext highlighter-rouge">###.jpg</code> para o nome do arquivo JPEG, quantos bytes você deve alocar para essa string? (Não se esqueça do caractere NUL!)</p>
+<p>Não é necessário tentar recuperar os nomes originais dos arquivos JPEG. Para verificar se os JPEGs que seu programa produziu estão corretos, basta clicar duas vezes e dar uma olhada! Se cada foto aparecer intacta, sua operação provavelmente foi bem-sucedida!</p>
+<p>No entanto, é provável que os JPEGs que o primeiro rascunho do seu código produzir não estejam corretos. (Se você abri-los e não ver nada, provavelmente não estão corretos!) Execute o comando abaixo para excluir todos os arquivos JPEG no seu diretório de trabalho atual.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm *.jpg
+</code></pre></div></div>
+<p>Se você preferir não ser solicitado a confirmar cada exclusão, execute o comando abaixo em vez disso.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm -f *.jpg
+</code></pre></div></div>
+<p>Apenas tenha cuidado com o interruptor <code class="language-plaintext highlighter-rouge">-f</code>, pois ele "força" a exclusão sem solicitar confirmação.</p>
+<p>Se você deseja criar um novo tipo para armazenar um byte de dados, pode fazê-lo através do código abaixo, que define um novo tipo chamado <code class="language-plaintext highlighter-rouge">BYTE</code> como um <code class="language-plaintext highlighter-rouge">uint8_t</code> (um tipo definido em <code class="language-plaintext highlighter-rouge">stdint.h</code>, representando um inteiro não assinado de 8 bits).</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>typedef uint8_t BYTE;
+</code></pre></div></div>
+<p>Lembre-se também que você pode ler dados de um arquivo usando <a href="https://man.cs50.io/3/fread"><code class="language-plaintext highlighter-rouge">fread</code></a>, que lerá dados de um arquivo para uma localização na memória. Conforme sua <a href="https://man.cs50.io/3/fread">página do manual</a>, <code class="language-plaintext highlighter-rouge">fread</code> retorna o número de bytes que leu, caso em que deverá retornar <code class="language-plaintext highlighter-rouge">512</code> ou <code class="language-plaintext highlighter-rouge">0</code>, dado que <code class="language-plaintext highlighter-rouge">card.raw</code> contém algum número de blocos de 512 bytes. Para ler todos os blocos de <code class="language-plaintext highlighter-rouge">card.raw</code>, depois de abri-lo com <code class="language-plaintext highlighter-rouge">fopen</code>, deve ser suficiente usar um loop como:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="p">(</span><span class="n">fread</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">BLOCK_SIZE</span><span class="p">,</span> <span class="n">raw_file</span><span class="p">)</span> <span class="o">==</span> <span class="n">BLOCK_SIZE</span><span class="p">)</span>
+<span class="p">{</span>
+
+
+<span class="p">}</span>  </code></pre></div></div>
+  <p>Dessa forma, assim que <code class="language-plaintext highlighter-rouge">fread</code> retornar <code class="language-plaintext highlighter-rouge">0</code> (o que é efetivamente <code class="language-plaintext highlighter-rouge">false</code>), seu loop terminará.</p>
+
+
+
+
+
+  <h2 id="testing">Testando</h2>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/recover</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 recover.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/recover</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

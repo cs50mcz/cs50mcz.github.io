@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 4: Smiley</h2>
+    <hr>
+
+    <h2 id="objetivos-de-aprendizado">Objetivos de Aprendizado</h2>
+<ul>
+  <li data-marker="*">Aprender como trabalhar com imagens</li>
+  <li data-marker="*">Praticar a manipulação de pixels</li>
+</ul>
+
+<h2 id="contexto">Contexto</h2>
+<p><img src="./assets/images/smiley_spec_image.png" alt="Smiley"></p>
+<p>Você já viu um pouco na aula sobre como imagens são armazenadas em um computador. Neste laboratório, você irá praticar trabalhando com um arquivo BMP, na verdade a imagem de uma cara sorridente, como a mostrada aqui, e mudará todos os pixels pretos para uma cor de sua escolha.</p>
+<p>No entanto, a imagem da cara sorridente com a qual você irá trabalhar não é feita apenas de 0's e 1's, ou pixels em preto e branco, mas consiste de 24 bits por pixel. Usa oito bits para representar valores vermelhos, oito bits para verde e oito bits para azul. Como cada cor usa oito bits ou um byte, podemos usar um número na faixa de 0 a 255 para representar o valor de sua cor. Em hexadecimal, isso é representado por <code class="language-plaintext highlighter-rouge">0x00</code> a <code class="language-plaintext highlighter-rouge">0xff</code>. Misturando esses valores de vermelho, verde e azul, podemos criar milhões de cores possíveis.</p>
+<p>Se você olhar para <code class="language-plaintext highlighter-rouge">bmp.h</code>, um dos arquivos de ajuda no código de distribuição, você verá como cada <code class="language-plaintext highlighter-rouge">triple RGB</code> é representado por uma <code class="language-plaintext highlighter-rouge">struct</code> como:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>typedef struct
+{
+    BYTE rgbtBlue;
+    BYTE rgbtGreen;
+    BYTE rgbtRed;
+}
+RGBTRIPLE;  </code></pre></div></div>
+
+<h2 id="learning-goals">Objetivos de Aprendizado</h2>
+<p>onde <code class="language-plaintext highlighter-rouge">BYTE</code> é definido como um inteiro de 8 bits.</p>
+<p>Você notará que vários arquivos são fornecidos no código de distribuição para lidar com a leitura e gravação de um arquivo de imagem, bem como para lidar com os metadados ou "headers" da imagem. Você estará completando a função <code class="language-plaintext highlighter-rouge">colorize</code> em <code class="language-plaintext highlighter-rouge">helpers.c</code>, que já possui como parâmetros de entrada a altura, largura da imagem e uma matriz bidimensional de <code class="language-plaintext highlighter-rouge">RGBTRIPLE</code>'s que criam a própria imagem.</p>
+<ul>
+  <li data-marker="+">Dicas
+    <ul>
+      <li data-marker="*">Se salvássemos o primeiro pixel como <code class="language-plaintext highlighter-rouge">RGBTRIPLE pixel = image[0][0]</code>, poderíamos acessar cada uma das cores individuais de <code class="language-plaintext highlighter-rouge">pixel</code> como <code class="language-plaintext highlighter-rouge">pixel.rgbtBlue</code>, <code class="language-plaintext highlighter-rouge">pixel.rgbtGreen</code> e <code class="language-plaintext highlighter-rouge">pixel.rgbtRed</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="demo">Demo</h2>
+
+<script async="" data-autoplay="1" data-cols="100" data-loop="1" data-rows="12" id="asciicast-vSNSSp3y9K4fvpMUghBaX2sl4" src="https://asciinema.org/a/vSNSSp3y9K4fvpMUghBaX2sl4.js"></script>
+
+
+
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/4/smiley.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">smiley.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip smiley.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">sort</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm smiley.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd smiley
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>smiley/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deverá ver <code class="language-plaintext highlighter-rouge">bmp.h</code>, <code class="language-plaintext highlighter-rouge">colorize.c</code>, <code class="language-plaintext highlighter-rouge">helpers.c</code>, <code class="language-plaintext highlighter-rouge">helpers.h</code>, <code class="language-plaintext highlighter-rouge">Makefile</code>, e <code class="language-plaintext highlighter-rouge">smiley.bmp</code>.</p>
+<p>Se você tiver algum problema, siga essas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+<h2 id="implementation-details">Detalhes da Implementação</h2>
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">helpers.c</code> e observe que a função <code class="language-plaintext highlighter-rouge">colorize</code> está incompleta. Observe que a altura, largura e uma matriz bidimensional de pixels da imagem são definidas como parâmetros de entrada para esta função. Você deve implementar esta função para mudar todos os pixels pretos da imagem para uma cor de sua escolha.</p>
+<p>Você pode compilar seu código digitando simplesmente <code class="language-plaintext highlighter-rouge">make</code> no prompt <code class="language-plaintext highlighter-rouge">$</code>.</p>
+<p>Em seguida, execute o programa digitando:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./colorize smiley.bmp outfile.bmp
+</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">outfile.bmp</code> é o nome do novo arquivo BMP que você está criando.</p>
+<h2 id="thought-question">Para Pensar</h2>
+<ul>
+  <li data-marker="*">Como você acha que representa um pixel preto ao usar um arquivo BMP colorido de 24 bits?</li>
+  <li data-marker="*">Isso é o mesmo ou diferente ao misturar tintas para representar várias cores?</li>
+</ul>
+<h2 id="how-to-test-your-code">Como Testar o Seu Código</h2>
+<p>Seu programa deve se comportar conforme os exemplos abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smiley/ $ ./colorize smiley.bmp smiley_out.bmp
+</code></pre></div></div>
+
+<p>Quando o seu programa estiver funcionando corretamente, você deverá ver um novo arquivo, <code class="language-plaintext highlighter-rouge">smiley_out.bmp</code>, no diretório <code class="language-plaintext highlighter-rouge">smiley</code>. Abra-o e veja se os pixels pretos agora são da cor que você especificou.</p>
+<p>Você pode verificar o seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>, um programa que o CS50 usará para testar o seu código quando você o enviar, digitando o seguinte no prompt <code class="language-plaintext highlighter-rouge">$</code>. Mas certifique-se de testá-lo também!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/smiley
+</code></pre></div></div>
+
+<p>Para avaliar se o estilo do seu código (indentação e espaçamento) está correto, digite o seguinte no prompt <code class="language-plaintext highlighter-rouge">$</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 helpers.c
+</code></pre></div></div>
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/smiley</code></pre></div></div>
+
+
+
+<details><summary>Quer ver a solução da equipe?</summary><div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"helpers.h"</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">colorize</span><span class="p">(</span><span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">RGBTRIPLE</span> <span class="n">image</span><span class="p">[</span><span class="n">height</span><span class="p">][</span><span class="n">width</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// Make black pixels turn red</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">rgbtRed</span> <span class="o">==</span> <span class="mh">0x00</span> <span class="o">&amp;&amp;</span> <span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">rgbtGreen</span> <span class="o">==</span> <span class="mh">0x00</span> <span class="o">&amp;&amp;</span> <span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">rgbtBlue</span> <span class="o">==</span> <span class="mh">0x00</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">image</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">rgbtRed</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div></details>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

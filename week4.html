@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Week 4</h2>
+    <hr>
+
+    <p> Ponteiros. Falhas de Segmentação. Alocação Dinâmica de Memória. Stack. Heap. Estouro de buffer. E/S de arquivo. Imagens.
+    </p>
+    <ul id="markdown-toc">
+      <li data-marker="-"><strong>Shorts</strong>
+        <ol>
+          <li><a href="hexadecimal.html">Hexadecimal</a></li>
+          <li><a href="pointers.html">Ponteiros</a></li>
+          <li><a href="customtypes.html">Definindo Tipos Personalizados</a></li>
+          <li><a href="memoryallocation.html">Alocação Dinâmica de Memória</a></li>
+          <li><a href="callstacks.html">Pilhas de Chamada</a></li>
+          <li><a href="filepointers.html">Ponteiros de Arquivo</a></li>
+        </ol>
+      </li>
+      <li><a href="lab4.html">Lab 4</a></li>
+      <li><a href="pset4.html">Problem Set 4</a></li>
+    </ul>
+    <br>
+    <section>
+      <h2 id="welcome">Notas</h2>
+      <hr>
+    </section>
+
+    <ul id="markdown-toc">
+      <li><a href="#welcome" id="markdown-toc-welcome">Bem-vindo!</a></li>
+      <li><a href="#memory" id="markdown-toc-memory">Memória</a></li>
+      <li><a href="#hexadecimal" id="markdown-toc-hexadecimal">Hexadecimal</a></li>
+      <li><a href="#addresses" id="markdown-toc-addresses">Endereços</a></li>
+      <li><a href="#pointers" id="markdown-toc-pointers">Ponteiros</a></li>
+      <li><a href="#strings" id="markdown-toc-strings">Strings</a></li>
+      <li><a href="#pointer-arithmetic" id="markdown-toc-pointer-arithmetic">Aritmética de Ponteiros</a></li>
+      <li><a href="#comparing-strings" id="markdown-toc-comparing-strings">Comparando Strings</a></li>
+      <li><a href="#copying" id="markdown-toc-copying">Cópia</a></li>
+      <li><a href="#valgrind" id="markdown-toc-valgrind">Valgrind</a></li>
+      <li><a href="#garbage-values" id="markdown-toc-garbage-values">Valores Inválidos</a></li>
+      <li><a href="#pointer-fun-with-binky" id="markdown-toc-pointer-fun-with-binky">Diversão com Ponteiros com Binky</a></li>
+      <li><a href="#swap" id="markdown-toc-swap">Troca</a></li>
+      <li><a href="#overflow" id="markdown-toc-overflow">Estouro</a></li>
+      <li><a href="#scanf" id="markdown-toc-scanf"><code class="language-plaintext highlighter-rouge">scanf</code></a></li>
+      <li><a href="#files" id="markdown-toc-files">Arquivos</a></li>
+      <li><a href="#summing-up" id="markdown-toc-summing-up">Resumindo</a></li>
+    </ul>
+
+    <h2 id="welcome">Bem-vindo!</h2>
+<ul>
+  <li data-marker="*">Nas semanas anteriores, falamos sobre como as imagens são compostas por blocos menores chamados pixels.</li>
+  <li data-marker="*">Hoje, iremos entrar em mais detalhes sobre os zeros e uns que compõem essas imagens.</li>
+  <li data-marker="*">Além disso, discutiremos como acessar os dados subjacentes armazenados na memória do computador.</li>
+</ul>
+
+<h2 id="memory">Memória</h2>
+<ul>
+  <li data-marker="*">
+    <p>Você pode imaginar um drama policial em que uma imagem é aprimorada, aprimorada e aprimorada, mas não é totalmente precisa para a vida real. Na verdade, se você ampliar uma imagem, verá pixels.</p>
+    <p><img src="./assets/images/cs50Week4Slide012.png" alt="Uma foto borrada" title="borrada"></p>
+
+  </li>
+  <li data-marker="*">
+    <p>Você pode imaginar uma imagem como um mapa de bits, onde zeros representam preto e uns representam branco.</p>
+  </li>
+  <li data-marker="*">
+    <p><em>RGB</em>, ou <em>vermelho, verde, azul</em>, são números que representam a quantidade de cada uma dessas cores. No Adobe Photoshop, você pode ver essas configurações da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide016.png" alt="Um painel do photoshop com valores RGB e entrada hexadecimal" title="hex no photoshop"></p>
+
+<p>Observe como a quantidade de vermelho, azul e verde altera a cor selecionada.</p>
+</li>
+<li data-marker="*">
+  <p>Você pode ver pela imagem acima que a cor não é representada apenas em três valores. Na parte inferior da janela, há um valor especial composto por números e caracteres. <code class="language-plaintext highlighter-rouge">255</code> é representado como <code class="language-plaintext highlighter-rouge">FF</code>. Por que isso pode ser?</p>
+</li>
+</ul>
+
+<h2 id="hexadecimal">Hexadecimal</h2>
+<ul>
+  <li data-marker="*">
+    <p><em>Hexadecimal</em> é um sistema de contagem que possui 16 valores de contagem. Eles são os seguintes:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0 1 2 3 4 5 6 7 8 9 a b c d e f</code></pre></div> </div>
+    <p>Observe que <code class="language-plaintext highlighter-rouge">F</code> representa <code class="language-plaintext highlighter-rouge">15</code>.</p>
+      </li>
+      <li data-marker="*">Hexadecimal também é conhecido como <em>base-16</em>.</li>
+      <li data-marker="*">Ao contar em hexadecimal, cada coluna é uma potência de 16.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">0</code> é representado como <code class="language-plaintext highlighter-rouge">00</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">1</code> é representado como <code class="language-plaintext highlighter-rouge">01</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">9</code> é representado por <code class="language-plaintext highlighter-rouge">09</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">10</code> é representado como <code class="language-plaintext highlighter-rouge">0A</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">15</code> é representado como <code class="language-plaintext highlighter-rouge">0F</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">16</code> é representado como <code class="language-plaintext highlighter-rouge">10</code>.</li>
+      <li data-marker="*">O número <code class="language-plaintext highlighter-rouge">255</code> é representado como <code class="language-plaintext highlighter-rouge">FF</code>, porque 16 x 15 (ou <code class="language-plaintext highlighter-rouge">F</code>) é 240. Adicione mais 15 para fazer 255. Este é o maior número que você pode contar usando um sistema hexadecimal de dois dígitos.</li>
+      <li data-marker="*">Hexadecimal é útil porque pode ser representado usando menos dígitos. O hexadecimal nos permite representar informações de forma mais sucinta.</li>
+    </ul>
+
+    <h2 id="endereços">Endereços</h2>
+<ul>
+  <li data-marker="*">
+    <p>Nas últimas semanas, você pode se lembrar da nossa representação artística de blocos de memória concorrentes. Aplicando numeração hexadecimal a cada um desses blocos de memória, você pode visualizá-los da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide065.png" alt="Blocos de memória numerados em hexadecimal" title="hexadecimal de memória"></p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode imaginar como pode haver confusão em relação a se o bloco <code class="language-plaintext highlighter-rouge">10</code> acima pode representar uma localização na memória ou o valor <code class="language-plaintext highlighter-rouge">10</code>. Por conseguinte, por convenção, todos os números hexadecimais são frequentemente representados com o prefixo <code class="language-plaintext highlighter-rouge">0x</code>, conforme a seguir:</p>
+    <p><img src="./assets/images/cs50Week4Slide066.png" alt="Blocos de memória numerados em hexadecimal com 0x" title="0x"></p>
+  </li>
+  <li data-marker="*">
+    <p>Na sua janela do terminal, digite <code class="language-plaintext highlighter-rouge">code addresses.c</code> e escreva o seu código da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+    <p>Observe como <code class="language-plaintext highlighter-rouge">n</code> é armazenado na memória com o valor <code class="language-plaintext highlighter-rouge">50</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode visualizar como este programa armazena este valor da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide070.png" alt="o valor 50 armazenado em um local na memória com hex" title="hex"></p>
+  </li>
+  <li data-marker="*">
+    <p>A linguagem <code class="language-plaintext highlighter-rouge">C</code> possui dois operadores poderosos que se relacionam com a memória:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &amp; Fornece o endereço de algo armazenado na memória.
+  * Instrui o compilador a ir para um local na memória.    </code></pre></div> </div>
+
+  </li>
+  <li data-marker="*">
+    <p>Podemos aproveitar esse conhecimento modificando nosso código da seguinte maneira:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe o uso de <code class="language-plaintext highlighter-rouge">%p</code>, que nos permite visualizar o endereço de uma localização na memória. <code class="language-plaintext highlighter-rouge">&amp;n</code> pode ser traduzido literalmente como "o endereço de <code class="language-plaintext highlighter-rouge">n</code>." A execução deste código retornará um endereço de memória começando com <code class="language-plaintext highlighter-rouge">0x</code>.</p>
+</li>
+</ul>
+
+
+<h2 id="ponteiros">Ponteiros</h2>
+<ul>
+  <li data-marker="*">Um <em>ponteiro</em> é uma variável que contém o endereço de algum valor. Sucintamente, um ponteiro é um endereço na memória do seu computador.</li>
+  <li data-marker="*">
+    <p>Considere o seguinte código:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>      </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">p</code> é um ponteiro que contém um número que é o endereço de um inteiro <code class="language-plaintext highlighter-rouge">n</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Modifique o seu código da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que este código tem o mesmo efeito que nosso código anterior. Nós simplesmente utilizamos nosso novo conhecimento dos operadores <code class="language-plaintext highlighter-rouge">&amp;</code> e <code class="language-plaintext highlighter-rouge">*</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode visualizar nosso código da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide078.png" alt="Mesmo valor de 50 em uma localização de memória com um valor de ponteiro armazenado em outro lugar" title="ponteiro"></p>
+
+<p>Observe que o ponteiro parece bastante grande. De fato, um ponteiro geralmente é armazenado como um valor de 8 bytes.</p>
+</li>
+<li data-marker="*">
+  <p>Você pode visualizar com mais precisão um ponteiro como um endereço que aponta para outro:</p>
+  <p><img src="./assets/images/cs50Week4Slide079.png" alt="Um ponteiro como uma seta, apontando de uma localização da memória para outra" title="ponteiro"></p>
+</li>
+<li data-marker="*">
+  <p>Para ilustrar o uso do operador <code class="language-plaintext highlighter-rouge">*</code>, considere o seguinte:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+  </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span>
+<span class="p">}</span>  </code></pre></div>    </div>
+
+<p>Observe que a linha <code class="language-plaintext highlighter-rouge">printf</code> imprime o inteiro localizado no endereço de <code class="language-plaintext highlighter-rouge">p</code>.</p>
+</li></ul>
+<h2 id="strings">Strings</h2>
+<ul>
+  <li data-marker="*">Agora que temos um modelo mental para ponteiros, podemos aprofundar um nível de simplificação que foi oferecido anteriormente neste curso.</li>
+  <li data-marker="*">
+    <p>Lembre-se de que uma string é simplesmente um array de caracteres. Por exemplo, <code class="language-plaintext highlighter-rouge">string s = "HI!"</code> pode ser representada da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide085.png" alt="A string HI with an exclamation point stored in memory" title="hi"></p>
+  </li>
+  <li data-marker="*">
+    <p>No entanto, o que é <code class="language-plaintext highlighter-rouge">s</code> realmente? Onde está o <code class="language-plaintext highlighter-rouge">s</code> armazenado na memória? Como você pode imaginar, <code class="language-plaintext highlighter-rouge">s</code> precisa ser armazenado em algum lugar. Você pode visualizar a relação de <code class="language-plaintext highlighter-rouge">s</code> com a string da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide086.png" alt="A mesma string HI com um ponteiro apontando para ela" title="hi pointer"></p>
+
+<p>Observe como um ponteiro chamado <code class="language-plaintext highlighter-rouge">s</code> informa ao compilador onde o primeiro byte da string existe na memória.</p>
+</li>
+<li data-marker="*">
+  <p>Modifique seu código da seguinte forma:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"HI!"</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que o código acima imprime os locais de memória de cada caractere na string <code class="language-plaintext highlighter-rouge">s</code>.</p>
+</li>
+<li data-marker="*">
+    <p>Da mesma forma, você pode modificar seu código da seguinte maneira:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="s">"HI!"</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que este código apresentará a string que começa no local de <code class="language-plaintext highlighter-rouge">s</code>.</p>
+  </li>
+</ul>
+<h2 id="pointer-arithmetic">Aritmética de ponteiros</h2>
+<ul>
+  <li data-marker="*">
+    <p>Você pode modificar seu código para realizar a mesma coisa de forma mais longa, da seguinte maneira:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="s">"HI!"</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que estamos imprimindo cada caractere no local de <code class="language-plaintext highlighter-rouge">s</code>.</p>
+</li>
+<li data-marker="*">
+  <p>Além disso, você pode modificar seu código da seguinte maneira:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+  </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="s">"HI!"</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>  </code></pre></div>    </div>
+
+<p>Observe que o primeiro caractere na posição de <code class="language-plaintext highlighter-rouge">s</code> é impresso. Em seguida, o caractere na posição <code class="language-plaintext highlighter-rouge">s + 1</code> é impresso, e assim por diante.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você consegue imaginar o que aconteceria se você tentasse acessar algo na localização <code class="language-plaintext highlighter-rouge">s + 50</code>? Hackers às vezes tentam ganhar acesso a itens na memória aos quais não deveriam ter acesso. Se você tentar isso, o programa provavelmente sairá como uma precaução de segurança.</p>
+  </li>
+</ul>
+<h2 id="comparando-strings">Comparando Strings</h2>
+<ul>
+  <li data-marker="*">Uma string de caracteres é simplesmente uma matriz de caracteres identificada pelo seu primeiro byte.</li>
+  <li data-marker="*">Lembre-se de que na semana passada propusemos que não podemos comparar duas strings usando o operador <code class="language-plaintext highlighter-rouge">==</code>.</li>
+  <li data-marker="*">Utilizar o operador <code class="language-plaintext highlighter-rouge">==</code> na tentativa de comparar strings tentará comparar as localizações de memória das strings em vez dos caracteres contidos nelas. Por isso, recomendamos o uso de <code class="language-plaintext highlighter-rouge">strcmp</code>.</li>
+  <li data-marker="*">
+    <p>Para ilustrar isso, digite <code class="language-plaintext highlighter-rouge">code compare.c</code> e escreva o código a seguir:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get two strings</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"t: "</span><span class="p">);</span>
+
+    <span class="c1">// Compare strings' addresses</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="n">t</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Same</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Different</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Perceba que digitar <code class="language-plaintext highlighter-rouge">OI!</code> para ambas as strings ainda resulta na saída de <code class="language-plaintext highlighter-rouge">Diferente</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Por que essas strings aparentemente são diferentes? Você pode usar o seguinte para visualizar:</p>
+    <p><img src="./assets/images/cs50Week4Slide115.png" alt="duas strings armazenadas separadamente na memória" title="duas strings"></p>
+  </li>
+  <li data-marker="*">
+    <p>Para maior clareza, você pode ver como a seguinte imagem ilustra ponteiros apontando para dois locais separados na memória:</p>
+    <p><img src="./assets/images/cs50Week4Slide116.png" alt="duas strings armazenadas separadamente na memória com ponteiros separados apontando para elas" title="duas strings"></p>
+  </li>
+  <li data-marker="*">
+    <p>Modifique seu código da seguinte maneira:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get two strings</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"t: "</span><span class="p">);</span>
+
+    <span class="c1">// Print strings</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe como agora temos duas strings separadas armazenadas provavelmente em dois locais distintos.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode ver as localizações dessas duas strings armazenadas com uma pequena modificação:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get two strings</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"t: "</span><span class="p">);</span>
+
+    <span class="c1">// Print strings' addresses</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que o <code class="language-plaintext highlighter-rouge">%s</code> foi alterado para <code class="language-plaintext highlighter-rouge">%p</code> na instrução de impressão.</p>
+</li>
+</ul>
+<h2 id="cópia">Cópia</h2>
+<ul>
+  <li data-marker="*">Uma necessidade comum na programação é copiar uma string para outra.</li>
+  <li data-marker="*">
+    <p>Na janela do seu terminal, digite <code class="language-plaintext highlighter-rouge">code copy.c</code> e escreva o código a seguir:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+
+    <span class="c1">// Copy string's address</span>
+    <span class="n">string</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="c1">// Capitalize first letter in string</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="c1">// Print string twice</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">string t = s</code> copia o endereço de <code class="language-plaintext highlighter-rouge">s</code> para <code class="language-plaintext highlighter-rouge">t</code>. Isso não alcança o que estamos desejando. A string não é copiada - apenas o endereço é.</p>
+  </li>
+  <li data-marker="*">
+    <p>Antes de abordarmos esse desafio, é importante garantir que não experimentemos uma <em> violação de segmento</em> por meio de nosso código, onde tentamos copiar <code class="language-plaintext highlighter-rouge">string s</code> para <code class="language-plaintext highlighter-rouge">string t</code>, onde <code class="language-plaintext highlighter-rouge">string t</code> não existe. Podemos utilizar a função <code class="language-plaintext highlighter-rouge">strlen</code> da seguinte forma para ajudar com isso:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+
+    <span class="c1">// Copy string's address</span>
+    <span class="n">string</span> <span class="n">t</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+
+    <span class="c1">// Capitalize first letter in string</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Print string twice</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">strlen</code> é usado para garantir que a <code class="language-plaintext highlighter-rouge">string t</code> exista. Se ela não existir, nada será copiado.</p>
+<li data-marker="*">
+    <p>Você pode visualizar o código acima da seguinte forma:</p>
+
+    <p><img src="./assets/images/cs50Week4Slide124.png" alt="dois ponteiros apontando para o mesmo local de memória com uma string" title="duas strings"></p>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">s</code> e <code class="language-plaintext highlighter-rouge">t</code> ainda estão apontando para os mesmos blocos de memória. Esta não é uma cópia autêntica de uma string. Em vez disso, esses são dois ponteiros apontando para a mesma string.</p>
+</li>
+<li data-marker="*">
+  <p>Para ser capaz de fazer uma cópia autêntica da string, precisaremos introduzir dois novos blocos de construção. Primeiro, <code class="language-plaintext highlighter-rouge">malloc</code> permite que você, o programador, aloque um bloco de um tamanho específico de memória. Em segundo lugar, <code class="language-plaintext highlighter-rouge">free</code> permite que você informe ao compilador para <em>liberar</em> aquele bloco de memória que você alocou anteriormente.</p>
+</li>
+<li data-marker="*">
+  <p>Podemos modificar nosso código para criar uma cópia autêntica de nossa string da seguinte forma:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+
+    <span class="c1">// Allocate memory for another string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Copy string into memory, including '\0'</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Capitalize copy</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="c1">// Print strings</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">malloc(strlen(s) + 1)</code> cria um bloco de memória que tem o comprimento da string <code class="language-plaintext highlighter-rouge">s</code> mais um. Isso permite a inclusão do caractere <em>null</em> <code class="language-plaintext highlighter-rouge">\0</code> em nossa string final copiada. Então, o loop <code class="language-plaintext highlighter-rouge">for</code> percorre a string <code class="language-plaintext highlighter-rouge">s</code> e atribui cada valor a esse mesmo local na string <code class="language-plaintext highlighter-rouge">t</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Descobriu-se que há uma ineficiência em nosso código. Modifique seu código da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+
+    <span class="c1">// Allocate memory for another string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Copy string into memory, including '\0'</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Capitalize copy</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="c1">// Print strings</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">n = strlen(s)</code> agora é definido no lado esquerdo do <code class="language-plaintext highlighter-rouge">loop for</code>. É melhor não chamar funções desnecessárias na condição intermediária do <code class="language-plaintext highlighter-rouge">for</code>, pois isso fará com que seja executada repetidamente. Ao mover <code class="language-plaintext highlighter-rouge">n = strlen(s)</code> para o lado esquerdo, a função <code class="language-plaintext highlighter-rouge">strlen</code> só é executada uma vez.</p>
+</li>
+<li data-marker="*">
+    <p>A linguagem <code class="language-plaintext highlighter-rouge">C</code> possui uma função integrada para copiar strings chamada <code class="language-plaintext highlighter-rouge">strcpy</code>. Ela pode ser implementada da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+
+    <span class="c1">// Allocate memory for another string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Copy string into memory</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+
+    <span class="c1">// Capitalize copy</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="c1">// Print strings</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">strcpy</code> faz o mesmo trabalho que nosso laço <code class="language-plaintext highlighter-rouge">for</code> anteriormente fazia.</p>
+</li>
+<li data-marker="*">
+    <p>Ambas as funções <code class="language-plaintext highlighter-rouge">get_string</code> e <code class="language-plaintext highlighter-rouge">malloc</code> retornam <code class="language-plaintext highlighter-rouge">NULL</code>, um valor especial na memória, no caso de algo dar errado. Você pode escrever um código que possa verificar essa condição <code class="language-plaintext highlighter-rouge">NULL</code> da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Get a string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Allocate memory for another string</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Copy string into memory</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+
+    <span class="c1">// Capitalize copy</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Print strings</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"t: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+
+    <span class="c1">// Free memory</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que, se a string obtida tiver comprimento <code class="language-plaintext highlighter-rouge">0</code> ou se a alocação de memória falhar, <code class="language-plaintext highlighter-rouge">NULL</code> é retornado. Além disso, observe que <code class="language-plaintext highlighter-rouge">free</code> informa ao computador que você terminou de usar esse bloco de memória criado via <code class="language-plaintext highlighter-rouge">malloc</code>.</p>
+</li> </li></ul>
+<h2 id="valgrind">Valgrind</h2>
+<ul>
+  <li data-marker="*"><em>Valgrind</em> é uma ferramenta que pode verificar se há problemas relacionados à memória em seus programas em que você utilizou <code class="language-plaintext highlighter-rouge">malloc</code>. Especificamente, ela verifica se você <code class="language-plaintext highlighter-rouge">free</code> todo o espaço de memória que você alocou.</li>
+  <li data-marker="*">
+    <p>Considere o seguinte código:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">72</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">73</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que a execução deste programa não causa erros. Embora o <code class="language-plaintext highlighter-rouge">malloc</code> seja usado para alocar memória suficiente para um array, o código falha em liberar essa memória alocada usando o <code class="language-plaintext highlighter-rouge">free</code>.</p>
+</li>
+<li data-marker="*">Se você digitar <code class="language-plaintext highlighter-rouge">make memory</code> seguido de <code class="language-plaintext highlighter-rouge">valgrind ./memory</code>, você receberá um relatório do valgrind que indicará onde a memória foi perdida como resultado do seu programa.</li>
+<li data-marker="*">
+  <p>Você pode modificar o seu código da seguinte forma:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">72</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">73</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">33</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que executar o valgrind novamente agora resulta em nenhum vazamento de memória.</p>
+</li>
+</ul>
+<h2 id="valores-de-lixo">Valores de Lixo</h2>
+<ul>
+  <li data-marker="*">Quando você solicita ao compilador um bloco de memória, não há garantia de que essa memória estará vazia.</li>
+  <li data-marker="*">
+    <p>É muito possível que essa memória que você alocou tenha sido utilizada anteriormente pelo computador. Consequentemente, você pode ver <em>valores de lixo</em> ou <em>valores indesejados</em>. Isso ocorre porque você está recebendo um bloco de memória, mas não o está inicializando. Por exemplo, considere o seguinte código:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que a execução deste código alocará <code class="language-plaintext highlighter-rouge">1024</code> locais na memória para o seu array, mas o loop <code class="language-plaintext highlighter-rouge">for</code> provavelmente mostrará que nem todos os valores dentro dele são <code class="language-plaintext highlighter-rouge">0</code>. É sempre uma boa prática estar ciente da possibilidade de valores não inicializados quando você não inicializa blocos de memória com algum outro valor como zero ou outra coisa.</p>
+  </li>
+</ul>
+
+<h2 id="diversão-com-ponteiro-com-binky">Diversão com Ponteiro com Binky</h2>
+<ul>
+  <li data-marker="*">Assistimos a um <a href="https://www.youtube.com/watch?v=5VnDaHBi8dM" target="_blank">vídeo da Universidade de Stanford</a> que nos ajudou a visualizar e entender ponteiros.</li>
+</ul>
+<h2 id="trocar">Trocar</h2>
+<ul>
+  <li data-marker="*">
+    <p>No mundo real, uma necessidade comum na programação é trocar dois valores. Naturalmente, é difícil trocar duas variáveis sem um espaço temporário de armazenamento. Na prática, você pode digitar <code class="language-plaintext highlighter-rouge">code swap.c</code> e escrever o código a seguir para ver isso em ação:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is %i, y is %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is %i, y is %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que, embora este código seja executado, ele não funciona. Os valores, mesmo depois de enviados para a função <code class="language-plaintext highlighter-rouge">swap</code>, não são trocados. Por quê?</p>
+  </li>
+  <li data-marker="*">
+    <p>Quando você passa valores para uma função, está fornecendo apenas cópias. Nas semanas anteriores, discutimos o conceito de <em>escopo</em>. Os valores de <code class="language-plaintext highlighter-rouge">x</code> e <code class="language-plaintext highlighter-rouge">y</code> criados nas chaves de <code class="language-plaintext highlighter-rouge">{}</code> da função <code class="language-plaintext highlighter-rouge">main</code> têm apenas o escopo da função <code class="language-plaintext highlighter-rouge">main</code>. Considere a seguinte imagem:</p>
+    <p><img src="./assets/images/cs50Week4Slide163.png" alt="um retângulo com código de máquina na parte superior seguido por heap e stack globais" title="pilha e heap"></p>
+
+<p>Observe que as variáveis <em>globais</em>, que não usamos neste curso, vivem em um lugar na memória. Várias funções são armazenadas na <code class="language-plaintext highlighter-rouge">pilha</code> em outra área da memória.</p>
+</li>
+<li data-marker="*">
+  <p>Agora, considere a seguinte imagem:</p>
+  <p><img src="./assets/images/cs50Week4Slide167.png" alt="um retângulo com a função main na parte inferior e a função swap diretamente acima dela" title="quadros"></p>
+
+<p>Observe que <code class="language-plaintext highlighter-rouge">main</code> e <code class="language-plaintext highlighter-rouge">swap</code> têm dois <em>quadros</em> ou áreas de memória separadas. Portanto, não podemos simplesmente passar os valores de uma função para outra para alterá-los.</p>
+</li>
+<li data-marker="*">
+  <p>Modifique seu código da seguinte forma:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+  </span>
+<span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is %i, y is %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x is %i, y is %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>  </code></pre></div>    </div>
+
+<p>Observe que as variáveis não são passadas por <em>valor</em>, mas por <em>referência</em>. Ou seja, os endereços de <code class="language-plaintext highlighter-rouge">a</code> e <code class="language-plaintext highlighter-rouge">b</code> são fornecidos à função. Portanto, a função <code class="language-plaintext highlighter-rouge">swap</code> pode saber onde fazer alterações nos valores reais de <code class="language-plaintext highlighter-rouge">a</code> e <code class="language-plaintext highlighter-rouge">b</code> da função principal.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode visualizar isso da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week4Slide173.png" alt="a and b stored in main function being passed by reference to the swap function" title="swap by reference"></p>
+  </li>
+</ul>
+<h2 id="estouro">Estouro</h2>
+<ul>
+  <li data-marker="*">Um <em>estouro de heap</em> ocorre quando você ultrapassa o limite da heap e acessa áreas de memória que não deveria.</li>
+  <li data-marker="*">Um <em>estouro de pilha</em> ocorre quando há muitas funções sendo chamadas, ultrapassando a quantidade de memória disponível.</li>
+  <li data-marker="*">Ambos são considerados <em>estouros de buffer</em>.</li>
+</ul>
+<h2 id="scanf"><code class="language-plaintext highlighter-rouge">scanf</code></h2>
+<ul>
+  <li data-marker="*">No CS50, criamos funções como <code class="language-plaintext highlighter-rouge">get_int</code> para simplificar a obtenção de entrada do usuário.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">scanf</code> é uma função incorporada que pode obter a entrada do usuário.</li>
+  <li data-marker="*">
+    <p>Podemos reimplementar <code class="language-plaintext highlighter-rouge">get_int</code> facilmente usando <code class="language-plaintext highlighter-rouge">scanf</code> da seguinte maneira:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%i"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"x: %i</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que o valor de <code class="language-plaintext highlighter-rouge">x</code> é armazenado no local de <code class="language-plaintext highlighter-rouge">x</code> na linha <code class="language-plaintext highlighter-rouge">scanf("%i", &amp;x)</code>.</p>
+</li>
+<li data-marker="*">
+<p>No entanto, tentar reimplementar a função <code class="language-plaintext highlighter-rouge">get_string</code> não é fácil. Considere o seguinte:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>    </div>
+
+<p>Observe que nenhum <code class="language-plaintext highlighter-rouge">&amp;</code> é necessário porque strings são especiais. Ainda assim, este programa não funcionará. Em nenhum lugar deste programa alocamos a quantidade de memória necessária para a nossa string.</p>
+</li>
+<li data-marker="*">
+    <p>Podemos modificar nosso código da seguinte forma:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+    </span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: "</span><span class="p">);</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"s: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>    </code></pre></div>    </div>
+
+<p>Observe que se pré-alocarmos um array de tamanho <code class="language-plaintext highlighter-rouge">4</code>, podemos digitar <code class="language-plaintext highlighter-rouge">cat</code> e o programa funcionará. No entanto, uma string maior que isso criaria um erro.</p>
+</li>
+</ul>
+<h2 id="arquivos">Arquivos</h2>
+<ul>
+  <li data-marker="*">
+    <p>Você pode ler e manipular arquivos. Embora este tópico seja discutido mais a fundo em uma semana futura, considere o seguinte código para <code class="language-plaintext highlighter-rouge">phonebook.c</code>:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;cs50.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Open CSV file</span>
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">file</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"phonebook.csv"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">);</span>
+
+    <span class="c1">// Get name and number</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">name</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"Name: "</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">number</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="s">"Number: "</span><span class="p">);</span>
+
+    <span class="c1">// Print to file</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s">"%s,%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">number</span><span class="p">);</span>
+
+    <span class="c1">// Close file</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="p">}</span>      </code></pre></div>    </div>
+
+<p>Observe que este código usa ponteiros para acessar o arquivo.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode criar um arquivo chamado <code class="language-plaintext highlighter-rouge">phonebook.csv</code> antes de executar o código acima. Após executar o programa acima e inserir um nome e número de telefone, você notará que esses dados persistem no seu arquivo CSV.</p>
+  </li>
+</ul>
+<h2 id="resumindo">Resumindo</h2>
+<p>Nesta lição, você aprendeu sobre ponteiros que fornecem a capacidade de acessar e manipular dados em locais de memória específicos. Especificamente, mergulhamos em...</p>
+<ul>
+  <li data-marker="*">Memória</li>
+  <li data-marker="*">Hexadecimal</li>
+  <li data-marker="*">Endereços</li>
+  <li data-marker="*">Ponteiros</li>
+  <li data-marker="*">Strings</li>
+  <li data-marker="*">Aritmética de ponteiros</li>
+  <li data-marker="*">Comparação de strings</li>
+  <li data-marker="*">Cópia</li>
+  <li data-marker="*">Valgrind</li>
+  <li data-marker="*">Valores de lixo</li>
+  <li data-marker="*">Troca</li>
+  <li data-marker="*">Estouro</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">scanf</code></li>
+</ul>
+
+
+
+
+
+    <p>Até a próxima!</p>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

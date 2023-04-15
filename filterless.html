@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Filter (less)</h2>
+    <hr>
+
+    <p>Implementar um programa que aplica filtros a arquivos BMP, conforme descrito abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -r IMAGE.bmp REFLECTED.bmp
+    </code></pre></div></div>
+    <p>onde <code class="language-plaintext highlighter-rouge">IMAGE.bmp</code> é o nome de um arquivo de imagem e <code class="language-plaintext highlighter-rouge">REFLECTED.bmp</code> é o nome dado a um arquivo de imagem de saída, agora refletido.</p>
+
+
+
+
+
+<h2 id="background">Contexto</h2>
+<hr>
+
+<h3 id="bitmaps">Bitmaps</h3>
+<p>Talvez a forma mais simples de representar uma imagem seja com uma grade de pixels (ou seja, pontos), cada um dos quais pode ser de uma cor diferente. Para imagens em preto e branco, precisamos de 1 bit por pixel, pois 0 pode representar preto e 1 pode representar branco, como no exemplo abaixo.</p>
+<p><img src="./assets/images/bitmap.png" alt="um mapa de bits simples"></p>
+<p>Nesse sentido, então, uma imagem é apenas um mapa de bits (ou seja, um mapa de zeros e uns). Para imagens mais coloridas, você simplesmente precisa de mais bits por pixel. Um formato de arquivo (como <a href="https://en.wikipedia.org/wiki/BMP_file_format" target="_blank">BMP</a>, <a href="https://en.wikipedia.org/wiki/JPEG" target="_blank">JPEG</a> ou <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" target="_blank">PNG</a>) que suporta "cores de 24 bits" usa 24 bits por pixel. (O BMP na verdade suporta cores de 1, 4, 8, 16, 24 e 32 bits).</p>
+<p>Um BMP de 24 bits usa 8 bits para indicar a quantidade de vermelho na cor de um pixel, 8 bits para indicar a quantidade de verde na cor de um pixel e 8 bits para indicar a quantidade de azul na cor de um pixel. Se você já ouviu falar de cor RGB, bem, agora você sabe: vermelho, verde, azul.</p>
+<p>Se os valores R, G e B de algum pixel em um BMP forem, digamos, <code class="language-plaintext highlighter-rouge">0xff</code>, <code class="language-plaintext highlighter-rouge">0x00</code> e <code class="language-plaintext highlighter-rouge">0x00</code> em hexadecimal, esse pixel é puramente vermelho, já que <code class="language-plaintext highlighter-rouge">0xff</code> (também conhecido como <code class="language-plaintext highlighter-rouge">255</code> em decimal) implica "muito vermelho", enquanto <code class="language-plaintext highlighter-rouge">0x00</code> e <code class="language-plaintext highlighter-rouge">0x00</code> implicam "nenhum verde" e "nenhum azul", respectivamente.</p>
+
+<h3 id="a-bitmap-more-technical">Um Bit(map) Um Pouco Mais Técnico</h3>
+<p>Lembre-se de que um arquivo é apenas uma sequência de bits, organizados de alguma forma. Um arquivo BMP de 24 bits, então, é essencialmente apenas uma sequência de bits, dos quais quase todos os 24 representam a cor de um pixel. No entanto, um arquivo BMP também contém alguns "metadados", informações como a altura e largura de uma imagem. Esses metadados são armazenados no início do arquivo na forma de duas estruturas de dados geralmente referidas como "cabeçalhos", para não serem confundidas com os arquivos de cabeçalho em C. (Por sinal, esses cabeçalhos evoluíram ao longo do tempo. Este problema usa a versão mais recente do formato BMP da Microsoft, 4.0, que estreou com o Windows 95.)</p>
+<p>O primeiro desses cabeçalhos, chamado de <code class="language-plaintext highlighter-rouge">BITMAPFILEHEADER</code>, tem 14 bytes de comprimento. (Lembre-se de que 1 byte equivale a 8 bits.) O segundo desses cabeçalhos, chamado de <code class="language-plaintext highlighter-rouge">BITMAPINFOHEADER</code>, tem 40 bytes de comprimento. Logo após esses cabeçalhos está o bitmap real: uma matriz de bytes, em que triplas representam a cor de um pixel. No entanto, o BMP armazena essas triplas de trás para frente (ou seja, como BGR), com 8 bits para azul, seguidos por 8 bits para verde e, em seguida, 8 bits para vermelho. (Alguns BMPs também armazenam o bitmap inteiro de trás para frente, com a linha superior da imagem no final do arquivo BMP. Mas armazenamos os BMPs deste conjunto de problemas como descrito aqui, com a linha superior de cada bitmap primeiro e a inferior por último.) Em outras palavras, se convertermos o smiley de 1 bit acima para um smiley de 24 bits, substituindo o preto por vermelho, um BMP de 24 bits armazenaria esse bitmap da seguinte forma, em que <code class="language-plaintext highlighter-rouge">0000ff</code> significa vermelho e <code class="language-plaintext highlighter-rouge">ffffff</code> significa branco; destacamos em vermelho todas as ocorrências de <code class="language-plaintext highlighter-rouge">0000ff</code>.</p>
+<p><img src="./assets/images/red_smile.png" alt="sorriso vermelho"></p>
+<p>Porque nós apresentamos estes bits da esquerda para a direita, de cima para baixo, em 8 colunas, você pode realmente ver o sorriso vermelho se der um passo para trás.</p>
+<p>Para ser claro, lembre-se que um dígito hexadecimal representa 4 bits. Consequentemente, <code class="language-plaintext highlighter-rouge">ffffff</code> em hexadecimal realmente significa <code class="language-plaintext highlighter-rouge">111111111111111111111111</code> em binário.</p>
+<p>Observe que você poderia representar uma imagem bitmap como uma matriz 2D de pixels: onde a imagem é uma matriz de linhas, cada linha é uma matriz de pixels. De fato, é assim que escolhemos representar imagens bitmap neste problema.</p>
+
+<h3 id="image-filtering">Filtragem de Imagem</h3>
+<p>O que significa filtrar uma imagem? Você pode pensar em filtrar uma imagem como pegar os pixels de alguma imagem original e modificar cada pixel de tal forma que um efeito particular seja aparente na imagem resultante.</p>
+<h4 id="grayscale">Escala de Cinza</h4>
+<p>Um filtro comum é o filtro "escala de cinza", onde pegamos uma imagem e queremos convertê-la para preto e branco. Como isso funciona?</p>
+<p>Lembre-se de que se os valores de vermelho, verde e azul forem todos definidos como <code class="language-plaintext highlighter-rouge">0x00</code> (hexadecimal para <code class="language-plaintext highlighter-rouge">0</code>), o pixel será preto. E se todos os valores forem definidos como <code class="language-plaintext highlighter-rouge">0xff</code> (hexadecimal para <code class="language-plaintext highlighter-rouge">255</code>), o pixel será branco. Desde que os valores de vermelho, verde e azul sejam iguais, o resultado será tons de cinza ao longo do espectro preto-branco, com valores mais altos significando tons mais claros (mais próximos do branco) e valores mais baixos significando tons mais escuros (mais próximos do preto).</p>
+<p>Portanto, para converter um pixel para escala de cinza, precisamos garantir que os valores de vermelho, verde e azul sejam todos iguais. Mas como sabemos que valor usar? Bem, é provável que, se os valores originais de vermelho, verde e azul forem todos bastante altos, o novo valor também deva ser bastante alto. E se os valores originais forem todos baixos, o novo valor também deve ser baixo.</p>
+<p>De fato, para garantir que cada pixel da nova imagem ainda tenha o mesmo brilho geral ou escuridão da imagem antiga, podemos tirar a média dos valores de vermelho, verde e azul para determinar qual tom de cinza fazer o novo pixel.</p>
+<p>Se você aplicar isso a cada pixel da imagem, o resultado será uma imagem convertida em escala de cinza.</p>
+
+<h4 id="sepia">Sépia</h4>
+<p>A maioria dos programas de edição de imagens suporta um filtro "sépia", que dá às imagens uma sensação antiga tornando toda a imagem um pouco avermelhada-marrom.</p>
+<p>Uma imagem pode ser convertida em sépia pegando cada pixel e calculando novos valores de vermelho, verde e azul com base nos valores originais dos três.</p>
+<p>Há vários algoritmos para converter uma imagem em sépia, mas para este problema, pediremos que você use o seguinte algoritmo. Para cada pixel, os valores de cor sépia devem ser calculados com base nos valores de cor originais conforme abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  sepiaRed = .393 * originalRed + .769 * originalGreen + .189 * originalBlue
+  sepiaGreen = .349 * originalRed + .686 * originalGreen + .168 * originalBlue
+  sepiaBlue = .272 * originalRed + .534 * originalGreen + .131 * originalBlue
+</code></pre></div></div>
+
+<p>É possível que o resultado de cada uma dessas fórmulas não seja um número inteiro, mas cada valor pode ser arredondado para o número inteiro mais próximo. Também é possível que o resultado da fórmula seja um número maior que 255, o valor máximo para um valor de cor de 8 bits. Nesse caso, os valores de vermelho, verde e azul devem ser limitados a 255. Como resultado, podemos garantir que os valores de vermelho, verde e azul resultantes serão números inteiros entre 0 e 255, inclusive.</p>
+<h4 id="reflection">Reflexão</h4>
+<p>Alguns filtros também podem mover pixels ao redor. Refletir uma imagem, por exemplo, é um filtro onde a imagem resultante é o que você obteria ao colocar a imagem original na frente de um espelho. Então, quaisquer pixels no lado esquerdo da imagem devem acabar no lado direito, e vice-versa.</p>
+<p>Observe que todos os pixels originais da imagem original ainda estarão presentes na imagem refletida, apenas que esses pixels podem ter se rearranjado para estar em um lugar diferente na imagem.</p>
+
+<h4 id="blur">Desfoque</h4>
+<p>Há várias maneiras de criar o efeito de desfoque ou suavização em uma imagem. Para este problema, usaremos o "desfoque de caixa", que funciona pegando cada pixel e, para cada valor de cor, atribuindo um novo valor pela média dos valores de cor dos pixels vizinhos.</p>
+<p>Considere a seguinte grade de pixels, onde numeramos cada pixel.</p>
+<p><img src="./assets/images/grid.png" alt="uma grade de pixels"></p>
+<p>O novo valor de cada pixel seria a média dos valores de todos os pixels que estão dentro de 1 linha e coluna do pixel original (formando uma caixa 3x3). Por exemplo, cada um dos valores de cor para o pixel 6 seria obtido pela média dos valores de cor originais dos pixels 1, 2, 3, 5, 6, 7, 9, 10 e 11 (note que o pixel 6 em si está incluído na média). Da mesma forma, os valores de cor para o pixel 11 seriam obtidos pela média dos valores de cor dos pixels 6, 7, 8, 10, 11, 12, 14, 15 e 16.</p>
+<p>Para um pixel ao longo da borda ou do canto, como o pixel 15, ainda procuraríamos todos os pixels dentro de 1 linha e coluna: neste caso, os pixels 10, 11, 12, 14, 15 e 16.</p>
+
+
+
+
+
+
+    
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/4/filter-less.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">filter-less.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip filter-less.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">filter-less</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm filter-less.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd filter-less</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>filter-less/ $</code></pre></div></div>
+<p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver alguns arquivos: <code class="language-plaintext highlighter-rouge">bmp.h</code>, <code class="language-plaintext highlighter-rouge">filter.c</code>, <code class="language-plaintext highlighter-rouge">helpers.h</code>, <code class="language-plaintext highlighter-rouge">helpers.c</code> e <code class="language-plaintext highlighter-rouge">Makefile</code>. Você também deve ver uma pasta chamada <code class="language-plaintext highlighter-rouge">images</code> com quatro arquivos BMP. Se você tiver algum problema, siga esses mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+
+
+
+<h2 id="understanding">Entendendo</h2>
+<p>Vamos dar uma olhada em alguns dos arquivos fornecidos como código de distribuição para entender o que está dentro deles.</p>
+<h3 id="bmph"><code class="language-plaintext highlighter-rouge">bmp.h</code></h3>
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">bmp.h</code> (duplo clique no navegador de arquivos) e dê uma olhada.</p>
+<p>Você verá definições dos cabeçalhos que mencionamos (<code class="language-plaintext highlighter-rouge">BITMAPINFOHEADER</code> e <code class="language-plaintext highlighter-rouge">BITMAPFILEHEADER</code>). Além disso, esse arquivo define <code class="language-plaintext highlighter-rouge">BYTE</code>, <code class="language-plaintext highlighter-rouge">DWORD</code>, <code class="language-plaintext highlighter-rouge">LONG</code> e <code class="language-plaintext highlighter-rouge">WORD</code>, tipos de dados normalmente encontrados no mundo da programação do Windows. Observe como eles são apenas aliases para primitivas com as quais você já está (esperançosamente) familiarizado. Parece que <code class="language-plaintext highlighter-rouge">BITMAPFILEHEADER</code> e <code class="language-plaintext highlighter-rouge">BITMAPINFOHEADER</code> usam esses tipos.</p>
+<p>Talvez o mais importante para você, este arquivo também define uma <code class="language-plaintext highlighter-rouge">struct</code> chamada <code class="language-plaintext highlighter-rouge">RGBTRIPLE</code> que, simplesmente, "encapsula" três bytes: um azul, um verde e um vermelho (a ordem, lembre-se, em que esperamos encontrar triplas RGB no disco).</p>
+<p>Por que essas <code class="language-plaintext highlighter-rouge">struct</code>s são úteis? Bem, lembre-se de que um arquivo é apenas uma sequência de bytes (ou, em última análise, bits) no disco. Mas esses bytes geralmente são ordenados de tal forma que os primeiros representam algo, os próximos representam outra coisa e assim por diante. "Formatos de arquivo" existem porque o mundo padronizou o que os bytes significam. Agora, poderíamos simplesmente ler um arquivo do disco para a RAM como um grande array de bytes. E poderíamos simplesmente lembrar que o byte em <code class="language-plaintext highlighter-rouge">array[i]</code> representa uma coisa, enquanto o byte em <code class="language-plaintext highlighter-rouge">array[j]</code> representa outra. Mas por que não dar nomes a alguns desses bytes para que possamos recuperá-los da memória com mais facilidade? É precisamente isso que as structs em <code class="language-plaintext highlighter-rouge">bmp.h</code> nos permitem fazer. Em vez de pensar em algum arquivo como uma longa sequência de bytes, podemos pensar nele como uma sequência de <code class="language-plaintext highlighter-rouge">struct</code>s.</p>
+<h3 id="filterc"><code class="language-plaintext highlighter-rouge">filter.c</code></h3>
+<p>Agora, vamos abrir <code class="language-plaintext highlighter-rouge">filter.c</code>. Este arquivo já foi escrito para você, mas há alguns pontos importantes que valem a pena serem observados aqui.</p>
+<p>Em primeiro lugar, observe a definição de <code class="language-plaintext highlighter-rouge">filters</code> na linha 10. Essa string informa ao programa quais são os argumentos de linha de comando permitidos para o programa: <code class="language-plaintext highlighter-rouge">b</code>, <code class="language-plaintext highlighter-rouge">g</code>, <code class="language-plaintext highlighter-rouge">r</code> e <code class="language-plaintext highlighter-rouge">s</code>. Cada um deles especifica um filtro diferente que podemos aplicar às nossas imagens: desfoque, escala de cinza, reflexão e sépia.</p>
+<p>As próximas linhas abrem um arquivo de imagem, verificam se ele é de fato um arquivo BMP e leem todas as informações de pixel em uma matriz 2D chamada <code class="language-plaintext highlighter-rouge">imagem</code>.</p>
+<p>Role até a instrução <code class="language-plaintext highlighter-rouge">switch</code> que começa na linha 101. Note que, dependendo da opção de <code class="language-plaintext highlighter-rouge">filtro</code> escolhida, uma função diferente é chamada: se o usuário escolhe o filtro <code class="language-plaintext highlighter-rouge">b</code>, o programa chama a função <code class="language-plaintext highlighter-rouge">blur</code>; se <code class="language-plaintext highlighter-rouge">g</code>, então <code class="language-plaintext highlighter-rouge">grayscale</code> é chamada; se <code class="language-plaintext highlighter-rouge">r</code>, então <code class="language-plaintext highlighter-rouge">reflect</code> é chamada; e se <code class="language-plaintext highlighter-rouge">s</code>, então <code class="language-plaintext highlighter-rouge">sepia</code> é chamada. Observe também que cada uma dessas funções recebe como argumentos a altura da imagem, a largura da imagem e a matriz 2D de pixels.</p>
+<p>Essas são as funções que você irá implementar (em breve!). Como você pode imaginar, o objetivo é que cada uma dessas funções edite a matriz 2D de pixels de tal forma que o filtro desejado seja aplicado à imagem.</p>
+<p>As linhas restantes do programa pegam a <code class="language-plaintext highlighter-rouge">imagem</code> resultante e a escrevem em um novo arquivo de imagem.</p>
+
+
+<h3 id="helpersh"><code class="language-plaintext highlighter-rouge">helpers.h</code></h3>
+<p>Em seguida, dê uma olhada em <code class="language-plaintext highlighter-rouge">helpers.h</code>. Este arquivo é bastante curto e fornece apenas os protótipos de função para as funções que você viu anteriormente.</p>
+<p>Aqui, observe o fato de que cada função recebe um array 2D chamado <code class="language-plaintext highlighter-rouge">image</code> como argumento, onde <code class="language-plaintext highlighter-rouge">image</code> é um array de <code class="language-plaintext highlighter-rouge">height</code> linhas, e cada linha é ela mesma outro array de <code class="language-plaintext highlighter-rouge">width</code> muitos <code class="language-plaintext highlighter-rouge">RGBTRIPLE</code>s. Então, se <code class="language-plaintext highlighter-rouge">image</code> representa toda a imagem, então <code class="language-plaintext highlighter-rouge">image[0]</code> representa a primeira linha, e <code class="language-plaintext highlighter-rouge">image[0][0]</code> representa o pixel no canto superior esquerdo da imagem.</p>
+<h3 id="helpersc"><code class="language-plaintext highlighter-rouge">helpers.c</code></h3>
+<p>Agora, abra <code class="language-plaintext highlighter-rouge">helpers.c</code>. Aqui é onde a implementação das funções declaradas em <code class="language-plaintext highlighter-rouge">helpers.h</code> pertence. Mas observe que, por enquanto, as implementações estão faltando! Esta parte é com você.</p>
+
+<h3 id="makefile"><code class="language-plaintext highlighter-rouge">Makefile</code></h3>
+<p>Finalmente, vamos dar uma olhada no <code class="language-plaintext highlighter-rouge">Makefile</code>. Este arquivo especifica o que deve acontecer quando executamos um comando de terminal como <code class="language-plaintext highlighter-rouge">make filter</code>. Enquanto os programas que você pode ter escrito antes eram limitados a apenas um arquivo, <code class="language-plaintext highlighter-rouge">filter</code> parece usar vários arquivos: <code class="language-plaintext highlighter-rouge">filter.c</code> e <code class="language-plaintext highlighter-rouge">helpers.c</code>. Então, precisaremos dizer ao <code class="language-plaintext highlighter-rouge">make</code> como compilar este arquivo.</p>
+<p>Tente compilar o <code class="language-plaintext highlighter-rouge">filter</code> por si mesmo indo para o seu terminal e executando</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make filter
+</code></pre></div></div>
+
+<p>Em seguida, você pode executar o programa rodando:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -g images/yard.bmp out.bmp
+</code></pre></div></div>
+
+<p>que pega a imagem em <code class="language-plaintext highlighter-rouge">images/yard.bmp</code>, e gera uma nova imagem chamada <code class="language-plaintext highlighter-rouge">out.bmp</code> depois de executar os pixels pela função <code class="language-plaintext highlighter-rouge">grayscale</code>. No entanto, <code class="language-plaintext highlighter-rouge">grayscale</code> ainda não faz nada, então a imagem de saída deve parecer igual à imagem original do quintal.</p>
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Implemente as funções em <code class="language-plaintext highlighter-rouge">helpers.c</code> de forma que um usuário possa aplicar filtros de escala de cinza, sépia, reflexão ou desfoque em suas imagens.</p>
+<ul>
+  <li data-marker="*">A função <code class="language-plaintext highlighter-rouge">grayscale</code> deve pegar uma imagem e transformá-la em uma versão preto e branco da mesma imagem.</li>
+  <li data-marker="*">A função <code class="language-plaintext highlighter-rouge">sepia</code> deve pegar uma imagem e transformá-la em uma versão sépia da mesma imagem.</li>
+  <li data-marker="*">A função <code class="language-plaintext highlighter-rouge">reflect</code> deve pegar uma imagem e refleti-la horizontalmente.</li>
+  <li data-marker="*">Por fim, a função <code class="language-plaintext highlighter-rouge">blur</code> deve pegar uma imagem e transformá-la em uma versão borrada por caixa da mesma imagem.</li>
+</ul>
+<p>Você não deve modificar nenhuma das assinaturas de função, nem deve modificar nenhum outro arquivo além de <code class="language-plaintext highlighter-rouge">helpers.c</code>.</p>
+
+
+
+
+
+
+
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -g INFILE.bmp OUTFILE.bmp
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -s INFILE.bmp OUTFILE.bmp
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -r INFILE.bmp OUTFILE.bmp
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./filter -b INFILE.bmp OUTFILE.bmp
+</code></pre></div></div>
+
+
+
+  <h2 id="hints">Dicas</h2>
+  <ul>
+    <li data-marker="*">Os valores dos componentes <code class="language-plaintext highlighter-rouge">rgbtRed</code>, <code class="language-plaintext highlighter-rouge">rgbtGreen</code> e <code class="language-plaintext highlighter-rouge">rgbtBlue</code> de um pixel são todos inteiros, portanto, certifique-se de arredondar quaisquer números de ponto flutuante para o inteiro mais próximo ao atribuí-los a um valor de pixel!</li>
+    <li data-marker="*">Ao implementar a função <code class="language-plaintext highlighter-rouge">grayscale</code>, você precisará calcular a média dos valores de 3 inteiros. Por que você poderia querer dividir a soma desses inteiros por 3,0 e não por 3?</li>
+    <li data-marker="*">Na função <code class="language-plaintext highlighter-rouge">reflect</code>, você precisará trocar os valores dos pixels em lados opostos de uma linha. Lembre-se da aula de como implementamos a troca de dois valores com uma variável temporária. Não há necessidade de usar uma função separada para troca, a menos que você queira!</li>
+    <li data-marker="*">Como uma função que retorna o menor de dois inteiros pode ser útil ao implementar <code class="language-plaintext highlighter-rouge">sepia</code>, especialmente quando você precisa garantir que o valor da cor não seja superior a 255?</li>
+    <li data-marker="*">Ao implementar a função <code class="language-plaintext highlighter-rouge">blur</code>, pode ser que o desfoque de um pixel acabe afetando o desfoque de outro pixel. Talvez criar uma cópia de <code class="language-plaintext highlighter-rouge">image</code> (o terceiro argumento da função) declarando um novo array (bidimensional) com um código como <code class="language-plaintext highlighter-rouge">RGBTRIPLE copy[height][width];</code> e copiar <code class="language-plaintext highlighter-rouge">image</code> em <code class="language-plaintext highlighter-rouge">copy</code>, pixel a pixel, com loops aninhados de <code class="language-plaintext highlighter-rouge">for</code>? E então ler as cores dos pixels de <code class="language-plaintext highlighter-rouge">copy</code>, mas escrever (ou seja, alterar) as cores dos pixels em <code class="language-plaintext highlighter-rouge">image</code>?</li>
+  </ul>
+
+
+
+
+
+  <h2 id="testing">Testando</h2>
+  <p> Certifique-se de testar todos os seus filtros nos arquivos de bitmap de amostra fornecidos! </p>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/filter/less</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 helpers.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/filter/less</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

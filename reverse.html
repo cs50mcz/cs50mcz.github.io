@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Reverse</h2>
+    <hr>
+
+    <p>Implemente um programa que inverta um arquivo WAV, conforme abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./reverse input.wav output.wav
+    </code></pre></div></div>
+    
+    
+    
+    <h2 id="background">Contexto</h2>
+    
+    <div class="iframe-container">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/J9iyqMwYtG4"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <p>Na música "Fire on High" da Electric Light Orchestra, há algo um pouco estranho nos primeiros minutos da música. Se você ouvir, parece quase como se o áudio estivesse tocando ao contrário. Como acontece, se você reproduzir a seção inicial da música ao contrário, você ouvirá o seguinte:</p>
+<p><em>"The music is reversible. Time is not. Turn back, turn back!"</em></p>
+<p>Assustador, não é? Essa é uma técnica chamada "backmasking", ou seja, esconder mensagens na música que só podem ser ouvidas quando a música é tocada ao contrário. Muitos artistas usaram (ou foram suspeitos de usar) essa técnica em suas músicas. Para poder fazer nossa própria investigação sobre o backmasking, pedimos que você escreva um programa que possa inverter arquivos WAV para nós!</p>
+<p>Ao contrário de arquivos de áudio MP3, os arquivos WAV não são comprimidos. Isso torna os arquivos muito mais fáceis de editar e manipular, o que é útil para a tarefa em questão. Para aprender um pouco mais sobre arquivos WAV, precisamos dar uma olhada mais de perto no formato de arquivo WAV.</p>
+
+
+
+
+
+    
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/4/reverse.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">reverse.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip reverse.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">reverse</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm reverse.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd reverse</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reverse/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
+<p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">reverse.c</code> e 'card.raw'. Executando <code class="language-plaintext highlighter-rouge">code reverse.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
+
+
+
+<h3 id="the-wav-file-format">O formato de arquivo WAV</h3>
+<p>Observe que, na imagem abaixo, um arquivo WAV é dividido em três blocos. Cada bloco contém alguns blocos de dados.</p>
+<p>O primeiro bloco contém informações sobre o tipo de arquivo. Em particular, observe como o bloco "Formato do arquivo" no primeiro bloco soletra 'W''A''V''E' nos bytes 8-11, para indicar que o arquivo é um arquivo WAV.</p>
+<p>O segundo bloco contém informações sobre os próximos dados de áudio, incluindo quantos "canais" de áudio estão presentes e quantos bits há em cada "amostra" de áudio. Arquivos de áudio têm 1 canal quando são "monofônicos": se você estiver usando fones de ouvido, ouvirá o mesmo áudio em sua orelha esquerda e direita. Arquivos de áudio têm 2 canais quando são "estereofônicos": usando fones de ouvido, você ouvirá áudios ligeiramente diferentes em sua orelha esquerda e direita, criando uma sensação de espaço. As amostras são os blocos individuais de bits que compõem o áudio que você ouve. Com mais bits por amostra, um arquivo de áudio pode ter maior clareza (ao custo de mais memória usada!).</p>
+<p>Finalmente, o terceiro bloco contém os dados de áudio em si - as amostras mencionadas acima.</p>
+<p>Tudo antes dos dados de áudio é considerado parte do "cabeçalho" WAV. Lembre-se de que um cabeçalho de arquivo é simplesmente alguns metadados sobre o arquivo. Neste caso, o cabeçalho tem 44 bytes de comprimento.</p>
+<p><img src="./assets/images/WAV_header.png" alt="Cabeçalho WAV"></p>
+<p>Uma explicação mais técnica dos cabeçalhos WAV pode ser encontrada <a href="http://soundfile.sapp.org/doc/WaveFormat/" target="_blank">aqui</a>, que é a fonte pela qual esta imagem foi inspirada. Observe que incluímos um arquivo, <code class="language-plaintext highlighter-rouge">wav.h</code>, que implementa todos esses detalhes para você em uma struct chamada <code class="language-plaintext highlighter-rouge">WAVHEADER</code>.</p>
+
+
+
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Vamos escrever um programa chamado <code class="language-plaintext highlighter-rouge">reverse</code> que nos permita reverter um arquivo WAV fornecido pelo usuário e criar um novo arquivo WAV que contenha o áudio resultante revertido. Para simplificar, limitaremos os arquivos que lidamos ao formato WAV. No momento em que o usuário executa o programa, ele deve fornecer, usando dois argumentos de linha de comando, o nome do arquivo de entrada a ser lido e revertido e o nome do arquivo de saída em que eles gostariam de salvar o áudio resultante. Um programa executado com sucesso não deve produzir nenhum texto e deve criar um arquivo WAV com o nome especificado pelo usuário que reproduza o áudio do arquivo WAV de entrada invertido. Por exemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./reverse input.wav output.wav
+</code></pre></div></div>
+<p>No arquivo <code class="language-plaintext highlighter-rouge">reverse.c</code>, você notará que algumas bibliotecas úteis foram incluídas, bem como um arquivo de cabeçalho, <code class="language-plaintext highlighter-rouge">wav.h</code>. Provavelmente você vai achar isso útil ao implementar seu programa. Deixamos oito <code class="language-plaintext highlighter-rouge">TODO</code>s e duas funções auxiliares para você preencher e recomendamos que você os aborde em ordem de 1 a 8.</p>
+<ul>
+  <li data-marker="*">No primeiro <code class="language-plaintext highlighter-rouge">TODO</code>, você deve garantir que o programa aceite dois argumentos da linha de comando: o nome do arquivo WAV de entrada e o nome do arquivo WAV de saída. Se o programa não atender a essas condições, você deve imprimir uma mensagem de erro apropriada e retornar <code class="language-plaintext highlighter-rouge">1</code>, encerrando o programa.
+    <ul>
+      <li data-marker="+">Dica
+        <ul>
+          <li data-marker="*">Lembre-se de que o número de argumentos da linha de comando pode ser encontrado na variável <code class="language-plaintext highlighter-rouge">argc</code> passada para a função <code class="language-plaintext highlighter-rouge">main</code> quando o programa é executado.</li>
+          <li data-marker="*">Lembre-se de que <code class="language-plaintext highlighter-rouge">argv[0]</code> contém o nome do programa como o primeiro argumento da linha de comando.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li data-marker="*">No segundo <code class="language-plaintext highlighter-rouge">TODO</code>, você deve abrir o arquivo de entrada. Precisamos abrir o arquivo de entrada em modo "somente leitura", já que só leremos dados do arquivo de entrada. Pode ser prudente verificar se o arquivo foi aberto com sucesso. Caso contrário, você deve imprimir uma mensagem de erro apropriada e retornar <code class="language-plaintext highlighter-rouge">1</code>, encerrando o programa. Devemos aguardar para abrir o arquivo de saída, no entanto, para não criarmos um novo arquivo WAV antes de saber se o arquivo de entrada é válido!
+    <ul>
+      <li data-marker="+">Dica
+        <ul>
+          <li data-marker="*">Se o primeiro <code class="language-plaintext highlighter-rouge">TODO</code> tiver sido implementado corretamente, é seguro assumir que podemos fazer referência ao nome do arquivo de entrada usando <code class="language-plaintext highlighter-rouge">argv[1]</code>.</li>
+          <li data-marker="*">Lembre-se de que qualquer arquivo que abrirmos, também devemos fechar quando terminarmos de usá-lo. Isso pode significar adicionar código em outro lugar no programa.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li data-marker="*">
+    <p>No terceiro <code class="language-plaintext highlighter-rouge">TODO</code>, você deve ler o cabeçalho do arquivo de entrada. Lembre-se de que, em <code class="language-plaintext highlighter-rouge">wav.h</code>, já implementamos uma estrutura que pode armazenar o cabeçalho de um arquivo WAV. Como escrevemos <code class="language-plaintext highlighter-rouge">#include "wav.h"</code> no topo de <code class="language-plaintext highlighter-rouge">reverse.c</code>, você também pode usar a estrutura <code class="language-plaintext highlighter-rouge">WAVHEADER</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>No quarto <code class="language-plaintext highlighter-rouge">TODO</code>, você deve completar a função <code class="language-plaintext highlighter-rouge">check_format</code>. <code class="language-plaintext highlighter-rouge">check_format</code> recebe um único argumento, um <code class="language-plaintext highlighter-rouge">WAVHEADER</code> chamado <code class="language-plaintext highlighter-rouge">header</code>, representando uma estrutura contendo o cabeçalho do arquivo de entrada. Se o <code class="language-plaintext highlighter-rouge">header</code> indicar que o arquivo é de fato um arquivo WAV, a função <code class="language-plaintext highlighter-rouge">check_format</code> deve retornar <code class="language-plaintext highlighter-rouge">true</code>. Caso contrário, <code class="language-plaintext highlighter-rouge">check_format</code> deve retornar <code class="language-plaintext highlighter-rouge">false</code>. Para verificar se um arquivo está no formato WAV, podemos comparar os elementos do cabeçalho do arquivo de entrada com aqueles que esperamos de um arquivo WAV. Basta mostrar que os caracteres do marcador "WAVE" são encontrados no membro <code class="language-plaintext highlighter-rouge">format</code> da estrutura <code class="language-plaintext highlighter-rouge">WAVHEADER</code> (consulte <a href="#background">Contexto</a> para obter mais detalhes sobre os cabeçalhos de arquivos WAV).</p>
+  </li>
+  <li data-marker="*"> No quinto <code class="language-plaintext highlighter-rouge">TODO</code>, você agora pode abrir com segurança o arquivo de saída para escrita. Ainda é recomendável verificar se o arquivo foi aberto com sucesso.
+    <ul>
+      <li data-marker="+">Dicas
+        <ul>
+          <li data-marker="*">Se o primeiro <code class="language-plaintext highlighter-rouge">TODO</code> foi implementado corretamente, é seguro assumir que podemos referenciar o nome do arquivo de saída usando <code class="language-plaintext highlighter-rouge">argv[2]</code>.</li>
+          <li data-marker="*">Lembre-se de que qualquer arquivo que abrimos, também devemos fechar quando terminarmos de usá-lo. Isso pode significar adicionar código em outro lugar no programa.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>Este pode ser um bom lugar para parar e testar se o seu programa se comporta conforme o esperado. Se implementado corretamente, o seu programa deve abrir um novo arquivo quando executado com os argumentos corretos da linha de comando.</p>
+<p>Se em algum momento você achar necessário excluir um arquivo, execute o seguinte comando no diretório de trabalho atual.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm file_name.wav
+</code></pre></div></div>
+<p>Se você preferir não ser solicitado a confirmar cada exclusão, execute o comando abaixo em vez disso.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rm -f file_name.wav
+</code></pre></div></div>
+<p>Apenas tenha cuidado com o interruptor <code class="language-plaintext highlighter-rouge">-f</code>, pois ele "força" a exclusão sem solicitar confirmação.</p>
+<ul>
+  <li data-marker="*">
+    <p>Em seguida, agora que o tipo de arquivo foi verificado, a sexta <code class="language-plaintext highlighter-rouge">TODO</code> nos diz para escrever o cabeçalho no arquivo de saída. O arquivo WAV invertido ainda terá a mesma estrutura de arquivo subjacente do arquivo de entrada (mesmo tamanho, número de canais, bits por amostra, etc.), então é suficiente copiar o cabeçalho que lemos do arquivo de entrada na terceira <code class="language-plaintext highlighter-rouge">TODO</code> para o arquivo de saída.</p>
+  </li>
+  <li data-marker="*">Na sétima <code class="language-plaintext highlighter-rouge">TODO</code>, você deve implementar a função <code class="language-plaintext highlighter-rouge">get_block_size</code>. <code class="language-plaintext highlighter-rouge">get_block_size</code>, assim como <code class="language-plaintext highlighter-rouge">check_format</code>, recebe um único argumento: este é um <code class="language-plaintext highlighter-rouge">WAVHEADER</code> chamado <code class="language-plaintext highlighter-rouge">header</code>, representando a estrutura que contém o cabeçalho do arquivo de entrada. <code class="language-plaintext highlighter-rouge">get_block_size</code> deve retornar um inteiro representando o <strong>tamanho do bloco</strong> do arquivo WAV fornecido, em bytes. Podemos pensar em um <em>bloco</em> como uma unidade de dados auditivos. Para áudio, calculamos o tamanho de cada bloco com o seguinte cálculo: <strong>número de canais</strong> multiplicado por <strong>bytes por amostra</strong>. Felizmente, o cabeçalho contém todas as informações necessárias para calcular esses valores. Certifique-se de consultar a seção <a href="#background">Contexto</a> para uma explicação mais detalhada sobre o que esses valores significam e como são armazenados. Consulte também <code class="language-plaintext highlighter-rouge">wav.h</code> para determinar quais membros de <code class="language-plaintext highlighter-rouge">WAVHEADER</code> podem ser úteis.</li>
+  <li data-marker="+">Dicas</li>
+  <ul>
+    <li data-marker="*">Observe que um dos membros de <code class="language-plaintext highlighter-rouge">WAVHEADER</code> é <code class="language-plaintext highlighter-rouge">bitsPerSample</code>. Mas para calcular o tamanho do bloco, você precisará dos <strong>bytes</strong> por amostra!</li>
+  </ul>
+</li>
+<li data-marker="*">O oitavo e último <code class="language-plaintext highlighter-rouge">TODO</code> é onde ocorre a reversão real do áudio. Para fazer isso, precisamos ler cada bloco de dados auditivos começando do final do arquivo de entrada e movendo-se para trás, escrevendo simultaneamente cada bloco no arquivo de saída para que sejam escritos na ordem inversa. Primeiro, devemos declarar uma matriz para armazenar cada bloco que lemos. Em seguida, cabe a você iterar pelos dados de áudio do arquivo de entrada. Você vai querer ter certeza de que leu todo o áudio, mas não copiou erroneamente nenhum dos dados do cabeçalho! Além disso, para fins de teste, gostaríamos de manter a ordem dos canais para cada bloco de áudio. Por exemplo, em um arquivo WAV com dois canais (som estereofônico), queremos ter certeza de que o primeiro canal do último bloco de áudio na entrada se torna o primeiro canal do primeiro bloco de áudio na saída.</li>
+<li data-marker="+">Dicas</li>
+<ul>
+  <li data-marker="*">Algumas funções (e um entendimento aprofundado de seu uso) podem ser especialmente úteis ao concluir esta seção - as páginas do manual CS50 podem ser especialmente úteis aqui:
+    <ul>
+      <li data-marker="*"><a href="https://manual.cs50.io/3/fread" target="_blank"><code class="language-plaintext highlighter-rouge">fread</code></a>: lê de um arquivo para um buffer. A saída da função auxiliar <code class="language-plaintext highlighter-rouge">get_block_size</code> pode ser útil aqui ao decidir quais valores usar para o tamanho e número de dados a serem lidos de uma vez.</li>
+      <li data-marker="*"><a href="https://manual.cs50.io/3/fwrite" target="_blank"><code class="language-plaintext highlighter-rouge">fwrite</code></a>: grava de um buffer em um arquivo.</li>
+      <li data-marker="*"><a href="https://manual.cs50.io/3/fseek" target="_blank"><code class="language-plaintext highlighter-rouge">fseek</code></a>: define um ponteiro de arquivo para um determinado deslocamento. Pode ser útil experimentar com valores de deslocamento negativos para mover um ponteiro de arquivo para trás.</li>
+      <li data-marker="*"><a href="https://manual.cs50.io/3/ftell" target="_blank"><code class="language-plaintext highlighter-rouge">ftell</code></a>: retorna a posição atual de um ponteiro de arquivo. Pode ser útil inspecionar qual valor <code class="language-plaintext highlighter-rouge">ftell</code> retorna depois que o cabeçalho de entrada é lido na terceira <code class="language-plaintext highlighter-rouge">TODO</code> além do que ele retorna durante a leitura dos dados de áudio.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Lembre-se de que, depois de usar o <code class="language-plaintext highlighter-rouge">fread</code> para carregar um bloco de dados, o ponteiro de <code class="language-plaintext highlighter-rouge">input</code> estará apontando para a posição em que a leitura terminou. Em outras palavras, o ponteiro de <code class="language-plaintext highlighter-rouge">input</code> pode precisar ser movido de volta em <em>dois</em> tamanhos de bloco após cada <code class="language-plaintext highlighter-rouge">fread</code>, um para voltar ao início do <code class="language-plaintext highlighter-rouge">fread</code>, e o segundo para mover para o bloco anterior não lido.</li>
+</ul>
+</li>
+<li data-marker="*">Por fim, certifique-se de fechar todos os arquivos que você abriu!</li>
+</ul>
+
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Aqui estão alguns exemplos de como o programa deve funcionar. Por exemplo, se o usuário omitir um dos argumentos da linha de comando:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./reverse input.wav
+Usage: ./reverse input.wav output.wav
+  </code></pre></div></div>
+  <p>Ou se o usuário omitir ambos os argumentos da linha de comando:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./reverse
+Usage: ./reverse input.wav output.wav
+    </code></pre></div></div>
+    <p>Aqui está como o programa deve funcionar se o usuário fornecer um arquivo de entrada que não seja um arquivo WAV real:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./reverse image.jpg output.wav
+Input is not a WAV file.
+      </code></pre></div></div>
+      <p>Você pode assumir que o usuário insere um nome de arquivo de saída válido, como <code class="language-plaintext highlighter-rouge">output.wav</code>.</p>
+<p>Um programa executado com sucesso não deve imprimir nenhum texto e deve criar um arquivo WAV com o nome especificado pelo usuário que reproduza o áudio do arquivo WAV de entrada ao contrário. Por exemplo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./reverse input.wav output.wav
+</code></pre></div></div>
+
+
+
+
+
+
+
+  <h2 id="testing">Testando</h2>
+<p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/reverse</code></pre></div></div>
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 reverse.c</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/reverse</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
