@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Speller</h2>
+    <hr>
+
+    <div class="alert alert-danger" data-alert="danger" role="alert"><p><strong>Certifique-se de ler esta especificação na íntegra antes de começar para saber o que fazer e como fazê-lo!</strong></p></div>
+
+    <p>Para este problema, você irá implementar um programa que verifica a ortografia de um arquivo, semelhante ao abaixo, usando uma tabela hash.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./speller texts/lalaland.txt
+MISSPELLED WORDS
+
+[...]
+AHHHHHHHHHHHHHHHHHHHHHHHHHHHT
+[...]
+Shangri
+[...]
+fianc
+[...]
+Sebastian's
+[...]
+
+WORDS MISSPELLED:
+WORDS IN DICTIONARY:
+WORDS IN TEXT:
+TIME IN load:
+TIME IN check:
+TIME IN size:
+TIME IN unload:
+TIME IN TOTAL:
+      </code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+    
+<h2 id="getting-started">Começando</h2>
+<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/5/speller.zip</code></pre></div></div>
+<p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">speller.zip</code> em seu codespace.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip speller.zip</code></pre></div></div>
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">speller</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm speller.zip</code></pre></div></div>
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd speller</code></pre></div></div>
+<p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>speller/ $</code></pre></div></div>
+<p>Se tudo ocorreu com sucesso, você deve executar <code class="language-plaintext highlighter-rouge">ls</code> e deverá ver alguns arquivos e pastas:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dictionaries/  dictionary.c  dictionary.h  keys/  Makefile  speller.c  speller50  texts/</code></pre></div></div>
+
+<p>Se você encontrar algum problema, siga novamente essas mesmas etapas e veja se pode determinar onde errou!</p>
+<br>
+<h2 id="distribution">Distribuição</h2>
+<hr>
+<h3 id="understanding">Entendendo</h3>
+<p>Teoricamente, com entrada de tamanho <em>n</em>, um algoritmo com tempo de execução de <em>n</em> é "asintoticamente equivalente", em termos de <em>O</em>, a um algoritmo com tempo de execução de <em>2n</em>. De fato, ao descrever o tempo de execução de um algoritmo, geralmente nos concentramos no termo dominante (ou seja, mais impactante) (ou seja, <em>n</em> neste caso, já que <em>n</em> pode ser muito maior que 2). No mundo real, porém, o fato é que <em>2n</em> parece duas vezes mais lento que <em>n</em>.</p>
+<p>O desafio que está à sua frente é implementar o verificador ortográfico mais rápido que puder! Mas, quando falamos de "mais rápido", estamos falando do tempo real de "relógio de parede", não do tempo assintótico.</p>
+<p>No arquivo <code class="language-plaintext highlighter-rouge">speller.c</code>, criamos um programa que é projetado para verificar a ortografia de um arquivo depois de carregar um dicionário de palavras do disco na memória. Esse dicionário, enquanto isso, é implementado em um arquivo chamado <code class="language-plaintext highlighter-rouge">dictionary.c</code>. (Poderia ser implementado em <code class="language-plaintext highlighter-rouge">speller.c</code>, mas à medida que os programas ficam mais complexos, muitas vezes é conveniente dividi-los em vários arquivos.) Os protótipos das funções nele, enquanto isso, não são definidos em <code class="language-plaintext highlighter-rouge">dictionary.c</code> em si, mas em <code class="language-plaintext highlighter-rouge">dictionary.h</code>. Dessa forma, tanto <code class="language-plaintext highlighter-rouge">speller.c</code> quanto <code class="language-plaintext highlighter-rouge">dictionary.c</code> podem <code class="language-plaintext highlighter-rouge">#include</code> o arquivo. Infelizmente, não conseguimos implementar a parte de carregamento. Ou a parte de verificação. Ambos (e um pouco mais) deixamos para você! Mas primeiro, uma visita guiada.</p>
+
+<h4 id="dictionaryh"><code class="language-plaintext highlighter-rouge">dictionary.h</code></h4>
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">dictionary.h</code> e você verá algumas novas sintaxes, incluindo algumas linhas que mencionam <code class="language-plaintext highlighter-rouge">DICTIONARY_H</code>. Não se preocupe com elas, mas, se tiver curiosidade, essas linhas garantem que, mesmo que <code class="language-plaintext highlighter-rouge">dictionary.c</code> e <code class="language-plaintext highlighter-rouge">speller.c</code> (que você verá em breve) incluam este arquivo, o <code class="language-plaintext highlighter-rouge">clang</code> o compilará apenas uma vez.</p>
+<p>Em seguida, observe como nós <code class="language-plaintext highlighter-rouge">#include</code> um arquivo chamado <code class="language-plaintext highlighter-rouge">stdbool.h</code>. Esse é o arquivo em que <code class="language-plaintext highlighter-rouge">bool</code> em si é definido. Você não precisou dele antes, porque a biblioteca CS50 o <code class="language-plaintext highlighter-rouge">#include</code> para você.</p>
+<p>Observe também o uso de <code class="language-plaintext highlighter-rouge">#define</code>, uma "diretiva do pré-processador" que define uma "constante" chamada <code class="language-plaintext highlighter-rouge">LENGTH</code> que tem um valor de <code class="language-plaintext highlighter-rouge">45</code>. É uma constante no sentido de que você não pode (acidentalmente) mudá-la em seu próprio código. Na verdade, o <code class="language-plaintext highlighter-rouge">clang</code> substituirá todas as referências a <code class="language-plaintext highlighter-rouge">LENGTH</code> em seu próprio código por, literalmente, <code class="language-plaintext highlighter-rouge">45</code>. Em outras palavras, não é uma variável, apenas um truque de localizar e substituir.</p>
+<p>Por fim, observe os protótipos de cinco funções: <code class="language-plaintext highlighter-rouge">check</code>, <code class="language-plaintext highlighter-rouge">hash</code>, <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">size</code> e <code class="language-plaintext highlighter-rouge">unload</code>. Observe como três deles recebem um ponteiro como argumento, conforme o <code class="language-plaintext highlighter-rouge">*</code>:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">check</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">word</span><span class="p">);</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">word</span><span class="p">);</span>
+<span class="n">bool</span> <span class="nf">load</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dictionary</span><span class="p">);</span>
+  </code></pre></div></div>
+
+  <p>Lembre-se que <code class="language-plaintext highlighter-rouge">char *</code> é o que costumávamos chamar de <code class="language-plaintext highlighter-rouge">string</code>. Portanto, esses três protótipos são essencialmente apenas:</p>
+
+  <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">check</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="n">word</span><span class="p">);</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="n">word</span><span class="p">);</span>
+<span class="n">bool</span> <span class="nf">load</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="n">dictionary</span><span class="p">);</span>
+    </code></pre></div></div>
+
+    <p>E <code class="language-plaintext highlighter-rouge">const</code>, por enquanto, apenas indica que essas strings, quando passadas como argumentos, devem permanecer constantes; você não será capaz de alterá-las, acidentalmente ou não!</p>
+<h4 id="dictionaryc"><code class="language-plaintext highlighter-rouge">dictionary.c</code></h4>
+<p>Agora abra o arquivo <code class="language-plaintext highlighter-rouge">dictionary.c</code>. Observe como, no topo do arquivo, definimos uma <code class="language-plaintext highlighter-rouge">struct</code> chamada <code class="language-plaintext highlighter-rouge">node</code> que representa um nó em uma tabela hash. E declaramos um array global de ponteiros, <code class="language-plaintext highlighter-rouge">table</code>, que representará (em breve) a tabela hash que você usará para controlar as palavras no dicionário. O array contém ponteiros de nó <code class="language-plaintext highlighter-rouge">N</code>, e definimos <code class="language-plaintext highlighter-rouge">N</code> igual a <code class="language-plaintext highlighter-rouge">26</code> por agora, para corresponder à função de hash padrão descrita abaixo. Provavelmente, você desejará aumentar isso dependendo da sua própria implementação de <code class="language-plaintext highlighter-rouge">hash</code>.</p>
+<p>Em seguida, observe que implementamos <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">check</code>, <code class="language-plaintext highlighter-rouge">size</code> e <code class="language-plaintext highlighter-rouge">unload</code>, mas apenas o suficiente para que o código compile. Observe também que implementamos <code class="language-plaintext highlighter-rouge">hash</code> com um algoritmo de exemplo com base na primeira letra da palavra. Seu trabalho, em última análise, é reimplementar essas funções da maneira mais inteligente possível para que este corretor ortográfico funcione como anunciado. E rápido!</p>
+
+<h4 id="spellerc"><code class="language-plaintext highlighter-rouge">speller.c</code></h4>
+<p>Okay, em seguida, abra o arquivo <code class="language-plaintext highlighter-rouge">speller.c</code> e dedique algum tempo olhando o código e os comentários nele contidos. Você não precisará mudar nada neste arquivo e não precisa entender sua totalidade, mas tente ter uma noção de sua funcionalidade mesmo assim. Note como, por meio de uma função chamada <code class="language-plaintext highlighter-rouge">getrusage</code>, estaremos "fazendo benchmark" (ou seja, cronometrando a execução) de suas implementações de <code class="language-plaintext highlighter-rouge">check</code>, <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">size</code> e <code class="language-plaintext highlighter-rouge">unload</code>. Observe também como passamos, palavra por palavra, o conteúdo de algum arquivo para ser corrigido ortograficamente para a função <code class="language-plaintext highlighter-rouge">check</code>. Por fim, relatamos cada erro de grafia encontrado nesse arquivo, juntamente com várias estatísticas.</p>
+<p>Observe, incidentalmente, que definimos o uso de <code class="language-plaintext highlighter-rouge">speller</code> como sendo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: speller [dictionary] text
+</code></pre></div></div>
+
+<p>Onde <code class="language-plaintext highlighter-rouge">dictionary</code> é assumido como um arquivo contendo uma lista de palavras em minúsculas, uma por linha, e <code class="language-plaintext highlighter-rouge">text</code> é um arquivo a ser verificado a ortografia. Como os colchetes sugerem, o fornecimento de <code class="language-plaintext highlighter-rouge">dictionary</code> é opcional; se esse argumento for omitido, <code class="language-plaintext highlighter-rouge">speller</code> usará o arquivo <code class="language-plaintext highlighter-rouge">dictionaries/large</code> por padrão. Em outras palavras, executando:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller text
+</code></pre></div></div>
+
+<p>será equivalente a executar</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller dictionaries/large text
+</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">text</code> é o arquivo que você deseja verificar a ortografia. Dito isso, o primeiro é mais fácil de digitar! (Claro, <code class="language-plaintext highlighter-rouge">speller</code> não será capaz de carregar nenhum dicionário até que você implemente <code class="language-plaintext highlighter-rouge">load</code> em <code class="language-plaintext highlighter-rouge">dictionary.c</code>! Até lá, você verá <code class="language-plaintext highlighter-rouge">Could not load</code>.)</p>
+<p>Dentro do dicionário padrão, há 143.091 palavras, todas as quais devem ser carregadas na memória! Na verdade, dê uma olhada nesse arquivo para ter uma ideia de sua estrutura e tamanho. Observe que cada palavra nesse arquivo aparece em minúsculas (mesmo os nomes próprios e siglas para simplificar). De cima para baixo, o arquivo é ordenado lexicograficamente, com apenas uma palavra por linha (cada uma delas termina com <code class="language-plaintext highlighter-rouge">\n</code>). Nenhuma palavra tem mais de 45 caracteres e nenhuma palavra aparece mais de uma vez. Durante o desenvolvimento, você pode achar útil fornecer ao <code class="language-plaintext highlighter-rouge">speller</code> um <code class="language-plaintext highlighter-rouge">dicionário</code> próprio que contenha muito menos palavras, para não ter dificuldades em depurar uma estrutura enorme na memória. Em <code class="language-plaintext highlighter-rouge">dictionaries/small</code> há um dicionário desses. Para usá-lo, execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller dictionaries/small text
+</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">text</code> é o arquivo que você deseja verificar a ortografia. Não avance até ter certeza de que entende como o próprio <code class="language-plaintext highlighter-rouge">speller</code> funciona!</p>
+<p>Provavelmente, você não dedicou tempo suficiente para revisar o arquivo <code class="language-plaintext highlighter-rouge">speller.c</code>. Volte um passo e percorra-o novamente!</p>
+<h4 id="texts"><code class="language-plaintext highlighter-rouge">texts/</code></h4>
+<p>Para que você possa testar sua implementação do <code class="language-plaintext highlighter-rouge">speller</code>, também fornecemos uma grande quantidade de textos, incluindo o roteiro de <em>La La Land</em>, o texto da <em>Affordable Care Act</em>, três milhões de bytes de <em>Tolstoy</em>, alguns trechos de <em>The Federalist Papers</em> e <em>Shakespeare</em>, e muito mais. Para que você saiba o que esperar, abra e examine cada um desses arquivos, todos os quais estão em um diretório chamado <code class="language-plaintext highlighter-rouge">texts</code> dentro do seu diretório <code class="language-plaintext highlighter-rouge">pset5</code>.</p>
+<p>Agora, como você deve saber após ter lido cuidadosamente o arquivo <code class="language-plaintext highlighter-rouge">speller.c</code>, a saída do <code class="language-plaintext highlighter-rouge">speller</code>, se executado com, por exemplo,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller texts/lalaland.txt
+</code></pre></div></div>
+
+<p>eventualmente se parecerá com o abaixo.</p>
+<p>Abaixo está uma parte da saída que você verá. Por questão de informação, nós extraímos alguns exemplos de "erros de ortografia". E para não estragar a diversão, omitimos nossas próprias estatísticas por enquanto.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MISSPELLED WORDS
+
+[...]
+AHHHHHHHHHHHHHHHHHHHHHHHHHHHT
+[...]
+Shangri
+[...]
+fianc
+[...]
+Sebastian's
+[...]
+
+WORDS MISSPELLED:
+WORDS IN DICTIONARY:
+WORDS IN TEXT:
+TIME IN load:
+TIME IN check:
+TIME IN size:
+TIME IN unload:
+TIME IN TOTAL:
+  </code></pre></div></div>
+
+  <p><code class="language-plaintext highlighter-rouge">TIME IN load</code> representa o número de segundos que o <code class="language-plaintext highlighter-rouge">speller</code> gasta executando sua implementação de <code class="language-plaintext highlighter-rouge">load</code>. <code class="language-plaintext highlighter-rouge">TIME IN check</code> representa o número de segundos que o <code class="language-plaintext highlighter-rouge">speller</code> gasta, no total, executando sua implementação de <code class="language-plaintext highlighter-rouge">check</code>. <code class="language-plaintext highlighter-rouge">TIME IN size</code> representa o número de segundos que o <code class="language-plaintext highlighter-rouge">speller</code> gasta executando sua implementação de <code class="language-plaintext highlighter-rouge">size</code>. <code class="language-plaintext highlighter-rouge">TIME IN unload</code> representa o número de segundos que o <code class="language-plaintext highlighter-rouge">speller</code> gasta executando sua implementação de <code class="language-plaintext highlighter-rouge">unload</code>. <code class="language-plaintext highlighter-rouge">TIME IN TOTAL</code> é a soma dessas quatro medidas.</p>
+<p><strong>Observe que esses tempos podem variar um pouco entre as execuções do <code class="language-plaintext highlighter-rouge">speller</code>, dependendo do que mais sua área de códigos estiver fazendo, mesmo que você não altere seu código.</strong></p>
+<p>Aliás, para deixar claro, por "com erro de ortografia" nós simplesmente queremos dizer que alguma palavra não está no <code class="language-plaintext highlighter-rouge">dicionário</code> fornecido.</p>
+
+<h4 id="makefile"><code class="language-plaintext highlighter-rouge">Makefile</code></h4>
+<p>E, por último, lembre-se de que o <code class="language-plaintext highlighter-rouge">make</code> automatiza a compilação do seu código para que você não precise executar o <code class="language-plaintext highlighter-rouge">clang</code> manualmente junto com um monte de opções. No entanto, à medida que seus programas crescem em tamanho, o <code class="language-plaintext highlighter-rouge">make</code> não será capaz de inferir do contexto como compilar o seu código; você precisará começar a dizer ao <code class="language-plaintext highlighter-rouge">make</code> como compilar o seu programa, particularmente quando eles envolvem múltiplos arquivos de origem (ou seja, arquivos <code class="language-plaintext highlighter-rouge">.c</code>), como no caso deste problema. E assim, vamos utilizar um <code class="language-plaintext highlighter-rouge">Makefile</code>, um arquivo de configuração que diz ao <code class="language-plaintext highlighter-rouge">make</code> exatamente o que fazer. Abra o <code class="language-plaintext highlighter-rouge">Makefile</code>, e você deverá ver quatro linhas:</p>
+<ol>
+  <li>A primeira linha diz ao <code class="language-plaintext highlighter-rouge">make</code> para executar as linhas subsequentes sempre que você mesmo executar <code class="language-plaintext highlighter-rouge">make speller</code> (ou apenas <code class="language-plaintext highlighter-rouge">make</code>).</li>
+  <li>A segunda linha diz ao <code class="language-plaintext highlighter-rouge">make</code> como compilar o <code class="language-plaintext highlighter-rouge">speller.c</code> em código de máquina (ou seja, <code class="language-plaintext highlighter-rouge">speller.o</code>).</li>
+  <li>A terceira linha diz ao <code class="language-plaintext highlighter-rouge">make</code> como compilar o <code class="language-plaintext highlighter-rouge">dictionary.c</code> em código de máquina (ou seja, <code class="language-plaintext highlighter-rouge">dictionary.o</code>).</li>
+  <li>A quarta linha diz ao <code class="language-plaintext highlighter-rouge">make</code> para vincular o <code class="language-plaintext highlighter-rouge">speller.o</code> e o <code class="language-plaintext highlighter-rouge">dictionary.o</code> em um arquivo chamado <code class="language-plaintext highlighter-rouge">speller</code>.</li>
+</ol>
+
+<p><strong> Certifique-se de compilar o <code class="language-plaintext highlighter-rouge">speller</code> executando <code class="language-plaintext highlighter-rouge">make speller</code> (ou apenas <code class="language-plaintext highlighter-rouge">make</code>). Executar <code class="language-plaintext highlighter-rouge">make dictionary</code> não funcionará!</strong></p>
+
+
+
+
+
+
+
+
+
+<h2 id="specification">Especificação</h2>
+
+<p>Certo, o desafio que está diante de você agora é implementar, em ordem, <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">hash</code>, <code class="language-plaintext highlighter-rouge">size</code>, <code class="language-plaintext highlighter-rouge">check</code> e <code class="language-plaintext highlighter-rouge">unload</code> de forma eficiente usando uma tabela hash, de tal forma que <code class="language-plaintext highlighter-rouge">TIME IN load</code>, <code class="language-plaintext highlighter-rouge">TIME IN check</code>, <code class="language-plaintext highlighter-rouge">TIME IN size</code> e <code class="language-plaintext highlighter-rouge">TIME IN unload</code> sejam todos minimizados. Para ter certeza, não é óbvio o que significa ser minimizado, na medida em que essas referências certamente variarão conforme você alimenta o <code class="language-plaintext highlighter-rouge">speller</code> com valores diferentes para <code class="language-plaintext highlighter-rouge">dictionary</code> e <code class="language-plaintext highlighter-rouge">text</code>. Mas aí reside o desafio, se não a diversão, deste problema. Este problema é a sua chance de projetar. Embora convidemos você a minimizar o espaço, seu inimigo final é o tempo. Mas antes de mergulhar, algumas especificações de nossa parte.</p>
+<ul>
+  <li data-marker="*">Você não pode alterar o <code class="language-plaintext highlighter-rouge">speller.c</code> ou o <code class="language-plaintext highlighter-rouge">Makefile</code>.</li>
+  <li data-marker="*">Você pode alterar o <code class="language-plaintext highlighter-rouge">dictionary.c</code> (e, na verdade, deve fazê-lo para completar as implementações de <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">hash</code>, <code class="language-plaintext highlighter-rouge">size</code>, <code class="language-plaintext highlighter-rouge">check</code> e <code class="language-plaintext highlighter-rouge">unload</code>), mas não pode alterar as declarações (ou seja, protótipos) de <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">hash</code>, <code class="language-plaintext highlighter-rouge">size</code>, <code class="language-plaintext highlighter-rouge">check</code> ou <code class="language-plaintext highlighter-rouge">unload</code>. No entanto, você pode adicionar novas funções e variáveis (locais ou globais) ao <code class="language-plaintext highlighter-rouge">dictionary.c</code>.</li>
+
+  <li data-marker="*">Você pode alterar o valor de <code class="language-plaintext highlighter-rouge">N</code> em <code class="language-plaintext highlighter-rouge">dictionary.c</code>, para que sua tabela de hash possa ter mais buckets.</li>
+  <li data-marker="*">Você pode alterar <code class="language-plaintext highlighter-rouge">dictionary.h</code>, mas não pode alterar as declarações de <code class="language-plaintext highlighter-rouge">load</code>, <code class="language-plaintext highlighter-rouge">hash</code>, <code class="language-plaintext highlighter-rouge">size</code>, <code class="language-plaintext highlighter-rouge">check</code> ou <code class="language-plaintext highlighter-rouge">unload</code>.</li>
+  <li data-marker="*">Sua implementação de <code class="language-plaintext highlighter-rouge">check</code> deve ser insensível a maiúsculas e minúsculas. Em outras palavras, se <code class="language-plaintext highlighter-rouge">foo</code> estiver no dicionário, então <code class="language-plaintext highlighter-rouge">check</code> deve retornar verdadeiro para qualquer capitalização; nenhuma das palavras <code class="language-plaintext highlighter-rouge">foo</code>, <code class="language-plaintext highlighter-rouge">foO</code>, <code class="language-plaintext highlighter-rouge">fOo</code>, <code class="language-plaintext highlighter-rouge">fOO</code>, <code class="language-plaintext highlighter-rouge">fOO</code>, <code class="language-plaintext highlighter-rouge">Foo</code>, <code class="language-plaintext highlighter-rouge">FoO</code>, <code class="language-plaintext highlighter-rouge">FOo</code> e <code class="language-plaintext highlighter-rouge">FOO</code> devem ser consideradas como palavras incorretas.</li>
+
+  <li data-marker="*">Em relação à capitalização, sua implementação do <code class="language-plaintext highlighter-rouge">check</code> deve retornar apenas <code class="language-plaintext highlighter-rouge">true</code> para palavras presentes no <code class="language-plaintext highlighter-rouge">dicionário</code>. Tenha cuidado para não codificar palavras comuns (por exemplo, <code class="language-plaintext highlighter-rouge">the</code>), para que não passemos sua implementação um <code class="language-plaintext highlighter-rouge">dicionário</code> sem essas mesmas palavras. Além disso, apenas os possessivos permitidos são aqueles que estão realmente no <code class="language-plaintext highlighter-rouge">dicionário</code>. Em outras palavras, mesmo que <code class="language-plaintext highlighter-rouge">foo</code> esteja no <code class="language-plaintext highlighter-rouge">dicionário</code>, <code class="language-plaintext highlighter-rouge">check</code> deve retornar <code class="language-plaintext highlighter-rouge">false</code> para <code class="language-plaintext highlighter-rouge">foo's</code> se <code class="language-plaintext highlighter-rouge">foo's</code> não estiver no <code class="language-plaintext highlighter-rouge">dicionário</code> também.</li>
+  <li data-marker="*">Você pode assumir que qualquer <code class="language-plaintext highlighter-rouge">dicionário</code> passado para o seu programa terá a mesma estrutura do nosso, ordenado alfabeticamente de cima para baixo com uma palavra por linha, cada uma delas terminando com <code class="language-plaintext highlighter-rouge">\n</code>. Você também pode assumir que o <code class="language-plaintext highlighter-rouge">dicionário</code> contém pelo menos uma palavra, que nenhuma palavra terá mais de <code class="language-plaintext highlighter-rouge">LENGTH</code> (uma constante definida em <code class="language-plaintext highlighter-rouge">dictionary.h</code>) caracteres, que nenhuma palavra aparecerá mais de uma vez, que cada palavra conterá apenas caracteres alfabéticos minúsculos e possivelmente apóstrofos, e que nenhuma palavra começará com um apóstrofo.</li>
+  <li data-marker="*">Você pode assumir que o <code class="language-plaintext highlighter-rouge">check</code> só receberá palavras que contêm caracteres alfabéticos (maiúsculos ou minúsculos) e possivelmente apóstrofos.</li>
+
+  <li data-marker="*">Seu corretor ortográfico pode receber apenas <code class="language-plaintext highlighter-rouge">texto</code> e, opcionalmente, <code class="language-plaintext highlighter-rouge">dicionário</code> como entrada. Embora você possa ser inclinado (particularmente se estiver entre aqueles mais confortáveis) a "pré-processar" nosso dicionário padrão para derivar uma "função hash ideal" para ele, você não pode salvar a saída de qualquer pré-processamento em disco para carregá-la de volta na memória em execuções subsequentes do seu corretor ortográfico para ganhar vantagem.</li>
+  <li data-marker="*">Seu corretor ortográfico não deve vazar qualquer memória. Certifique-se de verificar vazamentos com <code class="language-plaintext highlighter-rouge">valgrind</code>.</li>
+  <li data-marker="*"><strong>A função hash que você escrever deve ser sua própria, não uma que você procura on-line.</strong> Existem muitas maneiras de implementar uma função hash além de usar o primeiro caractere (ou caracteres) de uma palavra. Considere uma função hash que usa a soma dos valores ASCII ou o comprimento de uma palavra. Uma boa função hash tende a reduzir "colisões" e tem uma distribuição bastante uniforme nos "baldes" da tabela hash.</li>
+</ul>
+<p>Ok, pronto para começar?</p>
+
+<ul>
+  <li data-marker="*">Implementar <code class="language-plaintext highlighter-rouge">load</code>.</li>
+  <li data-marker="*">Implementar <code class="language-plaintext highlighter-rouge">hash</code>.</li>
+  <li data-marker="*">Implementar <code class="language-plaintext highlighter-rouge">size</code>.</li>
+  <li data-marker="*">Implementar <code class="language-plaintext highlighter-rouge">check</code>.</li>
+  <li data-marker="*">Implementar <code class="language-plaintext highlighter-rouge">unload</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<h2 id="hints">Dicas</h2>
+<p>Para comparar duas strings sem distinguir maiúsculas e minúsculas, você pode achar útil a função <a href="https://man.cs50.io/3/strcasecmp" target="_blank"><code class="language-plaintext highlighter-rouge">strcasecmp</code></a> (declarada em <code class="language-plaintext highlighter-rouge">strings.h</code>)! Você provavelmente também vai querer garantir que sua função hash não diferencie maiúsculas de minúsculas, de modo que <code class="language-plaintext highlighter-rouge">foo</code> e <code class="language-plaintext highlighter-rouge">FOO</code> tenham o mesmo valor de hash.</p>
+<p>Por fim, certifique-se de liberar a memória alocada em <code class="language-plaintext highlighter-rouge">load</code> no momento em que você chama a função <code class="language-plaintext highlighter-rouge">unload</code>! Lembre-se de que o <code class="language-plaintext highlighter-rouge">valgrind</code> é seu melhor amigo. Saiba que o <code class="language-plaintext highlighter-rouge">valgrind</code> procura vazamentos enquanto o seu programa está em execução, portanto, certifique-se de fornecer argumentos de linha de comando se você quiser que o <code class="language-plaintext highlighter-rouge">valgrind</code> analise o <code class="language-plaintext highlighter-rouge">speller</code> enquanto você usa um dicionário e/ou texto específico, como abaixo. É melhor usar um texto pequeno, no entanto, caso contrário, o <code class="language-plaintext highlighter-rouge">valgrind</code> pode demorar bastante para rodar.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>valgrind ./speller texts/cat.txt
+</code></pre></div></div>
+
+<p>Se você executar o <code class="language-plaintext highlighter-rouge">valgrind</code> sem especificar um <code class="language-plaintext highlighter-rouge">texto</code> para o <code class="language-plaintext highlighter-rouge">speller</code>, suas implementações de <code class="language-plaintext highlighter-rouge">load</code> e <code class="language-plaintext highlighter-rouge">unload</code> não serão realmente chamadas (e, portanto, analisadas).</p>
+<p>Se você não tem certeza de como interpretar a saída do <code class="language-plaintext highlighter-rouge">valgrind</code>, basta pedir ajuda ao <code class="language-plaintext highlighter-rouge">help50</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>help50 valgrind ./speller texts/cat.txt
+</code></pre></div></div>
+
+
+
+
+
+<h2 id="testing">Testando</h2>
+<p>Como verificar se o seu programa está exibindo as palavras com erro ortográfico corretas? Bem, você pode consultar as "chaves de resposta" que estão dentro do diretório <code class="language-plaintext highlighter-rouge">keys</code> que está dentro do seu diretório <code class="language-plaintext highlighter-rouge">speller</code>. Por exemplo, dentro de <code class="language-plaintext highlighter-rouge">keys/lalaland.txt</code>, estão todas as palavras que o seu programa <em>deve</em> considerar como tendo erro ortográfico.</p>
+<p>Portanto, você pode executar o seu programa em algum texto em uma janela, como abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller texts/lalaland.txt
+</code></pre></div></div>
+
+<p>E você poderia executar a solução da equipe no mesmo texto em outra janela, como no exemplo abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller50 texts/lalaland.txt
+</code></pre></div></div>
+
+<p>E então você poderia comparar visualmente as janelas lado a lado. Isso poderia se tornar tedioso rapidamente, no entanto. Então, você pode querer "redirecionar" a saída do programa para um arquivo, como mostrado abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller texts/lalaland.txt &gt; student.txt
+./speller50 texts/lalaland.txt &gt; staff.txt</code></pre></div></div>
+
+  <p>Você pode então comparar ambos os arquivos lado a lado na mesma janela com um programa como <code class="language-plaintext highlighter-rouge">diff</code>, como no exemplo abaixo.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff -y student.txt staff.txt</code></pre></div></div>
+
+  <p>Alternativamente, para economizar tempo, você poderia simplesmente comparar a saída do seu programa (supondo que você a redirecionou para, por exemplo, <code class="language-plaintext highlighter-rouge">student.txt</code>) com uma das chaves de resposta sem executar a solução da equipe, como no exemplo abaixo.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff -y student.txt keys/lalaland.txt</code></pre></div></div>
+
+  <p>Se a saída do seu programa corresponder à da equipe, o comando <code class="language-plaintext highlighter-rouge">diff</code> irá produzir duas colunas que devem ser idênticas, exceto talvez pelos tempos de execução na parte inferior. No entanto, se as colunas diferirem, você verá um <code class="language-plaintext highlighter-rouge">&gt;</code> ou <code class="language-plaintext highlighter-rouge">|</code> onde elas diferem. Por exemplo, se você vir</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MISSPELLED WORDS                                                MISSPELLED WORDS
+
+TECHNO                                                          TECHNO
+L                                                               L
+                                                              &gt; Thelonious
+Prius                                                           Prius
+                                                              &gt; MIA
+L                                                               L
+    </code></pre></div></div>
+
+    <p>Isso significa que seu programa (cuja saída está à esquerda) não considera que <code class="language-plaintext highlighter-rouge">Thelonious</code> ou <code class="language-plaintext highlighter-rouge">MIA</code> estejam com erro de ortografia, mesmo que a saída da equipe (à direita) o faça, como é sugerido pela ausência, por exemplo, de <code class="language-plaintext highlighter-rouge">Thelonious</code> na coluna da esquerda e a presença de <code class="language-plaintext highlighter-rouge">Thelonious</code> na coluna da direita.</p>
+<h3 id="check50"><code class="language-plaintext highlighter-rouge">check50</code></h3>
+<p>Para testar seu código de forma menos manual (embora ainda não exaustiva), você também pode executar o seguinte.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/speller
+</code></pre></div></div>
+
+<p>Observe que o <code class="language-plaintext highlighter-rouge">check50</code> também verificará vazamentos de memória, então certifique-se de ter executado o <code class="language-plaintext highlighter-rouge">valgrind</code> também.</p>
+
+<h3 id="style50">style50</h3>
+<p>Execute o abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 dictionary.c
+</code></pre></div></div>
+
+<h2 id="staffs-solution">Solução da equipe</h2>
+<p>Como avaliar quão rápido (e correto) é o seu código? Bem, como sempre, sinta-se à vontade para brincar com a solução da equipe, assim como com a abaixo, e comparar seus números com os seus.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./speller50 texts/lalaland.txt
+</code></pre></div></div>
+
+<h2 id="how-to-submit">Como Enviar</h2>
+<p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/speller
+</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

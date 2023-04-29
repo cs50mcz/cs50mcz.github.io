@@ -112,6 +112,18 @@ body {
     border-radius: var(--bs-alert-border-radius);
 }
 
+.alert-danger {
+  --bs-alert-color: var(--bs-danger-text-emphasis);
+  --bs-alert-bg: var(--bs-danger-bg-subtle);
+  --bs-alert-border-color: var(--bs-danger-border-subtle);
+  --bs-alert-link-color: var(--bs-danger-text-emphasis);
+
+  background: #fcb1af;
+  color: #3f0404;
+  font-style: italic;
+  font-weight: bold;
+}
+
   .alert-warning {
     --bs-alert-color: var(--bs-warning-text);
     --bs-alert-bg: var(--bs-warning-bg-subtle);

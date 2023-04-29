@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 5: Herança</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+
+
+    <p>Simule a herança de tipos sanguíneos para cada membro de uma família.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./inheritance
+Child (Generation 0): blood type OO
+    Parent (Generation 1): blood type AO
+        Grandparent (Generation 2): blood type OA
+        Grandparent (Generation 2): blood type BO
+    Parent (Generation 1): blood type OB
+        Grandparent (Generation 2): blood type AO
+        Grandparent (Generation 2): blood type BO
+  </code></pre></div></div>
+
+
+
+
+  <h2 id="background">Contexto</h2>
+  <p>O tipo sanguíneo de uma pessoa é determinado por dois alelos (ou seja, formas diferentes de um gene). Os três alelos possíveis são A, B e O, dos quais cada pessoa possui dois (possivelmente os mesmos, possivelmente diferentes). Cada um dos pais de uma criança passa aleatoriamente um de seus dois alelos do tipo sanguíneo para a criança. As possíveis combinações de tipos sanguíneos são: OO, OA, OB, AO, AA, AB, BO, BA e BB.</p>
+  <p>Por exemplo, se um dos pais tem tipo sanguíneo AO e o outro tem tipo sanguíneo BB, então os possíveis tipos sanguíneos da criança seriam AB e OB, dependendo de qual alelo é recebido de cada pai. Da mesma forma, se um dos pais tem tipo sanguíneo AO e o outro OB, então os possíveis tipos sanguíneos da criança são AO, OB, AB e OO.</p>
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/5/inheritance.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">inheritance.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip inheritance.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">inheritance</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm inheritance.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd inheritance
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>inheritance/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver o arquivo <code class="language-plaintext highlighter-rouge">inheritance.c</code>.</p>
+
+<p>Se você encontrar algum problema, siga os mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+<h2 id="understanding">Entendendo</h2>
+<p>Dê uma olhada no código de distribuição em <code class="language-plaintext highlighter-rouge">inheritance.c</code>.</p>
+<p>Observe a definição de um tipo chamado <code class="language-plaintext highlighter-rouge">person</code>. Cada pessoa possui um array de dois <code class="language-plaintext highlighter-rouge">parents</code>, cada um dos quais é um ponteiro para outra struct <code class="language-plaintext highlighter-rouge">person</code>. Cada pessoa também possui um array de dois <code class="language-plaintext highlighter-rouge">alleles</code>, cada um dos quais é um <code class="language-plaintext highlighter-rouge">char</code> (ou seja, <code class="language-plaintext highlighter-rouge">'A'</code>, <code class="language-plaintext highlighter-rouge">'B'</code> ou <code class="language-plaintext highlighter-rouge">'O'</code>).</p>
+<p>Agora, dê uma olhada na função <code class="language-plaintext highlighter-rouge">main</code>. A função começa por "seeding" (ou seja, fornecendo algumas entradas iniciais para) um gerador de números aleatórios, que usaremos posteriormente para gerar alelos aleatórios. A função <code class="language-plaintext highlighter-rouge">main</code> então chama a função <code class="language-plaintext highlighter-rouge">create_family</code> para simular a criação de structs <code class="language-plaintext highlighter-rouge">person</code> para uma família de 3 gerações (ou seja, uma pessoa, seus pais e seus avós). Então chamamos <code class="language-plaintext highlighter-rouge">print_family</code> para imprimir cada um desses membros da família e seus tipos sanguíneos. Finalmente, a função chama <code class="language-plaintext highlighter-rouge">free_family</code> para <code class="language-plaintext highlighter-rouge">liberar</code> qualquer memória que foi previamente alocada com <code class="language-plaintext highlighter-rouge">malloc</code>.</p>
+<p>As funções <code class="language-plaintext highlighter-rouge">create_family</code> e <code class="language-plaintext highlighter-rouge">free_family</code> são deixadas para você escrever!</p>
+<h2 id="implementation-details">Detalhes de Implementação</h2>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">inheritance.c</code>, de modo a criar uma família de tamanho de geração especificado e atribuir alelos de tipo sanguíneo a cada membro da família. A geração mais antiga terá alelos atribuídos aleatoriamente a eles.</p>
+
+<ul>
+  <li data-marker="*">A função <code class="language-plaintext highlighter-rouge">create_family</code> recebe um inteiro (<code class="language-plaintext highlighter-rouge">generations</code>) como entrada e deve alocar (como via <code class="language-plaintext highlighter-rouge">malloc</code>) uma estrutura <code class="language-plaintext highlighter-rouge">person</code> para cada membro da família com o número de gerações especificado, retornando um ponteiro para o <code class="language-plaintext highlighter-rouge">person</code> na geração mais nova.
+    <ul>
+      <li data-marker="*">Por exemplo, <code class="language-plaintext highlighter-rouge">create_family(3)</code> deve retornar um ponteiro para uma pessoa com dois pais, onde cada pai também tem dois pais.</li>
+      <li data-marker="*">Cada <code class="language-plaintext highlighter-rouge">person</code> deve ter seus <code class="language-plaintext highlighter-rouge">alelos</code> atribuídos a eles. A geração mais antiga deve ter alelos escolhidos aleatoriamente (como chamando a função <code class="language-plaintext highlighter-rouge">random_allele</code>), e as gerações mais jovens devem herdar um alelo (escolhido aleatoriamente) de cada pai.</li>
+      <li data-marker="*">Cada <code class="language-plaintext highlighter-rouge">person</code> deve ter seus <code class="language-plaintext highlighter-rouge">parents</code> atribuídos a eles. A geração mais antiga deve ter ambos os <code class="language-plaintext highlighter-rouge">parents</code> definidos como <code class="language-plaintext highlighter-rouge">NULL</code>, e as gerações mais jovens devem ter <code class="language-plaintext highlighter-rouge">parents</code> sendo um array de dois ponteiros, cada um apontando para um pai diferente.</li>
+    </ul>
+  </li>
+</ul>
+<p>Nós dividimos a função <code class="language-plaintext highlighter-rouge">create_family</code> em algumas tarefas <code class="language-plaintext highlighter-rouge">TODO</code> para você completar.</p>
+
+<ul>
+  <li data-marker="*">Primeiramente, você deve alocar memória para uma nova pessoa. Lembre-se de que você pode usar <code class="language-plaintext highlighter-rouge">malloc</code> para alocar memória e <code class="language-plaintext highlighter-rouge">sizeof(person)</code> para obter o número de bytes a serem alocados.</li>
+  <li data-marker="*">Em seguida, incluímos uma condição para verificar se <code class="language-plaintext highlighter-rouge">generations &gt; 1</code>.
+    <ul>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">generations &gt; 1</code>, então há mais gerações que ainda precisam ser alocadas. Já criamos dois novos <code class="language-plaintext highlighter-rouge">parents</code>, <code class="language-plaintext highlighter-rouge">parent0</code> e <code class="language-plaintext highlighter-rouge">parent1</code>, chamando recursivamente <code class="language-plaintext highlighter-rouge">create_family</code>. Sua função <code class="language-plaintext highlighter-rouge">create_family</code> deve, então, definir os ponteiros dos pais para a nova pessoa que você criou. Finalmente, atribua ambos os <code class="language-plaintext highlighter-rouge">alleles</code> para a nova pessoa escolhendo aleatoriamente um <code class="language-plaintext highlighter-rouge">allele</code> de cada pai.</li>
+      <li data-marker="*">Caso contrário (se <code class="language-plaintext highlighter-rouge">generations == 1</code>), não haverá dados de pais para essa pessoa. Ambos os <code class="language-plaintext highlighter-rouge">parents</code> da nova pessoa devem ser definidos como <code class="language-plaintext highlighter-rouge">NULL</code> e cada <code class="language-plaintext highlighter-rouge">allele</code> deve ser gerado aleatoriamente.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Por fim, sua função deve retornar um ponteiro para a <code class="language-plaintext highlighter-rouge">person</code> que foi alocada.</li>
+</ul>
+
+<p>A função <code class="language-plaintext highlighter-rouge">free_family</code> deve receber como entrada um ponteiro para uma <code class="language-plaintext highlighter-rouge">pessoa</code>, liberar a memória para essa pessoa e, em seguida, recursivamente liberar a memória para todos os seus ancestrais.</p>
+<ul>
+  <li data-marker="*">Como essa é uma função recursiva, você deve primeiro lidar com o caso base. Se a entrada da função for <code class="language-plaintext highlighter-rouge">NULL</code>, não há nada para liberar, então a função pode retornar imediatamente.</li>
+  <li data-marker="*">Caso contrário, você deve recursivamente <code class="language-plaintext highlighter-rouge">liberar</code> ambos os pais da pessoa antes de <code class="language-plaintext highlighter-rouge">liberar</code> a criança.</li>
+</ul>
+
+<h3 id="hints">Dicas</h3>
+<ul>
+  <li data-marker="*">Você pode achar a função <code class="language-plaintext highlighter-rouge">rand()</code> útil para atribuir aleatoriamente alelos. Esta função retorna um número inteiro entre <code class="language-plaintext highlighter-rouge">0</code> e <code class="language-plaintext highlighter-rouge">RAND_MAX</code>, ou <code class="language-plaintext highlighter-rouge">2147483647</code>.
+    <ul>
+      <li data-marker="*">Em particular, para gerar um número pseudorandom que é <code class="language-plaintext highlighter-rouge">0</code> ou <code class="language-plaintext highlighter-rouge">1</code>, você pode usar a expressão <code class="language-plaintext highlighter-rouge">rand() % 2</code>.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Lembre-se de que, para alocar memória para uma pessoa específica, podemos usar o <code class="language-plaintext highlighter-rouge">malloc(n)</code>, que recebe um tamanho como argumento e alocará <code class="language-plaintext highlighter-rouge">n</code> bytes de memória.</li>
+  <li data-marker="*">Lembre-se de que, para acessar uma variável por meio de um ponteiro, podemos usar a notação de seta.
+    <ul>
+      <li data-marker="*">Por exemplo, se <code class="language-plaintext highlighter-rouge">p</code> é um ponteiro para uma pessoa, então um ponteiro para o primeiro pai desta pessoa pode ser acessado por <code class="language-plaintext highlighter-rouge">p-&gt;parents[0]</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="how-to-test-your-code">Como Testar Seu Código</h3>
+<p>Ao executar <code class="language-plaintext highlighter-rouge">./inheritance</code>, o seu programa deve aderir às regras descritas no contexto. A criança deve ter dois alelos, um de cada pai. Os pais devem ter cada um dois alelos, um de cada um dos seus pais.</p>
+<p>Por exemplo, no exemplo abaixo, a criança na Geração 0 recebeu um alelo O de ambos os pais da Geração 1. O primeiro pai recebeu um alelo A do primeiro avô e um alelo O do segundo avô. Da mesma forma, o segundo pai recebeu um alelo O e um alelo B de seus avós.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./inheritance
+Child (Generation 0): blood type OO
+    Parent (Generation 1): blood type AO
+        Grandparent (Generation 2): blood type OA
+        Grandparent (Generation 2): blood type BO
+    Parent (Generation 1): blood type OB
+        Grandparent (Generation 2): blood type AO
+        Grandparent (Generation 2): blood type BO
+  </code></pre></div></div>
+
+  <p>Execute o comando abaixo para avaliar a correção do seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar o código você mesmo também!</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/inheritance </code></pre></div></div>
+
+  <p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 inheritance.c</code></pre></div></div>
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/inheritance</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
