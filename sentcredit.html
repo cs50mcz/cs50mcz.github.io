@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+  </div>
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Credit</h2>
+    <hr>
+
+    <p>Implemente um programa que determine se um número de cartão de crédito fornecido é válido de acordo com o algoritmo de Luhn.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python credit.py
+Number: 378282246310005
+AMEX
+      </code></pre></div></div>
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da sua janela de terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela de terminal e, em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/6/sentimental-credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um ZIP chamado <code class="language-plaintext highlighter-rouge">sentimental-credit.zip</code>
+      no seu espaço de código. Certifique-se de não ignorar o espaço entre <code
+        class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip sentimental-credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">sentimental-credit</code>. Você não precisa
+      mais do arquivo ZIP, portanto, pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm sentimental-credit.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd sentimental-credit
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para se mover para dentro desse diretório. Seu prompt deve agora se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>sentimental-credit/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">credit.c</code>. Se você tiver algum problema, siga essas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+
+
+    <h2 id="specification">Especificação</h2>
+    <ul>
+      <li data-marker="*">No arquivo <code class="language-plaintext highlighter-rouge">credit.py</code>, escreva um programa que solicite ao usuário um número de cartão de crédito e, em seguida, informe (por meio de <code class="language-plaintext highlighter-rouge">print</code>) se é um número de cartão American Express, MasterCard ou Visa válido, exatamente como você fez no <a href="pset1.html">Problem Set 1</a>, exceto que seu programa desta vez deve ser escrito em Python.</li>
+      <li data-marker="*">Para que possamos automatizar alguns testes do seu código, pedimos que a última linha de saída do seu programa seja <code class="language-plaintext highlighter-rouge">AMEX\n</code> ou <code class="language-plaintext highlighter-rouge">MASTERCARD\n</code> ou <code class="language-plaintext highlighter-rouge">VISA\n</code> ou <code class="language-plaintext highlighter-rouge">INVALID\n</code>, nada mais, nada menos.</li>
+      <li data-marker="*">Para simplificar, você pode assumir que a entrada do usuário será totalmente numérica (ou seja, sem hífens, como pode ser impresso em um cartão real).</li>
+      <li data-marker="*">Melhor usar <code class="language-plaintext highlighter-rouge">get_int</code> ou <code class="language-plaintext highlighter-rouge">get_string</code> da biblioteca CS50 para obter a entrada do usuário, dependendo de como você decidir implementar este programa.</li>
+    </ul>
+    <h2 id="usage">Uso</h2>
+    <p>Seu programa deve se comportar como no exemplo abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python credit.py
+Number: 378282246310005
+AMEX
+      </code></pre></div></div>
+
+      <h2 id="hints">Dicas</h2>
+<ul>
+  <li data-marker="*">É possível usar expressões regulares para validar a entrada do usuário. Você pode usar, por exemplo, o módulo <a href="https://docs.python.org/3/library/re.html" target="_blank"><code class="language-plaintext highlighter-rouge">re</code></a> do Python para verificar se a entrada do usuário é de fato uma sequência de dígitos com o comprimento correto.</li>
+</ul>
+<h2 id="testing">Testando</h2>
+<p>Embora o <code class="language-plaintext highlighter-rouge">check50</code> esteja disponível para este problema, você é encorajado a primeiro testar seu código por conta própria para cada um dos seguintes casos.</p>
+
+<ul>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">378282246310005</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">AMEX</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">371449635398431</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">AMEX</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">5555555555554444</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">MASTERCARD</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">5105105105105100</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">MASTERCARD</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">4111111111111111</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">VISA</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">4012888888881881</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">VISA</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python credit.py</code> e aguarde uma solicitação de entrada. Digite <code class="language-plaintext highlighter-rouge">1234567890</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">INVALID</code>.</li>
+</ul>
+
+<p>Execute o comando abaixo para avaliar a correção do seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar o código você mesmo também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/sentimental/credit</code></pre></div></div>
+
+<p>Execute o comando abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 credit.py</code></pre></div></div>
+
+
+
+
+
+    
+
+
+
+
+
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute o seguinte comando para enviar o seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/sentimental/credit
+</code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

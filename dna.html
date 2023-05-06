@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+  </div>
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">DNA</h2>
+    <hr>
+
+    <p>Implemente um programa que identifique uma pessoa com base em seu DNA, conforme abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python dna.py databases/large.csv sequences/5.txt
+Lavender
+      </code></pre></div></div>
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da sua janela de terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela de terminal e, em seguida, execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/6/dna.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um ZIP chamado <code class="language-plaintext highlighter-rouge">dna.zip</code>
+      no seu espaço de código. Certifique-se de não ignorar o espaço entre <code
+        class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip dna.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">dna</code>. Você não precisa
+      mais do arquivo ZIP, portanto, pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm dna.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd dna
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para se mover para dentro desse diretório. Seu prompt deve agora se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>dna/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver alguns arquivos e pastas:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>databases/ dna.py sequences/</code></pre></div></div>
+<p>Se você tiver algum problema, siga esses mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+
+
+<h2 id="background">Contexto</h2>
+<p>O DNA, portador de informações genéticas em seres vivos, tem sido utilizado na justiça criminal por décadas. Mas como exatamente funciona o perfil de DNA? Dada uma sequência de DNA, como os investigadores forenses podem identificar a quem ele pertence?</p>
+<p>Bem, o DNA é realmente apenas uma sequência de moléculas chamadas nucleotídeos, dispostas em uma forma específica (uma dupla hélice). Cada célula humana tem bilhões de nucleotídeos dispostos em sequência. Cada nucleotídeo do DNA contém uma das quatro bases diferentes: adenina (A), citosina (C), guanina (G) ou timina (T). Algumas partes dessa sequência (ou seja, genoma) são as mesmas, ou pelo menos muito semelhantes, em quase todos os seres humanos, mas outras partes da sequência apresentam uma diversidade genética maior e, portanto, variam mais na população.</p>
+<p>Um local onde o DNA tende a ter alta diversidade genética é em Repetições em Tandem Curtas (STRs). Um STR é uma sequência curta de bases de DNA que tende a se repetir consecutivamente numerosas vezes em locais específicos dentro do DNA de uma pessoa. O número de vezes que um determinado STR se repete varia muito entre os indivíduos. Nas amostras de DNA abaixo, por exemplo, Alice tem o STR <code class="language-plaintext highlighter-rouge">AGAT</code> repetido quatro vezes em seu DNA, enquanto Bob tem o mesmo STR repetido cinco vezes.</p>
+<p><img src="./assets/images/strs.png" alt="Exemplo de STRs"></p>
+
+<p>O uso de vários STRs, em vez de apenas um, pode melhorar a precisão do perfil de DNA. Se a probabilidade de duas pessoas terem o mesmo número de repetições para um único STR é de 5%, e o analista olha para 10 STRs diferentes, então a probabilidade de duas amostras de DNA coincidirem puramente por acaso é de cerca de 1 em 1 quatrilhão (assumindo que todos os STRs são independentes entre si). Portanto, se duas amostras de DNA coincidirem no número de repetições de cada um dos STRs, o analista pode ter bastante confiança de que elas vieram da mesma pessoa. O CODIS, o banco de dados de DNA do FBI, usa 20 STRs diferentes como parte de seu processo de perfil de DNA. </p>
+<p>Como seria um banco de dados de DNA desse tipo? Bem, em sua forma mais simples, você pode imaginar a formatação de um banco de dados de DNA como um arquivo CSV, em que cada linha corresponde a um indivíduo e cada coluna corresponde a um STR específico.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name,AGAT,AATG,TATC
+Alice,28,42,14
+Bob,17,22,19
+Charlie,36,18,25
+  </code></pre></div></div>
+
+  <p>Os dados no arquivo acima sugerem que Alice tem a sequência <code class="language-plaintext highlighter-rouge">AGAT</code> repetida 28 vezes consecutivamente em algum lugar do seu DNA, a sequência <code class="language-plaintext highlighter-rouge">AATG</code> repetida 42 vezes, e <code class="language-plaintext highlighter-rouge">TATC</code> repetida 14 vezes. Enquanto isso, Bob tem esses mesmos três STRs repetidos 17 vezes, 22 vezes e 19 vezes, respectivamente. E Charlie tem esses mesmos três STRs repetidos 36, 18 e 25 vezes, respectivamente.</p>
+<p>Então, dada uma sequência de DNA, como você pode identificar a quem ela pertence? Bem, imagine que você procurou na sequência de DNA a sequência consecutiva mais longa de <code class="language-plaintext highlighter-rouge">AGAT</code>s repetidas e descobriu que a sequência mais longa era de 17 repetições. Se você então descobrisse que a sequência mais longa de <code class="language-plaintext highlighter-rouge">AATG</code> é de 22 repetições e a sequência mais longa de <code class="language-plaintext highlighter-rouge">TATC</code> é de 19 repetições, isso forneceria uma evidência bastante boa de que o DNA era de Bob. Claro, também é possível que, uma vez que você tenha as contagens para cada um dos STRs, isso não corresponda a ninguém em seu banco de dados de DNA, nesse caso, você não tem uma correspondência.</p>
+<p>Na prática, como os analistas sabem em qual cromossomo e em qual localização do DNA um STR será encontrado, eles podem localizar sua pesquisa apenas em uma seção estreita do DNA. Mas vamos ignorar esse detalhe para este problema.</p>
+<p>Sua tarefa é escrever um programa que receberá uma sequência de DNA e um arquivo CSV contendo contagens de STRs para uma lista de indivíduos e, em seguida, indicar a quem o DNA (provavelmente) pertence.</p>
+
+<h2 id="specification">Especificação</h2>
+<p>Em um arquivo chamado <code class="language-plaintext highlighter-rouge">dna.py</code>, implemente um programa que identifique a quem pertence uma sequência de DNA.</p>
+<ul>
+  <li data-marker="*">O programa deve exigir como seu primeiro argumento de linha de comando o nome de um arquivo CSV contendo as contagens de STR para uma lista de indivíduos e deve exigir como seu segundo argumento de linha de comando o nome de um arquivo de texto contendo a sequência de DNA a ser identificada.
+    <ul>
+      <li data-marker="*">Se o programa for executado com o número incorreto de argumentos de linha de comando, o programa deve imprimir uma mensagem de erro de sua escolha (com <code class="language-plaintext highlighter-rouge">print</code>). Se o número correto de argumentos for fornecido, você pode assumir que o primeiro argumento é de fato o nome de arquivo de um arquivo CSV válido e que o segundo argumento é o nome de arquivo de um arquivo de texto válido.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Seu programa deve abrir o arquivo CSV e ler seu conteúdo na memória.
+    <ul>
+      <li data-marker="*">Você pode assumir que a primeira linha do arquivo CSV será os nomes das colunas. A primeira coluna será a palavra <code class="language-plaintext highlighter-rouge">name</code> e as colunas restantes serão as sequências de STR em si.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Seu programa deve abrir a sequência de DNA e ler seu conteúdo na memória.</li>
+  <li data-marker="*">Para cada um dos STRs (da primeira linha do arquivo CSV), seu programa deve calcular a maior sequência de repetições consecutivas do STR na sequência de DNA para identificar. Observe que definimos uma função auxiliar para você, <code class="language-plaintext highlighter-rouge">longest_match</code>, que fará exatamente isso!</li>
+  <li data-marker="*">Se as contagens do STR corresponderem exatamente a qualquer um dos indivíduos no arquivo CSV, seu programa deve imprimir o nome do indivíduo correspondente.
+    <ul>
+      <li data-marker="*">Você pode assumir que as contagens do STR não corresponderão a mais de um indivíduo.</li>
+      <li data-marker="*">Se as contagens do STR não corresponderem exatamente a nenhum dos indivíduos no arquivo CSV, seu programa deve imprimir <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="usage">Uso</h2>
+<p>Seu programa deve se comportar conforme o exemplo abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python dna.py databases/large.csv sequences/5.txt
+Lavender
+  </code></pre></div></div>
+  
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python dna.py
+Usage: python dna.py data.csv sequence.txt
+  </code></pre></div></div>
+  
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python dna.py data.csv
+Usage: python dna.py data.csv sequence.txt
+  </code></pre></div></div>
+
+
+  <h2 id="hints">Dicas</h2>
+<ul>
+  <li data-marker="*">Você pode achar o módulo <a href="https://docs.python.org/3/library/csv.html" target="_blank"><code class="language-plaintext highlighter-rouge">csv</code></a> do Python útil para ler arquivos CSV em memória. Você pode querer aproveitar tanto o <a href="https://docs.python.org/3/library/csv.html#csv.reader" target="_blank"><code class="language-plaintext highlighter-rouge">csv.reader</code></a> quanto o <a href="https://docs.python.org/3/library/csv.html#csv.DictReader" target="_blank"><code class="language-plaintext highlighter-rouge">csv.DictReader</code></a>.</li>
+  <li data-marker="*">As funções <a href="https://docs.python.org/3.3/tutorial/inputoutput.html#reading-and-writing-files" target="_blank"><code class="language-plaintext highlighter-rouge">open</code></a> e <a href="https://docs.python.org/3.3/tutorial/inputoutput.html#methods-of-file-objects" target="_blank"><code class="language-plaintext highlighter-rouge">read</code></a> podem ser úteis para ler arquivos de texto em memória.</li>
+  <li data-marker="*">Considere quais estruturas de dados podem ser úteis para manter o controle das informações em seu programa. Uma <a href="https://docs.python.org/3/tutorial/introduction.html#lists" target="_blank"><code class="language-plaintext highlighter-rouge">lista</code></a> ou um <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries" target="_blank"><code class="language-plaintext highlighter-rouge">dicionário</code></a> podem ser úteis.</li>
+  <li data-marker="*">Lembre-se que definimos uma função (<code class="language-plaintext highlighter-rouge">longest_match</code>) que, dada uma sequência de DNA e um STR como entrada, retorna o número máximo de vezes que o STR se repete. Você pode então usar essa função em outras partes do seu programa!</li>
+</ul>
+
+
+<h2 id="testing">Testando</h2>
+<p>Embora o <code class="language-plaintext highlighter-rouge">check50</code> esteja disponível para este problema, você é incentivado a testar seu código primeiro por conta própria para cada um dos seguintes testes.</p>
+<ul>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/small.csv sequences/1.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Bob</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/small.csv sequences/2.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/small.csv sequences/3.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/small.csv sequences/4.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Alice</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/5.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Lavender</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/6.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Luna</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/7.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Ron</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/8.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Ginny</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/9.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Draco</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/10.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Albus</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/11.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Hermione</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/12.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Lily</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/13.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Nenhuma correspondência</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/14.txt</code>. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Severus</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/15.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">Sirius</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/16.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/17.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">Harry</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/18.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/19.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">Fred</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python dna.py databases/large.csv sequences/20.txt</code>. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">No match</code>.</li>
+</ul>
+
+
+<p>Execute o código abaixo para avaliar a correção do seu código usando o <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilá-lo e testá-lo por conta própria também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/dna</code></pre></div></div>
+
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 dna.py</code></pre></div></div>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute o seguinte comando para enviar o seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/dna
+</code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

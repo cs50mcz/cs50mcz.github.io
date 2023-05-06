@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 6: World Cup</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+
+
+    <p>Escreva um programa para executar simulações da Copa do Mundo FIFA.</p>
+
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python tournament.py 2018m.csv
+Belgium: 20.9% chance of winning
+Brazil: 20.3% chance of winning
+Portugal: 14.5% chance of winning
+Spain: 13.6% chance of winning
+Switzerland: 10.5% chance of winning
+Argentina: 6.5% chance of winning
+England: 3.7% chance of winning
+France: 3.3% chance of winning
+Denmark: 2.2% chance of winning
+Croatia: 2.0% chance of winning
+Colombia: 1.8% chance of winning
+Sweden: 0.5% chance of winning
+Uruguay: 0.1% chance of winning
+Mexico: 0.1% chance of winning
+</code></pre></div></div>
+
+
+
+
+  <h2 id="background">Contexto</h2>
+  <p>Na Copa do Mundo de futebol, a fase de mata-mata consiste em 16 equipes. Em cada rodada, cada equipe joga contra outra equipe e as equipes perdedoras são eliminadas. Quando apenas duas equipes permanecem, o vencedor da partida final é o campeão.</p>
+<p>No futebol, as equipes recebem <a href="https://en.wikipedia.org/wiki/FIFA_World_Rankings#Current_calculation_method" target="_blank">classificações FIFA</a>, que são valores numéricos que representam o nível de habilidade relativa de cada equipe. Classificações FIFA mais altas indicam resultados de jogos anteriores melhores e, dado as classificações FIFA de duas equipes, é possível estimar a probabilidade de que uma das equipes vença um jogo com base em suas classificações atuais. As classificações FIFA de duas Copas do Mundo anteriores estão disponíveis como os <a href="https://www.fifa.com/fifa-world-ranking/ranking-table/men/rank/id12189/" target="_blank">Classificações FIFA de Homens de maio de 2018</a> e as <a href="https://www.fifa.com/fifa-world-ranking/ranking-table/women/rank/ranking_20190329/" target="_blank">Classificações FIFA de Mulheres de março de 2019</a>.</p>
+<p>Usando essa informação, podemos simular o torneio inteiro repetidamente simulando rodadas até que reste apenas uma equipe. E se quisermos estimar o quão provável é que qualquer equipe dê a volta por cima no torneio, podemos simular o torneio muitas vezes (por exemplo, 1000 simulações) e contar quantas vezes cada equipe vence um torneio simulado. 1000 simulações podem parecer muitas, mas com o poder de processamento de hoje, podemos realizar essas simulações em questão de milissegundos. No final deste laboratório, vamos experimentar o quão vantajoso pode ser aumentar o número de simulações que executamos, dada a compensação de tempo de execução.</p>
+<p>Sua tarefa neste laboratório é fazer exatamente isso usando Python!</p>
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/6/world-cup.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">world-cup.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip world-cup.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">world-cup</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm world-cup.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd world-cup
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>world-cup/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver os seguintes arquivos: </p> 
+    
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>answers.txt  2018m.csv  2019w.csv  tournament.py</code></pre></div></div>
+
+<p>Se você encontrar algum problema, siga os mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+
+
+
+
+
+
+<h2 id="understanding">Entendendo</h2>
+<p>Comece dando uma olhada no arquivo <code class="language-plaintext highlighter-rouge">2018m.csv</code>. Este arquivo contém os 16 times na rodada de mata-mata da Copa do Mundo Masculina de 2018 e as classificações de cada time. Observe que o arquivo CSV possui duas colunas, uma chamada <code class="language-plaintext highlighter-rouge">team</code> (representando o nome do país do time) e outra chamada <code class="language-plaintext highlighter-rouge">rating</code> (representando a classificação do time).</p>
+<p>A ordem em que os times estão listados determina quais times jogarão uns contra os outros em cada rodada (na primeira rodada, por exemplo, o Uruguai jogará contra Portugal e a França jogará contra a Argentina; na próxima rodada, o vencedor do jogo Uruguai-Portugal jogará contra o vencedor do jogo França-Argentina). Portanto, certifique-se de não editar a ordem em que os times aparecem neste arquivo!</p>
+<p>Em Python, podemos representar cada time como um dicionário que contém dois valores: o nome do time e a classificação. O Uruguai, por exemplo, gostaríamos de representar em Python como <code class="language-plaintext highlighter-rouge">{"team": "Uruguai", "rating": 976}</code>.</p>
+<p>Em seguida, dê uma olhada no arquivo <code class="language-plaintext highlighter-rouge">2019w.csv</code>, que contém dados formatados da mesma maneira para a Copa do Mundo Feminina de 2019.</p>
+<p>Agora, abra o arquivo <code class="language-plaintext highlighter-rouge">tournament.py</code> e veja que já escrevemos algum código para você. A variável <code class="language-plaintext highlighter-rouge">N</code> na parte superior representa quantas simulações da Copa do Mundo devem ser executadas: neste caso, 1000.</p>
+<p>A função <code class="language-plaintext highlighter-rouge">simulate_game</code> aceita dois times como entradas (lembre-se de que cada time é um dicionário contendo o nome do time e a classificação do time) e simula um jogo entre eles. Se o primeiro time vencer, a função retorna <code class="language-plaintext highlighter-rouge">True</code>; caso contrário, a função retorna <code class="language-plaintext highlighter-rouge">False</code>.</p>
+<p>A função <code class="language-plaintext highlighter-rouge">simulate_round</code> aceita uma lista de times (em uma variável chamada <code class="language-plaintext highlighter-rouge">teams</code>) como entrada e simula jogos entre cada par de times. A função retorna uma lista de todos os times que venceram a rodada.</p>
+<p>Na função <code class="language-plaintext highlighter-rouge">main</code>, observe que primeiro garantimos que <code class="language-plaintext highlighter-rouge">len(sys.argv)</code> (o número de argumentos de linha de comando) seja 2. Usaremos argumentos de linha de comando para informar ao Python qual arquivo CSV de times usar para executar a simulação do torneio. Em seguida, definimos uma lista chamada <code class="language-plaintext highlighter-rouge">teams</code> (que eventualmente será uma lista de times) e um dicionário chamado <code class="language-plaintext highlighter-rouge">counts</code> (que associará nomes de times ao número de vezes que o time venceu um torneio simulado). Agora, ambos estão vazios, portanto, preenchê-los é com você!</p>
+<p>Finalmente, no final de <code class="language-plaintext highlighter-rouge">main</code>, classificamos os times em ordem decrescente de quantas vezes venceram as simulações (de acordo com <code class="language-plaintext highlighter-rouge">counts</code>) e imprimimos a probabilidade estimada de que cada time vença a Copa do Mundo.</p>
+<p>O preenchimento de <code class="language-plaintext highlighter-rouge">teams</code> e <code class="language-plaintext highlighter-rouge">counts</code> e a escrita da função <code class="language-plaintext highlighter-rouge">simulate_tournament</code> são deixados para você!</p>
+
+
+
+
+
+
+
+<h2 id="implementation-details">Detalhes de Implementação</h2>
+<p>Complete a implementação do arquivo <code class="language-plaintext highlighter-rouge">tournament.py</code>, de forma que simule uma série de torneios e exiba a probabilidade de cada time vencer.</p>
+<p>Primeiramente, na função <code class="language-plaintext highlighter-rouge">main</code>, leia os dados dos times a partir do arquivo CSV e armazene-os na memória do programa, adicionando cada time à lista <code class="language-plaintext highlighter-rouge">teams</code>.</p>
+<ul>
+  <li data-marker="*">O arquivo a ser utilizado será fornecido como argumento de linha de comando. Você pode acessar o nome do arquivo através de <code class="language-plaintext highlighter-rouge">sys.argv[1]</code>.</li>
+  <li data-marker="*">Lembre-se que é possível abrir um arquivo com o comando <code class="language-plaintext highlighter-rouge">open(filename)</code>, onde <code class="language-plaintext highlighter-rouge">filename</code> é uma variável que armazena o nome do arquivo.</li>
+  <li data-marker="*">Uma vez que você tenha o arquivo <code class="language-plaintext highlighter-rouge">f</code>, é possível usar <code class="language-plaintext highlighter-rouge">csv.DictReader(f)</code> para obter um "leitor": um objeto em Python que pode ser iterado para ler o arquivo linha a linha, tratando cada linha como um dicionário.</li>
+  <li data-marker="*">Por padrão, todos os valores lidos do arquivo serão strings. Portanto, certifique-se de converter o <code class="language-plaintext highlighter-rouge">rating</code> de cada time para um valor inteiro (<code class="language-plaintext highlighter-rouge">int</code>). Você pode utilizar a função <code class="language-plaintext highlighter-rouge">int</code> do Python para isso.</li>
+  <li data-marker="*">Por fim, adicione o dicionário de cada time à lista <code class="language-plaintext highlighter-rouge">teams</code>. A chamada da função <code class="language-plaintext highlighter-rouge">teams.append(x)</code> adiciona o dicionário <code class="language-plaintext highlighter-rouge">x</code> à lista <code class="language-plaintext highlighter-rouge">teams</code>.</li>
+  <li data-marker="*">Lembre-se de que cada time deve ser representado por um dicionário contendo o nome do time (<code class="language-plaintext highlighter-rouge">team</code>) e o seu rating (<code class="language-plaintext highlighter-rouge">rating</code>).</li>
+</ul>
+
+<p>Em seguida, implemente a função <code class="language-plaintext highlighter-rouge">simulate_tournament</code>. Esta função deve aceitar como entrada uma lista de equipes e simular repetidamente as rodadas até restar apenas uma equipe. A função deve retornar o nome dessa equipe.</p>
+<ul>
+  <li data-marker="*">Você pode chamar a função <code class="language-plaintext highlighter-rouge">simulate_round</code>, que simula uma única rodada, aceitando uma lista de equipes como entrada e retornando uma lista de todos os vencedores.</li>
+  <li data-marker="*">Lembre-se de que, se <code class="language-plaintext highlighter-rouge">x</code> é uma lista, você pode usar <code class="language-plaintext highlighter-rouge">len(x)</code> para determinar o comprimento da lista.</li>
+  <li data-marker="*">Você não deve assumir o número de equipes no torneio, mas pode assumir que será uma potência de 2.</li>
+</ul>
+
+<p>Finalmente, dentro da função <code class="language-plaintext highlighter-rouge">main</code>, execute <code class="language-plaintext highlighter-rouge">N</code> simulações de torneio e mantenha o controle de quantas vezes cada equipe vence no dicionário <code class="language-plaintext highlighter-rouge">counts</code>.</p>
+<ul>
+  <li data-marker="*">Por exemplo, se o Uruguai venceu 2 torneios e Portugal venceu 3 torneios, então seu dicionário <code class="language-plaintext highlighter-rouge">counts</code> deve ser <code class="language-plaintext highlighter-rouge">{"Uruguai": 2, "Portugal": 3}</code>.</li>
+  <li data-marker="*">Você deve usar sua função <code class="language-plaintext highlighter-rouge">simulate_tournament</code> para simular cada torneio e determinar o vencedor.</li>
+  <li data-marker="*">Lembre-se de que, se <code class="language-plaintext highlighter-rouge">counts</code> é um dicionário, a sintaxe como <code class="language-plaintext highlighter-rouge">counts[team_name] = x</code> associará a chave armazenada em <code class="language-plaintext highlighter-rouge">team_name</code> com o valor armazenado em <code class="language-plaintext highlighter-rouge">x</code>.</li>
+  <li data-marker="*">Você pode usar a palavra-chave <code class="language-plaintext highlighter-rouge">in</code> em Python para verificar se um dicionário já possui uma chave específica. Por exemplo, <code class="language-plaintext highlighter-rouge">if "Portugal" in counts:</code> irá verificar se <code class="language-plaintext highlighter-rouge">"Portugal"</code> já possui um valor existente no dicionário <code class="language-plaintext highlighter-rouge">counts</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="hints">Dicas</h3>
+<ul>
+  <li data-marker="*">
+    <p>Ao ler o arquivo, você pode achar útil essa sintaxe, com <code class="language-plaintext highlighter-rouge">filename</code> como o nome do seu arquivo e <code class="language-plaintext highlighter-rouge">file</code> como uma variável.</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+      <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li data-marker="*">
+    <p>In Python, to append to the end of a list, use the <code class="language-plaintext highlighter-rouge">.append()</code> function.</p>
+  </li>
+</ul>
+
+
+
+
+
+<h3 id="testing">Testando</h3>
+<p>O seu programa deve se comportar de acordo com os exemplos abaixo. Como as simulações possuem aleatoriedade, é provável que a sua saída não corresponda perfeitamente aos exemplos abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python tournament.py 2018m.csv
+Belgium: 20.9% chance of winning
+Brazil: 20.3% chance of winning
+Portugal: 14.5% chance of winning
+Spain: 13.6% chance of winning
+Switzerland: 10.5% chance of winning
+Argentina: 6.5% chance of winning
+England: 3.7% chance of winning
+France: 3.3% chance of winning
+Denmark: 2.2% chance of winning
+Croatia: 2.0% chance of winning
+Colombia: 1.8% chance of winning
+Sweden: 0.5% chance of winning
+Uruguay: 0.1% chance of winning
+Mexico: 0.1% chance of winning
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python tournament.py 2019w.csv
+Germany: 17.1% chance of winning
+United States: 14.8% chance of winning
+England: 14.0% chance of winning
+France: 9.2% chance of winning
+Canada: 8.5% chance of winning
+Japan: 7.1% chance of winning
+Australia: 6.8% chance of winning
+Netherlands: 5.4% chance of winning
+Sweden: 3.9% chance of winning
+Italy: 3.0% chance of winning
+Norway: 2.9% chance of winning
+Brazil: 2.9% chance of winning
+Spain: 2.2% chance of winning
+China PR: 2.1% chance of winning
+Nigeria: 0.1% chance of winning
+</code></pre></div></div>
+
+<ul>
+  <li data-marker="*">Você pode estar se perguntando o que realmente aconteceu nas Copas do Mundo de 2018 e 2019! No torneio masculino, a França ganhou, derrotando a Croácia na final. A Bélgica derrotou a Inglaterra pela terceira posição. No torneio feminino, os Estados Unidos ganharam, derrotando a Holanda na final. A Inglaterra derrotou a Suécia pela terceira posição.</li>
+</ul>
+<h2 id="number-of-simulations">Número de Simulações</h2>
+<p>Depois de ter certeza de que seu código está correto, vamos brincar com o valor de <code class="language-plaintext highlighter-rouge">N</code>, a constante no topo do nosso arquivo, para ajustar o número de vezes que simulamos o torneio. Mais simulações do torneio nos darão previsões mais precisas (por quê?), ao custo de tempo.</p>
+<p>Podemos medir o tempo dos programas, adicionando "time" antes da execução deles na linha de comando. Por exemplo, com o valor de <code class="language-plaintext highlighter-rouge">N</code> ajustado para 1000 (o valor padrão), execute</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time python tournament.py 2018m.csv
+</code></pre></div></div>
+
+<p>ou</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time python tournament.py 2019w.csv
+</code></pre></div></div>
+
+<p>que deve produzir algo como</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    0m0.037s
+user    0m0.028s
+sys     0m0.008s
+</code></pre></div></div>
+
+<p>embora seus próprios tempos possam variar.</p>
+<p>Preste atenção à métrica <strong>real</strong>, que é o tempo total que levou para <code class="language-plaintext highlighter-rouge">tournament.py</code> ser executado. E observe que você é dado o tempo em minutos e segundos, com precisão até milésimos de segundo.</p>
+<p>No arquivo <code class="language-plaintext highlighter-rouge">answers.txt</code>, mantenha o registro de quanto tempo leva para <code class="language-plaintext highlighter-rouge">tournament.py</code> simular...</p>
+<ul>
+  <li data-marker="*">10 (dez) torneios</li>
+  <li data-marker="*">100 (cem) torneios</li>
+  <li data-marker="*">1000 (mil) torneios</li>
+  <li data-marker="*">10000 (dez mil) torneios</li>
+  <li data-marker="*">100000 (cem mil) torneios</li>
+  <li data-marker="*">1000000 (um milhão) torneios</li>
+</ul>
+<p>Cada vez que você ajustar <code class="language-plaintext highlighter-rouge">N</code>, registre o tempo <strong>real</strong> no TODO apropriado em <code class="language-plaintext highlighter-rouge">answers.txt</code> usando o mesmo formato <code class="language-plaintext highlighter-rouge">0m0.000s</code>. Após cronometrar cada cenário, responda às duas perguntas de acompanhamento, sobrescrevendo o respectivo TODO:</p>
+<ul>
+  <li data-marker="*">Quais previsões, se houver, se mostraram incorretas ao aumentar o número de simulações?</li>
+  <li data-marker="*">Suponha que você seja cobrado por cada segundo de tempo de computação que seu programa usa. Após quantas simulações você consideraria as previsões "suficientemente boas"?</li>
+</ul>
+
+<details><summary>Veja um arquivo <code>answers.txt</code> formatado corretamente</summary><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Times:
+
+10 simulations: 0m0.028s
+100 simulations: 0m0.030s
+1000 simulations: 0m0.041s
+10000 simulations: 0m0.139s
+100000 simulations: 0m1.031s
+1000000 simulations: 0m11.961s
+
+Questions:
+
+Which predictions, if any, proved incorrect as you increased the number of simulations?:
+
+With a small number of simulations...
+
+Suppose you're charged a fee for each second of compute time your program uses.
+After how many simulations would you call the predictions "good enough"?:
+
+It seems like the predictions stabilized after about...
+</code></pre></div></div></details>
+<br>
+
+
+
+
+
+
+
+
+
+<h3 id="how-to-test-your-code">Como Testar Seu Código</h3>
+<p>Execute o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testá-lo por si mesmo também!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/worldcup</code></pre></div></div>
+
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 tournament.py</code></pre></div></div>
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/worldcup</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

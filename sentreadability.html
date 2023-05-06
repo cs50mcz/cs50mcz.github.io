@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Readability</h2>
+    <hr>
+
+    <p>Implemente um programa que calcula o nível aproximado de série necessário para
+      compreender um texto, como mostrado abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./readability
+Text: Congratulations! Today is your day. You're off to Great Places! You're off and away!
+Grade 3        </code></pre>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/6/sentimental-readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">sentimental-readability.zip</code> em seu espaço de código. Tenha cuidado para
+      não ignorar o espaço entre o <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip sentimental-readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">sentimental-readability</code>. Você não
+      precisa mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm sentimental-readability.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido por Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd sentimental-readability
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para o diretório (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>sentimental-readability/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se tudo ocorreu bem, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+</code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">readability.c</code>. Se você tiver algum problema, siga essas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+
+
+
+
+    
+
+    <h2 id="specification">Especificação</h2>
+    <ul>
+      <li data-marker="*">Escreva, em um arquivo chamado <code class="language-plaintext highlighter-rouge">readability.py</code>, um programa que primeiro pede ao usuário que digite algum texto e, em seguida, produz como saída o nível de leitura do texto, de acordo com a fórmula Coleman-Liau, exatamente como foi feito no <a href="pset2.html">Conjunto de Problemas 2</a>, exceto que o programa desta vez deve ser escrito em Python.
+        <ul>
+          <li data-marker="*">Lembre-se de que o índice Coleman-Liau é calculado como <code class="language-plaintext highlighter-rouge">0.0588 * L - 0.296 * S - 15.8</code>, onde <code class="language-plaintext highlighter-rouge">L</code> é o número médio de letras por 100 palavras no texto e <code class="language-plaintext highlighter-rouge">S</code> é o número médio de sentenças por 100 palavras no texto.</li>
+        </ul>
+      </li>
+      <li data-marker="*">Use a função <code class="language-plaintext highlighter-rouge">get_string</code> da biblioteca CS50 para obter a entrada do usuário e a função <code class="language-plaintext highlighter-rouge">print</code> para produzir a saída da resposta.</li>
+      <li data-marker="*">Seu programa deve contar o número de letras, palavras e sentenças no texto. Você pode assumir que uma letra é qualquer caractere minúsculo de <code class="language-plaintext highlighter-rouge">a</code> a <code class="language-plaintext highlighter-rouge">z</code> ou qualquer caractere maiúsculo de <code class="language-plaintext highlighter-rouge">A</code> a <code class="language-plaintext highlighter-rouge">Z</code>, qualquer sequência de caracteres separados por espaços deve contar como uma palavra, e que qualquer ocorrência de um ponto, ponto de exclamação ou ponto de interrogação indica o final de uma sentença.</li>
+      <li data-marker="*">Seu programa deve imprimir como saída <code class="language-plaintext highlighter-rouge">"Grade X"</code>, onde <code class="language-plaintext highlighter-rouge">X</code> é o nível de leitura calculado pela fórmula Coleman-Liau, arredondado para o inteiro mais próximo.</li>
+      <li data-marker="*">Se o número de índice resultante for 16 ou maior (equivalente a ou maior do que um nível de leitura de graduação sênior), seu programa deve produzir como saída <code class="language-plaintext highlighter-rouge">"Grade 16+"</code> em vez de fornecer o número de índice exato. Se o número de índice for menor do que 1, seu programa deve produzir como saída <code class="language-plaintext highlighter-rouge">"Before Grade 1"</code>.</li>
+    </ul>
+
+    <h2 id="usage">Uso</h2>
+<p>O seu programa deve se comportar conforme o exemplo abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python readability.py
+Text: Congratulations! Today is your day. You're off to Great Places! You're off and away!
+Grade 3
+  </code></pre></div></div>
+
+  <h2 id="testing">Testando</h2>
+<p>Embora o <code class="language-plaintext highlighter-rouge">check50</code> esteja disponível para este problema, você é encorajado a primeiro testar seu código por conta própria para cada um dos seguintes casos.</p>
+<ul>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code> e aguarde um prompt para a entrada. Digite <code class="language-plaintext highlighter-rouge">One fish. Two fish. Red fish. Blue fish.</code> e pressione enter. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Before Grade 1</code>.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code> e aguarde um prompt para a entrada. Digite <code class="language-plaintext highlighter-rouge">Would you like them here or there? I would not like them here or there. I would not like them anywhere.</code> e pressione enter. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Grade 2</code>.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code> e aguarde um prompt para a entrada. Digite <code class="language-plaintext highlighter-rouge">Congratulations! Today is your day. You're off to Great Places! You're off and away!</code> e pressione enter. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Grade 3</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para inserir um texto. Digite <code class="language-plaintext highlighter-rouge">Harry Potter was a highly unusual boy in many ways. For one thing, he hated the summer holidays more than any other time of year. For another, he really wanted to do his homework, but was forced to do it in secret, in the dead of the night. And he also happened to be a wizard.</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">Grade 5</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para inserir um texto. Digite <code class="language-plaintext highlighter-rouge">In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">Grade 7</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para inserir um texto. Digite <code class="language-plaintext highlighter-rouge">Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, "and what is the use of a book," thought Alice "without pictures or conversation?"</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">Grade 8</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para inserir um texto. Digite <code class="language-plaintext highlighter-rouge">When he was nearly thirteen, my brother Jem got his arm badly broken at the elbow. When it healed, and Jem's fears of never being able to play football were assuaged, he was seldom self-conscious about his injury. His left arm was somewhat shorter than his right; when he stood or walked, the back of his hand was at right angles to his body, his thumb parallel to his thigh.</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">Grau 8</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">There are more things in Heaven and Earth, Horatio, than are dreamt of in your philosophy.</code> e pressione enter. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Grade 9</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">It was a bright cold day in April, and the clocks were striking thirteen. Winston Smith, his chin nuzzled into his breast in an effort to escape the vile wind, slipped quickly through the glass doors of Victory Mansions, though not quickly enough to prevent a swirl of gritty dust from entering along with him.</code> e pressione enter. Seu programa deve exibir <code class="language-plaintext highlighter-rouge">Grade 10</code>.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python readability.py</code>, e aguarde por um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">A large class of computational problems involve the determination of properties of graphs, digraphs, integers, arrays of integers, finite families of finite sets, boolean formulas and elements of other countable domains.</code> e pressione enter. Seu programa deve retornar <code class="language-plaintext highlighter-rouge">Grade 16+</code>.</li>
+</ul>
+
+<p>Execute o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar o código você mesmo também!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/sentimental/readability</code></pre></div></div>
+
+<p>Execute o abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 readability.py</code></pre></div></div>
+
+
+
+
+
+
+
+
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2023/x/sentimental/readability      </code></pre>
+      </div>
+    </div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

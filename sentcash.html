@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Cash</h2>
+    <hr>
+
+    <p>Implemente um programa que calcule o número mínimo de moedas necessário para dar troco ao usuário.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python cash.py
+Change owed: 0.41
+4
+      </code></pre></div></div>
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do seu terminal e execute o comando <code
+        class="language-plaintext highlighter-rouge">cd</code>. Você deve ver que o "prompt" se assemelha ao abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro da janela do terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/6/sentimental-cash.zip</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">sentimental-cash.zip</code> em seu espaço de código. Certifique-se de não
+      ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip sentimental-cash.zip
+</code></pre>
+      </div>
+    </div>
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">sentimental-cash</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm sentimental-cash.zip
+</code></pre>
+      </div>
+    </div>
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd sentimental-cash
+    </code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Sua linha de comando deve agora se parecer
+      com a abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>sentimental-cash/ $
+    </code></pre>
+      </div>
+    </div>
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls
+    </code></pre>
+      </div>
+    </div>
+    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">cash.c</code>.  Se você tiver algum problema, siga essas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+
+    <h2 id="specification">Especificação</h2>
+    <ul>
+      <li data-marker="*">Escreva, em um arquivo chamado <code class="language-plaintext highlighter-rouge">cash.py</code>, um programa que pergunte ao usuário quanto de troco é devido e depois exiba a quantidade mínima de moedas com que o troco pode ser feito. Você pode fazer isso exatamente como fez no <a href="../../1/">Problem Set 1</a>, exceto que seu programa desta vez deve ser escrito em Python, e você deve assumir que o usuário inserirá seu troco em dólares (por exemplo, 0,50 dólares em vez de 50 centavos).</li>
+      <li data-marker="*">Use <code class="language-plaintext highlighter-rouge">get_float</code> da biblioteca CS50 para obter a entrada do usuário e <code class="language-plaintext highlighter-rouge">print</code> para exibir sua resposta. Suponha que as únicas moedas disponíveis sejam quarters (25¢), dimes (10¢), nickels (5¢) e pennies (1¢).
+        <ul>
+          <li data-marker="*">Pedimos que você use <code class="language-plaintext highlighter-rouge">get_float</code> para que possa lidar com dólares e centavos, embora sem o símbolo do dólar. Em outras palavras, se algum cliente deve $9,75 (como no caso em que um jornal custa 25¢, mas o cliente paga com uma nota de $10), assuma que a entrada do programa será <code class="language-plaintext highlighter-rouge">9,75</code> e não <code class="language-plaintext highlighter-rouge">$9,75</code> ou <code class="language-plaintext highlighter-rouge">975</code>. No entanto, se algum cliente deve exatamente $9, assuma que a entrada do programa será <code class="language-plaintext highlighter-rouge">9,00</code> ou apenas <code class="language-plaintext highlighter-rouge">9</code>, mas, novamente, não <code class="language-plaintext highlighter-rouge">$9</code> ou <code class="language-plaintext highlighter-rouge">900</code>. Naturalmente, por causa do valor de ponto flutuante, é possível que seu programa também funcione com entradas como <code class="language-plaintext highlighter-rouge">9,0</code> e <code class="language-plaintext highlighter-rouge">9,000</code>; você não precisa se preocupar em verificar se a entrada do usuário está "formatada" como dinheiro deve ser.</li>
+        </ul>
+      </li>
+      <li data-marker="*">Se o usuário não fornecer um valor não negativo, seu programa deve solicitar novamente e novamente um valor válido até que o usuário o forneça.</li>
+      <li data-marker="*">Por coincidência, para que possamos automatizar alguns testes em seu código, pedimos que a última linha da saída do seu programa seja apenas o número mínimo possível de moedas: um número inteiro seguido de uma nova linha.</li>
+    </ul>
+    <h2 id="usage">Uso</h2>
+    <p>Seu programa deve se comportar conforme o exemplo abaixo.</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python cash.py
+Change owed: 0.41
+4
+      </code></pre></div></div>
+
+      <h2 id="testing">Testando</h2>
+<p>Embora o <code class="language-plaintext highlighter-rouge">check50</code> esteja disponível para este problema, é recomendável que você primeiro teste seu código para cada um dos seguintes testes.</p>
+<ul>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">0.41</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">4</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">0.01</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">0.15</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">2</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">1.60</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">7</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">23</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">92</code>.</li>
+  <li data-marker="*">Execute seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">4.2</code> e pressione enter. Seu programa deve imprimir <code class="language-plaintext highlighter-rouge">18</code>.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde por um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">-1</code> e pressione enter. Seu programa deve rejeitar essa entrada como inválida, solicitando ao usuário que digite outro número.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde por um prompt para entrada. Digite <code class="language-plaintext highlighter-rouge">foo</code> e pressione enter. Seu programa deve rejeitar essa entrada como inválida, solicitando ao usuário que digite outro número.</li>
+  <li data-marker="*">Execute o seu programa como <code class="language-plaintext highlighter-rouge">python cash.py</code> e aguarde por um prompt para entrada. Não digite nada e pressione enter. Seu programa deve rejeitar essa entrada como inválida, solicitando ao usuário que digite outro número.</li>
+</ul>
+<p>Execute o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilá-lo e testá-lo por conta própria também!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/sentimental/cash</code></pre></div></div>
+
+<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 cash.py</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+<h2 id="como-enviar">Como Enviar</h2>
+<p>No seu terminal, execute o código abaixo para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/sentimental/cash</code></pre></div></div>
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
