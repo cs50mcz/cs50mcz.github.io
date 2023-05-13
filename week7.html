@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Week 7</h2>
+    <hr>
+
+    <p>SQL: Tabelas, Tipos, Declarações, Restrições, Índices, Palavras-chave, Funções, Transações, Condições de corrida, Ataques de Injeção SQL.</p>
+    <ul id="markdown-toc">
+      <li data-marker="-"><strong>Shorts</strong>
+        <ol>
+          <li><a href="sql.html">SQL</a></li>
+        </ol>
+      </li>
+      <li><a href="lab7.html">Lab 7</a></li>
+      <li><a href="pset7.html">Problem Set 7</a></li>
+    </ul>
+    <br>
+    <section>
+      <h2 id="welcome">Notas</h2>
+      <hr>
+    </section>
+
+<h1 class="no_toc" id="lecture-6">Lecture 7</h1>
+<ul id="markdown-toc">
+  <li><a href="#welcome" id="markdown-toc-welcome">Bem-vindo!</a></li>
+  <li><a href="#flat-file-database" id="markdown-toc-flat-file-database">Banco de Dados de Arquivo Único</a></li>
+  <li><a href="#relational-databases" id="markdown-toc-relational-databases">Bancos de Dados Relacionais</a></li>
+  <li><a href="#imdb" id="markdown-toc-imdb">IMDb</a></li>
+  <li><a href="#joins" id="markdown-toc-joins"><code class="language-plaintext highlighter-rouge">JOIN</code>s</a></li>
+  <li><a href="#indexes" id="markdown-toc-indexes">Índices</a></li>
+  <li><a href="#using-sql-in-python" id="markdown-toc-using-sql-in-python">Usando SQL em Python</a></li>
+  <li><a href="#race-conditions" id="markdown-toc-race-conditions">Condições de Corrida</a></li>
+  <li><a href="#sql-injection-attacks" id="markdown-toc-sql-injection-attacks">Ataques de Injeção SQL</a></li>
+  <li><a href="#summing-up" id="markdown-toc-summing-up">Resumindo</a></li>
+</ul>
+
+<h2 id="welcome">Bem-vindo!</h2>
+<ul>
+  <li data-marker="*">Nas semanas anteriores, apresentamos a você o Python, uma linguagem de programação de alto nível que utiliza os mesmos blocos de construção que aprendemos em C.</li>
+  <li data-marker="*">Esta semana, continuaremos com mais sintaxe relacionada ao Python.</li>
+  <li data-marker="*">Além disso, integraremos esse conhecimento aos dados.</li>
+  <li data-marker="*">Finalmente, discutiremos o <em>SQL</em> ou <em>Structured Query Language</em>.</li>
+  <li data-marker="*">Em geral, um dos objetivos deste curso é aprender a programar de forma geral - não apenas como programar nas linguagens descritas neste curso.</li>
+</ul>
+<h2 id="flat-file-database">Banco de Dados de Arquivo Único</h2>
+<ul>
+  <li data-marker="*">Como você provavelmente já viu antes, os dados podem ser descritos em padrões de colunas e tabelas.</li>
+  <li data-marker="*">Planilhas como as criadas no Microsoft Excel e no Google Sheets podem ser exportadas para um arquivo <code class="language-plaintext highlighter-rouge">csv</code> ou <em>comma-separated values</em>.</li>
+  <li data-marker="*">Se você olhar para um arquivo <code class="language-plaintext highlighter-rouge">csv</code>, notará que o arquivo é plano no sentido de que todos os nossos dados são armazenados em uma única tabela representada por um arquivo de texto. Chamamos essa forma de dados de um <em>banco de dados de arquivo único</em>.</li>
+  <li data-marker="*">O Python vem com suporte nativo para arquivos <code class="language-plaintext highlighter-rouge">csv</code>.</li>
+  <li data-marker="*">
+    <p>Na janela do terminal, digite <code class="language-plaintext highlighter-rouge">code favorites.py</code> e escreva o código da seguinte forma:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prints all favorites in CSV using csv.reader
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create reader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nf">reader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Skip header row
+</span>    <span class="nf">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over CSV file, printing each favorite
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que a biblioteca <code class="language-plaintext highlighter-rouge">csv</code> é importada. Além disso, criamos um <code class="language-plaintext highlighter-rouge">reader</code> que armazenará o resultado de <code class="language-plaintext highlighter-rouge">csv.reader(file)</code>. A função <code class="language-plaintext highlighter-rouge">csv.reader</code> lê cada linha do arquivo e em nosso código armazenamos os resultados em <code class="language-plaintext highlighter-rouge">reader</code>. <code class="language-plaintext highlighter-rouge">print(row[1])</code>, portanto, imprimirá o idioma do arquivo <code class="language-plaintext highlighter-rouge">favorites.csv</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>Você pode melhorar seu código da seguinte forma:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Stores favorite in a variable
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create reader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nf">reader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Skip header row
+</span>    <span class="nf">next</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over CSV file, printing each favorite
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">favorite</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que a palavra <code class="language-plaintext highlighter-rouge">favorite</code> é armazenada e depois impressa. Observe também que usamos a função <code class="language-plaintext highlighter-rouge">next</code> para pular para a próxima linha do nosso leitor.</p>
+  </li>
+  <li data-marker="*">
+    <p>O Python também permite que você indexe pelas chaves de uma lista. Modifique seu código da seguinte forma:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prints all favorites in CSV using csv.DictReader
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Iterate over CSV file, printing each favorite
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">])</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que este exemplo utiliza diretamente a chave <code class="language-plaintext highlighter-rouge">language</code> na instrução de impressão.</p>
+  </li>
+  <li data-marker="*">
+    <p>Para contar o número de linguagens favoritas expressas no arquivo <code class="language-plaintext highlighter-rouge">csv</code>, podemos fazer o seguinte:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Counts favorites using variables
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">scratch</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">python</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="o">==</span> <span class="s">"Scratch"</span><span class="p">:</span>
+            <span class="n">scratch</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">favorite</span> <span class="o">==</span> <span class="s">"C"</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">favorite</span> <span class="o">==</span> <span class="s">"Python"</span><span class="p">:</span>
+            <span class="n">python</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># Print counts
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Scratch: </span><span class="si">{</span><span class="n">scratch</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"C: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Python: </span><span class="si">{</span><span class="n">python</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que cada linguagem é contada usando declarações <code class="language-plaintext highlighter-rouge">if</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>O Python nos permite usar um dicionário para contar os <code class="language-plaintext highlighter-rouge">contadores</code> de cada linguagem. Considere a seguinte melhoria em nosso código:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Counts favorites using dictionary
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print counts
+</span><span class="k">for</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que o valor em <code class="language-plaintext highlighter-rouge">counts</code> com a chave <code class="language-plaintext highlighter-rouge">favorite</code> é incrementado quando já existe. Se não existir, definimos <code class="language-plaintext highlighter-rouge">counts[favorite]</code> e o configuramos como 1. Além disso, a string formatada foi melhorada para apresentar <code class="language-plaintext highlighter-rouge">counts[favorite]</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>O Python também permite ordenar <code class="language-plaintext highlighter-rouge">counts</code>. Melhore seu código da seguinte forma:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sorts favorites by key
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print counts
+</span><span class="k">for</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe o <code class="language-plaintext highlighter-rouge">sorted(counts)</code> no final do código.</p>
+  </li>
+  <li data-marker="*">
+    <p>Se você olhar os parâmetros da função <code class="language-plaintext highlighter-rouge">sorted</code> na documentação do Python, você verá que ela tem muitos parâmetros incorporados. Você pode aproveitar alguns desses parâmetros incorporados da seguinte forma:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sorts favorites by value
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="n">language</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">counts</span><span class="p">[</span><span class="n">language</span><span class="p">]</span>
+
+<span class="c1"># Print counts
+</span><span class="k">for</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">get_value</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que uma função chamada <code class="language-plaintext highlighter-rouge">get_value</code> é criada e que a própria função é passada como argumento para a função <code class="language-plaintext highlighter-rouge">sorted</code>. O argumento <code class="language-plaintext highlighter-rouge">key</code> permite que você informe ao Python o método que deseja usar para ordenar os itens.</p>
+<li data-marker="*">
+  <p>O Python tem uma capacidade única que ainda não vimos: ele permite a utilização de funções <em>anônimas</em> ou <code class="language-plaintext highlighter-rouge">lambda</code>. Essas funções podem ser utilizadas quando você não quer se preocupar em criar uma função completamente diferente. Observe a seguinte modificação:</p>
+  <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sorts favorites by value using lambda function
+  </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"language"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print counts
+</span><span class="k">for</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">language</span><span class="p">:</span> <span class="n">counts</span><span class="p">[</span><span class="n">language</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+  </code></pre></div>    </div>
+
+  <p>Observe que a função <code class="language-plaintext highlighter-rouge">get_value</code> foi removida. Em vez disso, <code class="language-plaintext highlighter-rouge">lambda language: counts[language]</code> faz em uma linha o que nossa função de duas linhas anterior fazia.</p>
+  </li>
+  <li data-marker="*">
+    <p>Podemos alterar a coluna que estamos examinando, focando em nosso problema favorito:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Favorite problem instead of favorite language
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"problem"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print counts
+</span><span class="k">for</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">problem</span><span class="p">:</span> <span class="n">counts</span><span class="p">[</span><span class="n">problem</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que <code class="language-plaintext highlighter-rouge">problem</code> substituiu <code class="language-plaintext highlighter-rouge">language</code>.</p>
+  </li>
+  <li data-marker="*">
+    <p>E se quisermos permitir que os usuários forneçam entrada diretamente no terminal? Podemos modificar nosso código, aproveitando nosso conhecimento anterior sobre entrada do usuário:</p>
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Favorite problem instead of favorite language
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"problem"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print count
+</span><span class="n">favorite</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Favorite: "</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+    <p>Observe como nosso código é compacto em comparação com nossa experiência em C.</p>
+</li>
+</ul>
+<h2 id="relational-databases">Bancos de Dados Relacionais</h2>
+<ul>
+  <li data-marker="*">Google, Twitter e Meta usam todos bancos de dados relacionais para armazenar suas informações em grande escala.</li>
+  <li data-marker="*">Bancos de dados relacionais armazenam dados em linhas e colunas em estruturas chamadas de <em>tabelas</em>.</li>
+  <li data-marker="*">
+    <p>O SQL permite quatro tipos de comandos:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Create
+  Read
+  Update
+  Delete    </code></pre></div>    </div>
+  </li>
+
+  <li data-marker="*">Essas quatro operações são carinhosamente chamadas de <em>CRUD</em>.</li>
+  <li data-marker="*">Podemos criar um banco de dados SQL no terminal digitando <code class="language-plaintext highlighter-rouge">sqlite3 favorites.db</code>. Ao ser solicitado, concordaremos em criar <code class="language-plaintext highlighter-rouge">favorites.db</code> pressionando <code class="language-plaintext highlighter-rouge">y</code>.</li>
+  <li data-marker="*">Você notará um prompt diferente, pois agora estamos dentro de um programa chamado <code class="language-plaintext highlighter-rouge">sqlite3</code>.</li>
+  <li data-marker="*">Podemos colocar o <code class="language-plaintext highlighter-rouge">sqlite3</code> no modo <code class="language-plaintext highlighter-rouge">csv</code> digitando <code class="language-plaintext highlighter-rouge">.mode csv</code>. Em seguida, podemos importar nossos dados do arquivo <code class="language-plaintext highlighter-rouge">csv</code> digitando <code class="language-plaintext highlighter-rouge">.import favorites.csv favorites</code>. Parece que nada aconteceu!</li>
+  <li data-marker="*">Podemos digitar <code class="language-plaintext highlighter-rouge">.schema</code> para ver a estrutura do banco de dados.</li>
+  <li data-marker="*">Você pode ler itens de uma tabela usando a sintaxe <code class="language-plaintext highlighter-rouge">SELECT colunas FROM tabela</code>.</li>
+  <li data-marker="*">Por exemplo, você pode digitar <code class="language-plaintext highlighter-rouge">SELECT * FROM favorites;</code>, que iterará cada linha em <code class="language-plaintext highlighter-rouge">favorites</code>.</li>
+  <li data-marker="*">Você pode obter um subconjunto dos dados usando o comando <code class="language-plaintext highlighter-rouge">SELECT language FROM favorites;</code>.</li>
+  <li data-marker="*">
+    <p>O SQL suporta muitos comandos para acessar dados, incluindo:</p>
+
+    <pre><code class="language-SQL">  AVG
+  COUNT
+  DISTINCT
+  LOWER
+  MAX
+  MIN
+  UPPER
+    </code></pre>
+      </li>
+
+      <li data-marker="*">
+        <p>Por exemplo, você pode digitar <code class="language-plaintext highlighter-rouge">SELECT COUNT(language) FROM favorites;</code>. Além disso, você pode digitar <code class="language-plaintext highlighter-rouge">SELECT DISTINCT(language) FROM favorites;</code> para obter uma lista das linguagens individuais dentro do banco de dados. Você também poderia digitar <code class="language-plaintext highlighter-rouge">SELECT COUNT(DISTINCT(language)) FROM favorites;</code> para obter uma contagem dessas linguagens.</p>
+
+        <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Searches database popularity of a problem
+        </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="kn">from</span> <span class="n">cs50</span> <span class="kn">import</span> <span class="n">SQL</span>
+
+<span class="c1"># Open database
+</span><span class="n">db</span> <span class="o">=</span> <span class="nc">SQL</span><span class="p">(</span><span class="s">"sqlite:///favorites.db"</span><span class="p">)</span>
+
+<span class="c1"># Prompt user for favorite
+</span><span class="n">favorite</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Favorite: "</span><span class="p">)</span>
+
+<span class="c1"># Search for title
+</span><span class="n">rows</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="s">"SELECT COUNT(*) FROM favorites WHERE problem LIKE ?"</span><span class="p">,</span> <span class="s">"%"</span> <span class="o">+</span> <span class="n">favorite</span> <span class="o">+</span> <span class="s">"%"</span><span class="p">)</span>
+
+<span class="c1"># Get first (and only) row
+</span><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Print popularity
+</span><span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">"COUNT(*)"</span><span class="p">])</span>
+        </code></pre></div>    </div>
+        </li>
+
+        <li data-marker="*">
+          <p>O SQL oferece comandos adicionais que podemos utilizar em nossas consultas:</p>
+          <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">WHERE</span>       <span class="c1">-- adding a Boolean expression to filter our data</span>
+  <span class="k">LIKE</span>        <span class="c1">-- filtering responses more loosely</span>
+  <span class="k">ORDER</span> <span class="k">BY</span>    <span class="c1">-- ordering responses</span>
+  <span class="k">LIMIT</span>       <span class="c1">-- limiting the number of responses</span>
+  <span class="k">GROUP</span> <span class="k">BY</span>    <span class="c1">-- grouping responses together</span>          </code></pre></div>    </div>
+
+          <p>Observe que usamos <code class="language-plaintext highlighter-rouge">--</code> para escrever um comentário em SQL.</p>
+  </li>
+  <li data-marker="*">Por exemplo, podemos executar <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM favorites WHERE language = 'C';</code>. Um contador é apresentado.</li>
+  <li data-marker="*">Além disso, poderíamos digitar <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM favorites WHERE language = 'C' AND problem = 'Mario';</code>. Observe como o <code class="language-plaintext highlighter-rouge">AND</code> é utilizado para estreitar nossos resultados.</li>
+  <li data-marker="*">Da mesma forma, poderíamos executar <code class="language-plaintext highlighter-rouge">SELECT language, COUNT(*) FROM favorites GROUP BY language;</code>. Isso ofereceria uma tabela temporária que mostraria a linguagem e a contagem.</li>
+  <li data-marker="*">Podemos melhorar isso digitando <code class="language-plaintext highlighter-rouge">SELECT language, COUNT(*) FROM favorites GROUP BY language ORDER BY COUNT(*);</code>. Isso ordenará a tabela resultante pelo <code class="language-plaintext highlighter-rouge">count</code>.</li>
+  <li data-marker="*">Também podemos <code class="language-plaintext highlighter-rouge">INSERT</code> em um banco de dados SQL utilizando o formato <code class="language-plaintext highlighter-rouge">INSERT INTO table (column...) VALUES(value, ...);</code>.</li>
+  <li data-marker="*">Podemos executar <code class="language-plaintext highlighter-rouge">INSERT INTO favorites (language, problem) VALUES ('SQL', 'Fiftyville');</code>.</li>
+  <li data-marker="*">Também podemos utilizar o comando <code class="language-plaintext highlighter-rouge">UPDATE</code> para atualizar seus dados.</li>
+  <li data-marker="*">Por exemplo, você pode executar <code class="language-plaintext highlighter-rouge">UPDATE favorites SET language = 'C++' WHERE language = 'C';</code>. Isso resultará na sobrescrita de todas as declarações anteriores em que C era a linguagem de programação favorita.</li>
+  <li data-marker="*">Observe que essas consultas têm um poder imenso. Consequentemente, em um ambiente de mundo real, você deve considerar quem tem permissões para executar determinados comandos.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">DELETE</code> permite que você exclua partes de seus dados. Por exemplo, você poderia <code class="language-plaintext highlighter-rouge">DELETE FROM favorites WHERE problem = 'Tideman';</code>.</li>
+</ul>
+
+<h2 id="imdb">IMDb</h2>
+<ul>
+  <li data-marker="*">
+    <p>O IMDb oferece um banco de dados de pessoas, programas de TV, escritores, estrelas, gêneros e classificações. Cada uma dessas tabelas está relacionada entre si da seguinte forma:</p>
+    <p><img src="./assets/images/cs50Week7Slide025.png" alt="seis caixas que representam várias tabelas SQL setas são desenhadas para cada uma mostrando suas muitas relações entre si" title="imdb relationships"></p>
+  </li>
+  <li data-marker="*">Após baixar o arquivo <a href="https://github.com/cs50/lectures/blob/2022/fall/7/src7/imdb/shows.db" target="_blank"><code class="language-plaintext highlighter-rouge">shows.db</code></a>, você pode executar <code class="language-plaintext highlighter-rouge">sqlite3 shows.db</code> na sua janela do terminal.</li>
+  <li data-marker="*">Ao executar o comando <code class="language-plaintext highlighter-rouge">.schema</code>, você encontrará não apenas cada uma das tabelas, mas também os campos individuais dentro de cada uma dessas tabelas.</li>
+  <li data-marker="*">Como você pode ver na imagem acima, a tabela <code class="language-plaintext highlighter-rouge">shows</code> tem um campo <code class="language-plaintext highlighter-rouge">id</code>. A tabela <code class="language-plaintext highlighter-rouge">genres</code> tem um campo <code class="language-plaintext highlighter-rouge">show_id</code> que tem dados em comum com a tabela <code class="language-plaintext highlighter-rouge">shows</code>.</li>
+  <li data-marker="*">Como você também pode ver na imagem acima, o campo <code class="language-plaintext highlighter-rouge">show_id</code> existe em todas as tabelas. Na tabela <code class="language-plaintext highlighter-rouge">shows</code>, ele é simplesmente chamado de <code class="language-plaintext highlighter-rouge">id</code>. Esse campo comum entre todos os campos é chamado de <em>chave</em>. Chaves primárias são usadas para identificar um registro único em uma tabela. <em>Chaves estrangeiras</em> são usadas para criar relacionamentos entre tabelas apontando para a chave primária em outra tabela.</li>
+  <li data-marker="*">Ao armazenar dados em um banco de dados relacional, como acima, os dados podem ser armazenados de forma mais eficiente.</li>
+  <li data-marker="*">
+    <p>No <em>sqlite</em>, temos cinco tipos de dados, incluindo:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">BLOB</span>       <span class="c1">-- binary large objects that are groups of ones and zeros</span>
+  <span class="nb">INTEGER</span>    <span class="c1">-- an integer</span>
+  <span class="nb">NUMERIC</span>    <span class="c1">-- for numbers that are formatted specially like dates</span>
+  <span class="nb">REAL</span>       <span class="c1">-- like a float</span>
+  <span class="nb">TEXT</span>       <span class="c1">-- for strings and the like</span>    </code></pre></div>    </div>
+
+  </li>
+  <li data-marker="*">
+    <p>Além disso, colunas podem ser configuradas para adicionar restrições especiais:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  NOT NULL
+  UNIQUE    </code></pre></div>    </div>
+
+  </li>
+  <li data-marker="*">Para ilustrar ainda mais a relação entre essas tabelas, poderíamos executar o seguinte comando: <code class="language-plaintext highlighter-rouge">SELECT * FROM people LIMIT 10;</code>. Examinando a saída, poderíamos executar <code class="language-plaintext highlighter-rouge">SELECT * FROM shows LIMIT 10;</code>. Além disso, poderíamos executar <code class="language-plaintext highlighter-rouge">SELECT * FROM stars LIMIT 10;</code>. <code class="language-plaintext highlighter-rouge">show_id</code> é uma chave estrangeira nessa última consulta porque <code class="language-plaintext highlighter-rouge">show_id</code> corresponde ao campo único <code class="language-plaintext highlighter-rouge">id</code> em <code class="language-plaintext highlighter-rouge">shows</code>. <code class="language-plaintext highlighter-rouge">person_id</code> corresponde ao campo único <code class="language-plaintext highlighter-rouge">id</code> na coluna <code class="language-plaintext highlighter-rouge">people</code>.</li>
+  <li data-marker="*">Podemos explorar ainda mais esses dados para entender essas relações. Execute <code class="language-plaintext highlighter-rouge">SELECT * FROM genres;</code>. Há muitos gêneros!</li>
+  <li data-marker="*">Podemos reduzir ainda mais esses dados executando <code class="language-plaintext highlighter-rouge">SELECT * FROM genres WHERE genre = 'Comedy' LIMIT 10;</code>. A partir dessa consulta, você pode ver que há 10 programas apresentados.</li>
+  <li data-marker="*">Você pode descobrir quais programas são esses executando <code class="language-plaintext highlighter-rouge">SELECT * FROM shows WHERE id = 626124;</code></li>
+  <li data-marker="*">Podemos aprimorar ainda mais nossa consulta para ser mais eficiente executando:
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">title</span>
+<span class="k">FROM</span> <span class="n">shows</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="k">IN</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span>
+    <span class="k">FROM</span> <span class="n">genres</span>
+    <span class="k">WHERE</span> <span class="n">genre</span> <span class="o">=</span> <span class="s1">'Comedy'</span>
+<span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+      </code></pre></div>    </div>
+
+      <p>Observe que esta consulta aninha duas consultas. Uma consulta interna é usada por uma consulta externa.</p>
+  </li>
+  <li data-marker="*">Podemos refinar ainda mais executando
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">title</span>
+<span class="k">FROM</span> <span class="n">shows</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="k">IN</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span>
+    <span class="k">FROM</span> <span class="n">genres</span>
+    <span class="k">WHERE</span> <span class="n">genre</span> <span class="o">=</span> <span class="s1">'Comedy'</span>
+<span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">title</span> <span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+      </code></pre></div>    </div>
+        </li>
+
+        <li data-marker="*">
+          <p>E se você quisesse encontrar todos os programas em que Steve Carell estrela no IMDb? Você poderia executar <code class="language-plaintext highlighter-rouge">SELECT * FROM people WHERE name = 'Steve Carell';</code> Você encontraria o <code class="language-plaintext highlighter-rouge">id</code> individual dele. Você poderia utilizar esse <code class="language-plaintext highlighter-rouge">id</code> para localizar muitos <code class="language-plaintext highlighter-rouge">programas</code> em que ele aparece. No entanto, seria tedioso tentar isso um por um. Como poderíamos aninhar nossas consultas para tornar isso mais simplificado? Considere o seguinte:</p>
+
+          <pre><code class="language-SQL">SELECT title FROM shows WHERE id IN
+  (SELECT show_id FROM stars WHERE person_id =
+    (SELECT * FROM people WHERE name = 'Steve Carell'));
+          </code></pre>
+
+          <p>Observe que esta consulta longa resultará em um resultado final que é útil para descobrir a resposta à nossa pergunta.</p>
+</li>
+</ul>
+<h2 id="joins"><code class="language-plaintext highlighter-rouge">JOIN</code>s</h2>
+<ul>
+  <li data-marker="*">
+    <p>Considere as seguintes duas tabelas:</p>
+
+    <p><img src="./assets/images/cs50Week7Slide030.png" alt="duas caixas representando as tabelas de programas e gêneros com uma seta conectando o id e o show id" title="chaves primárias e estrangeiras"></p>
+  </li>
+  <li data-marker="*">Como poderíamos combinar tabelas temporariamente? As tabelas poderiam ser unidas usando o comando <code class="language-plaintext highlighter-rouge">JOIN</code>.</li>
+  <li data-marker="*">
+    <p>Execute o seguinte comando:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">shows</span>
+<span class="k">JOIN</span> <span class="n">ratings</span> <span class="k">ON</span> <span class="n">shows</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ratings</span><span class="p">.</span><span class="n">show_id</span>
+<span class="k">WHERE</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">'The Office'</span><span class="p">;</span>
+    </code></pre></div>    </div>
+      </li>
+
+      <li data-marker="*">Agora você pode ver todos os programas que foram chamados de <em>The Office</em>.</li>
+  <li data-marker="*">
+    <p>Você também pode aplicar o <code class="language-plaintext highlighter-rouge">JOIN</code> à nossa consulta do Steve Carell acima executando o seguinte:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">title</span> <span class="k">FROM</span> <span class="n">people</span>
+<span class="k">JOIN</span> <span class="n">stars</span> <span class="k">ON</span> <span class="n">people</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">stars</span><span class="p">.</span><span class="n">person_id</span>
+<span class="k">JOIN</span> <span class="n">shows</span> <span class="k">ON</span> <span class="n">stars</span><span class="p">.</span><span class="n">show_id</span> <span class="o">=</span> <span class="n">shows</span><span class="p">.</span><span class="n">id</span>
+<span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="nv">`Steve Carell`</span><span class="p">;</span>
+    </code></pre></div>    </div>
+
+    <p>Observe como cada comando <code class="language-plaintext highlighter-rouge">JOIN</code> nos informa quais colunas estão alinhadas com quais outras colunas.</p>
+  </li>
+  <li data-marker="*">
+    <p>Isso poderia ser implementado de forma semelhante da seguinte maneira:</p>
+
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">title</span> <span class="k">FROM</span> <span class="n">people</span><span class="p">,</span> <span class="n">stars</span><span class="p">,</span> <span class="n">shows</span>
+<span class="k">WHERE</span> <span class="n">people</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">stars</span><span class="p">.</span><span class="n">person_id</span>
+<span class="k">AND</span> <span class="n">stars</span><span class="p">.</span><span class="n">show_id</span> <span class="o">=</span> <span class="n">shows</span><span class="p">.</span><span class="n">id</span>
+<span class="k">AND</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'Steve Carell'</span><span class="p">;</span>
+      </code></pre></div>    </div>
+
+      <p>Observe que isso alcança os mesmos resultados.</p>
+  </li>
+  <li data-marker="*">O operador curinga <code class="language-plaintext highlighter-rouge">%</code> pode ser usado para encontrar todas as pessoas cujos nomes começam com <code class="language-plaintext highlighter-rouge">Steve C</code>, pode-se empregar a sintaxe <code class="language-plaintext highlighter-rouge">SELECT * FROM people WHERE name LIKE 'Steve C%';</code>.</li>
+</ul>
+<h2 id="indexes">Índices</h2>
+<ul>
+  <li data-marker="*">Embora bancos de dados relacionais tenham a capacidade de serem mais rápidos e robustos do que utilizar um arquivo <code class="language-plaintext highlighter-rouge">CSV</code>, os dados podem ser otimizados dentro de uma tabela usando <em>índices</em>.</li>
+  <li data-marker="*">Índices podem ser utilizados para acelerar nossas consultas.</li>
+  <li data-marker="*">Podemos acompanhar a velocidade de nossas consultas executando <code class="language-plaintext highlighter-rouge">.timer on</code> em <code class="language-plaintext highlighter-rouge">sqlite3</code>.</li>
+
+  <li data-marker="*">Para entender como índices podem acelerar nossas consultas, execute o seguinte: <code class="language-plaintext highlighter-rouge">SELECT * FROM shows WHERE title = 'The Office';</code> Observe o tempo que é exibido após a execução da consulta.</li>
+  <li data-marker="*">Então, podemos criar um índice com a sintaxe <code class="language-plaintext highlighter-rouge">CREATE INDEX title_index on shows (title);</code>. Isso diz ao <code class="language-plaintext highlighter-rouge">sqlite3</code> para criar um índice e realizar algumas otimizações especiais relacionadas a essa coluna <code class="language-plaintext highlighter-rouge">title</code>.</li>
+  <li data-marker="*">
+    <p>Isso criará uma estrutura de dados chamada de <em>B Tree</em>, uma estrutura de dados que se parece com uma árvore binária. No entanto, ao contrário de uma árvore binária, pode haver mais de dois nós filhos.</p>
+    <p><img src="./assets/images/cs50Week7Slide039.png" alt="um nó no topo do qual saem quatro filhos e abaixo disso há três filhos que saem de um dos nós e dois de outros dois e três de outro" title="b tree"></p>
+  </li>
+  <li data-marker="*">Executando a consulta <code class="language-plaintext highlighter-rouge">SELECT * FROM shows WHERE title = 'The Office';</code>, você perceberá que a consulta é executada muito mais rapidamente!</li>
+  <li data-marker="*">Infelizmente, indexar todas as colunas resultaria na utilização de mais espaço de armazenamento. Portanto, há uma troca entre velocidade aprimorada e espaço de armazenamento.</li>
+</ul>
+<h2 id="using-sql-in-python">Usando SQL em Python</h2>
+<ul>
+  <li data-marker="*">
+    <p>Para auxiliar no trabalho com SQL neste curso, a Biblioteca CS50 pode ser utilizada em seu código da seguinte maneira:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">cs50</span> <span class="kn">import</span> <span class="n">SQL</span>    </code></pre></div>    </div>
+
+  </li>
+  <li data-marker="*">Semelhante aos usos anteriores da Biblioteca CS50, esta biblioteca auxiliará nos passos complicados de utilização do SQL dentro do seu código Python.</li>
+  <li data-marker="*">Você pode ler mais sobre a funcionalidade SQL da Biblioteca CS50 na <a href="https://cs50.readthedocs.io/libraries/cs50/python/#cs50.SQL" target="_blank">documentação</a>.</li>
+  <li data-marker="*">
+    <p>Lembre-se de onde paramos em <code class="language-plaintext highlighter-rouge">favorites.py</code>. Seu código deve aparecer da seguinte forma:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Favorite problem instead of favorite language
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="c1"># Open CSV file
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="s">"favorites.csv"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+
+    <span class="c1"># Create DictReader
+</span>    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="nc">DictReader</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+
+    <span class="c1"># Counts
+</span>    <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Iterate over CSV file, counting favorites
+</span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">favorite</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"problem"</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Print count
+</span><span class="n">favorite</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Favorite: "</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">favorite</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">favorite</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">counts</span><span class="p">[</span><span class="n">favorite</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    </code></pre></div>    </div>
+
+  </li>
+  <li data-marker="*">
+    <p>Modifique seu código da seguinte forma:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Searches database popularity of a problem
+    </span>
+<span class="kn">import</span> <span class="n">csv</span>
+
+<span class="kn">from</span> <span class="n">cs50</span> <span class="kn">import</span> <span class="n">SQL</span>
+
+<span class="c1"># Open database
+</span><span class="n">db</span> <span class="o">=</span> <span class="nc">SQL</span><span class="p">(</span><span class="s">"sqlite:///favorites.db"</span><span class="p">)</span>
+
+<span class="c1"># Prompt user for favorite
+</span><span class="n">favorite</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="s">"Favorite: "</span><span class="p">)</span>
+
+<span class="c1"># Search for title
+</span><span class="n">rows</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="s">"SELECT COUNT(*) FROM favorites WHERE problem LIKE ?"</span><span class="p">,</span> <span class="s">"%"</span> <span class="o">+</span> <span class="n">favorite</span> <span class="o">+</span> <span class="s">"%"</span><span class="p">)</span>
+
+<span class="c1"># Get first (and only) row
+</span><span class="n">row</span> <span class="o">=</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Print popularity
+</span><span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s">"COUNT(*)"</span><span class="p">])</span>
+    </code></pre></div>    </div>
+
+    <p>Observe que <code class="language-plaintext highlighter-rouge">db = SQL("sqlite:///favorites.db")</code> fornece ao Python a localização do arquivo de banco de dados. Em seguida, a linha que começa com <code class="language-plaintext highlighter-rouge">rows</code> executa comandos SQL utilizando <code class="language-plaintext highlighter-rouge">db.execute</code>. De fato, esse comando passa a sintaxe dentro das aspas para a função <code class="language-plaintext highlighter-rouge">db.execute</code>. Podemos emitir qualquer comando SQL usando essa sintaxe. Além disso, observe que <code class="language-plaintext highlighter-rouge">rows</code> é retornado como uma lista de dicionários. Nesse caso, há apenas um resultado, uma linha, retornada para a lista de linhas como um dicionário.</p>
+  </li>
+</ul>
+<h2 id="race-conditions">Condições de corrida</h2>
+<ul>
+  <li data-marker="*">O uso do SQL às vezes pode resultar em alguns problemas.</li>
+  <li data-marker="*">Você pode imaginar um caso em que vários usuários possam estar acessando o mesmo banco de dados e executando comandos ao mesmo tempo.</li>
+  <li data-marker="*">Isso poderia resultar em problemas em que o código é interrompido pelas ações de outras pessoas. Isso pode resultar em perda de dados.</li>
+  <li data-marker="*">Recursos SQL embutidos, como <code class="language-plaintext highlighter-rouge">BEGIN TRANSACTION</code>, <code class="language-plaintext highlighter-rouge">COMMIT</code> e <code class="language-plaintext highlighter-rouge">ROLLBACK</code>, ajudam a evitar alguns desses problemas de condição de corrida.</li>
+</ul>
+
+<h2 id="ataques-de-injecao-de-sql">Ataques de Injeção de SQL</h2>
+<ul>
+  <li data-marker="*">Ainda considerando o código acima, você pode estar se perguntando o que os sinais de interrogação (<code class="language-plaintext highlighter-rouge">?</code>) fazem acima. Um dos problemas que podem surgir em aplicações do mundo real de SQL é o que é chamado de <em>ataque de injeção</em>. Um ataque de injeção é quando um ator mal-intencionado pode inserir código SQL malicioso.</li>
+  <li data-marker="*">
+    <p>Por exemplo, considere uma tela de login como a seguinte:</p>
+    <p><img src="./assets/images/cs50Week7Slide051.png" alt="tela de login do harvard key com campos de nome de usuário e senha" title="tela de login do harvard key"></p>
+  </li>
+  <li data-marker="*">
+    <p>Sem as devidas proteções em nosso próprio código, um ator mal-intencionado pode executar código malicioso. Considere o seguinte:</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rows</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="s">"SELECT COUNT(*) FROM favorites WHERE problem LIKE ?"</span><span class="p">,</span> <span class="s">"%"</span> <span class="o">+</span> <span class="n">favorite</span> <span class="o">+</span> <span class="s">"%"</span><span class="p">)</span>    </code></pre></div>    </div>
+
+    <p>Observe que, como o caractere <code class="language-plaintext highlighter-rouge">?</code> está em vigor, a validação pode ser executada em <code class="language-plaintext highlighter-rouge">favorite</code> antes que ele seja cegamente aceito pela consulta.</p>
+  </li>
+  <li data-marker="*">Você nunca deve utilizar strings formatadas em consultas como acima ou confiar cegamente na entrada do usuário.</li>
+  <li data-marker="*">Ao utilizar a Biblioteca CS50, a biblioteca irá <em>sanitizar</em> e remover quaisquer caracteres potencialmente maliciosos.</li>
+</ul>
+<h2 id="summing-up">Resumindo</h2>
+<p>Nesta lição, você aprendeu mais sobre a sintaxe relacionada ao Python. Além disso, aprendeu como integrar esse conhecimento com dados na forma de bancos de dados flat-file e relacionais. Finalmente, aprendeu sobre <em>SQL</em>. Especificamente, discutimos...</p>
+<ul>
+  <li data-marker="*">Bancos de dados flat-file</li>
+  <li data-marker="*">Bancos de dados relacionais</li>
+  <li data-marker="*">SQL</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">JOIN</code>s</li>
+  <li data-marker="*">Índices</li>
+  <li data-marker="*">Usando SQL em Python</li>
+  <li data-marker="*">Condições de corrida</li>
+  <li data-marker="*">Ataques de injeção de SQL</li>
+</ul>
+
+
+
+    <p>Até a próxima!</p>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

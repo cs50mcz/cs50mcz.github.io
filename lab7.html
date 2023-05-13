@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 7: Songs</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+
+
+    <p>Escreva consultas SQL para responder perguntas sobre um banco de dados de músicas.</p>
+
+
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/7/songs.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">songs.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip songs.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">songs</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm songs.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd songs
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>songs/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver 8 arquivos .sql, 
+      <code class="language-plaintext highlighter-rouge">songs.db</code>, e 
+      <code class="language-plaintext highlighter-rouge">answers.txt</code>.
+    </p> 
+    
+  
+
+<p>Se você encontrar algum problema, siga os mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+
+
+
+
+
+
+<h2 id="understanding">Entendendo</h2>
+<p>Disponibilizado para você está um arquivo chamado <code class="language-plaintext highlighter-rouge">songs.db</code>, um banco de dados SQLite que armazena dados do <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">Spotify</a> sobre músicas e seus artistas. Este conjunto de dados contém as 100 músicas mais reproduzidas no Spotify em 2018. Em uma janela de terminal, execute <code class="language-plaintext highlighter-rouge">sqlite3 songs.db</code> para começar a executar consultas no banco de dados.</p>
+<p>Primeiro, quando o <code class="language-plaintext highlighter-rouge">sqlite3</code> solicitar uma consulta, digite <code class="language-plaintext highlighter-rouge">.schema</code> e pressione enter. Isso mostrará as declarações <code class="language-plaintext highlighter-rouge">CREATE TABLE</code> que foram usadas para gerar cada uma das tabelas no banco de dados. Ao examinar essas declarações, você pode identificar as colunas presentes em cada tabela.</p>
+<p>Observe que cada <code class="language-plaintext highlighter-rouge">artista</code> possui um <code class="language-plaintext highlighter-rouge">id</code> e um <code class="language-plaintext highlighter-rouge">nome</code>. Observe também que cada música possui um <code class="language-plaintext highlighter-rouge">nome</code>, um <code class="language-plaintext highlighter-rouge">artist_id</code> (correspondente ao <code class="language-plaintext highlighter-rouge">id</code> do artista da música), bem como valores para a capacidade de dança, energia, chave, volume, fala (presença de palavras faladas em uma faixa), valência, tempo e duração da música (medida em milissegundos).</p>
+<p>O desafio que você tem pela frente é escrever consultas SQL para responder a uma variedade de perguntas diferentes, selecionando dados de uma ou mais dessas tabelas. Depois de fazer isso, você refletirá sobre as maneiras pelas quais o Spotify pode usar os mesmos dados em sua campanha anual <a href="https://en.wikipedia.org/wiki/Spotify_Wrapped" target="_blank">Spotify Wrapped</a> para caracterizar os hábitos dos ouvintes.</p>
+
+
+
+
+
+
+
+<h2 id="implementation-details">Detalhes de Implementação</h2>
+<p>Para cada um dos problemas a seguir, você deve escrever uma única consulta SQL que gere os resultados especificados por cada problema. Sua resposta deve estar na forma de uma única consulta SQL, embora você possa aninhar outras consultas dentro da sua consulta. Você <strong>não deve</strong> assumir nada sobre os <code class="language-plaintext highlighter-rouge">id</code>s de músicas ou artistas específicos: suas consultas devem ser precisas mesmo se o <code class="language-plaintext highlighter-rouge">id</code> de uma música ou pessoa específica fosse diferente. Por fim, cada consulta deve retornar apenas os dados necessários para responder à pergunta: se o problema pede apenas que você apresente os nomes das músicas, por exemplo, sua consulta não deve apresentar também o tempo de cada música.</p>
+<ol>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">1.sql</code>, escreva uma consulta SQL para listar os nomes de todas as músicas no banco de dados.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada música.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">2.sql</code>, escreva uma consulta SQL para listar os nomes de todas as músicas em ordem crescente de tempo.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada música.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">3.sql</code>, escreva uma consulta SQL para listar os nomes das 5 músicas mais longas, em ordem decrescente de duração.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada música.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">4.sql</code>, escreva uma consulta SQL que liste os nomes de todas as músicas que possuem dançabilidade, energia e valência maiores que 0.75.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada música.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">5.sql</code>, escreva uma consulta SQL que retorne a energia média de todas as músicas.
+    <ul>
+      <li data-marker="*">Sua consulta deve retornar uma tabela com uma única coluna e uma única linha contendo a energia média.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">6.sql</code>, escreva uma consulta SQL que liste os nomes das músicas que são de Post Malone.
+    <ul>
+      <li data-marker="*">Sua consulta deve retornar uma tabela com uma única coluna para o nome de cada música.</li>
+      <li data-marker="*">Você não deve fazer nenhuma suposição sobre qual é o <code class="language-plaintext highlighter-rouge">artist_id</code> de Post Malone.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">7.sql</code>, escreva uma consulta SQL que retorne a energia média das músicas que são de Drake.
+    <ul>
+      <li data-marker="*">Sua consulta deve retornar uma tabela com uma única coluna e uma única linha contendo a energia média.</li>
+      <li data-marker="*">Você não deve fazer nenhuma suposição sobre qual é o <code class="language-plaintext highlighter-rouge">artist_id</code> de Drake.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">8.sql</code>, escreva uma consulta SQL que liste os nomes das músicas que apresentam outros artistas.
+    <ul>
+      <li data-marker="*">As músicas que apresentam outros artistas incluirão "feat." no nome da música.</li>
+      <li data-marker="*">Sua consulta deve retornar uma tabela com uma única coluna para o nome de cada música.</li>
+    </ul>
+  </li>
+</ol>
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Além de executar suas consultas no <code class="language-plaintext highlighter-rouge">sqlite3</code>, você pode testar suas consultas no terminal do VS Code executando</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat filename.sql | sqlite3 songs.db
+</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">filename.sql</code> é o arquivo que contém sua consulta SQL.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="hints">Dicas</h3>
+<ul>
+  <li data-marker="*">Consulte <a href="https://www.w3schools.com/sql/sql_ref_keywords.asp" target="_blank">este referencial de palavras-chave do SQL</a> para obter algumas sintaxes do SQL que podem ser úteis!</li>
+</ul>
+
+
+<h3 id="spotify-wrapped">Spotify Wrapped</h3>
+<p><a href="https://en.wikipedia.org/wiki/Spotify_Wrapped" target="_blank">Spotify Wrapped</a> é um recurso que apresenta as 100 músicas mais reproduzidas pelos usuários do Spotify no ano anterior. Em 2021, o Spotify Wrapped calculou uma <a href="https://newsroom.spotify.com/2021-12-01/learn-more-about-the-audio-aura-in-your-spotify-2021-wrapped-with-aura-reader-mystic-michaela/" target="_blank">"Aura de Áudio"</a> para cada usuário, uma "leitura dos [seus] dois humores mais proeminentes ditados pelas [suas] principais músicas e artistas do ano". Suponha que o Spotify determine uma aura de áudio ao analisar a energia média, valência e capacidade de dança das 100 principais músicas de uma pessoa no ano anterior. Em <code class="language-plaintext highlighter-rouge">answers.txt</code>, reflita sobre as seguintes perguntas:</p>
+<ul>
+  <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">songs.db</code> contiver as 100 principais músicas de um ouvinte de 2018, como você caracterizaria a aura de áudio dessa pessoa?</li>
+  <li data-marker="*">Faça uma hipótese sobre por que a forma como você calculou essa aura pode <em>não</em> ser muito representativa do ouvinte. Que maneiras melhores de calcular essa aura você proporia?</li>
+</ul>
+<p>Não se esqueça de enviar o arquivo <code class="language-plaintext highlighter-rouge">answers.txt</code> juntamente com cada um dos seus arquivos <code class="language-plaintext highlighter-rouge">.sql</code>!</p>
+
+
+
+<h3 id="testing">Testando</h3>
+<p>Execute o código abaixo para avaliar a corretude do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/songs</code></pre></div></div>
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/songs</code></pre></div></div>
+
+
+<h2 id="acknowledgements">Agradecimentos</h2>
+<p>Conjunto de dados obtido de <a href="https://www.kaggle.com/nadintamer/top-spotify-tracks-of-2018" target="_blank">Kaggle</a>.</p>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

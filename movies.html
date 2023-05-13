@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Movies</h2>
+    <hr>
+
+    <p>Escreva consultas SQL para responder perguntas sobre um banco de dados de filmes.</p>
+
+
+
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na janela do seu terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da janela do seu terminal se assemelha ao abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+
+<p>Depois execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/7/movies.zip</code></pre></div></div>
+
+<p>para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">movies.zip</code> para o seu espaço de código.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip movies.zip</code></pre></div></div>
+
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">movies</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm movies.zip</code></pre></div></div>
+
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd movies</code></pre></div></div>
+
+<p>seguido de Enter para se mover para dentro (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>movies/ $</code></pre></div></div>
+
+<p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver 13 arquivos .sql, assim como <code class="language-plaintext highlighter-rouge">movies.db</code>.</p> 
+<p>Se você encontrar algum problema, siga essas mesmas etapas novamente e veja se pode determinar onde você errou!</p>
+
+
+
+
+<h2 id="understanding">Entendendo</h2>
+<p>É fornecido a você um arquivo chamado <code class="language-plaintext highlighter-rouge">movies.db</code>, um banco de dados SQLite que armazena dados do <a href="https://www.imdb.com/" target="_blank">IMDb</a> sobre filmes, as pessoas que os dirigiram e estrelaram, e suas avaliações. Em uma janela de terminal, execute <code class="language-plaintext highlighter-rouge">sqlite3 movies.db</code> para poder começar a executar consultas no banco de dados.</p>
+<p>Primeiro, quando o <code class="language-plaintext highlighter-rouge">sqlite3</code> solicitar uma consulta, digite <code class="language-plaintext highlighter-rouge">.schema</code> e pressione enter. Isso exibirá as declarações <code class="language-plaintext highlighter-rouge">CREATE TABLE</code> que foram usadas para gerar cada uma das tabelas no banco de dados. Ao examinar essas declarações, você pode identificar as colunas presentes em cada tabela.</p>
+<p>Observe que a tabela <code class="language-plaintext highlighter-rouge">movies</code> tem uma coluna <code class="language-plaintext highlighter-rouge">id</code> que identifica exclusivamente cada filme, assim como colunas para o <code class="language-plaintext highlighter-rouge">título</code> de um filme e o <code class="language-plaintext highlighter-rouge">ano</code> em que o filme foi lançado. A tabela <code class="language-plaintext highlighter-rouge">people</code> também possui uma coluna <code class="language-plaintext highlighter-rouge">id</code>, e também possui colunas para o <code class="language-plaintext highlighter-rouge">nome</code> e o <code class="language-plaintext highlighter-rouge">ano de nascimento</code> de cada pessoa.</p>
+<p>As avaliações dos filmes, por sua vez, são armazenadas na tabela <code class="language-plaintext highlighter-rouge">ratings</code>. A primeira coluna na tabela é <code class="language-plaintext highlighter-rouge">movie_id</code>: uma chave estrangeira que referencia o <code class="language-plaintext highlighter-rouge">id</code> da tabela <code class="language-plaintext highlighter-rouge">movies</code>. O restante da linha contém dados sobre a <code class="language-plaintext highlighter-rouge">avaliação</code> de cada filme e o número de <code class="language-plaintext highlighter-rouge">votos</code> que o filme recebeu no IMDb.</p>
+<p>Finalmente, as tabelas <code class="language-plaintext highlighter-rouge">stars</code> e <code class="language-plaintext highlighter-rouge">directors</code> relacionam pessoas aos filmes nos quais elas atuaram ou dirigiram. (Apenas as estrelas e diretores <a href="https://www.imdb.com/interfaces/" target="_blank">principais</a> estão incluídos.) Cada tabela possui apenas duas colunas: <code class="language-plaintext highlighter-rouge">movie_id</code> e <code class="language-plaintext highlighter-rouge">person_id</code>, que referenciam um filme e uma pessoa específicos, respectivamente.</p>
+<p>O desafio que está à sua frente é escrever consultas SQL para responder a uma variedade de perguntas diferentes, selecionando dados de uma ou mais dessas tabelas.</p>
+
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Para cada um dos problemas a seguir, você deve escrever uma única consulta SQL que produza os resultados especificados por cada problema. Sua resposta deve estar na forma de uma única consulta SQL, embora você possa aninhar outras consultas dentro da sua consulta. Você <strong>não deve</strong> assumir nada sobre os <code class="language-plaintext highlighter-rouge">id</code>s de filmes ou pessoas específicos: suas consultas devem ser precisas mesmo se o <code class="language-plaintext highlighter-rouge">id</code> de um filme ou pessoa específica for diferente. Por fim, cada consulta deve retornar apenas os dados necessários para responder à pergunta: se o problema apenas pede para exibir os nomes dos filmes, por exemplo, sua consulta não deve exibir também o ano de lançamento de cada filme.</p>
+<p>Você pode comparar os resultados de suas consultas com o próprio <a href="https://www.imdb.com/" target="_blank">IMDb</a>, mas esteja ciente de que as avaliações no site podem ser diferentes das do <code class="language-plaintext highlighter-rouge">movies.db</code>, pois pode ter havido mais votos desde o momento em que os dados foram baixados!</p>
+
+<ol>
+  <li>Em <code class="language-plaintext highlighter-rouge">1.sql</code>, escreva uma consulta SQL para listar os títulos de todos os filmes lançados em 2008.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna para o título de cada filme.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">2.sql</code>, escreva uma consulta SQL para determinar o ano de nascimento de Emma Stone.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna e uma única linha (sem contar o cabeçalho) contendo o ano de nascimento de Emma Stone.</li>
+      <li data-marker="*">Você pode assumir que existe apenas uma pessoa no banco de dados com o nome Emma Stone.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">3.sql</code>, escreva uma consulta SQL para listar os títulos de todos os filmes com data de lançamento em ou após 2018, em ordem alfabética.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna para o título de cada filme.</li>
+      <li data-marker="*">Os filmes lançados em 2018 devem ser incluídos, assim como os filmes com datas de lançamento futuras.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">4.sql</code>, escreva uma consulta SQL para determinar o número de filmes com uma classificação IMDb de 10.0.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna e uma única linha (sem contar o cabeçalho) contendo o número de filmes com classificação 10.0.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">5.sql</code>, escreva uma consulta SQL para listar os títulos e os anos de lançamento de todos os filmes de Harry Potter, em ordem cronológica.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com duas colunas, uma para o título de cada filme e outra para o ano de lançamento de cada filme.</li>
+      <li data-marker="*">Você pode assumir que o título de todos os filmes de Harry Potter começará com as palavras "Harry Potter" e que se um título de filme começar com as palavras "Harry Potter", é um filme de Harry Potter.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">6.sql</code>, escreva uma consulta SQL para determinar a classificação média de todos os filmes lançados em 2012.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna e uma única linha (não contando o cabeçalho) contendo a classificação média.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">7.sql</code>, escreva uma consulta SQL para listar todos os filmes lançados em 2010 e suas classificações, em ordem decrescente por classificação. Para filmes com a mesma classificação, ordene-os em ordem alfabética pelo título.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com duas colunas, uma para o título de cada filme e outra para a classificação de cada filme.</li>
+      <li data-marker="*">Filmes que não possuem classificação não devem ser incluídos no resultado.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">8.sql</code>, escreva uma consulta SQL para listar os nomes de todas as pessoas que atuaram em Toy Story.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna para o nome de cada pessoa.</li>
+      <li data-marker="*">Você pode assumir que há apenas um filme no banco de dados com o título Toy Story.</li>
+    </ul>
+  </li>
+  <li>Em <code class="language-plaintext highlighter-rouge">9.sql</code>, escreva uma consulta SQL para listar os nomes de todas as pessoas que atuaram em um filme lançado em 2004, ordenadas por ano de nascimento.
+    <ul>
+      <li data-marker="*">Sua consulta deve exibir uma tabela com uma única coluna para o nome de cada pessoa.</li>
+      <li data-marker="*">Pessoas com o mesmo ano de nascimento podem ser listadas em qualquer ordem.</li>
+      <li data-marker="*">Não é necessário se preocupar com pessoas que não têm ano de nascimento listado, contanto que aqueles que têm um ano de nascimento sejam listados em ordem.</li>
+      <li data-marker="*">Se uma pessoa apareceu em mais de um filme em 2004, ela deve aparecer apenas uma vez nos resultados.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">10.sql</code>, escreva uma consulta SQL para listar os nomes de todas as pessoas que dirigiram um filme que recebeu uma classificação de pelo menos 9.0.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada pessoa.</li>
+      <li data-marker="*">Se uma pessoa dirigiu mais de um filme que recebeu uma classificação de pelo menos 9.0, ela deve aparecer nos resultados apenas uma vez.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">11.sql</code>, escreva uma consulta SQL para listar os títulos dos cinco filmes com as classificações mais altas (em ordem) em que Chadwick Boseman atuou, começando pelo mais bem avaliado.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o título de cada filme.</li>
+      <li data-marker="*">Você pode assumir que há apenas uma pessoa no banco de dados com o nome Chadwick Boseman.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">12.sql</code>, escreva uma consulta SQL para listar os títulos de todos os filmes em que Johnny Depp e Helena Bonham Carter atuaram.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o título de cada filme.</li>
+      <li data-marker="*">Você pode assumir que há apenas uma pessoa no banco de dados com o nome Johnny Depp.</li>
+      <li data-marker="*">Você pode assumir que há apenas uma pessoa no banco de dados com o nome Helena Bonham Carter.</li>
+    </ul>
+  </li>
+  <li>No arquivo <code class="language-plaintext highlighter-rouge">13.sql</code>, escreva uma consulta SQL para listar os nomes de todas as pessoas que atuaram em um filme em que Kevin Bacon também atuou.
+    <ul>
+      <li data-marker="*">Sua consulta deve gerar uma tabela com uma única coluna para o nome de cada pessoa.</li>
+      <li data-marker="*">Pode haver várias pessoas com o nome Kevin Bacon no banco de dados. Certifique-se de selecionar apenas o Kevin Bacon nascido em 1958.</li>
+      <li data-marker="*">O próprio Kevin Bacon não deve ser incluído na lista resultante.</li>
+    </ul>
+  </li>
+</ol>
+
+
+
+
+<h2 id="usage">Uso</h2>
+<p>Para testar suas consultas no VS Code, você pode consultar o banco de dados executando</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat filename.sql | sqlite3 movies.db</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">filename.sql</code> é o arquivo que contém sua consulta SQL.</p>
+<p>Você também pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat filename.sql | sqlite3 movies.db &gt; output.txt</code></pre></div></div>
+
+<p>para redirecionar a saída da consulta para um arquivo de texto chamado <code class="language-plaintext highlighter-rouge">output.txt</code>. (Isso pode ser útil para verificar quantas linhas são retornadas pela sua consulta!)</p>
+
+
+<h2 id="hints">Dicas</h2>
+<ul>
+  <li data-marker="*">Consulte <a href="https://www.w3schools.com/sql/sql_ref_keywords.asp" target="_blank">esta referência de palavras-chave SQL</a> para obter algumas sintaxes SQL que podem ser úteis!</li>
+  <li data-marker="*">Consulte <a href="https://www.sqlstyle.guide/" target="_blank">sqlstyle.guide</a> para obter orientações sobre boas práticas de estilo em SQL, especialmente quando suas consultas se tornarem mais complexas!</li>
+</ul>
+
+
+<h2 id="testing">Testando</h2>
+<p>Embora o <code class="language-plaintext highlighter-rouge">check50</code> esteja disponível para este problema, você é incentivado a testar seu código por conta própria para cada um dos seguintes itens. Você pode executar <code class="language-plaintext highlighter-rouge">sqlite3 movies.db</code> para executar consultas adicionais no banco de dados e garantir que seu resultado esteja correto.</p>
+<p>Se você estiver usando o banco de dados <code class="language-plaintext highlighter-rouge">movies.db</code> fornecido neste conjunto de problemas, você deverá constatar que</p>
+
+<ul>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">1.sql</code> resulta em uma tabela com 1 coluna e 10.050 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">2.sql</code> resulta em uma tabela com 1 coluna e 1 linha.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">3.sql</code> resulta em uma tabela com 1 coluna e 88.918 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">4.sql</code> resulta em uma tabela com 1 coluna e 1 linha.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">5.sql</code> resulta em uma tabela com 2 colunas e 12 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">6.sql</code> resulta em uma tabela com 1 coluna e 1 linha.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">7.sql</code> resulta em uma tabela com 2 colunas e 7.085 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">8.sql</code> resulta em uma tabela com 1 coluna e 4 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">9.sql</code> resulta em uma tabela com 1 coluna e 18.946 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">10.sql</code> resulta em uma tabela com 1 coluna e 3.392 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">11.sql</code> resulta em uma tabela com 1 coluna e 5 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">12.sql</code> resulta em uma tabela com 1 coluna e 7 linhas.</li>
+  <li data-marker="*">Executar <code class="language-plaintext highlighter-rouge">13.sql</code> resulta em uma tabela com 1 coluna e 182 linhas.</li>
+</ul>
+
+<p>Observe que as contagens de linhas não incluem linhas de cabeçalho que mostram apenas os nomes das colunas.</p>
+<p>Se sua consulta retornar um número de linhas ligeiramente diferente do resultado esperado, verifique se você está lidando corretamente com duplicatas! Para consultas que solicitam uma lista de nomes, nenhuma pessoa deve ser listada duas vezes, mas duas pessoas diferentes com o mesmo nome devem ser listadas separadamente.</p>
+<p>Execute o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/movies</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/movies</code></pre></div></div>
+
+
+
+
+<h2 id="acknowledgements">Agradecimentos</h2>
+<p>Informações cortesia de
+IMDb
+(<a href="https://www.imdb.com" target="_blank">imdb.com</a>).
+Usado com permissão.</p>
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

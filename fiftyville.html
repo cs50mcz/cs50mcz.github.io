@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Fiftyville</h2>
+    <hr>
+
+    <p>Escreva consultas SQL para resolver um mistério.</p>
+
+
+    <h2 id="um-misterio-em-fiftyville">Um Mistério em Fiftyville</h2>
+<p>O Pato CS50 foi roubado! A cidade de Fiftyville chamou você para resolver o mistério do pato roubado. As autoridades acreditam que o ladrão roubou o pato e, logo em seguida, partiu da cidade com a ajuda de um cúmplice. Seu objetivo é identificar:</p>
+<ul>
+  <li data-marker="*">Quem é o ladrão,</li>
+  <li data-marker="*">Para qual cidade o ladrão escapou, e</li>
+  <li data-marker="*">Quem é o cúmplice do ladrão que o ajudou a escapar</li>
+</ul>
+<p>Tudo o que você sabe é que o roubo <strong>aconteceu em 28 de julho de 2021</strong> e que ele <strong>ocorreu na Rua Humphrey</strong>.</p>
+<p>Como você vai resolver esse mistério? As autoridades de Fiftyville pegaram alguns registros da cidade em torno do momento do roubo e prepararam um banco de dados SQLite para você, <code class="language-plaintext highlighter-rouge">fiftyville.db</code>, que contém tabelas de dados da cidade. Você pode consultar essa tabela usando consultas SQL <code class="language-plaintext highlighter-rouge">SELECT</code> para acessar os dados de seu interesse. Usando apenas as informações no banco de dados, sua tarefa é resolver o mistério.</p>
+
+
+
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na janela do seu terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da janela do seu terminal se assemelha ao abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+
+<p>Depois execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/7/fiftyville.zip</code></pre></div></div>
+
+<p>para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">fiftyville.zip</code> para o seu espaço de código.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip fiftyville.zip</code></pre></div></div>
+
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">fiftyville</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm fiftyville.zip</code></pre></div></div>
+
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd fiftyville</code></pre></div></div>
+
+<p>seguido de Enter para se mover para dentro (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fiftyville/ $</code></pre></div></div>
+
+<p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver alguns arquivos:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>answers.txt  fiftyville.db  log.sql</code></pre></div></div>
+
+
+<p>Se você encontrar algum problema, siga essas mesmas etapas novamente e veja se pode determinar onde você errou!</p>
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Para este problema, tão importante quanto resolver o próprio mistério é o processo que você utiliza para resolvê-lo. No arquivo <code class="language-plaintext highlighter-rouge">log.sql</code>, mantenha um registro de todas as consultas SQL que você executar no banco de dados. Acima de cada consulta, rotule cada uma com um comentário (em SQL, comentários são quaisquer linhas que começam com <code class="language-plaintext highlighter-rouge">--</code>) descrevendo por que você está executando a consulta e/ou que informações você espera obter com essa consulta específica. Você pode usar comentários no arquivo de log para adicionar notas adicionais sobre seu processo de pensamento ao resolver o mistério: em última análise, esse arquivo deve servir como evidência do processo que você usou para identificar o ladrão!</p>
+<p>Ao escrever suas consultas, você pode perceber que algumas delas podem se tornar bastante complexas. Para ajudar a manter suas consultas legíveis, consulte os princípios de bom estilo em <a href="https://www.sqlstyle.guide" target="_blank">sqlstyle.guide</a>. A seção de <a href="https://www.sqlstyle.guide/#indentation" target="_blank">indentação</a> pode ser especialmente útil!</p>
+<p>Assim que você resolver o mistério, preencha cada uma das linhas em <code class="language-plaintext highlighter-rouge">answers.txt</code> com o nome do ladrão, a cidade para a qual o ladrão escapou e o nome do cúmplice do ladrão que o ajudou a fugir da cidade. (Certifique-se de não alterar nenhum texto existente no arquivo ou adicionar outras linhas ao arquivo!)</p>
+<p>No final, você deve enviar tanto o arquivo <code class="language-plaintext highlighter-rouge">log.sql</code> quanto o arquivo <code class="language-plaintext highlighter-rouge">answers.txt</code>.</p>
+
+
+
+
+<h2 id="hints">Dicas</h2>
+<ul>
+  <li data-marker="*">Execute <code class="language-plaintext highlighter-rouge">sqlite3 fiftyville.db</code> para começar a executar consultas no banco de dados.
+    <ul>
+      <li data-marker="*">Ao executar o comando <code class="language-plaintext highlighter-rouge">sqlite3</code>, ao executar <code class="language-plaintext highlighter-rouge">.tables</code>, será listada todas as tabelas do banco de dados.</li>
+      <li data-marker="*">Ao executar o comando <code class="language-plaintext highlighter-rouge">sqlite3</code>, ao executar <code class="language-plaintext highlighter-rouge">.schema TABLE_NAME</code>, onde <code class="language-plaintext highlighter-rouge">TABLE_NAME</code> é o nome de uma tabela do banco de dados, será exibido o comando <code class="language-plaintext highlighter-rouge">CREATE TABLE</code> usado para criar a tabela. Isso pode ser útil para saber quais colunas consultar!</li>
+    </ul>
+  </li>
+  <li data-marker="*">Pode ser útil começar com a tabela <code class="language-plaintext highlighter-rouge">crime_scene_reports</code>. Comece procurando um relatório de cena do crime que corresponda à data e ao local do crime.</li>
+  <li data-marker="*">Consulte <a href="https://www.w3schools.com/sql/sql_ref_keywords.asp" target="_blank">este guia de palavras-chave SQL</a> para obter algumas sintaxes SQL que podem ser úteis!</li>
+</ul>
+
+
+
+
+<h2 id="testing">Testando</h2>
+<p>Execute o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/fiftyville</code></pre></div></div>
+
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/fiftyville</code></pre></div></div>
+
+
+
+
+<h2 id="acknowledgements">Agradecimentos</h2>
+<p>Inspirado por outro caso em <a href="https://mystery.knightlab.com/" target="_blank">SQL City</a>.</p>
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
