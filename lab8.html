@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Lab 8: Trivia</h2>
+    <hr>
+
+    <div class="alert my-alert" data-alert="warning" role="alert">
+      <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
+        todos os
+        alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div>
+
+
+    <p>Escreva uma página da web que permita aos usuários responder a perguntas de trivia.</p>
+    <p><img src="./assets/images/questions.png" alt="screenshot of trivia questions"></p>
+
+
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
+      assemelha ao abaixo.</p>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$</code></pre>
+      </div>
+    </div>
+
+    <p>Clique dentro dessa janela de terminal e execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/8/trivia.zip</code></pre>
+      </div>
+    </div>
+
+    <p>digite Enter para baixar um arquivo ZIP chamado <code
+        class="language-plaintext highlighter-rouge">trivia.zip</code> em seu espaço de códigos. Tenha cuidado para
+      não ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
+      qualquer outro caractere!</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>unzip trivia.zip
+</code></pre>
+      </div>
+    </div>
+
+    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">trivia</code>. Você não precisa
+      mais do arquivo ZIP, então pode executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>rm trivia.zip      </code></pre>
+      </div>
+    </div>
+
+    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+    <p>Agora digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd trivia
+</code></pre>
+      </div>
+    </div>
+
+    <p>seguido de Enter para entrar (ou seja, abrir) nesse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>trivia/ $    </code></pre>
+      </div>
+    </div>
+
+    <p>Se tudo foi bem sucedido, você deve executar</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>ls    </code></pre>
+      </div>
+    </div>
+
+    <p>e você deve ver um arquivo, 
+      <code class="language-plaintext highlighter-rouge">index.html</code>, e um arquivo
+      <code class="language-plaintext highlighter-rouge">styles.css</code>.
+    </p> 
+    
+  
+
+<p>Se você encontrar algum problema, siga os mesmos passos novamente e veja se consegue determinar onde errou!</p>
+
+
+
+
+
+<h2 id="implementation-details">Detalhes de Implementação</h2>
+<p>Projete uma página da web usando HTML, CSS e JavaScript para permitir que os usuários respondam a perguntas de trivia.</p>
+<ul>
+  <li data-marker="*">Em <code class="language-plaintext highlighter-rouge">index.html</code>, adicione abaixo de "Part 1" uma pergunta de trivia de múltipla escolha de sua escolha usando HTML.
+    <ul>
+      <li data-marker="*">Você deve usar um cabeçalho <code class="language-plaintext highlighter-rouge">h3</code> para o texto da pergunta.</li>
+      <li data-marker="*">Você deve ter um <code class="language-plaintext highlighter-rouge">button</code> para cada uma das opções de resposta possíveis. Deve haver pelo menos três opções de resposta, das quais exatamente uma deve estar correta.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Usando JavaScript, adicione lógica para que os botões mudem de cor quando um usuário clicar neles.
+    <ul>
+      <li data-marker="*">Se um usuário clicar em um botão com uma resposta incorreta, o botão deve ficar vermelho e um texto deve aparecer abaixo da pergunta dizendo "Incorrect".</li>
+      <li data-marker="*">Se um usuário clicar em um botão com a resposta correta, o botão deve ficar verde e um texto deve aparecer abaixo da pergunta dizendo "Correct!".</li>
+    </ul>
+  </li>
+  <li data-marker="*">Em <code class="language-plaintext highlighter-rouge">index.html</code>, adicione abaixo de "Part 2" uma pergunta de resposta livre baseada em texto de sua escolha usando HTML.
+    <ul>
+      <li data-marker="*">Você deve usar um cabeçalho <code class="language-plaintext highlighter-rouge">h3</code> para o texto da pergunta.</li>
+      <li data-marker="*">Você deve usar um campo de <code class="language-plaintext highlighter-rouge">input</code> para permitir que o usuário digite uma resposta.</li>
+      <li data-marker="*">Você deve usar um <code class="language-plaintext highlighter-rouge">button</code> para permitir que o usuário confirme sua resposta.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Usando JavaScript, adicione lógica para que o campo de texto mude de cor quando um usuário confirmar sua resposta.
+    <ul>
+      <li data-marker="*">Se o usuário digitar uma resposta incorreta e pressionar o botão de confirmação, o campo de texto deve ficar vermelho e um texto deve aparecer abaixo da pergunta dizendo "Incorrect".</li>
+      <li data-marker="*">Se o usuário digitar a resposta correta e pressionar o botão de confirmação, o campo de entrada deve ficar verde e um texto deve aparecer abaixo da pergunta dizendo "Correct!".</li>
+    </ul>
+  </li>
+</ul>
+<p>Opcionalmente, você também pode:</p>
+<ul>
+  <li data-marker="*">Editar <code class="language-plaintext highlighter-rouge">styles.css</code> para alterar o CSS da sua página da web!</li>
+  <li data-marker="*">Adicionar perguntas adicionais de curiosidades ao seu questionário, se desejar!</li>
+</ul>
+
+
+
+<h3 id="hints">Dicas</h3>
+<ul>
+  <li data-marker="*">Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" target="_blank"><code class="language-plaintext highlighter-rouge">document.querySelector</code></a> para buscar um único elemento HTML.</li>
+  <li data-marker="*">Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" target="_blank"><code class="language-plaintext highlighter-rouge">document.querySelectorAll</code></a> para buscar vários elementos HTML que correspondem a uma consulta. A função retorna uma matriz de todos os elementos correspondentes.</li>
+</ul>
+
+
+<h3 id="testing">Testando</h3>
+<p>Sem <code class="language-plaintext highlighter-rouge">check50</code> para este laboratório, pois as implementações variarão com base em suas perguntas! Mas certifique-se de testar respostas incorretas e corretas para cada uma de suas perguntas para garantir que sua página da web responda adequadamente.</p>
+<p>Execute <code class="language-plaintext highlighter-rouge">http-server</code> em seu terminal enquanto estiver no diretório <code class="language-plaintext highlighter-rouge">lab8</code> para iniciar um servidor da web que sirva sua página da web.</p>
+
+
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/trivia</code></pre></div></div>
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

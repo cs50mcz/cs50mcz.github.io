@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Homepage</h2>
+    <hr>
+
+    <p>Construa uma página inicial simples usando HTML, CSS e JavaScript.</p>
+
+
+
+    <h2 id="background">Contexto</h2>
+<p>A internet possibilitou coisas incríveis: podemos usar um mecanismo de busca para pesquisar qualquer coisa imaginável, comunicar com amigos e familiares ao redor do mundo, jogar jogos, fazer cursos e muito mais. Mas acontece que quase todas as páginas que visitamos são construídas com três linguagens principais, cada uma com um propósito ligeiramente diferente:</p>
+<ol>
+  <li>HTML, ou <em>Linguagem de Marcação de Hipertexto</em>, que é usada para descrever o conteúdo dos sites;</li>
+  <li>CSS, <em>Folhas de Estilo em Cascata</em>, que é usada para descrever a estética dos sites; e</li>
+  <li>JavaScript, que é usado para tornar os sites interativos e dinâmicos.</li>
+</ol>
+<p>Crie uma página inicial simples que apresente você mesmo, seu hobby ou atividade extracurricular favorito, ou qualquer outra coisa de interesse para você.</p>
+
+
+
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na janela do seu terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da janela do seu terminal se assemelha ao abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+
+<p>Depois execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/8/homepage.zip</code></pre></div></div>
+
+<p>para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">homepage.zip</code> para o seu espaço de código.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip homepage.zip</code></pre></div></div>
+
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">homepage</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm homepage.zip</code></pre></div></div>
+
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd homepage</code></pre></div></div>
+
+<p>seguido de Enter para se mover para dentro (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>homepage/ $</code></pre></div></div>
+
+<p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver alguns arquivos:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html  styles.css</code></pre></div></div>
+<p>Se você encontrar algum problema, siga novamente essas mesmas etapas e veja se consegue determinar onde errou! Você pode iniciar imediatamente um servidor para visualizar seu site executando</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http-server</code></pre></div></div>
+<p>na janela do terminal. Em seguida, clique com o botão direito (se estiver no Mac) ou clique com o botão de controle (se estiver no PC) no primeiro link que aparecer:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http-server executando em LINK</code></pre></div></div>
+<p>Onde LINK é o endereço do seu servidor.</p>
+
+
+
+
+<h2 id="specification">Especificação</h2>
+<p>Implemente no diretório da sua página inicial (<code class="language-plaintext highlighter-rouge">homepage</code>) um site que deve:</p>
+<ul>
+  <li data-marker="*">Conter pelo menos quatro páginas diferentes com a extensão <code class="language-plaintext highlighter-rouge">.html</code>, sendo que uma delas deve ser <code class="language-plaintext highlighter-rouge">index.html</code> (a página principal do seu site), e deve ser possível navegar de qualquer página do seu site para qualquer outra página através de um ou mais hiperlinks.</li>
+  <li data-marker="*">Utilizar pelo menos dez (10) tags HTML distintas, além das tags <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> e <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code>. O uso repetido de uma mesma tag (por exemplo, <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>) conta apenas como uma (1) das dez!</li>
+  <li data-marker="*">
+    <p>Integrar um ou mais recursos do Bootstrap no seu site. Bootstrap é uma biblioteca popular (que vem com muitas classes CSS e mais) através da qual você pode embelezar o seu site. Consulte a <a href="https://getbootstrap.com/docs/5.2/" target="_blank">documentação do Bootstrap</a> para começar. Em particular, você pode achar alguns dos <a href="https://getbootstrap.com/docs/5.2/components/" target="_blank">componentes do Bootstrap</a> interessantes. Para adicionar o Bootstrap ao seu site, basta incluir</p>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"</span> <span class="na">integrity=</span><span class="s">"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://code.jquery.com/jquery-3.5.1.slim.min.js"</span> <span class="na">integrity=</span><span class="s">"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"</span> <span class="na">integrity=</span><span class="s">"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"</span> <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;&lt;/script&gt;</span>
+      </code></pre></div>    </div>
+
+      <p>em suas páginas, abaixo do <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, você também pode incluir</p>
+
+      <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"styles.css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
+      </code></pre></div>    </div>
+
+      <p>para vincular seu próprio CSS.</p>
+  </li>
+  <li data-marker="*">Tenha pelo menos um arquivo de estilo próprio, <code class="language-plaintext highlighter-rouge">styles.css</code>, que utilize pelo menos cinco (5) seletores CSS diferentes (por exemplo, tag (<code class="language-plaintext highlighter-rouge">exemplo</code>), classe (<code class="language-plaintext highlighter-rouge">.exemplo</code>) ou ID (<code class="language-plaintext highlighter-rouge">#exemplo</code>)), e dentro do qual você use um total de pelo menos cinco (5) propriedades CSS diferentes, como <code class="language-plaintext highlighter-rouge">font-size</code> ou <code class="language-plaintext highlighter-rouge">margin</code>; e</li>
+  <li data-marker="*">Integre uma ou mais funcionalidades do JavaScript em seu site para torná-lo mais interativo. Por exemplo, você pode usar JavaScript para adicionar alertas, ter um efeito em intervalos recorrentes ou adicionar interatividade a botões, menus suspensos ou formulários. Sinta-se à vontade para ser criativo!</li>
+  <li data-marker="*">Certifique-se de que seu site seja visualmente agradável em navegadores tanto em dispositivos móveis quanto em laptops e desktops.</li>
+</ul>
+<h2 id="testing">Testando</h2>
+<p>Se você quiser ver como seu site está enquanto trabalha nele, você pode executar o <code class="language-plaintext highlighter-rouge">http-server</code>. Clique com o botão direito ou pressione Control e clique no primeiro link apresentado pelo http-server, o que deve abrir sua página da web em uma nova guia. Em seguida, você poderá atualizar a guia que contém sua página da web para ver as alterações mais recentes.</p>
+<p>Lembre-se também de que, ao abrir as Ferramentas de Desenvolvedor no Google Chrome, você pode <em>simular</em> a visita à sua página em um dispositivo móvel clicando no ícone em forma de telefone à esquerda de <strong>Elementos</strong> na janela das ferramentas de desenvolvedor, ou, uma vez que a guia das Ferramentas de Desenvolvedor já tenha sido aberta, digitando <code class="language-plaintext highlighter-rouge">Ctrl</code>+<code class="language-plaintext highlighter-rouge">Shift</code>+<code class="language-plaintext highlighter-rouge">M</code> em um PC ou <code class="language-plaintext highlighter-rouge">Cmd</code>+<code class="language-plaintext highlighter-rouge">Shift</code>+<code class="language-plaintext highlighter-rouge">M</code> em um Mac, em vez de precisar visitar seu site em um dispositivo móvel separadamente!</p>
+
+<h2 id="assessment">Avaliação</h2>
+<p>Não há <code class="language-plaintext highlighter-rouge">check50</code> para esta tarefa! Em vez disso, a correção do seu site será avaliada com base no cumprimento dos requisitos da especificação descrita acima e na validade do seu HTML. Para garantir que suas páginas estejam corretas, você pode usar este <a href="https://validator.w3.org/#validate_by_input" target="_blank">Serviço de Validação de Marcação</a>, copiando e colando seu HTML diretamente na caixa de texto fornecida. Tome cuidado para eliminar quaisquer avisos ou erros sugeridos pelo validador antes de enviar!</p>
+<p>Considere também:</p>
+<ul>
+  <li data-marker="*">se a estética do seu site é intuitiva e fácil de navegar para o usuário;</li>
+  <li data-marker="*">se o seu CSS foi separado em arquivo(s) CSS separado(s); e</li>
+  <li data-marker="*">se você evitou repetições e redundâncias através da "cascata" de propriedades de estilo a partir das tags pai.</li>
+</ul>
+<p>Infelizmente, o <code class="language-plaintext highlighter-rouge">style50</code> não suporta arquivos HTML, então é sua responsabilidade organizar e alinhar suas tags HTML de forma limpa. Saiba também que você pode criar um comentário HTML com:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Comment goes here --&gt;</span>
+</code></pre></div></div>
+
+<p>mas comentar o seu código HTML não é tão imperativo como o é ao comentar código em, por exemplo, C ou Python. Você também pode comentar o seu CSS, em arquivos CSS, com:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* Comment goes here */</span>
+</code></pre></div></div>
+
+
+
+<h2 id="hints">Dicas</h2>
+<p>Para guias bastante abrangentes sobre as linguagens apresentadas neste problema, confira estes tutoriais:</p>
+<ul>
+  <li data-marker="*"><a href="https://www.w3schools.com/html/" target="_blank">HTML</a></li>
+  <li data-marker="*"><a href="https://www.w3schools.com/css/" target="_blank">CSS</a></li>
+  <li data-marker="*"><a href="https://www.w3schools.com/js/" target="_blank">JavaScript</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/homepage</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
