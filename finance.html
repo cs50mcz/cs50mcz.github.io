@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Finance</h2>
+    <hr>
+
+    <p>Implemente um site por meio do qual os usuários possam "comprar" e "vender" ações, como abaixo.</p>
+    <p><img src="./assets/images/finance.png" alt="C$50 Finance"></p>
+
+
+
+    <h2 id="background">Contexto</h2>
+    <p>Se você não tem certeza do que significa comprar e vender ações (ou seja, ações de uma empresa), vá até <a href="https://www.investopedia.com/articles/basics/06/invest1000.asp" target="_blank">aqui</a> para um tutorial.</p>
+    <p>Você está prestes a implementar o C$50 Finance, um aplicativo da web através do qual você pode gerenciar portfólios de ações. Essa ferramenta não apenas permitirá que você verifique os preços reais das ações e os valores dos portfólios, mas também permitirá que você compre (ok, "compre") e venda (ok, "venda") ações consultando o <a href="https://iextrading.com/developer/" target="_blank">IEX</a> para obter os preços das ações.</p>
+    <p>De fato, o IEX permite que você faça o download de cotações de ações por meio de sua API (interface de programação de aplicativos) usando URLs como <code class="language-plaintext highlighter-rouge">https://api.iex.cloud/v1/data/core/quote/nflx?token=API_KEY</code>. Observe como o símbolo da Netflix (NFLX) está incorporado neste URL; é assim que o IEX sabe qual dado retornar. Esse link não retornará nenhum dado porque o IEX exige o uso de uma chave de API (mais sobre isso daqui a pouco), mas se retornasse, você veria uma resposta no formato JSON (JavaScript Object Notation) como esta:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+      "avgTotalVolume": 15918066, 
+      "calculationPrice": "close", 
+      "change": -8.27, 
+      "changePercent": -0.03074, 
+      "close": 260.79, 
+      "closeSource": "official", 
+      "closeTime": 1667592000924, 
+      "companyName": "Netflix Inc.", 
+      "currency": "USD", 
+      "delayedPrice": 260.81, 
+      "delayedPriceTime": 1667591988947, 
+      "extendedChange": 0.21, 
+      "extendedChangePercent": 0.00081, 
+      "extendedPrice": 261, 
+      "extendedPriceTime": 1667606392772, 
+      "high": 274.97, 
+      "highSource": "15 minute delayed price", 
+      "highTime": 1667592000831, 
+      "iexAskPrice": None, 
+      "iexAskSize": None, 
+      "iexBidPrice": None, 
+      "iexBidSize": None, 
+      "iexClose": 260.85, 
+      "iexCloseTime": 1667591999754, 
+      "iexLastUpdated": None, 
+      "iexMarketPercent": None, 
+      "iexOpen": 271.67, 
+      "iexOpenTime": 1667568602197, 
+      "iexRealtimePrice": None, 
+      "iexRealtimeSize": None, 
+      "iexVolume": None, 
+      "lastTradeTime": 1667591999820, 
+      "latestPrice": 260.79, 
+      "latestSource": "Close", 
+      "latestTime": "November 4, 2022", 
+      "latestUpdate": 1667592000924, 
+      "latestVolume": 11124694, 
+      "low": 255.32, 
+      "lowSource": "15 minute delayed price", 
+      "lowTime": 1667584872696, 
+      "marketCap": 115215720136, 
+      "oddLotDelayedPrice": 260.81, 
+      "oddLotDelayedPriceTime": 1667591988947, 
+      "open": 271.9, 
+      "openTime": 1667568601785, 
+      "openSource": "official", 
+      "peRatio": 23.39, 
+      "previousClose": 269.06, 
+      "previousVolume": 7057350, 
+      "primaryExchange": "NASDAQ", 
+      "symbol": "NFLX", 
+      "volume": 11124694,
+      "week52High": 700.99, 
+      "week52Low": 162.71, 
+      "ytdChange": -0.5978504176349512, 
+      "isUSMarketOpen": False
+    }    </code></pre></div></div>
+
+    <p>Observe como, entre as chaves, há uma lista de pares chave-valor separados por vírgula, com dois pontos separando cada chave de seu valor.</p>
+<p>Vamos agora direcionar nossa atenção para obter o código de distribuição desse problema!</p>
+
+
+
+
+
+
+
+
+<h2 id="getting-started">Começando</h2>
+<p>Acesse <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na janela do seu terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da janela do seu terminal se assemelha ao abaixo:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
+
+<p>Depois execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/9/finance.zip</code></pre></div></div>
+
+<p>para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">finance.zip</code> para o seu espaço de código.</p>
+<p>Em seguida, execute</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip finance.zip</code></pre></div></div>
+
+<p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">finance</code>. Você não precisa mais do arquivo ZIP, então pode executar</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rm finance.zip</code></pre></div></div>
+
+<p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
+<p>Agora digite</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd finance</code></pre></div></div>
+
+<p>seguido de Enter para se mover para dentro (ou seja, abrir) esse diretório. Seu prompt agora deve se parecer com o abaixo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>finance/ $</code></pre></div></div>
+
+<p>Execute <code class="language-plaintext highlighter-rouge">ls</code> sozinho e você deverá ver alguns arquivos e pastas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app.py  finance.db  helpers.py  requirements.txt  static/  templates/</code></pre></div></div>
+
+<p>Se você encontrar algum problema, siga essas mesmas etapas novamente e veja se consegue determinar onde errou!</p>
+
+
+<h3 id="configuring">Configurando</h3>
+<p>Antes de começar esta tarefa, será necessário registrar uma chave de API para poder consultar os dados da IEX. Para fazer isso, siga estas etapas:</p>
+<ul>
+  <li data-marker="*">Acesse <a href="https://iexcloud.io/cloud-login#/register/" target="_blank">iexcloud.io/cloud-login#/register/</a>.</li>
+  <li data-marker="*">Selecione o tipo de conta "Individual", em seguida, insira seu nome, endereço de e-mail e uma senha e clique em "Criar conta".</li>
+  <li data-marker="*">Após o registro, role a página para baixo até "Comece gratuitamente" e clique em "Selecionar plano de início" para escolher o plano gratuito. <em>Observe que este plano só funciona por 30 dias a partir do dia em que você cria sua conta.</em> Tenha isso em mente se você pretende usar esta mesma API para seu projeto final!</li>
+  <li data-marker="*">Depois de confirmar sua conta por meio de um e-mail de confirmação, acesse <a href="https://iexcloud.io/console/tokens" target="_blank">https://iexcloud.io/console/tokens</a>.</li>
+  <li data-marker="*">Copie a chave que aparece na coluna <em>Token</em> (ela deve começar com <code class="language-plaintext highlighter-rouge">pk_</code>).</li>
+  <li data-marker="*">Na janela do terminal, execute:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export API_KEY=value</code></pre></div></div>
+
+<p>onde <code class="language-plaintext highlighter-rouge">value</code> é esse valor (colado), sem nenhum espaço imediatamente antes ou depois do <code class="language-plaintext highlighter-rouge">=</code>. Você também pode desejar colar esse valor em um documento de texto em algum lugar, caso precise dele novamente mais tarde.</p>
+
+
+<h3 id="running">Executando</h3>
+<p>Inicie o servidor web integrado do Flask (dentro de <code class="language-plaintext highlighter-rouge">finance/</code>):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ flask run </code></pre></div></div>
+
+<p>Visite a URL gerada pelo <code class="language-plaintext highlighter-rouge">flask</code> para ver o código de distribuição em ação. No entanto, você ainda não poderá fazer login ou se registrar!</p>
+<p>Dentro de <code class="language-plaintext highlighter-rouge">finance/</code>, execute <code class="language-plaintext highlighter-rouge">sqlite3 finance.db</code> para abrir o <code class="language-plaintext highlighter-rouge">finance.db</code> com o <code class="language-plaintext highlighter-rouge">sqlite3</code>. Se você executar <code class="language-plaintext highlighter-rouge">.schema</code> no prompt do SQLite, observe como o <code class="language-plaintext highlighter-rouge">finance.db</code> vem com uma tabela chamada <code class="language-plaintext highlighter-rouge">users</code>. Dê uma olhada em sua estrutura (ou seja, esquema). Observe como, por padrão, novos usuários receberão $10.000 em dinheiro. Mas se você executar <code class="language-plaintext highlighter-rouge">SELECT * FROM users;</code>, ainda não haverá nenhum usuário (ou seja, linhas) para navegar.</p>
+<p>Outra maneira de visualizar o <code class="language-plaintext highlighter-rouge">finance.db</code> é com um programa chamado phpLiteAdmin. Clique em <code class="language-plaintext highlighter-rouge">finance.db</code> no navegador de arquivos do seu espaço de códigos e, em seguida, clique no link mostrado abaixo do texto "Por favor, visite o seguinte link para autorizar a Visualização do GitHub". Você verá informações sobre o próprio banco de dados, bem como uma tabela, <code class="language-plaintext highlighter-rouge">users</code>, assim como você viu no prompt do <code class="language-plaintext highlighter-rouge">sqlite3</code> com <code class="language-plaintext highlighter-rouge">.schema</code>.</p>
+
+
+
+<h3 id="understanding">Entendendo</h3>
+<h4 id="apppy"><code class="language-plaintext highlighter-rouge">app.py</code></h4>
+
+<p>Abra o arquivo <code class="language-plaintext highlighter-rouge">app.py</code>. No início do arquivo estão várias importações, incluindo o módulo SQL do CS50 e algumas funções auxiliares. Mais sobre elas em breve.</p>
+<p>Após configurar o <a href="https://flask.pocoo.org/" target="_blank">Flask</a>, observe como este arquivo desativa o cache das respostas (desde que você esteja no modo de depuração, que é o padrão no seu espaço de códigos do code50), para que você possa fazer alterações em algum arquivo sem que o seu navegador perceba. Em seguida, observe como ele configura o <a href="https://jinja.pocoo.org/" target="_blank">Jinja</a> com um "filtro" personalizado, <code class="language-plaintext highlighter-rouge">usd</code>, uma função (definida em <code class="language-plaintext highlighter-rouge">helpers.py</code>) que facilitará a formatação de valores em dólares americanos (USD). Em seguida, ele configura o Flask para armazenar <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#sessions" target="_blank">sessões</a> no sistema de arquivos local (ou seja, disco) em vez de armazená-las dentro de cookies (assinados digitalmente), que é o padrão do Flask. O arquivo então configura o módulo SQL do CS50 para usar o <code class="language-plaintext highlighter-rouge">finance.db</code>.</p>
+
+<p>A seguir, há uma série de rotas, das quais apenas duas estão completamente implementadas: <code class="language-plaintext highlighter-rouge">login</code> e <code class="language-plaintext highlighter-rouge">logout</code>. Leia a implementação do <code class="language-plaintext highlighter-rouge">login</code> primeiro. Observe como ele usa <code class="language-plaintext highlighter-rouge">db.execute</code> (da biblioteca CS50) para consultar <code class="language-plaintext highlighter-rouge">finance.db</code>. E observe como ele usa <code class="language-plaintext highlighter-rouge">check_password_hash</code> para comparar hashes das senhas dos usuários. Observe também como o <code class="language-plaintext highlighter-rouge">login</code> "lembra" que um usuário está logado armazenando o <code class="language-plaintext highlighter-rouge">user_id</code> dele ou dela, um INTEIRO, na <code class="language-plaintext highlighter-rouge">session</code>. Dessa forma, qualquer uma das rotas deste arquivo pode verificar qual usuário, se houver algum, está logado. Por fim, observe como, uma vez que o usuário fez login com sucesso, o <code class="language-plaintext highlighter-rouge">login</code> será redirecionado para <code class="language-plaintext highlighter-rouge">"/"</code>, levando o usuário para sua página inicial. Enquanto isso, observe como o <code class="language-plaintext highlighter-rouge">logout</code> simplesmente limpa a <code class="language-plaintext highlighter-rouge">session</code>, efetivamente fazendo logout de um usuário.</p>
+<p>Observe que a maioria das rotas é "decorada" com <code class="language-plaintext highlighter-rouge">@login_required</code> (uma função definida em <code class="language-plaintext highlighter-rouge">helpers.py</code> também). Esse decorador garante que, se um usuário tentar visitar qualquer uma dessas rotas, ele ou ela será redirecionado primeiro para <code class="language-plaintext highlighter-rouge">login</code> para fazer login.</p>
+<p>Observe também como a maioria das rotas suporta GET e POST. Mesmo assim, a maioria delas (por enquanto!) simplesmente retorna um "pedido de desculpas", já que ainda não foram implementadas.</p>
+
+
+<h4 id="helperspy"><code class="language-plaintext highlighter-rouge">helpers.py</code></h4>
+<p>Em seguida, dê uma olhada no arquivo <code class="language-plaintext highlighter-rouge">helpers.py</code>. Ah, lá está a implementação de <code class="language-plaintext highlighter-rouge">apology</code>. Observe como ela, em última instância, renderiza um modelo, <code class="language-plaintext highlighter-rouge">apology.html</code>. Além disso, ela também define dentro de si mesma outra função, <code class="language-plaintext highlighter-rouge">escape</code>, que é usada simplesmente para substituir caracteres especiais em desculpas. Ao definir <code class="language-plaintext highlighter-rouge">escape</code> dentro de <code class="language-plaintext highlighter-rouge">apology</code>, limitamos a função anterior somente a esta última; nenhuma outra função será capaz (ou precisará) chamá-la.</p>
+<p>Em seguida, no arquivo, temos <code class="language-plaintext highlighter-rouge">login_required</code>. Não se preocupe se este parecer um pouco confuso, mas se você já se perguntou como uma função pode retornar outra função, aqui está um exemplo!</p>
+<p>Em seguida, temos <code class="language-plaintext highlighter-rouge">lookup</code>, uma função que, dado um <code class="language-plaintext highlighter-rouge">symbol</code> (por exemplo, NFLX), retorna uma cotação de ações de uma empresa na forma de um dicionário (<code class="language-plaintext highlighter-rouge">dict</code>) com três chaves: <code class="language-plaintext highlighter-rouge">name</code>, cujo valor é uma <code class="language-plaintext highlighter-rouge">str</code>, o nome da empresa; <code class="language-plaintext highlighter-rouge">price</code>, cujo valor é um <code class="language-plaintext highlighter-rouge">float</code>; e <code class="language-plaintext highlighter-rouge">symbol</code>, cujo valor é uma <code class="language-plaintext highlighter-rouge">str</code>, uma versão canônica (maiúscula) do símbolo de uma ação, independentemente de como esse símbolo foi capitalizado ao ser passado para a função <code class="language-plaintext highlighter-rouge">lookup</code>.</p>
+<p>Por último, no arquivo, temos <code class="language-plaintext highlighter-rouge">usd</code>, uma função curta que simplesmente formata um número em formato de dólar (por exemplo, <code class="language-plaintext highlighter-rouge">1234.56</code> é formatado como <code class="language-plaintext highlighter-rouge">$1,234.56</code>).</p>
+
+
+<h4 id="requirementstxt"><code class="language-plaintext highlighter-rouge">requirements.txt</code></h4>
+<p>Em seguida, dê uma olhada rápida no arquivo <code class="language-plaintext highlighter-rouge">requirements.txt</code>. Esse arquivo simplesmente especifica os pacotes nos quais este aplicativo dependerá.</p>
+<h4 id="static"><code class="language-plaintext highlighter-rouge">static/</code></h4>
+<p>Dê uma olhada também em <code class="language-plaintext highlighter-rouge">static/</code>, dentro do qual está <code class="language-plaintext highlighter-rouge">styles.css</code>. É onde reside parte do CSS inicial. Você pode modificá-lo conforme necessário.</p>
+
+<h4 id="templates"><code class="language-plaintext highlighter-rouge">templates/</code></h4>
+<p>Agora procure em <code class="language-plaintext highlighter-rouge">templates/</code>. Em <code class="language-plaintext highlighter-rouge">login.html</code>, basicamente, há apenas um formulário HTML estilizado com o <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>. Em <code class="language-plaintext highlighter-rouge">apology.html</code>, por outro lado, há um modelo de desculpas. Lembre-se de que a função <code class="language-plaintext highlighter-rouge">apology</code> em <code class="language-plaintext highlighter-rouge">helpers.py</code> recebia dois argumentos: <code class="language-plaintext highlighter-rouge">message</code>, que foi passado para <code class="language-plaintext highlighter-rouge">render_template</code> como o valor de <code class="language-plaintext highlighter-rouge">bottom</code>, e, opcionalmente, <code class="language-plaintext highlighter-rouge">code</code>, que foi passado para <code class="language-plaintext highlighter-rouge">render_template</code> como o valor de <code class="language-plaintext highlighter-rouge">top</code>. Observe em <code class="language-plaintext highlighter-rouge">apology.html</code> como esses valores são usados! E <a href="https://github.com/jacebrowning/memegen" target="_blank">aqui está o motivo</a> 0:-)</p>
+<p>Por último, temos <code class="language-plaintext highlighter-rouge">layout.html</code>. Ele é um pouco maior do que o usual, mas isso se deve principalmente ao fato de que ele vem com uma "navbar" (barra de navegação) sofisticada e compatível com dispositivos móveis, também baseada no Bootstrap. Observe como ele define um bloco, <code class="language-plaintext highlighter-rouge">main</code>, no qual os modelos (incluindo <code class="language-plaintext highlighter-rouge">apology.html</code> e <code class="language-plaintext highlighter-rouge">login.html</code>) serão inseridos. Ele também inclui suporte para o <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#message-flashing" target="_blank">message flashing</a> do Flask, para que você possa transmitir mensagens de uma rota para outra, para que o usuário possa vê-las.</p>
+
+
+<h2 id="specification">Especificação</h2>
+
+<h3 id="register"><code class="language-plaintext highlighter-rouge">register</code></h3>
+<p>Complete a implementação do <code class="language-plaintext highlighter-rouge">register</code> de forma que permita que um usuário se registre para uma conta por meio de um formulário.</p>
+<ul>
+  <li data-marker="*">Exija que o usuário insira um nome de usuário, implementado como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">username</code>. Mostre uma mensagem de desculpas se a entrada do usuário estiver em branco ou se o nome de usuário já existir.</li>
+  <li data-marker="*">Exija que o usuário insira uma senha, implementada como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">password</code>, e depois a mesma senha novamente, implementada como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">confirmation</code>. Mostre uma mensagem de desculpas se qualquer uma das entradas estiver em branco ou se as senhas não corresponderem.</li>
+  <li data-marker="*">Envie a entrada do usuário via <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/register</code>.</li>
+  <li data-marker="*"><code class="language-plaintext highlighter-rouge">INSIRA</code> o novo usuário em <code class="language-plaintext highlighter-rouge">users</code>, armazenando um hash da senha do usuário, não a própria senha. Faça o hash da senha do usuário com <a href="https://werkzeug.palletsprojects.com/en/1.0.x/utils/#werkzeug.security.generate_password_hash" target="_blank"><code class="language-plaintext highlighter-rouge">generate_password_hash</code></a>. Provavelmente você vai querer criar um novo modelo (por exemplo, <code class="language-plaintext highlighter-rouge">register.html</code>) que seja bastante semelhante a <code class="language-plaintext highlighter-rouge">login.html</code>.</li>
+</ul>
+<p>Depois de implementar corretamente o <code class="language-plaintext highlighter-rouge">register</code>, você deverá ser capaz de se registrar para uma conta e fazer login (já que o <code class="language-plaintext highlighter-rouge">login</code> e o <code class="language-plaintext highlighter-rouge">logout</code> já funcionam)! E você deverá ser capaz de ver suas linhas via phpLiteAdmin ou <code class="language-plaintext highlighter-rouge">sqlite3</code>.</p>
+
+<h3 id="quote"><code class="language-plaintext highlighter-rouge">quote</code></h3>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">quote</code> de forma que permita ao usuário consultar o preço atual de uma ação.</p>
+<ul>
+  <li data-marker="*">Exija que o usuário insira o símbolo da ação, implementado como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">symbol</code>.</li>
+  <li data-marker="*">Envie a entrada do usuário via <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/quote</code>.</li>
+  <li data-marker="*">Provavelmente você desejará criar dois novos modelos (por exemplo, <code class="language-plaintext highlighter-rouge">quote.html</code> e <code class="language-plaintext highlighter-rouge">quoted.html</code>). Quando um usuário visitar <code class="language-plaintext highlighter-rouge">/quote</code> via GET, renderize um desses modelos, no qual deve haver um formulário HTML que envia para <code class="language-plaintext highlighter-rouge">/quote</code> via POST. Em resposta a um POST, <code class="language-plaintext highlighter-rouge">quote</code> pode renderizar esse segundo modelo, incorporando um ou mais valores de <code class="language-plaintext highlighter-rouge">lookup</code>.</li>
+</ul>
+
+<h3 id="buy"><code class="language-plaintext highlighter-rouge">buy</code></h3>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">buy</code> de tal forma que permita que um usuário compre ações.</p>
+<ul>
+  <li data-marker="*">Exija que o usuário insira o símbolo de uma ação, implementado como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">symbol</code>. Renderize um pedido de desculpas se a entrada estiver em branco ou se o símbolo não existir (conforme o valor de retorno de <code class="language-plaintext highlighter-rouge">lookup</code>).</li>
+  <li data-marker="*">Exija que o usuário insira a quantidade de ações, implementado como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">shares</code>. Renderize um pedido de desculpas se a entrada não for um número inteiro positivo.</li>
+  <li data-marker="*">Envie a entrada do usuário via <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/buy</code>.</li>
+  <li data-marker="*">Após a conclusão, redirecione o usuário para a página inicial.</li>
+  <li data-marker="*">Provavelmente você desejará chamar <code class="language-plaintext highlighter-rouge">lookup</code> para verificar o preço atual de uma ação.</li>
+  <li data-marker="*">Provavelmente você desejará <code class="language-plaintext highlighter-rouge">SELECT</code> quanto dinheiro o usuário possui atualmente em <code class="language-plaintext highlighter-rouge">users</code>.</li>
+  <li data-marker="*">Adicione uma ou mais novas tabelas ao <code class="language-plaintext highlighter-rouge">finance.db</code> para acompanhar a compra. Armazene informações suficientes para saber quem comprou o quê, a que preço e quando.
+    <ul>
+      <li data-marker="*">Use os tipos apropriados do SQLite.</li>
+      <li data-marker="*">Defina índices <code class="language-plaintext highlighter-rouge">UNIQUE</code> nos campos que devem ser únicos.</li>
+      <li data-marker="*">Defina índices (não <code class="language-plaintext highlighter-rouge">UNIQUE</code>) nos campos pelos quais você pesquisará (por exemplo, usando <code class="language-plaintext highlighter-rouge">SELECT</code> com <code class="language-plaintext highlighter-rouge">WHERE</code>).</li>
+    </ul>
+  </li>
+  <li data-marker="*">Exiba um pedido de desculpas, sem concluir uma compra, se o usuário não puder pagar pelo número de ações no preço atual.</li>
+  <li data-marker="*">Você não precisa se preocupar com condições de corrida (ou usar transações).</li>
+</ul>
+<p>Depois de implementar o <code class="language-plaintext highlighter-rouge">buy</code> corretamente, você deve ser capaz de ver as compras dos usuários em suas novas tabelas por meio do phpLiteAdmin ou do <code class="language-plaintext highlighter-rouge">sqlite3</code>.</p>
+
+<h3 id="index"><code class="language-plaintext highlighter-rouge">index</code></h3>
+<p>Complete a implementação do <code class="language-plaintext highlighter-rouge">index</code> de tal maneira que ele exiba uma tabela HTML resumindo, para o usuário atualmente logado, quais ações o usuário possui, a quantidade de ações possuídas, o preço atual de cada ação e o valor total de cada posição (ou seja, ações multiplicado pelo preço). Além disso, exiba o saldo atual em dinheiro do usuário juntamente com um total geral (ou seja, valor total das ações mais dinheiro).</p>
+<ul>
+  <li data-marker="*">Provavelmente você vai querer executar várias consultas <code class="language-plaintext highlighter-rouge">SELECT</code>. Dependendo de como você implementar sua(s) tabela(s), você pode achar úteis as cláusulas <a href="https://www.google.com/search?q=SQLite+GROUP+BY," target="_blank">GROUP BY</a>, <a href="https://www.google.com/search?q=SQLite+HAVING," target="_blank">HAVING</a>, <a href="https://www.google.com/search?q=SQLite+SUM," target="_blank">SUM</a> e/ou <a href="https://www.google.com/search?q=SQLite+WHERE" target="_blank">WHERE</a>.</li>
+  <li data-marker="*">Provavelmente você vai querer chamar <code class="language-plaintext highlighter-rouge">lookup</code> para cada ação.</li>
+</ul>
+
+<h3 id="vender"><code class="language-plaintext highlighter-rouge">sell</code></h3>
+<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">sell</code> de forma que permita ao usuário vender ações de uma ação (que ele ou ela possui).</p>
+<ul>
+  <li data-marker="*">Exigir que o usuário insira o símbolo de uma ação, implementado como um menu <code class="language-plaintext highlighter-rouge">select</code> cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">symbol</code>. Exibir uma mensagem de desculpas se o usuário não selecionar uma ação ou se (de alguma forma, após o envio) o usuário não possuir nenhuma ação dessa ação.</li>
+  <li data-marker="*">Exigir que o usuário insira um número de ações, implementado como um campo de texto cujo <code class="language-plaintext highlighter-rouge">name</code> é <code class="language-plaintext highlighter-rouge">shares</code>. Exibir uma mensagem de desculpas se a entrada não for um número inteiro positivo ou se o usuário não possuir essa quantidade de ações da ação.</li>
+  <li data-marker="*">Enviar a entrada do usuário via <code class="language-plaintext highlighter-rouge">POST</code> para <code class="language-plaintext highlighter-rouge">/sell</code>.</li>
+  <li data-marker="*">Após a conclusão, redirecionar o usuário para a página inicial.</li>
+  <li data-marker="*">Você não precisa se preocupar com condições de corrida (ou usar transações).</li>
+</ul>
+
+<h3 id="history"><code class="language-plaintext highlighter-rouge">history</code></h3>
+<p>Complete a implementação do <code class="language-plaintext highlighter-rouge">history</code> de forma que exiba uma tabela HTML resumindo todas as transações do usuário, listando linha por linha cada compra e venda.</p>
+<ul>
+  <li data-marker="*">Para cada linha, deixe claro se uma ação foi comprada ou vendida, incluindo o símbolo da ação, o preço (de compra ou venda), a quantidade de ações compradas ou vendidas, e a data e hora em que a transação ocorreu.</li>
+  <li data-marker="*">Você pode precisar alterar a tabela criada para <code class="language-plaintext highlighter-rouge">buy</code> ou complementá-la com uma tabela adicional. Tente minimizar redundâncias.</li>
+</ul>
+
+<h3 id="personal-touch">toque pessoal</h3>
+<p>Implemente pelo menos um toque pessoal de sua escolha:</p>
+<ul>
+  <li data-marker="*">Permitir que os usuários alterem suas senhas.</li>
+  <li data-marker="*">Permitir que os usuários adicionem dinheiro adicional à sua conta.</li>
+  <li data-marker="*">Permitir que os usuários comprem mais ações ou vendam ações que já possuem através do <code class="language-plaintext highlighter-rouge">index</code> em si, sem precisar digitar manualmente os símbolos das ações.</li>
+  <li data-marker="*">Exigir que as senhas dos usuários contenham um certo número de letras, números e/ou símbolos.</li>
+  <li data-marker="*">Implementar algum outro recurso de escopo comparável.</li>
+</ul>
+
+
+
+
+
+
+<h2 id="testing">Testando</h2>
+<p>Certifique-se de testar manualmente seu aplicativo da web, realizando as seguintes ações:</p>
+<ul>
+  <li data-marker="*">registrando um novo usuário e verificando se a página do portfólio carrega com as informações corretas,</li>
+  <li data-marker="*">solicitando uma cotação usando um símbolo de ação válido,</li>
+  <li data-marker="*">comprando uma ação várias vezes e verificando se o portfólio exibe os totais corretos,</li>
+  <li data-marker="*">vendendo todas ou algumas ações e verificando novamente o portfólio, e</li>
+  <li data-marker="*">verificando se a página de histórico exibe todas as transações para o usuário logado.</li>
+</ul>
+
+<p>Também teste alguns usos inesperados, como:</p>
+<ul>
+  <li data-marker="*">inserindo strings alfabéticas em campos onde apenas números são esperados,</li>
+  <li data-marker="*">inserindo números zero ou negativos em campos onde apenas números positivos são esperados,</li>
+  <li data-marker="*">inserindo valores de ponto flutuante em campos onde apenas números inteiros são esperados,</li>
+  <li data-marker="*">tentando gastar mais dinheiro do que um usuário possui,</li>
+  <li data-marker="*">tentando vender mais ações do que um usuário possui,</li>
+  <li data-marker="*">inserindo um símbolo de ação inválido,</li>
+  <li data-marker="*">incluindo caracteres potencialmente perigosos como <code class="language-plaintext highlighter-rouge">'</code> e <code class="language-plaintext highlighter-rouge">;</code> em consultas SQL.</li>
+</ul>
+<p>Depois de ficar satisfeito, para testar seu código com <code class="language-plaintext highlighter-rouge">check50</code>, execute o código abaixo.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/finance</code></pre></div></div>
+
+<div class="alert my-alert" data-alert="warning" role="alert"><p>Tenha em mente que o <code class="language-plaintext highlighter-rouge">check50</code> irá testar todo o seu programa como um todo. Se você executá-lo <strong>antes</strong> de completar todas as funções necessárias, pode reportar erros em funções que estão realmente corretas, mas dependem de outras funções.</p></div>
+<p>Execute o seguinte para avaliar o estilo de seus arquivos Python usando o <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 *.py</code></pre></div></div>
+
+
+<h2 id="staffs-solution">Solução da equipe</h2>
+<p>Você está livre para estilizar seu próprio aplicativo de forma diferente, mas aqui está como a solução da equipe se parece!</p>
+<p><a href="https://finance.cs50.net/" target="_blank">https://finance.cs50.net/</a></p>
+<p>Sinta-se à vontade para se cadastrar em uma conta e explorar. Não use uma senha que você utiliza em outros sites.</p>
+<p>É <strong>razoável</strong> olhar o HTML e CSS da equipe.</p>
+
+
+<h2 id="hints">Dicas</h2>
+<ul>
+  <li data-marker="*">Para formatar um valor como um valor de dólar dos EUA (com centavos listados com duas casas decimais), você pode usar o filtro <code class="language-plaintext highlighter-rouge">usd</code> em seus modelos Jinja (imprimindo valores como <code class="language-plaintext highlighter-rouge">{{ value | usd }}</code> em vez de <code class="language-plaintext highlighter-rouge">{{ value }}</code>).</li>
+  <li data-marker="*">
+    <p>Dentro de <code class="language-plaintext highlighter-rouge">cs50.SQL</code> há um método <code class="language-plaintext highlighter-rouge">execute</code> cujo primeiro argumento deve ser uma <code class="language-plaintext highlighter-rouge">str</code> de SQL. Se essa <code class="language-plaintext highlighter-rouge">str</code> contiver parâmetros de ponto de interrogação aos quais os valores devem ser vinculados, esses valores podem ser fornecidos como parâmetros nomeados adicionais para <code class="language-plaintext highlighter-rouge">execute</code>. Veja a implementação de <code class="language-plaintext highlighter-rouge">login</code> como exemplo. O valor de retorno de <code class="language-plaintext highlighter-rouge">execute</code> é o seguinte:</p>
+    <ul>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">str</code> for um <code class="language-plaintext highlighter-rouge">SELECT</code>, então <code class="language-plaintext highlighter-rouge">execute</code> retorna uma <code class="language-plaintext highlighter-rouge">list</code> de zero ou mais objetos <code class="language-plaintext highlighter-rouge">dict</code>, nos quais estão as chaves e valores que representam os campos e células de uma tabela, respectivamente.</li>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">str</code> for um <code class="language-plaintext highlighter-rouge">INSERT</code>, e a tabela na qual os dados foram inseridos contiver uma <code class="language-plaintext highlighter-rouge">PRIMARY KEY</code> autoincrementável, então <code class="language-plaintext highlighter-rouge">execute</code> retorna o valor da chave primária da nova linha inserida.</li>
+      <li data-marker="*">Se <code class="language-plaintext highlighter-rouge">str</code> for um <code class="language-plaintext highlighter-rouge">DELETE</code> ou um <code class="language-plaintext highlighter-rouge">UPDATE</code>, então <code class="language-plaintext highlighter-rouge">execute</code> retorna o número de linhas excluídas ou atualizadas por <code class="language-plaintext highlighter-rouge">str</code>.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Lembre-se de que o <code class="language-plaintext highlighter-rouge">cs50.SQL</code> irá registrar em sua janela do terminal todas as consultas que você executar por meio do <code class="language-plaintext highlighter-rouge">execute</code> (para que você possa confirmar se estão como o esperado).</li>
+  <li data-marker="*">Certifique-se de usar parâmetros vinculados a ponto de interrogação (ou seja, um <a href="https://www.python.org/dev/peps/pep-0249/#paramstyle" target="_blank">paramstyle</a> de <code class="language-plaintext highlighter-rouge">named</code>) ao chamar o método <code class="language-plaintext highlighter-rouge">execute</code> do CS50, como <code class="language-plaintext highlighter-rouge">WHERE ?</code>. Não use f-strings, <a href="https://docs.python.org/3.6/library/functions.html#format," target="_blank"><code class="language-plaintext highlighter-rouge">format</code></a> ou <code class="language-plaintext highlighter-rouge">+</code> (ou seja, concatenação), caso contrário, você corre o risco de sofrer um ataque de injeção de SQL.</li>
+  <li data-marker="*">Se você já estiver familiarizado com SQL, poderá usar o <a href="https://docs.sqlalchemy.org/en/latest/index.html" target="_blank">SQLAlchemy Core</a> ou o <a href="https://flask-sqlalchemy.pocoo.org/">Flask-SQLAlchemy</a> (ou seja, <a href="https://docs.sqlalchemy.org/en/latest/index.html" target="_blank">SQLAlchemy ORM</a>) em vez do <code class="language-plaintext highlighter-rouge">cs50.SQL</code>.</li>
+  <li data-marker="*">Você pode adicionar arquivos estáticos adicionais em <code class="language-plaintext highlighter-rouge">static/</code>.</li>
+  <li data-marker="*">Provavelmente você vai querer consultar a documentação do <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank">Jinja</a> ao implementar seus modelos.</li>
+  <li data-marker="*">É <strong>razoável</strong> pedir a outras pessoas para experimentar (e tentar provocar erros em) seu site.</li>
+  <li data-marker="*">Você pode alterar a estética dos sites, através de:
+    <ul>
+      <li data-marker="*"><a href="https://bootswatch.com/" target="_blank">bootswatch.com</a>,</li>
+      <li data-marker="*"><a href="https://getbootstrap.com/docs/5.1/content/" target="_blank">getbootstrap.com/docs/5.1/content</a>,</li>
+      <li data-marker="*"><a href="https://getbootstrap.com/docs/5.1/components/" target="_blank">getbootstrap.com/docs/5.1/components</a> e/ou</li>
+      <li data-marker="*"><a href="https://memegen.link/" target="_blank">memegen.link</a>.</li>
+    </ul>
+  </li>
+  <li data-marker="*">Você pode encontrar a <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/" target="_blank">documentação do Flask</a> e a <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/" target="_blank">documentação do Jinja</a> úteis!</li>
+</ul>
+<h2 id="faqs">FAQs</h2>
+<h3 id="importerror-no-module-named-application">ImportError: No module named 'application'</h3>
+<p>Por padrão, o <code class="language-plaintext highlighter-rouge">flask</code> procura por um arquivo chamado <code class="language-plaintext highlighter-rouge">app.py</code> no diretório de trabalho atual (porque configuramos o valor de <code class="language-plaintext highlighter-rouge">FLASK_APP</code>, uma variável de ambiente, para ser <code class="language-plaintext highlighter-rouge">app.py</code>). Se você está vendo esse erro, provavelmente está executando o <code class="language-plaintext highlighter-rouge">flask</code> no diretório errado!</p>
+<h3 id="oserror-errno-98-address-already-in-use">OSError: [Errno 98] Address already in use</h3>
+<p>Se, ao executar o <code class="language-plaintext highlighter-rouge">flask</code>, você ver esse erro, provavelmente o <code class="language-plaintext highlighter-rouge">flask</code> está sendo executado em outra aba. Certifique-se de encerrar aquele outro processo, com ctrl-c, antes de iniciar o <code class="language-plaintext highlighter-rouge">flask</code> novamente. Se você não tem nenhuma outra aba aberta, execute <code class="language-plaintext highlighter-rouge">fuser -k 8080/tcp</code> para encerrar quaisquer processos que ainda estejam escutando na porta TCP 8080.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="how-to-submit">Como enviar</h2>
+<p>No seu terminal, execute o comando abaixo para enviar o seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/finance</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>
