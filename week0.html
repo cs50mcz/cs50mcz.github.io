@@ -407,19 +407,20 @@
 
           <div class="language-plaintext highlighter-rouge">
             <div class="highlight">
-              <pre class="highlight"><code>  1  Pegue o livro de telefones    
-  2  Abra no meio do livro de telefones
-  3  Olhe para a página
-  4  Se a pessoa estiver na página
-  5  Ligue para a pessoa
-  6  Caso contrário, se a pessoa estiver antes no livro
-  7  Abra no meio da metade esquerda do livro
-  8  Volte para a linha 3
-  9  Caso contrário, se a pessoa estiver depois no livro
-  10 Abra no meio da metade direita do livro
-  11 Volte para a linha 3
-  12 Caso contrário
-  13 Saia
+              <pre class="highlight"><code>  1   Pegue a lista telefônica
+  2   Abra a lista telefônica no meio
+  3   Olhe a página
+  4   Se a pessoa estiver na página
+  5       Ligue para a pessoa
+  6   Se não, se a pessoa estiver antes na lista
+  7       Abra no meio da metade esquerda da lista
+  8       Volte para a linha 3
+  9   Se não, se a pessoa estiver depois na lista
+  10      Abra no meio da metade direita da lista
+  11      Volte para a linha 3
+  12  Se não,
+  13      Saia
+                
 </code></pre>
             </div>
           </div>
@@ -436,10 +437,10 @@
             class="language-plaintext highlighter-rouge">caso contrário (else if).</code> Esses são chamados de <em>condicionais</em>.
         </li>
         <li data-marker="*">Em terceiro lugar, observe como existem expressões que podem ser declaradas como
-          <em>verdadeiras</em> ou <em>falsas</em>, como "a pessoa está antes no livro". Chamamos essas de
+          <em>verdadeiras</em> ou <em>falsas</em>, como "a pessoa está antes no lista". Chamamos essas de
           <em>expressões booleanas</em>.
         </li>
-        <li data-marker="*">Finalmente, observe como há declarações como "voltar para a linha 3". Chamamos essas de
+        <li data-marker="*">Finalmente, observe como há declarações como "volte para a linha 3". Chamamos essas de
           <em>loops</em>.
         </li>
         <li data-marker="*">No contexto do <em>Scratch</em>, que é discutido abaixo, usaremos cada um dos blocos básicos
@@ -477,31 +478,31 @@
         </li>
 
         <li data-marker="*">
-          <p>Para começar, arraste o bloco "quando a bandeira verde for clicada" para a área de programação. Em seguida,
-            arraste o bloco <code class="language-plaintext highlighter-rouge">diga</code> para a área de programação e
+          <p>Para começar, arraste o bloco "when green flag is clicked" para a área de programação. Em seguida,
+            arraste o bloco <code class="language-plaintext highlighter-rouge">say</code> para a área de programação e
             anexe-o ao bloco anterior.</p>
           <p><img src="./assets/images/cs50Week0Scratch01.png" alt="scratch 01" title="scratch 01"></p>
 
           <!-- <pre><code class="language-scratch">  when green flag clicked
   say [hello, world]
 </code></pre> -->
-          <p>Observe que quando você clica na bandeira verde agora, no palco, o gato diz "olá mundo".</p>
+          <p>Observe que quando você clica na bandeira verde agora, no palco, o gato diz "hello, world".</p>
         </li>
         <li data-marker="*">
           <p>Isto ilustra muito bem o que discutimos anteriormente sobre programação:</p>
 
           <p><img src="./assets/images/cs50Week0Slide172.png" alt="scratch with black box"
               title="scratch with black box"></p>
-          <p><img src="./assets/images/cs50Week0Slide172.png" alt="scratch with black box"
-              title="scratch with black box"></p>
-          <p>Observe que a entrada <code class="language-plaintext highlighter-rouge">olá mundo</code> é passada para a
-            função <code class="language-plaintext highlighter-rouge">diga</code>, e o <em>efeito colateral</em> da
-            execução dessa função é o gato dizer <code class="language-plaintext highlighter-rouge">olá mundo</code>.
+          <!-- <p><img src="./assets/images/cs50Week0Slide172.png" alt="scratch with black box"
+              title="scratch with black box"></p> -->
+          <p>Observe que a entrada <code class="language-plaintext highlighter-rouge">hello, world</code> é passada para a
+            função <code class="language-plaintext highlighter-rouge">say</code>, e o <em>efeito</em> da
+            execução dessa função é o gato dizer <code class="language-plaintext highlighter-rouge">hello, world</code>.
           </p>
         </li>
         <li data-marker="*">
           <p>Podemos tornar seu programa mais interativo fazendo com que o gato diga <code
-              class="language-plaintext highlighter-rouge">olá</code> para alguém específico. Modifique seu programa
+              class="language-plaintext highlighter-rouge">hello</code> para alguém específico. Modifique seu programa
             como abaixo:</p>
         </li>
 
