@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS50-MCZ</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+  <link
+    href="./assets/favicon-light.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: light)"
+  />
+  <link
+    href="./assets/favicon-dark.ico?"
+    rel="icon"
+    media="(prefers-color-scheme: dark)"
+  />
+</head>
+<div class="res-topbar">
+  <i class="fa fa-bars fa-lg ham-menu"></i>
+</div>
+<header>
+  <nav class="sidenav">
+    <div class="close-menu">
+      <i class="fa fa-times fa-lg close-btn"></i>
+    </div>
+    <h2><a id="titulo" href="index.html">Isso é CS50</a></h2>
+    <p>Introdução à Ciência da Computação</p>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="week0.html">Week 0 - <em>Scratch</em></a>
+    <a href="week1.html">Week 1 - <em>C</em></a>
+    <a href="week2.html">Week 2 - <em>Arrays</em></a>
+    <a href="week3.html">Week 3 - <em>Algoritmos</em></a>
+    <a href="week4.html">Week 4 - <em>Memória</em></a>
+    <a href="week5.html">Week 5 - <em>Estrutura de Dados</em></a>
+    <a href="week6.html">Week 6 - <em>Python</em></a>
+    <a href="week7.html">Week 7 - <em>SQL</em></a>
+    <a href="week8.html">Week 8 - <em>HTML, CSS, JavaScript</em></a>
+    <a href="week9.html">Week 9 - <em>Flask</em></a>
+    <a href="week10.html">Week 10 - <em>Cibersegurança</em></a>
+    <br>
+    <hr style="border: 0.1px solid rgb(54, 54, 54);">
+    <br>
+    <a href="honesty.html">Honestidade Acadêmica</a>
+    <a href="#">Preparando o Ambiente de Desenvolvimento</a>
+  </nav>
+  <div class="title">
+    <h1>CS50-MCZ</h1>
+    <p>Uma introdução aos empreendimentos intelectuais da Ciência da Computação e da arte da programação.</p>
+
+</header>
+<main class="main">
+  <section>
+    <br>
+    <h2 class="no_toc" id="lecture-0">Hello, It's Me</h2>
+    <hr>
+
+    <h2 id="getting-started">Problema a Resolver</h2>
+    <p>Em um arquivo chamado <code
+      class="language-plaintext highlighter-rouge">hello.c</code>, em um diretório
+      chamado <code
+      class="language-plaintext highlighter-rouge">me</code>, implemente um programa
+      em C que pergunta ao usuário o seu nome e então diz "hello" para esse usuário.
+      Por exemplo, se o name do usuário é Adele, seu programa deve imprimir na tela 
+      <code
+        class="language-plaintext highlighter-rouge">hello, Adele\n</code>.
+    </p>
+
+    <h3 id="hints">Dicas</h3>
+    <ul>
+      <li>Lembre que o você pode pegar uma <code
+        class="language-plaintext highlighter-rouge">string</code> do usuário com 
+        a função <code
+        class="language-plaintext highlighter-rouge">get_string</code> da biblioteca 
+        <code
+        class="language-plaintext highlighter-rouge">cs50.h</code>.
+      </li>
+      <li>
+        Lembre que você pode imprimir uma <code
+        class="language-plaintext highlighter-rouge">string</code> na tela com a 
+        função <code
+        class="language-plaintext highlighter-rouge">printf</code> da biblioteca 
+        <code
+        class="language-plaintext highlighter-rouge">stdio.h</code>
+      </li>
+      <li>
+        Lembre que você pode formatar uma <code
+        class="language-plaintext highlighter-rouge">string</code> com 
+        <code
+        class="language-plaintext highlighter-rouge">printf</code> utilizando o 
+        <code
+        class="language-plaintext highlighter-rouge">%s</code>
+      </li>
+    </ul>
+
+
+    <h2 id="getting-started">Começando</h2>
+    <p>Lembre-se de que o Visual Studio Code (também conhecido como VS Code) é um popular "ambiente de desenvolvimento
+      integrado" (IDE) no qual você pode escrever código. Para que você não precise baixar, instalar e configurar sua
+      própria cópia do VS Code, usaremos uma versão baseada em nuvem que já tem tudo o que você precisa pré-instalado.
+    </p>
+    <p>Acesse <a href="https://cs50.dev/" target="_blank">cs50.dev</a> usando sua conta do GitHub. Depois que
+      seu "codespace"
+      for carregado, você deverá ver que, por padrão, o VS Code é dividido em três regiões. Na parte superior do VS Code
+      está o "editor de texto", onde você escreverá todos os seus programas. Na parte inferior, há uma "janela do
+      terminal", uma interface de linha de comando (CLI) que permite explorar os arquivos e diretórios (também
+      conhecidos como pastas) do seu codespace, compilar o código e executar programas. E à esquerda está o "explorador
+      de arquivos", uma interface gráfica do usuário (GUI) por meio da qual você também pode explorar os arquivos e
+      diretórios do seu codespace.</p>
+    <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
+        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que seu "prompt" se parece
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$
+</code></pre>
+      </div>
+    </div>
+    <p>Clique dentro daquela janela do terminal e digite</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>mkdir me
+</code></pre>
+      </div>
+    </div>
+    <p>seguido de Enter para criar um diretório chamado <code class="language-plaintext highlighter-rouge">hello</code>
+      em seu codespace. Tenha cuidado para não esquecer o espaço entre <code
+        class="language-plaintext highlighter-rouge">mkdir</code> e <code
+        class="language-plaintext highlighter-rouge">me</code> ou qualquer outro caractere.</p>
+    <p>Daqui para frente, executar (ou seja, executar) um comando significa digitá-lo em uma janela do terminal e, em
+      seguida, pressionar Enter. Os comandos diferenciam maiúsculas de minúsculas, portanto, certifique-se de não
+      digitar em maiúsculas quando quiser minúsculas ou vice-versa.</p>
+    <p>Agora execute</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>cd me
+</code></pre>
+      </div>
+    </div>
+    <p>Para se mover para (ou seja, abrir) esse diretório, execute o comando. Seu prompt deve ficar parecido
+      com o abaixo.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>me/ $
+</code></pre>
+      </div>
+    </div>
+    <p>Se isso não acontecer, refaça seus passos e tente determinar onde você errou!</p>
+    <p>Vamos escrever seu primeiro programa? Execute:</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>code hello.c
+</code></pre>
+      </div>
+    </div>
+    <p>para criar um novo arquivo chamado <code class="language-plaintext highlighter-rouge">hello.c</code>, que deve
+      ser aberto automaticamente no editor de texto do seu ambiente de desenvolvimento. Assim que você salvar o arquivo
+      com o comando-S (no macOS) ou control-S (no Windows), ele também deverá aparecer no explorador de arquivos do seu
+      ambiente de desenvolvimento.</p>
+
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/4zJe_ZItFdY?si=1mfh6kT3nONa0zhO"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+
+
+
+
+
+
+
+
+    <h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
+    <p>Execute o código abaixo para avaliar a correção do seu programa usando o <code class="language-plaintext highlighter-rouge">check50</code>, um programa de linha de comando que mostrará carinhas felizes sempre que seu código passar nos testes automatizados do CS50 e carinhas tristes sempre que não passar! Mas lembre-se de compilar e testar o código por conta própria também!</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2024/x/me
+    </code></pre></div></div>
+    <p>Execute o abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>, um programa de linha de comando que mostrará as adições (em verde) e exclusões (em vermelho) que você deve fazer no seu programa para melhorar seu estilo. Se tiver problemas para ver essas cores, <code class="language-plaintext highlighter-rouge">style50</code> também suporta outros <a href="https://cs50.readthedocs.io/style50/">modos</a>!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 hello.c
+</code></pre></div></div>
+<h2 id="how-to-submit">Como Submeter</h2>
+<p>No seu terminal, execute o abaixo para submeter seu trabalho.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2024/x/me
+</code></pre></div></div>
+
+
+
+</main>
+<footer>
+  <p>Isso é CS50</p>
+</footer>
+
+
+
+<script src="script.js"></script>
+<script src="menu.js"></script>
+
+
+
+
+
+</html>

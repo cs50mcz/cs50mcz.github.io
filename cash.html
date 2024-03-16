@@ -10,16 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-  <link
-    href="./assets/favicon-light.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: light)"
-  />
-  <link
-    href="./assets/favicon-dark.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: dark)"
-  />
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
 </head>
 <div class="res-topbar">
   <i class="fa fa-bars fa-lg ham-menu"></i>
@@ -62,69 +54,25 @@
     <h2 class="no_toc" id="lecture-0">Cash</h2>
     <hr>
 
+    <h2 id="getting-started">Problema a Resolver</h2>
+    <p>Suponha que você trabalhe em uma loja e um cliente lhe dê R$ 1,00 (100 centavos) por um doce que custa R$ 0,50
+      (50 centavos). Você precisará pagar a eles o “troco”, o valor que sobra depois de pagar o custo do doce. Ao fazer
+      o troco, é provável que você queira minimizar o número de moedas que está distribuindo para cada cliente, para não
+      acabar (ou irritar o cliente!). Em um arquivo chamado <code class="language-plaintext highlighter-rouge">cash.c</code> em uma pasta chamada <code class="language-plaintext highlighter-rouge">cash</code>, implemente um programa em
+      C que imprima as moedas mínimas necessárias para fazer um determinado valor de troco, em centavos.
+     </p>
+
+
+
+
+
+
+
+
+
     <h2 id="getting-started">Começando</h2>
-    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
-    <p>Comece clicando dentro da janela do seu terminal e execute o comando <code
-        class="language-plaintext highlighter-rouge">cd</code>. Você deve ver que o "prompt" se assemelha ao abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>$
-</code></pre>
-      </div>
-    </div>
-    <p>Clique dentro da janela do terminal e execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/cash.zip
-</code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
-        class="language-plaintext highlighter-rouge">cash.zip</code> em seu espaço de código. Certifique-se de não
-      ignorar o espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou
-      qualquer outro caractere!</p>
-    <p>Agora execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>unzip cash.zip
-</code></pre>
-      </div>
-    </div>
-    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">cash</code>. Você não precisa
-      mais do arquivo ZIP, então pode executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>rm cash.zip
-</code></pre>
-      </div>
-    </div>
-    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
-    <p>Agora digite</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>cd cash
-    </code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para mover-se para (ou seja, abrir) esse diretório. Sua linha de comando deve agora se parecer
-      com a abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>cash/ $
-    </code></pre>
-      </div>
-    </div>
-    <p>Se tudo foi bem sucedido, você deve executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>ls
-    </code></pre>
-      </div>
-    </div>
-    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">cash.c</code>. Executar <code
-        class="language-plaintext highlighter-rouge">code cash.c</code> deve abrir o arquivo onde você digitara seu
-      código para esse problema. Caso contrário, refaça seus passos e veja se consegue determinar onde errou!</p>
-    <h2 id="greedy-algorithms">Algoritmos Gananciosos</h2>
+
+        <h2 id="greedy-algorithms">Algoritmos Gananciosos</h2>
     <!-- http://mypieceofthe31415927.blogspot.com/2014/04/whats-wrong-with-these-us-coins.html -->
     <p><img src="./assets/images/coins.jpg" alt="Moedas dos Estados Unidos"></p>
     <p>Ao fazer troco, você provavelmente deseja minimizar o número de moedas que está dispensando para cada cliente,
@@ -214,46 +162,88 @@
       <summary>Dica</summary>
       <ul>
         <li data-marker="*">Lembre-se de que há vários programas de exemplo no <a
-            href="https://cdn.cs50.net/2022/fall/lectures/1/src1/" target="_blank">Código Fonte</a> da Semana 1 que ilustram como as
+            href="https://cdn.cs50.net/2022/fall/lectures/1/src1/" target="_blank">Código Fonte</a> da Semana 1 que
+          ilustram como as
           funções podem retornar um valor.</li>
       </ul>
     </details>
     <p>Seu programa deve se comportar conforme os exemplos abaixo.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./cash
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./cash
 Quanto devido: 41
 4
-</code></pre></div></div>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./cash
+</code></pre>
+      </div>
+    </div>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./cash
 Quanto devido: -41
 Quanto devido: foo
 Quanto devido: 41
 4
-</code></pre></div></div>
-<h3 id="how-to-test-your-code">Como testar seu código</h3>
-<p>Para este programa, tente testar seu código manualmente - é uma boa prática:</p>
-<ul>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">-1</code>, seu programa solicita entrada novamente?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">0</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">0</code>?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">1</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, um centavo)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">4</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">4</code> (ou seja, quatro centavos)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">5</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de cinco centavos)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">24</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">6</code> (ou seja, duas moedas de dez centavos e quatro centavos)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">25</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de vinte e cinco centavos)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">26</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">2</code> (ou seja, uma moeda de vinte e cinco centavos e um centavo)?</li>
-  <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">99</code>, seu programa produzirá <code class="language-plaintext highlighter-rouge">9</code> (ou seja, três moedas de vinte e cinco centavos, duas moedas de dez centavos e quatro centavos)?</li>
-</ul>
-<p>Você também pode executar o código abaixo para avaliar a correção do seu programa usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar por conta própria também!</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/cash
-</code></pre></div></div>
-<details><summary>O <code>check50</code> está falhando ao compilar o seu código?</summary><p>Certifique-se de ter modificado apenas as partes do programa marcadas como <code class="language-plaintext highlighter-rouge">TODO</code>. Se você modificar a função <code class="language-plaintext highlighter-rouge">main</code> ou adicionar quaisquer variáveis globais, por exemplo, seu código poderá <strong>falhar ao compilar</strong>. O <code class="language-plaintext highlighter-rouge">check50</code> testará suas cinco funções independentemente, além de verificar apenas a resposta final.</p></details>
-<p>E execute o código abaixo para avaliar o estilo do seu programa usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 cash.c
-</code></pre></div></div>
-<h2 id="como-enviar">Como Enviar</h2>
-<p>No seu terminal, execute o código abaixo para enviar seu trabalho.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/cash
-</code></pre></div></div>
+</code></pre>
+      </div>
+    </div>
+    <h3 id="how-to-test-your-code">Como testar seu código</h3>
+    <p>Para este programa, tente testar seu código manualmente - é uma boa prática:</p>
+    <ul>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">-1</code>, seu programa
+        solicita entrada novamente?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">0</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">0</code>?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">1</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, um centavo)?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">4</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">4</code> (ou seja, quatro centavos)?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">5</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de cinco centavos)?
+      </li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">24</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">6</code> (ou seja, duas moedas de dez centavos e
+        quatro centavos)?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">25</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">1</code> (ou seja, uma moeda de vinte e cinco
+        centavos)?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">26</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">2</code> (ou seja, uma moeda de vinte e cinco
+        centavos e um centavo)?</li>
+      <li data-marker="*">Se você inserir <code class="language-plaintext highlighter-rouge">99</code>, seu programa
+        produzirá <code class="language-plaintext highlighter-rouge">9</code> (ou seja, três moedas de vinte e cinco
+        centavos, duas moedas de dez centavos e quatro centavos)?</li>
+    </ul>
 
+
+
+    <!-- <h3 id="how-to-test-your-code-1">Como Testar Seu Código</h3> -->
+    <p>Execute o abaixo para avaliar a correção do seu código usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilá-lo e testá-lo você
+      mesmo também!</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/problems/2024/x/cash
+      </code></pre>
+      </div>
+    </div>
+    <p>Execute abaixo para avaliar o estilo do seu código usando <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>style50 cash.c
+      </code></pre>
+      </div>
+    </div>
+    
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2024/x/cash
+      </code></pre>
+      </div>
+    </div>
 
 
 

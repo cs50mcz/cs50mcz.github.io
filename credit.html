@@ -10,16 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-  <link
-    href="./assets/favicon-light.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: light)"
-  />
-  <link
-    href="./assets/favicon-dark.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: dark)"
-  />
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
 </head>
 <div class="res-topbar">
   <i class="fa fa-bars fa-lg ham-menu"></i>
@@ -62,68 +54,63 @@
     <h2 class="no_toc" id="lecture-0">Credit</h2>
     <hr>
 
+    <h2 id="getting-started">Problema a Resolver</h2>
+    <p>Um cartão de crédito (ou débito), é claro, é um cartão de plástico com o qual você pode pagar bens e serviços.
+      Impresso nesse cartão está um número que também está armazenado em um banco de dados em algum lugar, para que
+      quando seu cartão for usado para comprar algo, o credor saiba de quem cobrar. Há muitas pessoas com cartões de
+      crédito neste mundo, então esses números são bem longos: American Express usa números de 15 dígitos, MasterCard
+      usa números de 16 dígitos e Visa usa números de 13 e 16 dígitos. E esses são números decimais (0 a 9), não
+      binários, o que significa, por exemplo, que a American Express poderia imprimir até 10 ^ 15 =
+      1.000.000.000.000.000 de cartões exclusivos! (Isso é, hum, um quatrilhão.)
+    </p>
+    <p>
+      Na verdade, isso é um pouco exagerado, porque os números dos cartões de crédito têm alguma estrutura. Todos os
+      números American Express começam com 34 ou 37; a maioria dos números MasterCard começa com 51, 52, 53, 54 ou 55
+      (eles também têm alguns outros números iniciais potenciais com os quais não nos preocuparemos para este problema);
+      e todos os números Visa começam com 4. Mas os números de cartão de crédito também têm uma “soma de verificação”
+      incorporada, uma relação matemática entre pelo menos um número e outros. Essa soma de verificação permite que
+      computadores (ou humanos que gostam de matemática) detectem erros de digitação (por exemplo, transposições), se
+      não números fraudulentos, sem a necessidade de consultar um banco de dados, o que pode ser lento. É claro que um
+      matemático desonesto poderia certamente criar um número falso que, no entanto, respeitasse as restrições
+      matemáticas, pelo que uma consulta à base de dados ainda é necessária para verificações mais rigorosas.
+    </p>
+    <p>Em um arquivo chamado <code class="language-plaintext highlighter-rouge">credit.c</code> em uma pasta chamada
+      <code class="language-plaintext highlighter-rouge">credit</code>, implemente um programa em
+      C que verifica a validade de um número de cartão de crédito.
+    </p>
+
+
+
+
+
+
+
+
+
+
+
     <h2 id="getting-started">Começando</h2>
-    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
-    <p>Comece clicando dentro da sua janela de terminal e, em seguida, execute <code
-        class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se parece
-      com o abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>$
-</code></pre>
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/_SRCgvo-VRA?si=Eue5FSC8loRt11Gd"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </div>
-    </div>
-    <p>Clique dentro daquela janela de terminal e, em seguida, execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/credit.zip
-</code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para baixar um ZIP chamado <code class="language-plaintext highlighter-rouge">credit.zip</code>
-      no seu espaço de código. Certifique-se de não ignorar o espaço entre <code
-        class="language-plaintext highlighter-rouge">wget</code> e a URL a seguir, ou qualquer outro caractere!</p>
-    <p>Agora execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>unzip credit.zip
-</code></pre>
-      </div>
-    </div>
-    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">credit</code>. Você não precisa
-      mais do arquivo ZIP, portanto, pode executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>rm credit.zip
-</code></pre>
-      </div>
-    </div>
-    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
-    <p>Agora digite</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>cd credit
-</code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para se mover para dentro desse diretório. Seu prompt deve agora se parecer com o abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>credit/ $
-</code></pre>
-      </div>
-    </div>
-    <p>Se tudo ocorreu bem, você deve executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>ls
-</code></pre>
-      </div>
-    </div>
-    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">credit.c</code>. Executando <code
-        class="language-plaintext highlighter-rouge">code credit.c</code> você deve abrir o arquivo onde irá escrever
-      seu código para este conjunto de problemas. Se isso não acontecer, volte seus passos e veja se consegue determinar
-      onde errou!</p>
+
+
+
+
+
+
+    
     <h2 id="credit-cards">Cartões de crédito</h2>
     <p>Um cartão de crédito (ou débito), é claro, é um cartão de plástico com o qual você pode pagar por bens e
       serviços. Impresso nesse cartão está um número que também está armazenado em algum banco de dados, de forma que
@@ -232,7 +219,8 @@ INVALID        </code></pre>
     </div>
     <p>Teste seu programa com um monte de entradas, tanto válidas quanto inválidas. (Com certeza faremos isso!) Aqui
       estão alguns <a
-        href="https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards" target="_blank">números
+        href="https://developer.paypal.com/api/nvp-soap/payflow/integration-guide/test-transactions/#standard-test-cards"
+        target="_blank">números
         de cartão</a> que o PayPal recomenda para testes.</p>
     <p>Se o seu programa se comportar incorretamente em algumas entradas (ou não compilar), é hora de fazer o debug!</p>
     <h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
@@ -241,7 +229,7 @@ INVALID        </code></pre>
       também!</p>
     <div class="language-plaintext highlighter-rouge">
       <div class="highlight">
-        <pre class="highlight"><code>check50 cs50/problems/2023/x/credit
+        <pre class="highlight"><code>check50 cs50/problems/2024/x/credit
 </code></pre>
       </div>
     </div>
@@ -257,7 +245,7 @@ INVALID        </code></pre>
     <p>No seu terminal, execute o seguinte comando para enviar o seu trabalho.</p>
     <div class="language-plaintext highlighter-rouge">
       <div class="highlight">
-        <pre class="highlight"><code>submit50 cs50/problems/2023/x/credit
+        <pre class="highlight"><code>submit50 cs50/problems/2024/x/credit
 </code></pre>
       </div>
     </div>

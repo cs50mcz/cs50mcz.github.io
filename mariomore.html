@@ -62,69 +62,47 @@
     <h2 class="no_toc" id="lecture-0">Mario (more)</h2>
     <hr>
 
-    <h2 id="getting-started">Primeiros Passos</h2>
-    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
-    <p>Comece clicando dentro da janela do seu terminal e execute <code
-        class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deverá ver que o "prompt" se parece com o
-      abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>$
-</code></pre>
+    <h2 id="getting-started">Problema a Resolver</h2>
+    <p>Em um arquivo chamado <code
+      class="language-plaintext highlighter-rouge">mario.c</code>, em um diretório
+      chamado <code
+      class="language-plaintext highlighter-rouge">mario-more</code>, implemente um programa
+      em C que recria uma pirâmide usandos hashes (
+      <code
+        class="language-plaintext highlighter-rouge"> # </code>) como se fossem blocos.
+    </p>
+
+
+
+
+
+
+
+
+
+    <h2 id="getting-started">Começando</h2>
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/cuJbARGi5UM?si=4cYJ8dqwytllyba3"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </div>
-    </div>
-    <p>Clique dentro da janela do terminal e, em seguida, execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/1/mario-more.zip
-</code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para baixar um arquivo ZIP chamado <code
-        class="language-plaintext highlighter-rouge">mario-more.zip</code> no seu codespace. Tome cuidado para não
-      esquecer do espaço entre <code class="language-plaintext highlighter-rouge">wget</code> e a URL seguinte, ou
-      qualquer outro caractere!</p>
-    <p>Agora execute</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>unzip mario-more.zip
-</code></pre>
-      </div>
-    </div>
-    <p>para criar uma pasta chamada <code class="language-plaintext highlighter-rouge">mario-more</code>. Você não
-      precisa mais do arquivo ZIP, então você pode executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>rm mario-more.zip
-</code></pre>
-      </div>
-    </div>
-    <p>e responda com "y" seguido de Enter no prompt para remover o arquivo ZIP que você baixou.</p>
-    <p>Agora digite</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>cd mario-more
-</code></pre>
-      </div>
-    </div>
-    <p>seguido de Enter para se mover para dentro (ou seja, abrir) desse diretório. Seu prompt deve se parecer com o
-      abaixo.</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>mario-more/ $
-</code></pre>
-      </div>
-    </div>
-    <p>Se tudo correu bem, você deve executar</p>
-    <div class="language-plaintext highlighter-rouge">
-      <div class="highlight">
-        <pre class="highlight"><code>ls
-</code></pre>
-      </div>
-    </div>
-    <p>e ver um arquivo chamado <code class="language-plaintext highlighter-rouge">mario.c</code>. Executar <code
-        class="language-plaintext highlighter-rouge">code mario.c</code> deve abrir o arquivo onde você irá digitar seu
-      código para este conjunto de problemas. Se não, retraça seus passos e veja se você pode determinar onde errou!</p>
+    
+
+
+
+
+
+
+
     <h2 id="world-1-1">Mundo 1-1</h2>
     <p>No início do Mundo 1-1 do jogo Super Mario Brothers da Nintendo, Mario deve pular sobre pirâmides adjacentes de
       blocos, como mostrado abaixo.</p>
@@ -193,16 +171,42 @@ Altura: 4
   <li data-marker="*">letras ou palavras?</li>
   <li data-marker="*">nenhuma entrada, quando você somente pressiona Enter?</li>
 </ul>
-<p>Você também pode executar o código abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testá-lo por conta própria também!</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/mario/more
-</code></pre></div></div>
-<p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 mario.c
-</code></pre></div></div>
-<h2 id="how-to-submit">Como Enviar</h2>
-<p>No seu terminal, execute o código abaixo para enviar seu trabalho.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/mario/more
-</code></pre></div></div>
+
+
+
+<!-- <h3 id="how-to-test-your-code-1">Como Testar Seu Código</h3> -->
+    <p>Execute o abaixo para avaliar a correção do seu código usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilá-lo e testá-lo você
+      mesmo também!</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/problems/2024/x/mario/more
+      </code></pre>
+      </div>
+    </div>
+    <p>Execute abaixo para avaliar o estilo do seu código usando <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>style50 mario.c
+      </code></pre>
+      </div>
+    </div>
+    <details>
+      <summary>Dica</summary>
+      <p>Um espaço é apenas uma pressão da tecla de espaço, assim como um ponto é apenas uma pressão de sua tecla!
+        Apenas lembre-se que o <code class="language-plaintext highlighter-rouge">printf</code> requer que você os
+        envolva com aspas duplas!</p>
+    </details>
+    <br>
+    <h2 id="how-to-submit">Como Enviar</h2>
+    <p>No seu terminal, execute abaixo para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2024/x/mario/more
+      </code></pre>
+      </div>
+    </div>
 
 
 
