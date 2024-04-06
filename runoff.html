@@ -62,6 +62,8 @@
     <h2 class="no_toc" id="lecture-0">Runoff</h2>
     <hr>
 
+    <h2 id="getting-started">Problema a Resolver</h2>
+
     <p>Para este programa, você implementará um programa que realiza uma eleição de desempate (runoff election), conforme abaixo.</p>
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./runoff Alice Bob Charlie
 Number of voters: 5
@@ -87,6 +89,35 @@ Rank 3: Bob
 
 Alice
       </code></pre></div></div>
+
+
+
+      <h2 id="getting-started">Começando</h2>
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/2A5H_mHlk0c?si=F7oc3FcJdTgVVcnX"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
       <h2 id="background">Contexto</h2>
 <p>Em eleições de pluralidade (plurality elections), que seguem um algoritmo muito simples para determinar o vencedor de uma eleição: cada eleitor tem um voto, e o candidato com a maioria dos votos vence.</p>
 <p>Mas a votação de pluralidade tem algumas desvantagens. O que acontece, por exemplo, em uma eleição com três candidatos, e as cédulas abaixo são lançadas?</p>
@@ -107,11 +138,12 @@ Alice
 <p>Uma possibilidade é haver um empate para quem deve ser eliminado. Podemos lidar com esse cenário dizendo que todos os candidatos que estão empatados em último lugar serão eliminados. Se todos os candidatos restantes tiverem exatamente o mesmo número de votos, no entanto, eliminar os candidatos empatados em último lugar significa eliminar todos! Então, nesse caso, teremos que ter cuidado para não eliminar todos e simplesmente declarar a eleição como um empate entre todos os candidatos restantes.</p>
 <p>Algumas eleições de votação instantânea não exigem que os eleitores classifiquem todas as suas preferências - então pode haver cinco candidatos em uma eleição, mas um eleitor pode escolher apenas dois. Para fins deste problema, no entanto, ignoraremos esse caso específico e assumiremos que todos os eleitores classificarão todos os candidatos em sua ordem de preferência.</p>
 <p>Parece um pouco mais complicado do que uma votação por maioria simples, não é? Mas argumentavelmente tem a vantagem de ser um sistema eleitoral em que o vencedor da eleição representa mais precisamente as preferências dos eleitores.</p>
+
 <h2 id="getting-started">Começando</h2>
-<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<p>Acesse o <a href="https://cs50.dev/" target="_blank">cs50.dev</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
 <p>Em seguida, execute</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/3/runoff.zip</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2023/fall/psets/3/runoff.zip</code></pre></div></div>
 <p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">runoff.zip</code> em seu codespace.</p>
 <p>Em seguida, execute</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip runoff.zip</code></pre></div></div>
@@ -125,6 +157,7 @@ Alice
 <p>Se tudo ocorreu com sucesso, você deve executar:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls</code></pre></div></div>
 <p>e veja um arquivo chamado <code class="language-plaintext highlighter-rouge">runoff.c</code>. Executando <code class="language-plaintext highlighter-rouge">code runoff.c</code> deverá abrir o arquivo onde você irá digitar o seu código para este conjunto de problemas. Se não, refaça seus passos e veja se consegue determinar onde errou!</p>
+
 <h2 id="understanding">Entendendo</h2>
 <p>Vamos dar uma olhada em <code class="language-plaintext highlighter-rouge">runoff.c</code>. Estamos definindo duas constantes: <code class="language-plaintext highlighter-rouge">MAX_CANDIDATES</code> para o número máximo de candidatos na eleição e <code class="language-plaintext highlighter-rouge">MAX_VOTERS</code> para o número máximo de eleitores na eleição.</p>
 <p>Em seguida, temos um array bidimensional <code class="language-plaintext highlighter-rouge">preferences</code>. O array <code class="language-plaintext highlighter-rouge">preferences[i]</code> representará todas as preferências para o eleitor número <code class="language-plaintext highlighter-rouge">i</code>, e o inteiro <code class="language-plaintext highlighter-rouge">preferences[i][j]</code> aqui armazenará o índice do candidato que é a <code class="language-plaintext highlighter-rouge">j</code>-ésima preferência para o eleitor <code class="language-plaintext highlighter-rouge">i</code>.</p>
@@ -234,12 +267,12 @@ Alice
   <li data-marker="*">Não eliminar ninguém no caso de um empate entre todos os candidatos restantes</li>
 </ul>
 <p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/runoff</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2024/x/runoff</code></pre></div></div>
 <p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 runoff.c</code></pre></div></div>
 <h2 id="how-to-submit">Como Submeter</h2>
 <p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/runoff</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2024/x/runoff</code></pre></div></div>
 
 
 
