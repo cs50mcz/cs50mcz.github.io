@@ -62,9 +62,34 @@
     <h2 class="no_toc" id="lecture-0">Recover</h2>
     <hr>
 
+    <h2 id="getting-started">Problema a Resolver</h2>
+
     <p>Implemente um programa que recupere arquivos JPEG de uma imagem forense, como mostrado abaixo.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./recover card.raw
 </code></pre></div></div>
+
+
+<!-- <h2 id="getting-started">Começando</h2>
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <p><strong>Observe que há mais 5 vídeos na playlist do problema Filter (less).</strong></p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Y4QROcek6dc?si=XhD7TTkJpQ1RMOi3"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div> -->
+
+
+
+
+
 <h2 id="background">Contexto</h2>
 <p>Antecipando este problema, passamos os últimos dias tirando fotos no campus, todas salvas em uma câmera digital como JPEGs em um cartão de memória. Infelizmente, acabamos deletando todas elas! Felizmente, no mundo da informática, "deletado" geralmente não significa "deletado" tanto quanto "esquecido". Mesmo que a câmera insista que o cartão agora está em branco, temos certeza de que isso não é totalmente verdade. Na verdade, estamos esperando (bem, esperando mesmo!) que você possa escrever um programa que recupere as fotos para nós!</p>
 <p>Embora os arquivos JPEG sejam mais complicados do que os BMPs, eles têm "assinaturas", padrões de bytes que podem distingui-los de outros formatos de arquivo. Especificamente, os primeiros três bytes dos arquivos JPEG são</p>
@@ -83,10 +108,10 @@
 
     
 <h2 id="getting-started">Começando</h2>
-<p>Acesse o <a href="https://code.cs50.io/" target="_blank">code.cs50.io</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
+<p>Acesse o <a href="https://cs50.dev/" target="_blank">cs50.dev</a>, clique na sua janela do terminal e execute <code class="language-plaintext highlighter-rouge">cd</code> sozinho. Você deve encontrar que o prompt da sua janela do terminal se assemelha ao abaixo:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$</code></pre></div></div>
 <p>Em seguida, execute</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/psets/4/recover.zip</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://cdn.cs50.net/2023/fall/psets/4/recover.zip</code></pre></div></div>
 <p>Para baixar um arquivo ZIP chamado <code class="language-plaintext highlighter-rouge">recover.zip</code> em seu codespace.</p>
 <p>Em seguida, execute</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unzip recover.zip</code></pre></div></div>
@@ -161,12 +186,12 @@
 
   <h2 id="testing">Testando</h2>
 <p>Execute o abaixo para avaliar a correção do seu código usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar também!</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2023/x/recover</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/problems/2024/x/recover</code></pre></div></div>
 <p>Execute o código abaixo para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 recover.c</code></pre></div></div>
 <h2 id="how-to-submit">Como Submeter</h2>
 <p>No seu terminal, execute o comando abaixo para submeter o seu trabalho.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2023/x/recover</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/problems/2024/x/recover</code></pre></div></div>
 
 
 
