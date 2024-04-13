@@ -10,16 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <!-- <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-  <link
-    href="./assets/favicon-light.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: light)"
-  />
-  <link
-    href="./assets/favicon-dark.ico?"
-    rel="icon"
-    media="(prefers-color-scheme: dark)"
-  />
+  <link href="./assets/favicon-light.ico?" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./assets/favicon-dark.ico?" rel="icon" media="(prefers-color-scheme: dark)" />
 </head>
 <div class="res-topbar">
   <i class="fa fa-bars fa-lg ham-menu"></i>
@@ -59,31 +51,96 @@
 <main class="main">
   <section>
     <br>
-    <h2 class="no_toc" id="lecture-0">Lab 4: Volume</h2>
+    <h2 class="no_toc" id="lecture-0">Volume</h2>
     <hr>
 
-    <div class="alert my-alert" data-alert="warning" role="alert">
+
+
+    <h2 id="getting-started">Problema a Resolver</h2>
+
+    <p>
+      Em um arquivo chamado <code class="language-plaintext highlighter-rouge">volume.c</code> em uma pasta chamada <code class="language-plaintext highlighter-rouge">volume</code>, escreva um programa para modificar o volume de um
+      arquivo de áudio.
+    </p>
+
+  
+    <h2 id="getting-started">Começando</h2>
+
+    <h2 id="getting-started">Passo a Passo</h2>
+      <p>Eis aqui um passo a passo para a resolução do problema.</p>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/zwLPjnN5iBc?si=bANNBQe2EPEddwkJ"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="alert my-alert" data-alert="warning" role="alert">
       <p>Você pode colaborar com um ou dois colegas de classe neste laboratório, embora seja esperado que
         todos os
         alunos em qualquer grupo contribuam igualmente para o trabalho.</p>
+    </div> -->
+
+    <h2 id="background">Contexto</h2>
+    <p>Escreva um programa para modificar o volume de um arquivo de áudio.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./volume INPUT.wav OUTPUT.wav 2.0
+    </code></pre>
+      </div>
     </div>
 
+    <p>Onde <code class="language-plaintext highlighter-rouge">INPUT.wav</code> é o nome de um arquivo de áudio original
+      e <code class="language-plaintext highlighter-rouge">OUTPUT.wav</code> é o nome de um arquivo de áudio cujo volume
+      foi ajustado pelo fator fornecido (por exemplo, 2.0).</p>
+    <h2 id="wav-files">Arquivos WAV</h2>
+    <p><a href="https://docs.fileformat.com/audio/wav/" target="_blank">Arquivos WAV</a> são um formato de arquivo comum
+      para representar áudio. Arquivos WAV armazenam áudio como uma sequência de "amostras": números que representam o
+      valor de algum sinal de áudio em um determinado momento no tempo. Arquivos WAV começam com um "cabeçalho" de 44
+      bytes que contém informações sobre o arquivo em si, incluindo o tamanho do arquivo, o número de amostras por
+      segundo e o tamanho de cada amostra. Após o cabeçalho, o arquivo WAV contém uma sequência de amostras, cada uma
+      sendo um único inteiro de 2 bytes (16 bits) representando o sinal de áudio em um determinado momento no tempo.</p>
+    <p>Escalonar cada valor de amostra por um determinado fator tem o efeito de alterar o volume do áudio. Multiplicar
+      cada valor de amostra por 2.0, por exemplo, terá o efeito de dobrar o volume do áudio original. Multiplicar cada
+      amostra por 0.5, por outro lado, terá o efeito de reduzir o volume pela metade.</p>
 
-    <p>Escreva um programa para modificar o volume de um arquivo de áudio.</p>
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./volume INPUT.wav OUTPUT.wav 2.0
-    </code></pre></div></div>
-
-    <p>Onde <code class="language-plaintext highlighter-rouge">INPUT.wav</code> é o nome de um arquivo de áudio original e <code class="language-plaintext highlighter-rouge">OUTPUT.wav</code> é o nome de um arquivo de áudio cujo volume foi ajustado pelo fator fornecido (por exemplo, 2.0).</p>
-<h2 id="wav-files">Arquivos WAV</h2>
-<p><a href="https://docs.fileformat.com/audio/wav/" target="_blank">Arquivos WAV</a> são um formato de arquivo comum para representar áudio. Arquivos WAV armazenam áudio como uma sequência de "amostras": números que representam o valor de algum sinal de áudio em um determinado momento no tempo. Arquivos WAV começam com um "cabeçalho" de 44 bytes que contém informações sobre o arquivo em si, incluindo o tamanho do arquivo, o número de amostras por segundo e o tamanho de cada amostra. Após o cabeçalho, o arquivo WAV contém uma sequência de amostras, cada uma sendo um único inteiro de 2 bytes (16 bits) representando o sinal de áudio em um determinado momento no tempo.</p>
-<p>Escalonar cada valor de amostra por um determinado fator tem o efeito de alterar o volume do áudio. Multiplicar cada valor de amostra por 2.0, por exemplo, terá o efeito de dobrar o volume do áudio original. Multiplicar cada amostra por 0.5, por outro lado, terá o efeito de reduzir o volume pela metade.</p>
-
-<h2 id="types">Tipos</h2>
-<p>Até agora, vimos vários tipos diferentes em C, incluindo <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">bool</code>, <code class="language-plaintext highlighter-rouge">char</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">float</code> e <code class="language-plaintext highlighter-rouge">long</code>. Dentro de um arquivo de cabeçalho chamado <code class="language-plaintext highlighter-rouge">stdint.h</code>, estão as declarações de vários outros tipos que nos permitem definir com precisão o tamanho (em bits) e o sinal (positivo ou negativo) de um inteiro. Dois tipos em particular serão úteis para nós neste laboratório.</p>
-<ul>
-  <li data-marker="*"><code class="language-plaintext highlighter-rouge">uint8_t</code> é um tipo que armazena um inteiro não assinado (ou seja, não negativo) de 8 bits. Podemos tratar cada byte do cabeçalho de um arquivo WAV como um valor <code class="language-plaintext highlighter-rouge">uint8_t</code>.</li>
-  <li data-marker="*"><code class="language-plaintext highlighter-rouge">int16_t</code> é um tipo que armazena um inteiro assinado (ou seja, positivo ou negativo) de 16 bits. Podemos tratar cada amostra de áudio em um arquivo WAV como um valor <code class="language-plaintext highlighter-rouge">int16_t</code>.</li>
-</ul>
+    <h2 id="types">Tipos</h2>
+    <p>Até agora, vimos vários tipos diferentes em C, incluindo <code
+        class="language-plaintext highlighter-rouge">int</code>, <code
+        class="language-plaintext highlighter-rouge">bool</code>, <code
+        class="language-plaintext highlighter-rouge">char</code>, <code
+        class="language-plaintext highlighter-rouge">double</code>, <code
+        class="language-plaintext highlighter-rouge">float</code> e <code
+        class="language-plaintext highlighter-rouge">long</code>. Dentro de um arquivo de cabeçalho chamado <code
+        class="language-plaintext highlighter-rouge">stdint.h</code>, estão as declarações de vários outros tipos que
+      nos permitem definir com precisão o tamanho (em bits) e o sinal (positivo ou negativo) de um inteiro. Dois tipos
+      em particular serão úteis para nós neste laboratório.</p>
+    <ul>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">uint8_t</code> é um tipo que armazena um
+        inteiro sem sinal (ou seja, não negativo) de 8 bits. Podemos tratar cada byte do cabeçalho de um arquivo WAV
+        como um valor <code class="language-plaintext highlighter-rouge">uint8_t</code>.</li>
+      <li data-marker="*"><code class="language-plaintext highlighter-rouge">int16_t</code> é um tipo que armazena um
+        inteiro com sinal (ou seja, positivo ou negativo) de 16 bits. Podemos tratar cada amostra de áudio em um arquivo
+        WAV como um valor <code class="language-plaintext highlighter-rouge">int16_t</code>.</li>
+    </ul>
 
 
 
@@ -92,7 +149,7 @@
 
 
     <h2 id="getting-started">Começando</h2>
-    <p>Abra o <a href="https://code.cs50.io/" target="_blank">VS Code</a>.</p>
+    <p>Abra o <a href="https://cs50.dev/" target="_blank">cs50.dev</a>.</p>
     <p>Comece clicando dentro da janela do terminal e, em seguida, execute <code
         class="language-plaintext highlighter-rouge">cd</code> por si só. Você deve encontrar que seu "prompt" se
       assemelha ao abaixo.</p>
@@ -106,7 +163,7 @@
     <p>Clique dentro dessa janela de terminal e execute</p>
     <div class="language-plaintext highlighter-rouge">
       <div class="highlight">
-        <pre class="highlight"><code>wget https://cdn.cs50.net/2022/fall/labs/4/volume.zip</code></pre>
+        <pre class="highlight"><code>wget https://cdn.cs50.net/2023/fall/psets/4/volume.zip</code></pre>
       </div>
     </div>
 
@@ -153,102 +210,179 @@
       </div>
     </div>
 
-    <p>e você deve ver um arquivo <code class="language-plaintext highlighter-rouge">volume.c</code> ao lado de um arquivo <code class="language-plaintext highlighter-rouge">input.wav</code>.</p>
-<p>Se você encontrar algum problema, siga novamente essas mesmas etapas e veja se pode determinar onde errou!</p>
+    <p>e você deve ver um arquivo <code class="language-plaintext highlighter-rouge">volume.c</code> ao lado de um
+      arquivo <code class="language-plaintext highlighter-rouge">input.wav</code>.</p>
+    <p>Se você encontrar algum problema, siga novamente essas mesmas etapas e veja se pode determinar onde errou!</p>
 
 
 
 
-<h2 id="implementation-details">Detalhes da implementação</h2>
-<p>Complete a implementação de <code class="language-plaintext highlighter-rouge">volume.c</code>, de modo que altere o volume de um arquivo de som por um fator dado.</p>
-<ul>
-  <li data-marker="*">O programa aceita três argumentos na linha de comando: <code class="language-plaintext highlighter-rouge">input</code> representa o nome do arquivo de áudio original, <code class="language-plaintext highlighter-rouge">output</code> representa o nome do novo arquivo de áudio que deve ser gerado e <code class="language-plaintext highlighter-rouge">factor</code> é a quantidade pela qual o volume do arquivo de áudio original deve ser escalado.
+    <h2 id="implementation-details">Detalhes da implementação</h2>
+    <p>Complete a implementação de <code class="language-plaintext highlighter-rouge">volume.c</code>, de modo que
+      altere o volume de um arquivo de som por um fator dado.</p>
     <ul>
-      <li data-marker="*">Por exemplo, se <code class="language-plaintext highlighter-rouge">factor</code> for <code class="language-plaintext highlighter-rouge">2.0</code>, então seu programa deve dobrar o volume do arquivo de áudio em <code class="language-plaintext highlighter-rouge">input</code> e salvar o arquivo de áudio recém-gerado em <code class="language-plaintext highlighter-rouge">output</code>.</li>
-    </ul>
-  </li>
-  <li data-marker="*">Seu programa deve primeiro ler o cabeçalho do arquivo de entrada e gravar o cabeçalho no arquivo de saída. Lembre-se de que esse cabeçalho tem sempre exatamente 44 bytes.
-    <ul>
-      <li data-marker="*">Observe que <code class="language-plaintext highlighter-rouge">volume.c</code> já define uma variável para você chamada <code class="language-plaintext highlighter-rouge">HEADER_SIZE</code>, igual ao número de bytes no cabeçalho.</li>
-    </ul>
-  </li>
-  <li data-marker="*">O seu programa deve ler o restante dos dados do arquivo WAV, um sample (amostra) de 16 bits (2 bytes) por vez. O seu programa deve multiplicar cada amostra pelo fator <code class="language-plaintext highlighter-rouge">factor</code> e escrever a nova amostra no arquivo de saída.
-    <ul>
-      <li data-marker="*">Você pode assumir que o arquivo WAV usará valores de 16 bits assinados como amostras. Na prática, arquivos WAV podem ter números variados de bits por amostra, mas para este laboratório assumiremos amostras de 16 bits.</li>
-    </ul>
-  </li>
-  <li data-marker="*">O seu programa, se utilizar <code class="language-plaintext highlighter-rouge">malloc</code>, não deve vazar memória.</li>
-</ul>
-
-
-<h3 id="hints">Dicas</h3>
-<ul>
-  <li data-marker="*">Provavelmente, você vai querer criar um array de bytes para armazenar os dados do cabeçalho do arquivo WAV que você lerá do arquivo de entrada. Usando o tipo <code class="language-plaintext highlighter-rouge">uint8_t</code> para representar um byte, você pode criar um array de <code class="language-plaintext highlighter-rouge">n</code> bytes para o seu cabeçalho com uma sintaxe como</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uint8_t header[n];
-</code></pre></div></div>
-
-<p>Substituindo <code class="language-plaintext highlighter-rouge">n</code> pelo número de bytes. Você pode então usar <code class="language-plaintext highlighter-rouge">header</code> como argumento para <code class="language-plaintext highlighter-rouge">fread</code> ou <code class="language-plaintext highlighter-rouge">fwrite</code> para ler ou escrever a partir do cabeçalho.</p>
-<ul>
-  <li data-marker="*">Provavelmente, você desejará criar um "buffer" para armazenar as amostras de áudio que você lê do arquivo WAV. Usando o tipo <code class="language-plaintext highlighter-rouge">int16_t</code> para armazenar uma amostra de áudio, você pode criar uma variável de buffer com uma sintaxe como</li>
-</ul>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int16_t buffer;
-</code></pre></div></div>
-
-<p>Você pode então usar o <code class="language-plaintext highlighter-rouge">&amp;buffer</code> como um argumento para <code class="language-plaintext highlighter-rouge">fread</code> ou <code class="language-plaintext highlighter-rouge">fwrite</code> para ler do buffer ou escrever nele. (Lembre-se de que o operador <code class="language-plaintext highlighter-rouge">&amp;</code> é usado para obter o endereço da variável.)</p>
-<ul>
-  <li data-marker="*">Você pode achar a documentação do <a href="https://man.cs50.io/3/fread"><code class="language-plaintext highlighter-rouge">fread</code></a> e do <a href="https://man.cs50.io/3/fwrite"><code class="language-plaintext highlighter-rouge">fwrite</code></a> útil aqui.
-    <ul>
-      <li data-marker="*">Em particular, observe que ambas as funções aceitam os seguintes argumentos:
+      <li data-marker="*">O programa aceita três argumentos na linha de comando: <code
+          class="language-plaintext highlighter-rouge">input</code> representa o nome do arquivo de áudio original,
+        <code class="language-plaintext highlighter-rouge">output</code> representa o nome do novo arquivo de áudio que
+        deve ser gerado e <code class="language-plaintext highlighter-rouge">factor</code> é a quantidade pela qual o
+        volume do arquivo de áudio original deve ser escalado.
         <ul>
-          <li data-marker="*"><code class="language-plaintext highlighter-rouge">ptr</code>: um ponteiro para o local na memória para armazenar dados (quando lendo de um arquivo) ou de onde escrever dados (quando escrevendo dados para um arquivo)</li>
-          <li data-marker="*"><code class="language-plaintext highlighter-rouge">size</code>: o número de bytes em um item de dados</li>
-          <li data-marker="*"><code class="language-plaintext highlighter-rouge">nmemb</code>: o número de itens de dados (cada um de <code class="language-plaintext highlighter-rouge">size</code> bytes) a serem lidos ou escritos</li>
-          <li data-marker="*"><code class="language-plaintext highlighter-rouge">stream</code>: o ponteiro do arquivo para ser lido ou escrito</li>
+          <li data-marker="*">Por exemplo, se <code class="language-plaintext highlighter-rouge">factor</code> for <code
+              class="language-plaintext highlighter-rouge">2.0</code>, então seu programa deve dobrar o volume do
+            arquivo de áudio em <code class="language-plaintext highlighter-rouge">input</code> e salvar o arquivo de
+            áudio recém-gerado em <code class="language-plaintext highlighter-rouge">output</code>.</li>
         </ul>
       </li>
-      <li data-marker="*">De acordo com sua documentação, o <code class="language-plaintext highlighter-rouge">fread</code> retornará o número de itens de dados lidos com êxito. Você pode achar isso útil para verificar quando atingiu o final do arquivo!</li>
+      <li data-marker="*">Seu programa deve primeiro ler o cabeçalho do arquivo de entrada e gravar o cabeçalho no
+        arquivo de saída. Lembre-se de que esse cabeçalho tem sempre exatamente 44 bytes.
+        <ul>
+          <li data-marker="*">Observe que <code class="language-plaintext highlighter-rouge">volume.c</code> já define
+            uma variável para você chamada <code class="language-plaintext highlighter-rouge">HEADER_SIZE</code>, igual
+            ao número de bytes no cabeçalho.</li>
+        </ul>
+      </li>
+      <li data-marker="*">O seu programa deve ler o restante dos dados do arquivo WAV, um sample (amostra) de 16 bits (2
+        bytes) por vez. O seu programa deve multiplicar cada amostra pelo fator <code
+          class="language-plaintext highlighter-rouge">factor</code> e escrever a nova amostra no arquivo de saída.
+        <ul>
+          <li data-marker="*">Você pode assumir que o arquivo WAV usará valores de 16 bits assinados como amostras. Na
+            prática, arquivos WAV podem ter números variados de bits por amostra, mas para este laboratório assumiremos
+            amostras de 16 bits.</li>
+        </ul>
+      </li>
+      <li data-marker="*">O seu programa, se utilizar <code class="language-plaintext highlighter-rouge">malloc</code>,
+        não deve vazar memória.</li>
     </ul>
-  </li>
-</ul>
+
+
+    <h3 id="hints">Dicas</h3>
+    <ul>
+      <li data-marker="*">Provavelmente, você vai querer criar um array de bytes para armazenar os dados do cabeçalho do
+        arquivo WAV que você lerá do arquivo de entrada. Usando o tipo <code
+          class="language-plaintext highlighter-rouge">uint8_t</code> para representar um byte, você pode criar um array
+        de <code class="language-plaintext highlighter-rouge">n</code> bytes para o seu cabeçalho com uma sintaxe como
+      </li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>uint8_t header[n];
+</code></pre>
+      </div>
+    </div>
+
+    <p>Substituindo <code class="language-plaintext highlighter-rouge">n</code> pelo número de bytes. Você pode então
+      usar <code class="language-plaintext highlighter-rouge">header</code> como argumento para <code
+        class="language-plaintext highlighter-rouge">fread</code> ou <code
+        class="language-plaintext highlighter-rouge">fwrite</code> para ler ou escrever a partir do cabeçalho.</p>
+    <ul>
+      <li data-marker="*">Provavelmente, você desejará criar um "buffer" para armazenar as amostras de áudio que você lê
+        do arquivo WAV. Usando o tipo <code class="language-plaintext highlighter-rouge">int16_t</code> para armazenar
+        uma amostra de áudio, você pode criar uma variável de buffer com uma sintaxe como</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>int16_t buffer;
+</code></pre>
+      </div>
+    </div>
+
+    <p>Você pode então usar o <code class="language-plaintext highlighter-rouge">&amp;buffer</code> como um argumento
+      para <code class="language-plaintext highlighter-rouge">fread</code> ou <code
+        class="language-plaintext highlighter-rouge">fwrite</code> para ler do buffer ou escrever nele. (Lembre-se de
+      que o operador <code class="language-plaintext highlighter-rouge">&amp;</code> é usado para obter o endereço da
+      variável.)</p>
+    <ul>
+      <li data-marker="*">Você pode achar a documentação do <a href="https://man.cs50.io/3/fread"><code
+            class="language-plaintext highlighter-rouge">fread</code></a> e do <a
+          href="https://man.cs50.io/3/fwrite"><code class="language-plaintext highlighter-rouge">fwrite</code></a> útil
+        aqui.
+        <ul>
+          <li data-marker="*">Em particular, observe que ambas as funções aceitam os seguintes argumentos:
+            <ul>
+              <li data-marker="*"><code class="language-plaintext highlighter-rouge">ptr</code>: um ponteiro para o
+                local na memória para armazenar dados (quando lendo de um arquivo) ou de onde escrever dados (quando
+                escrevendo dados para um arquivo)</li>
+              <li data-marker="*"><code class="language-plaintext highlighter-rouge">size</code>: o número de bytes em
+                um item de dados</li>
+              <li data-marker="*"><code class="language-plaintext highlighter-rouge">nmemb</code>: o número de itens de
+                dados (cada um de <code class="language-plaintext highlighter-rouge">size</code> bytes) a serem lidos ou
+                escritos</li>
+              <li data-marker="*"><code class="language-plaintext highlighter-rouge">stream</code>: o ponteiro do
+                arquivo para ser lido ou escrito</li>
+            </ul>
+          </li>
+          <li data-marker="*">De acordo com sua documentação, o <code
+              class="language-plaintext highlighter-rouge">fread</code> retornará o número de itens de dados lidos com
+            êxito. Você pode achar isso útil para verificar quando atingiu o final do arquivo!</li>
+        </ul>
+      </li>
+    </ul>
 
 
 
-<h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
-<p>O seu programa deve se comportar de acordo com os exemplos abaixo.</p>
+    <h3 id="how-to-test-your-code">Como Testar o Seu Código</h3>
+    <p>O seu programa deve se comportar de acordo com os exemplos abaixo.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./volume input.wav output.wav 2.0
-</code></pre></div></div>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./volume input.wav output.wav 2.0
+</code></pre>
+      </div>
+    </div>
 
-<p>Quando você ouvir o arquivo <code class="language-plaintext highlighter-rouge">output.wav</code> (por exemplo, clicando com o botão direito em <code class="language-plaintext highlighter-rouge">output.wav</code> no navegador de arquivos, escolhendo <strong>Baixar</strong>, e depois abrindo o arquivo em um player de áudio no seu computador), ele deve estar com o dobro do volume de <code class="language-plaintext highlighter-rouge">input.wav</code>!</p>
+    <p>Quando você ouvir o arquivo <code class="language-plaintext highlighter-rouge">output.wav</code> (por exemplo,
+      clicando com o botão direito em <code class="language-plaintext highlighter-rouge">output.wav</code> no navegador
+      de arquivos, escolhendo <strong>Baixar</strong>, e depois abrindo o arquivo em um player de áudio no seu
+      computador), ele deve estar com o dobro do volume de <code
+        class="language-plaintext highlighter-rouge">input.wav</code>!</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ./volume input.wav output.wav 0.5
-</code></pre></div></div>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>$ ./volume input.wav output.wav 0.5
+</code></pre>
+      </div>
+    </div>
 
-<p>Quando você ouvir o arquivo <code class="language-plaintext highlighter-rouge">output.wav</code>, ele deve estar com metade do volume de <code class="language-plaintext highlighter-rouge">input.wav</code>!</p>
-<p>Execute o código abaixo para avaliar a correção do seu programa usando <code class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar por conta própria também!</p>
+    <p>Quando você ouvir o arquivo <code class="language-plaintext highlighter-rouge">output.wav</code>, ele deve estar
+      com metade do volume de <code class="language-plaintext highlighter-rouge">input.wav</code>!</p>
+    <p>Execute o código abaixo para avaliar a correção do seu programa usando <code
+        class="language-plaintext highlighter-rouge">check50</code>. Mas certifique-se de compilar e testar por conta
+      própria também!</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>check50 cs50/labs/2023/x/volume
-</code></pre></div></div>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>check50 cs50/problems/2024/x/volume
+</code></pre>
+      </div>
+    </div>
 
-<p>Execute o seguinte para avaliar o estilo do seu código usando <code class="language-plaintext highlighter-rouge">style50</code>.</p>
+    <p>Execute o seguinte para avaliar o estilo do seu código usando <code
+        class="language-plaintext highlighter-rouge">style50</code>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>style50 volume.c
-</code></pre></div></div>
-
-
-
-
-
-
-
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>style50 volume.c
+</code></pre>
+      </div>
+    </div>
 
 
-<h2 id="how-to-submit">Como enviar</h2>
-<p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>submit50 cs50/labs/2023/x/volume</code></pre></div></div>
+
+
+
+
+
+
+
+    <h2 id="how-to-submit">Como enviar</h2>
+    <p>No seu terminal, execute o seguinte para enviar seu trabalho.</p>
+    <div class="language-plaintext highlighter-rouge">
+      <div class="highlight">
+        <pre class="highlight"><code>submit50 cs50/problems/2024/x/volume</code></pre>
+      </div>
+    </div>
 
 
 
